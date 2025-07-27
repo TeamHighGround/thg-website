@@ -1,0 +1,79 @@
+<div class="container mx-auto p-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card avec PrimeNG et classes Tailwind -->
+        <p-card styleClass="shadow-lg hover:shadow-xl transition-shadow">
+            <ng-template #header>
+                <div class="flex items-center justify-between p-4 bg-primary-50">
+                    <h3 class="text-lg font-semibold text-primary">Statistiques</h3>
+                    <i class="pi pi-chart-line text-primary"></i>
+                </div>
+            </ng-template>
+
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-surface-600">Utilisateurs actifs</span>
+                    <span class="text-2xl font-bold text-primary">1,247</span>
+                </div>
+
+                <div class="w-full bg-surface-200 rounded-full h-2">
+                    <div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+                </div>
+            </div>
+
+            <ng-template #footer>
+                <div class="flex justify-end p-4 border-t">
+                    <p-button
+                            label="Voir détails"
+                            icon="pi pi-arrow-right"
+                            styleClass="p-button-text">
+                    </p-button>
+                </div>
+            </ng-template>
+        </p-card>
+
+        <!-- Formulaire avec validation -->
+        <p-card styleClass="shadow-lg">
+            <ng-template #header>
+                <div class="p-4 bg-surface-50 border-b">
+                    <h3 class="text-lg font-semibold">Contact</h3>
+                </div>
+            </ng-template>
+
+            <div class="p-4 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-surface-700 mb-2">
+                        Nom complet
+                    </label>
+                    <input
+                            pInputText
+                            placeholder="Votre nom"
+                            class="w-full">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-surface-700 mb-2">
+                        Email
+                    </label>
+                    <input
+                            pInputText
+                            type="email"
+                            placeholder="votre@email.com"
+                            class="w-full">
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-2 pt-4">
+                    <p-button
+                            label="Annuler"
+                            styleClass="p-button-outlined flex-1">
+                    </p-button>
+                    <p-button
+                            label="Envoyer"
+                            styleClass="flex-1">
+                    </p-button>
+                </div>
+            </div>
+        </p-card>
+
+    </div>
+</div>

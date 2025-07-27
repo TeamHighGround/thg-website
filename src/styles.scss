@@ -1,0 +1,28 @@
+// 1. Import des icônes PrimeNG (OBLIGATOIRE en premier)
+@import "primeicons/primeicons.css";
+
+// 2. Import Tailwind CSS v4 - Syntaxe standard pour Angular
+@import "tailwindcss";
+
+// 3. Définition des CSS Layers pour contrôler la priorité
+@layer tailwind-base, primeng, tailwind-utilities;
+
+// 4. Styles personnalisés globaux
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+// 5. Utilitaires personnalisés dans le bon layer
+@layer tailwind-utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white px-4 py-2 rounded-md;
+    @apply hover:bg-primary-600 focus:ring-2 focus:ring-primary-500;
+  }
+}
