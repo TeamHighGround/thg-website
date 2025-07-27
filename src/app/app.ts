@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Test } from './test/test'; // Importez le composant Test
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
+  imports: [Test], // Ajoutez Test aux imports
+  template: `<app-test></app-test>`, // Utilisez directement le composant
   styleUrl: './app.scss'
 })
 export class App {
