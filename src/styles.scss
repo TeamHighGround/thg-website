@@ -1,8 +1,8 @@
 // 1. Import des icônes PrimeNG (OBLIGATOIRE en premier)
-@import "primeicons/primeicons.css";
+@use "primeicons/primeicons.css";
 
-// 2. Import Tailwind CSS v4 - Syntaxe standard pour Angular
-@import "tailwindcss";
+// 2. Import Tailwind CSS v4 - Syntaxe moderne
+@use "tailwindcss";
 
 // 3. Définition des CSS Layers pour contrôler la priorité
 @layer tailwind-base, primeng, tailwind-utilities;
@@ -22,7 +22,7 @@ html, body {
   }
 
   .btn-primary {
-    @apply bg-primary text-white px-4 py-2 rounded-md;
-    @apply hover:bg-primary-600 focus:ring-2 focus:ring-primary-500;
+    @apply bg-blue-500 text-white px-4 py-2 rounded-md;
+    @apply hover:bg-blue-600 focus:ring-2 focus:ring-blue-500;
   }
 }
