@@ -1,0 +1,32 @@
+{
+  "SITE": {
+    "TITLE": "Bienvenue sur THG Website",
+    "SUBTITLE": "Votre partenaire technologique"
+  },
+  "NAV": {
+    "HOME": "Accueil",
+    "ABOUT": "À propos",
+    "CONTACT": "Contact",
+    "SERVICES": "Services"
+  },
+  "CONTENT": {
+    "WELCOME": {
+      "TITLE": "Titre de bienvenue",
+      "DESCRIPTION": "Ceci est une description de bienvenue pour votre site web."
+    },
+    "SERVICES": {
+      "TITLE": "Nos Services",
+      "WEB": "Développement Web",
+      "MOBILE": "Applications Mobiles",
+      "CONSULTING": "Conseil en Technologie"
+    },
+    "CTA": {
+      "BUTTON": "Découvrir nos services"
+    }
+  },
+  "FOOTER": {
+    "COPYRIGHT": "© 2025 THG Website. Tous droits réservés.",
+    "PRIVACY": "Politique de confidentialité",
+    "TERMS": "Conditions d'utilisation"
+  }
+}
