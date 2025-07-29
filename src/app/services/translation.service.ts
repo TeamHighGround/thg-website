@@ -6,28 +6,30 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TranslationService {
   constructor(private translate: TranslateService) {
-    // Langue par défaut
+    // Forcer uniquement le français pour l'instant
+    this.translate.addLangs(['fr']);
     this.translate.setDefaultLang('fr');
+    this.translate.use('fr');
     
-    // Détecter la langue du navigateur ou utiliser fr par défaut
-    const browserLang = this.translate.getBrowserLang();
-    const lang = browserLang?.match(/en|fr/) ? browserLang : 'fr';
-    this.translate.use(lang);
+    // Debug
+    console.log('Service de traduction initialisé en français');
   }
 
   switchLanguage(language: string) {
-    this.translate.use(language);
-    localStorage.setItem('language', language);
+    // Pour l'instant, seulement le français
+    if (language === 'fr') {
+      this.translate.use(language);
+      localStorage.setItem('language', language);
+    }
   }
 
   getCurrentLanguage() {
-    return this.translate.currentLang || 'fr';
+    return 'fr';
   }
 
   getAvailableLanguages() {
     return [
-      { code: 'fr', name: 'Français' },
-      { code: 'en', name: 'English' }
+      { code: 'fr', name: 'Français' }
     ];
   }
 }
