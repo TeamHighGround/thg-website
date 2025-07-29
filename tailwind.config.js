@@ -6,12 +6,7 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: {
-                    DEFAULT: '#3b82f6',
-                    50: '#eff6ff',
-                    500: '#3b82f6',
-                    900: '#1e3a8a',
-                },
+                thgGreen: "#AED4AC",
             }
         },
     },
