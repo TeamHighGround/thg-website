@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  position: relative;
+  
+  // S'assurer que le contenu est au dessus du background
+  app-header,
+  app-content,
+  app-footer {
+    position: relative;
+    z-index: 1;
+  }
+}

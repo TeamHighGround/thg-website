@@ -2,10 +2,11 @@ import { Component, signal } from '@angular/core';
 import { Header } from './component/header/header';
 import { Content } from './component/content/content';
 import { Footer } from './component/footer/footer';
+import { Background } from "./component/background/background";
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Content, Footer], // Ajoutez Test aux imports
+  imports: [Header, Content, Footer, Background], // Ajoutez Test aux imports
   templateUrl: './app.html', // Utilisez directement le composant
   styleUrl: './app.scss'
 })
