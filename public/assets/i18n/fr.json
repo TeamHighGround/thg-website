@@ -1,0 +1,14 @@
+{
+  "header": {
+    "logo": "Mon Équipe",
+    "home": "Accueil",
+    "about": "Qui sommes nous",
+    "teams": {
+      "title": "Équipes",
+      "lol": "League Of Legends"
+    },
+    "news": "Actualités",
+    "partners": "Nos partenaires",
+    "contact": "Contact"
+  }
+}

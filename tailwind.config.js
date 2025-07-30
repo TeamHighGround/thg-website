@@ -7,7 +7,8 @@ module.exports = {
         extend: {
             colors: {
                 thgGreen: "#AED4AC",
-                thgDark: "#0a0d0a"
+                thgDark: "#0a0d0a",
+                thgGrey: "#0d110d"
             }
         },
     },
