@@ -1,1 +1,64 @@
-<p>footer works!</p>
+<footer class="bg-thgGrey">
+    <!-- Section principale du footer -->
+    <div class="flex justify-center items-start gap-24 py-8">
+        <!-- Colonne 1: Réseaux sociaux -->
+        <div class="flex flex-col items-center">
+            <h3 class="text-white font-semibold mb-4">{{ 'footer.social.title' | transloco }}</h3>
+            <div class="flex space-x-4">
+                <a href="https://x.com/teamhigh_ground" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-300 hover:text-thgGreen transition-colors duration-200 p-2 rounded-lg">
+                    <i class="pi pi-twitter text-xl"></i>
+                    <span class="sr-only">X</span>
+                </a>
+                <a href="https://www.instagram.com/team_high_ground_/" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-300 hover:text-thgGreen transition-colors duration-200 p-2 rounded-lg">
+                    <i class="pi pi-instagram text-xl"></i>
+                    <span class="sr-only">Instagram</span>
+                </a>
+                <a href="https://discord.gg/teamhighground" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-300 hover:text-thgGreen transition-colors duration-200 p-2 rounded-lg">
+                    <i class="pi pi-discord text-xl"></i>
+                    <span class="sr-only">Discord</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Colonne 2: Liens légaux -->
+        <div class="flex flex-col">
+            <h3 class="text-white font-semibold mb-4">{{ 'footer.legal.title' | transloco }}</h3>
+            <ul class="space-y-2">
+                <li>
+                    <a href="/contact"
+                        class="text-gray-300 hover:text-thgGreen transition-colors duration-200 text-sm flex items-center">
+                        {{ 'footer.contact' | transloco }}
+                    </a>
+                </li>
+                <li>
+                    <a href="/cgv"
+                        class="text-gray-300 hover:text-thgGreen transition-colors duration-200 text-sm flex items-center">
+                        {{ 'footer.legal.cgv' | transloco }}
+                    </a>
+                </li>
+                <li>
+                    <a href="/mentions-legales"
+                        class="text-gray-300 hover:text-thgGreen transition-colors duration-200 text-sm flex items-center">
+                        {{ 'footer.legal.mentions' | transloco }}
+                    </a>
+                </li>
+                <li>
+                    <a href="/politique-confidentialite"
+                        class="text-gray-300 hover:text-thgGreen transition-colors duration-200 text-sm flex items-center">
+                        {{ 'footer.legal.privacy' | transloco }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Section copyright -->
+    <div class="border-t border-slate-700 pt-3">
+        <div class="flex flex-col md:flex-row justify-center items-center text-sm text-gray-400 pb-2">
+            <p>© 2025 Team High Ground. {{ 'footer.all_rights_reserved' | transloco }}</p>
+        </div>
+    </div>
+</footer>

@@ -10,5 +10,18 @@
     "news": "Actualités",
     "partners": "Nos partenaires",
     "contact": "Contact"
+  },
+  "footer": {
+    "contact": "Contact",
+    "legal": {
+      "title": "Informations légales",
+      "cgv": "Conditions Générales de Vente",
+      "mentions": "Mentions légales",
+      "privacy": "Politique de confidentialité"
+    },
+    "social": {
+      "title": "Suivez-nous"
+    },
+    "all_rights_reserved": "Tous droits réservés"
   }
 }
