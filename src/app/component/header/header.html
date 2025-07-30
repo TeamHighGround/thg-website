@@ -33,12 +33,17 @@
 
           <!-- Dropdown Menu -->
           <div
-            class="absolute left-0 mt-2 w-48 bg-slate-800 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            class="absolute left-0 mt-2 w-48 bg-thgGreen-950 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             <div class="py-1">
-              <a routerLink="/teams/league-of-legends"
-                class="block px-4 py-2 text-sm text-gray-300 hover:text-thgGreen hover:bg-slate-700 transition-colors duration-200">
-                <i class="pi pi-star mr-2"></i>
+              <a routerLink="/teams/lol"
+                class="block px-4 py-2 text-sm text-gray-300 hover:text-thgGreen transition-colors duration-200">
                 {{ 'header.teams.lol' | transloco }}
+              </a>
+            </div>
+            <div class="py-1">
+              <a routerLink="/teams/tft"
+                class="block px-4 py-2 text-sm text-gray-300 hover:text-thgGreen hover:bg-slate-700 transition-colors duration-200">
+                {{ 'header.teams.tft' | transloco }}
               </a>
             </div>
           </div>
