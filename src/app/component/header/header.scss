@@ -1,0 +1,33 @@
+/* header.scss */
+
+// Styles pour l'indicateur actif
+.router-link-active {
+  color: var(--thg-green) !important;
+}
+
+// Animation plus fluide pour l'indicateur
+.active-indicator {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Hover effects pour les liens
+nav a {
+  position: relative;
+  
+}
+
+// Styles pour le dropdown
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+  visibility: visible;
+}
+
+// Style pour l'indicateur mobile (optionnel)
+@media (max-width: 768px) {
+  .mobile-active-indicator {
+    height: 2px;
+    background: var(--thg-green);
+    border-radius: 1px;
+    margin-top: 4px;
+  }
+}

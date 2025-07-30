@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
-import { MenuItem } from 'primeng/api';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -9,47 +10,53 @@ import { MenuItem } from 'primeng/api';
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })
-export class Header {
+export class Header implements OnInit, AfterViewInit {
+  @ViewChild('navContainer', { static: false }) navContainer!: ElementRef;
+  
   mobileMenuOpen = false;
-  menuItems: MenuItem[] = [];
+  activeIndicatorStyle = { left: '0px', width: '0px' };
+
+  constructor(private router: Router) {}
+
   ngOnInit() {
-    this.menuItems = [
-      {
-        label: 'header.home',
-        icon: 'pi pi-home',
-        routerLink: ['/']
-      },
-      {
-        label: 'header.about',
-        icon: 'pi pi-users',
-        routerLink: ['/about']
-      },
-      {
-        label: 'header.teams',
-        icon: 'pi pi-sitemap',
-        items: [
-          {
-            label: 'header.teams.lol',
-            icon: 'pi pi-star',
-            routerLink: ['/teams/league-of-legends']
-          }
-        ]
-      },
-      {
-        label: 'header.news',
-        icon: 'pi pi-newspaper',
-        routerLink: ['/news']
-      },
-      {
-        label: 'header.partners',
-        icon: 'pi pi-handshake',
-        routerLink: ['/partners']
-      },
-      {
-        label: 'header.contact',
-        icon: 'pi pi-envelope',
-        routerLink: ['/contact']
-      }
-    ];
+    // Écouter les changements de route
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        setTimeout(() => this.updateActiveIndicator(), 100);
+      });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => this.updateActiveIndicator(), 100);
+  }
+
+  private updateActiveIndicator() {
+    if (!this.navContainer) return;
+
+    const navElement = this.navContainer.nativeElement;
+    const activeLink = navElement.querySelector('a.router-link-active, a[aria-current="page"]');
+    
+    if (activeLink) {
+      const navRect = navElement.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      
+      this.activeIndicatorStyle = {
+        left: `${linkRect.left - navRect.left - 32}px`, //32px car 32px de margin entre les onglets
+        width: `${linkRect.width}px`
+      };
+    } else {
+      // Si aucun lien actif n'est trouvé, on cache l'indicateur
+      this.activeIndicatorStyle = {
+        left: '0px',
+        width: '0px'
+      };
+    }
+  }
+
+  isActiveRoute(routerLink: string): boolean {
+    return this.router.url === routerLink || 
+           (routerLink === '/' && this.router.url === '/') ||
+           (routerLink !== '/' && this.router.url.startsWith(routerLink));
   }
 }
