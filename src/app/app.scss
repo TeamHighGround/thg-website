@@ -1,5 +1,6 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   position: relative;
   
@@ -9,5 +10,10 @@
   app-footer {
     position: relative;
     z-index: 1;
+  }
+  
+  // Le contenu principal prend tout l'espace disponible
+  app-content {
+    flex: 1;
   }
 }
