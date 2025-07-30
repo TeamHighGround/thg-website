@@ -6,14 +6,14 @@
   
   // S'assurer que le contenu est au dessus du background
   app-header,
-  app-content,
+  .main-content, // Utilise la classe du wrapper
   app-footer {
     position: relative;
     z-index: 1;
   }
   
   // Le contenu principal prend tout l'espace disponible
-  app-content {
+  .main-content {
     flex: 1;
   }
 }

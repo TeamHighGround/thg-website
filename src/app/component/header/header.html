@@ -3,7 +3,7 @@
 
     <!-- Logo en position absolue à gauche -->
     <div class="absolute left-0 top-2 h-full flex items-center">
-      <a href="/" class="flex items-center space-x-2">
+      <a routerLink="/" class="flex items-center space-x-2">
         <div class="w-28 h-28 flex items-center justify-center">
           <img src="assets/logo/green/V1_VERT_PNG.png" alt="Logo" class="w-full h-full object-contain rounded-lg" />
         </div>
@@ -13,12 +13,12 @@
     <!-- Desktop Navigation centrée avec flex -->
     <div class="hidden md:flex items-center justify-center h-16">
       <nav class="flex space-x-8">
-        <a href="/"
+        <a routerLink="/"
           class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
           {{ 'header.home' | transloco }}
         </a>
 
-        <a href="/about"
+        <a routerLink="/about"
           class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
           {{ 'header.about' | transloco }}
         </a>
@@ -35,7 +35,7 @@
           <div
             class="absolute left-0 mt-2 w-48 bg-slate-800 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             <div class="py-1">
-              <a href="/teams/league-of-legends"
+              <a routerLink="/teams/league-of-legends"
                 class="block px-4 py-2 text-sm text-gray-300 hover:text-thgGreen hover:bg-slate-700 transition-colors duration-200">
                 <i class="pi pi-star mr-2"></i>
                 {{ 'header.teams.lol' | transloco }}
@@ -44,17 +44,17 @@
           </div>
         </div>
 
-        <a href="/news"
+        <a routerLink="/news"
           class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
           {{ 'header.news' | transloco }}
         </a>
 
-        <a href="/partners"
+        <a routerLink="/partners"
           class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
           {{ 'header.partners' | transloco }}
         </a>
 
-        <a href="/contact"
+        <a routerLink="/contact"
           class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
           {{ 'header.contact' | transloco }}
         </a>
@@ -73,12 +73,12 @@
   <!-- Mobile Navigation -->
   <div class="md:hidden" [class.hidden]="!mobileMenuOpen">
     <div class="px-2 pt-2 pb-3 space-y-1 bg-slate-800 rounded-lg mt-2">
-      <a href="/"
+      <a routerLink="/"
         class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
         {{ 'header.home' | transloco }}
       </a>
 
-      <a href="/about"
+      <a routerLink="/about"
         class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
         {{ 'header.about' | transloco }}
       </a>
@@ -87,7 +87,7 @@
       <div class="px-3 py-2">
         <span class="text-gray-400 text-sm font-medium">{{ 'header.teams.title' | transloco }}</span>
         <div class="ml-4 mt-1">
-          <a href="/teams/league-of-legends"
+          <a routerLink="/teams/league-of-legends"
             class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-sm transition-colors duration-200">
             <i class="pi pi-star mr-2"></i>
             {{ 'header.teams.lol' | transloco }}
@@ -95,17 +95,17 @@
         </div>
       </div>
 
-      <a href="/news"
+      <a routerLink="/news"
         class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
         {{ 'header.news' | transloco }}
       </a>
 
-      <a href="/partners"
+      <a routerLink="/partners"
         class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
         {{ 'header.partners' | transloco }}
       </a>
 
-      <a href="/contact"
+      <a routerLink="/contact"
         class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
         {{ 'header.contact' | transloco }}
       </a>

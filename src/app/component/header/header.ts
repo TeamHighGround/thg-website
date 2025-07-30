@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-header',
-  imports: [TranslocoModule],
+  imports: [TranslocoModule, RouterModule],
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })
