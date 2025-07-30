@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-header',
-  imports: [TranslateModule],
+  imports: [TranslocoModule],
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })

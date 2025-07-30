@@ -1,4 +1,4 @@
-import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListeners, provideZoneChangeDetection, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -7,8 +7,8 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 
 import { provideHttpClient } from '@angular/common/http';
-import { TranslateModule } from '@ngx-translate/core';
-import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslocoHttpLoader } from './transloco-loader';
+import { provideTransloco } from '@jsverse/transloco';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,14 +32,14 @@ export const appConfig: ApplicationConfig = {
       inputVariant: 'outlined'
     }),
     provideHttpClient(),
-    provideTranslateHttpLoader({
-      prefix: './assets/i18n/',
-      suffix: '.json'
-    }),
-    importProvidersFrom(
-      TranslateModule.forRoot({
-        defaultLanguage: 'fr'
-      })
-    )
+    provideTransloco({
+      config: {
+        availableLangs: ['en', 'fr'],
+        defaultLang: 'fr',
+        reRenderOnLangChange: true,
+        prodMode: !isDevMode()
+      },
+      loader: TranslocoHttpLoader
+    })
   ]
 };

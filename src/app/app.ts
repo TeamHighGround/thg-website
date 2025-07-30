@@ -3,7 +3,7 @@ import { Header } from './component/header/header';
 import { Content } from './component/content/content';
 import { Footer } from './component/footer/footer';
 import { Background } from "./component/background/background";
-import { TranslationService } from './services/translation.service';
+import { TranslocoHttpLoader } from './transloco-loader';
 
 @Component({
   selector: 'app-root',
@@ -15,5 +15,5 @@ export class App {
   protected readonly title = signal('thg-website');
   
   // Injection du service pour s'assurer qu'il s'initialise
-  constructor(private translationService: TranslationService) {}
+  constructor(private translocoHttpLoader: TranslocoHttpLoader) {}
 }
