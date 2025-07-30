@@ -4,15 +4,13 @@
   min-height: 100vh;
   position: relative;
   
-  // S'assurer que le contenu est au dessus du background
   app-header,
-  .main-content, // Utilise la classe du wrapper
+  .main-content,
   app-footer {
     position: relative;
     z-index: 1;
   }
   
-  // Le contenu principal prend tout l'espace disponible
   .main-content {
     flex: 1;
   }

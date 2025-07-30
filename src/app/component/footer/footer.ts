@@ -8,5 +8,5 @@ import { TranslocoModule } from '@jsverse/transloco';
   styleUrl: './footer.scss'
 })
 export class Footer {
-  // Pas de logique spécifique nécessaire pour le footer
+
 }
