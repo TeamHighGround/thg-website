@@ -37,7 +37,7 @@
             <i class="pi pi-chevron-down text-xs"></i>
           </p-button>
 
-          <p-menu #menu [model]="(dynamicMenuItems$ | async)!" [popup]="true" appendTo="body" (onShow)="showMenu()"/>
+          <p-menu #menu [model]="(dynamicMenuItems$ | async)!" [popup]="true" appendTo="body" styleClass="teams-menu" (onShow)="showMenu()"/>
         </div>
 
         <a routerLink="/news"

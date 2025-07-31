@@ -1,28 +1,13 @@
-/* header.scss */
-
 // Styles pour l'indicateur actif
 .router-link-active {
   color: var(--thg-green) !important;
 }
 
-// Animation plus fluide pour l'indicateur
 .active-indicator {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-// Hover effects pour les liens
-nav a {
-  position: relative;
-  
-}
-
-// Styles pour le dropdown
-.group:hover .group-hover\:opacity-100 {
-  opacity: 1;
-  visibility: visible;
-}
-
-// Style pour l'indicateur mobile (optionnel)
+// Style pour l'indicateur mobile
 @media (max-width: 768px) {
   .mobile-active-indicator {
     height: 2px;
@@ -30,4 +15,75 @@ nav a {
     border-radius: 1px;
     margin-top: 4px;
   }
+}
+
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+  visibility: visible;
+}
+
+// STYLES POUR LE P-MENU
+::ng-deep .teams-menu {
+  background-color: #0d110d !important;
+  border: 1px solid #333333 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+// Force la couleur blanche sur TOUS les éléments texte du menu
+::ng-deep .teams-menu * {
+  color: #d1d5db !important;
+}
+
+// Ciblage ultra-spécifique pour les liens de menu
+::ng-deep .teams-menu .p-menuitem,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content .p-menuitem-link,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content .p-menuitem-link .p-menuitem-text,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content .p-menuitem-link .p-menuitem-icon {
+  color: #d1d5db !important;
+  background-color: transparent !important;
+}
+
+// Styles au HOVER - Ultra spécifique pour éviter le blanc
+::ng-deep .teams-menu .p-menuitem:hover,
+::ng-deep .teams-menu .p-menuitem:hover *,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content:hover,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content:hover *,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content .p-menuitem-link:hover,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content .p-menuitem-link:hover *,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content .p-menuitem-link:hover .p-menuitem-text,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content .p-menuitem-link:hover .p-menuitem-icon {
+  color: #d1d5db !important;
+  background-color: #333333 !important;
+}
+
+// Styles au FOCUS - Pour l'accessibilité
+::ng-deep .teams-menu .p-menuitem:focus,
+::ng-deep .teams-menu .p-menuitem:focus *,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content:focus,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content:focus *,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content .p-menuitem-link:focus,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content .p-menuitem-link:focus *,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content .p-menuitem-link:focus .p-menuitem-text,
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content .p-menuitem-link:focus .p-menuitem-icon {
+  color: #d1d5db !important;
+  background-color: #333333 !important;
+}
+
+// Suppression de tous les styles par défaut qui pourraient interférer
+::ng-deep .teams-menu .p-menuitem .p-menuitem-content .p-menuitem-link {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+// Force les variables CSS du thème Aura si elles existent
+::ng-deep .teams-menu {
+  --p-menu-item-color: #d1d5db !important;
+  --p-menu-item-hover-color: #d1d5db !important;
+  --p-menu-item-focus-color: #d1d5db !important;
+  --p-menu-item-active-color: #d1d5db !important;
+  --p-menu-item-hover-background: #333333 !important;
+  --p-menu-item-focus-background: #333333 !important;
+  --p-menu-item-active-background: #333333 !important;
 }
