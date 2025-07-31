@@ -29,29 +29,15 @@
 
         <!-- Teams Dropdown -->
         <div class="relative group">
-          <button
+          <p-button
             [class.router-link-active]="isActiveRoute('/teams/league-of-legends') || isActiveRoute('/teams/lol') || isActiveRoute('/teams/tft')"
-            class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center space-x-1 relative z-10">
+            class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center space-x-1 relative z-10"
+            (click)="menu.toggle($event)">
             <span>{{ 'header.teams.title' | transloco }}</span>
             <i class="pi pi-chevron-down text-xs"></i>
-          </button>
+          </p-button>
 
-          <!-- Dropdown Menu -->
-          <div
-            class="absolute left-0 mt-2 w-48 bg-thgGreen-950 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <div class="py-1">
-              <a routerLink="/teams/lol"
-                class="block px-4 py-2 text-sm text-gray-300 hover:text-thgGreen transition-colors duration-200">
-                {{ 'header.teams.lol' | transloco }}
-              </a>
-            </div>
-            <div class="py-1">
-              <a routerLink="/teams/tft"
-                class="block px-4 py-2 text-sm text-gray-300 hover:text-thgGreen hover:bg-slate-700 transition-colors duration-200">
-                {{ 'header.teams.tft' | transloco }}
-              </a>
-            </div>
-          </div>
+          <p-menu #menu [model]="(dynamicMenuItems$ | async)!" [popup]="true" appendTo="body" (onShow)="showMenu()"/>
         </div>
 
         <a routerLink="/news"

@@ -1,22 +1,32 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { TranslocoModule } from '@jsverse/transloco';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { MenuItem } from 'primeng/api';
 import { filter } from 'rxjs/operators';
-
+import { Menu, MenuModule } from 'primeng/menu';
+import { ButtonModule } from 'primeng/button';
+import { BehaviorSubject } from 'rxjs';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-header',
-  imports: [TranslocoModule, RouterModule],
+  imports: [TranslocoModule, RouterModule, MenuModule, ButtonModule, CommonModule],
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })
 export class Header implements OnInit, AfterViewInit {
   @ViewChild('navContainer', { static: false }) navContainer!: ElementRef;
-  
+
   mobileMenuOpen = false;
   activeIndicatorStyle = { left: '0px', width: '0px' };
 
-  constructor(private router: Router) {}
+  public dynamicMenuItems$: BehaviorSubject<MenuItem[]> = new BehaviorSubject(
+    [] as MenuItem[]
+  );
+
+  constructor(private router: Router,
+    private translocoService: TranslocoService
+  ) { }
 
   ngOnInit() {
     // Écouter les changements de route
@@ -25,6 +35,7 @@ export class Header implements OnInit, AfterViewInit {
       .subscribe(() => {
         setTimeout(() => this.updateActiveIndicator(), 100);
       });
+
   }
 
   ngAfterViewInit() {
@@ -36,11 +47,11 @@ export class Header implements OnInit, AfterViewInit {
 
     const navElement = this.navContainer.nativeElement;
     const activeLink = navElement.querySelector('a.router-link-active, a[aria-current="page"]');
-    
+
     if (activeLink) {
       const navRect = navElement.getBoundingClientRect();
       const linkRect = activeLink.getBoundingClientRect();
-      
+
       this.activeIndicatorStyle = {
         left: `${linkRect.left - navRect.left - 32}px`, //32px car 32px de margin entre les onglets
         width: `${linkRect.width}px`
@@ -55,8 +66,25 @@ export class Header implements OnInit, AfterViewInit {
   }
 
   isActiveRoute(routerLink: string): boolean {
-    return this.router.url === routerLink || 
-           (routerLink === '/' && this.router.url === '/') ||
-           (routerLink !== '/' && this.router.url.startsWith(routerLink));
+    return this.router.url === routerLink ||
+      (routerLink === '/' && this.router.url === '/') ||
+      (routerLink !== '/' && this.router.url.startsWith(routerLink));
+  }
+
+  public showMenu(): void {
+    this.dynamicMenuItems$.next([
+      {
+        label: this.translocoService.translate('header.teams.lol'),
+        command: () => {
+          this.router.navigate(['/teams/lol']);
+        }
+      },
+      {
+        label: this.translocoService.translate('header.teams.tft'),
+        command: () => {
+          this.router.navigate(['/teams/tft']);
+        }
+      }
+    ]);
   }
 }
