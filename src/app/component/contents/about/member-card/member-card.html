@@ -1,39 +1,40 @@
-<div class="group relative bg-gradient-to-br from-slate-800/80 to-slate-900/90 border border-green-500/20 rounded-xl overflow-hidden backdrop-blur-sm transition-all duration-300 hover:transform hover:-translate-y-2 hover:border-green-400/40 hover:shadow-2xl hover:shadow-green-500/10">
-  
+<div class="group relative bg-black bg-opacity-30 border-2 border-gray-800 rounded-xl overflow-hidden 
+  transition-all duration-300 hover:transform hover:-translate-y-2 hover:border-thgGreen-900 hover:shadow-2xl hover:shadow-green-500/10
+  hover:bg-opacity-50">
+
   <!-- Image du membre -->
   <div class="relative h-64 overflow-hidden">
-    <img [src]="member.image" [alt]="member.name" 
-         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-    
+    <img [src]="member.image" [alt]="member.name"
+      class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+
     <!-- Overlay avec rôle -->
-    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
       <div class="absolute bottom-4 left-4 right-4">
-        <div class="inline-flex items-center px-3 py-1 rounded-full bg-green-500/20 border border-green-400/30 backdrop-blur-sm">
-          <span class="text-green-400 text-sm font-semibold">{{ member.role }}</span>
-        </div>
+        <p-chip class="member-title" [label]="member.role">
+        </p-chip>
       </div>
     </div>
   </div>
-  
+
   <!-- Contenu -->
   <div class="p-6">
     <h3 class="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors duration-300">
       {{ member.name }}
     </h3>
-    
+
     <p class="text-gray-300 text-sm leading-relaxed mb-4">
       {{ member.description }}
     </p>
-    
-    <!-- Spécialités avec PrimeNG Chips -->
+
     <div class="flex flex-wrap gap-2">
-      <p-chip 
-        *ngFor="let specialty of member.specialties"
-        [label]="specialty">
+      <p-chip *ngFor="let specialty of member.specialties" [label]="specialty">
       </p-chip>
     </div>
   </div>
-  
+
   <!-- Effet de brillance -->
-  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition-all duration-700 pointer-events-none"></div>
+  <div
+    class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition-all duration-700 pointer-events-none">
+  </div>
 </div>
