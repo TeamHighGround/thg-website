@@ -1,1 +1,63 @@
-<p>about works!</p>
+<section class="min-h-screen">
+  <!-- présentation -->
+  <div class="relative overflow-hidden py-24 lg:py-32">
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="text-center lg:text-left">
+          
+          <!-- Title -->
+          <h1 class="text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+            {{ 'about.title' | transloco }}
+          </h1>
+          
+          <!-- Subtitle -->
+          <h2 class="text-xl lg:text-2xl font-semibold text-green-400 mb-6">
+            {{ 'about.subtitle' | transloco }}
+          </h2>
+          
+          <!-- Description -->
+          <p class="text-lg text-gray-300 mb-4 leading-relaxed">
+            {{ 'about.description.part1' | transloco }}
+          </p>
+          <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+            {{ 'about.description.part2' | transloco }}
+          </p>
+        </div>
+        
+        <!-- Image -->
+        <div class="relative">
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+            <img src="./assets/image/about.jpg" [alt]="'about.image.alt' | transloco" 
+                 class="w-full h-auto object-cover">
+            <div class="absolute -inset-1 bg-gradient-to-r from-green-500/30 to-green-400/30 rounded-2xl blur-sm -z-10"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section équipe -->
+  <div class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30 mb-4">
+        <span class="text-green-400 text-sm font-semibold uppercase tracking-wider">{{ 'about.team.badge' | transloco }}</span>
+      </div>
+      <h2 class="text-3xl lg:text-5xl font-bold text-white mb-6">
+        {{ 'about.team.title' | transloco }}
+      </h2>
+      <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        {{ 'about.team.description' | transloco }}
+      </p>
+    </div>
+    
+    <!-- Members Grid -->
+    <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+      <app-member-card 
+        *ngFor="let member of members" 
+        [member]="member">
+      </app-member-card>
+    </div>
+  </div>
+</section>

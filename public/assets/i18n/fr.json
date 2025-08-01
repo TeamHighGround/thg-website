@@ -12,6 +12,60 @@
     "partners": "Nos partenaires",
     "contact": "Contact"
   },
+  "about": {
+    "title": "Team High Ground",
+    "subtitle": "L'esport breton en devenir",
+    "description": {
+      "part1": "Créée en 2015 par une bande de potes passionnée par les jeux vidéos, notre club esport grandit et devient l'association THG, avec l'ambition d'être un club référent à Rennes et en Bretagne !",
+      "part2": "Nous évoluons principalement sur League of Legends et Teamfight Tactics. Après quelques années en amateur, nous franchissons cette année un cap en nous lançant pour la première fois en compétition officielle Riot Games !"
+    },
+    "image": {
+      "alt": "Team High Ground - Association esport bretonne"
+    },
+    "team": {
+      "badge": "Notre équipe",
+      "title": "Les fondateurs de la THG",
+      "description": "Découvrez les personnes qui portent le projet THG et accompagnent nos joueurs dans cette nouvelle aventure compétitive."
+    },
+    "members": {
+      "alex": {
+        "name": "Alexandre Martin",
+        "role": "Président & Fondateur",
+        "description": "Passionné de jeux vidéo depuis toujours, Alexandre a rassemblé les copains en 2015 pour créer la THG. Ancien joueur occasionnel, il coordonne maintenant le développement de l'association et accompagne l'équipe dans cette première année de compétition officielle.",
+        "specialties": ["Organisation", "Coordination", "Motivation"]
+      },
+      "sarah": {
+        "name": "Sarah Dubois", 
+        "role": "Responsable Équipe LoL",
+        "description": "Joueuse League of Legends depuis plusieurs années, Sarah s'occupe de la coordination de notre équipe LoL. Elle nous aide à nous améliorer et nous prépare pour nos premiers tournois officiels en analysant nos parties.",
+        "specialties": ["Analyse de jeu", "Coordination", "Soutien"]
+      },
+      "kevin": {
+        "name": "Kevin Le Gall",
+        "role": "Communication",
+        "description": "Kevin gère nos réseaux sociaux et notre communication. Il nous aide à faire connaître la THG et documente notre parcours dans cette première année de compétition. Il streame aussi occasionnellement nos parties.",
+        "specialties": ["Communication", "Réseaux sociaux", "Streaming"]
+      },
+      "emma": {
+        "name": "Emma Rousseau",
+        "role": "Référente TFT",
+        "description": "Notre meilleure joueuse TFT, Emma nous fait progresser sur Teamfight Tactics. Elle partage ses connaissances du jeu et nous représente dans les quelques tournois TFT auxquels nous participons.",
+        "specialties": ["TFT", "Formation", "Représentation"]
+      },
+      "lucas": {
+        "name": "Lucas Moreau", 
+        "role": "Support Technique",
+        "description": "Lucas s'occupe des aspects techniques : notre site web, les configurations de streaming et l'aide informatique pour l'équipe. Il nous dépanne quand on a des problèmes techniques pendant les parties.",
+        "specialties": ["Informatique", "Site web", "Support"]
+      },
+      "marie": {
+        "name": "Marie Lefevre",
+        "role": "Relations Externes",
+        "description": "Marie nous aide à développer nos relations avec d'autres associations et à chercher d'éventuels partenaires locaux. Elle s'occupe aussi des démarches administratives pour participer aux compétitions officielles.",
+        "specialties": ["Relations", "Administratif", "Partenariats"]
+      }
+    }
+  },
   "footer": {
     "contact": "Contact",
     "legal": {
@@ -24,10 +78,5 @@
       "title": "Suivez-nous"
     },
     "all_rights_reserved": "Tous droits réservés"
-  },
-  "contents": {
-    "home": {
-      "thgPresentation": "Créé en 2015 par une bande de potes passionnée par les jeux vidéos, notre club esport grandit et devient l’association THG, avec l’ambition d'être un club référent à Rennes et en Bretagne !"
-    }
   }
 }
