@@ -1,0 +1,82 @@
+{
+  "header": {
+    "logo": "My Team",
+    "home": "Home",
+    "about": "About Us",
+    "teams": {
+      "title": "Teams",
+      "lol": "League Of Legends",
+      "tft": "Teamfight Tactics"
+    },
+    "news": "News",
+    "partners": "Our Partners",
+    "contact": "Contact"
+  },
+  "about": {
+    "title": "Team High Ground",
+    "subtitle": "Emerging Breton esports",
+    "description": {
+      "part1": "Created in 2015 by a group of friends passionate about video games, our esports club grew and became THG association, with the ambition to be a reference club in Rennes and Brittany!",
+      "part2": "We mainly compete in League of Legends and Teamfight Tactics. After a few years as amateurs, we're taking a step forward this year by launching ourselves for the first time in official Riot Games competition!"
+    },
+    "image": {
+      "alt": "Team High Ground - Breton esports association"
+    },
+    "team": {
+      "badge": "Our team",
+      "title": "THG founders",
+      "description": "Meet the people who carry the THG project and support our players in this new competitive adventure."
+    },
+    "members": {
+      "alex": {
+        "name": "Alexandre Martin",
+        "role": "President & Founder",
+        "description": "Passionate about video games since always, Alexandre gathered friends in 2015 to create THG. Former occasional player, he now coordinates the association's development and supports the team in this first year of official competition.",
+        "specialties": ["Organization", "Coordination", "Motivation"]
+      },
+      "sarah": {
+        "name": "Sarah Dubois", 
+        "role": "LoL Team Manager",
+        "description": "League of Legends player for several years, Sarah takes care of coordinating our LoL team. She helps us improve and prepares us for our first official tournaments by analyzing our games.",
+        "specialties": ["Game Analysis", "Coordination", "Support"]
+      },
+      "kevin": {
+        "name": "Kevin Le Gall",
+        "role": "Communication",
+        "description": "Kevin manages our social media and communication. He helps make THG known and documents our journey in this first year of competition. He also occasionally streams our games.",
+        "specialties": ["Communication", "Social Media", "Streaming"]
+      },
+      "emma": {
+        "name": "Emma Rousseau",
+        "role": "TFT Specialist",
+        "description": "Our best TFT player, Emma helps us progress on Teamfight Tactics. She shares her knowledge of the game and represents us in the few TFT tournaments we participate in.",
+        "specialties": ["TFT", "Training", "Representation"]
+      },
+      "lucas": {
+        "name": "Lucas Moreau", 
+        "role": "Technical Support",
+        "description": "Lucas takes care of technical aspects: our website, streaming configurations and IT support for the team. He helps us when we have technical problems during games.",
+        "specialties": ["IT", "Website", "Support"]
+      },
+      "marie": {
+        "name": "Marie Lefevre",
+        "role": "External Relations",
+        "description": "Marie helps us develop our relationships with other associations and look for potential local partners. She also takes care of administrative procedures to participate in official competitions.",
+        "specialties": ["Relations", "Administrative", "Partnerships"]
+      }
+    }
+  },
+  "footer": {
+    "contact": "Contact",
+    "legal": {
+      "title": "Legal Information",
+      "cgv": "Terms and Conditions",
+      "mentions": "Legal Notice",
+      "privacy": "Privacy Policy"
+    },
+    "social": {
+      "title": "Follow us"
+    },
+    "all_rights_reserved": "All rights reserved"
+  }
+}
