@@ -17,51 +17,51 @@ export class About {
     return [
       {
         id: 1,
-        name: this.translocoService.translate('about.members.alex.name'),
-        role: this.translocoService.translate('about.members.alex.role'),
-        description: this.translocoService.translate('about.members.alex.description'),
+        name: this.translocoService.translate('contents.about.members.alex.name'),
+        role: this.translocoService.translate('contents.about.members.alex.role'),
+        description: this.translocoService.translate('contents.about.members.alex.description'),
         image: 'assets/image/default_avatar.jpg',
-        specialties: this.translocoService.translate('about.members.alex.specialties') as string[]
+        specialties: this.translocoService.translate('contents.about.members.alex.specialties') as string[]
       },
       {
         id: 2,
-        name: this.translocoService.translate('about.members.sarah.name'),
-        role: this.translocoService.translate('about.members.sarah.role'),
-        description: this.translocoService.translate('about.members.sarah.description'),
+        name: this.translocoService.translate('contents.about.members.sarah.name'),
+        role: this.translocoService.translate('contents.about.members.sarah.role'),
+        description: this.translocoService.translate('contents.about.members.sarah.description'),
         image: 'assets/image/default_avatar.jpg',
-        specialties: this.translocoService.translate('about.members.sarah.specialties') as string[]
+        specialties: this.translocoService.translate('contents.about.members.sarah.specialties') as string[]
       },
       {
         id: 3,
-        name: this.translocoService.translate('about.members.kevin.name'),
-        role: this.translocoService.translate('about.members.kevin.role'),
-        description: this.translocoService.translate('about.members.kevin.description'),
+        name: this.translocoService.translate('contents.about.members.kevin.name'),
+        role: this.translocoService.translate('contents.about.members.kevin.role'),
+        description: this.translocoService.translate('contents.about.members.kevin.description'),
         image: 'assets/image/default_avatar.jpg',
-        specialties: this.translocoService.translate('about.members.kevin.specialties') as string[]
+        specialties: this.translocoService.translate('contents.about.members.kevin.specialties') as string[]
       },
       {
         id: 4,
-        name: this.translocoService.translate('about.members.emma.name'),
-        role: this.translocoService.translate('about.members.emma.role'),
-        description: this.translocoService.translate('about.members.emma.description'),
+        name: this.translocoService.translate('contents.about.members.emma.name'),
+        role: this.translocoService.translate('contents.about.members.emma.role'),
+        description: this.translocoService.translate('contents.about.members.emma.description'),
         image: 'assets/image/default_avatar.jpg',
-        specialties: this.translocoService.translate('about.members.emma.specialties') as string[]
+        specialties: this.translocoService.translate('contents.about.members.emma.specialties') as string[]
       },
       {
         id: 5,
-        name: this.translocoService.translate('about.members.lucas.name'),
-        role: this.translocoService.translate('about.members.lucas.role'),
-        description: this.translocoService.translate('about.members.lucas.description'),
+        name: this.translocoService.translate('contents.about.members.lucas.name'),
+        role: this.translocoService.translate('contents.about.members.lucas.role'),
+        description: this.translocoService.translate('contents.about.members.lucas.description'),
         image: 'assets/image/default_avatar.jpg',
-        specialties: this.translocoService.translate('about.members.lucas.specialties') as string[]
+        specialties: this.translocoService.translate('contents.about.members.lucas.specialties') as string[]
       },
       {
         id: 6,
-        name: this.translocoService.translate('about.members.marie.name'),
-        role: this.translocoService.translate('about.members.marie.role'),
-        description: this.translocoService.translate('about.members.marie.description'),
+        name: this.translocoService.translate('contents.about.members.marie.name'),
+        role: this.translocoService.translate('contents.about.members.marie.role'),
+        description: this.translocoService.translate('contents.about.members.marie.description'),
         image: 'assets/image/default_avatar.jpg',
-        specialties: this.translocoService.translate('about.members.marie.specialties') as string[]
+        specialties: this.translocoService.translate('contents.about.members.marie.specialties') as string[]
       }
     ];
   }
