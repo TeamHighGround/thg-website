@@ -20,7 +20,7 @@ export class Header implements OnInit, AfterViewInit {
   mobileMenuOpen = false;
   activeIndicatorStyle = { left: '0px', width: '0px' };
 
-  public dynamicMenuItems$: BehaviorSubject<MenuItem[]> = new BehaviorSubject(
+  public dynamicMenuItems$: BehaviorSubject<MenuItem[]> = new BehaviorSubject( //FIX PRIMENG P-MENU
     [] as MenuItem[]
   );
 
@@ -46,18 +46,31 @@ export class Header implements OnInit, AfterViewInit {
     if (!this.navContainer) return;
 
     const navElement = this.navContainer.nativeElement;
-    const activeLink = navElement.querySelector('a.router-link-active, a[aria-current="page"]');
 
-    if (activeLink) {
+    // Chercher les liens directs actifs ET les boutons avec classe router-link-active
+    const activeLink = navElement.querySelector('a.router-link-active, a[aria-current="page"]');
+    const activeButton = navElement.querySelector('p-button.router-link-active, .p-button.router-link-active');
+
+    const activeElement = activeLink || activeButton;
+
+    if (activeElement) {
       const navRect = navElement.getBoundingClientRect();
-      const linkRect = activeLink.getBoundingClientRect();
+      let linkRect;
+
+      // Si c'est un p-button, on récupère son élément button interne
+      if (activeElement.tagName.toLowerCase() === 'p-button' || activeElement.classList.contains('p-button')) {
+        const buttonElement = activeElement.querySelector('button') || activeElement;
+        linkRect = buttonElement.getBoundingClientRect();
+      } else {
+        linkRect = activeElement.getBoundingClientRect();
+      }
 
       this.activeIndicatorStyle = {
-        left: `${linkRect.left - navRect.left - 32}px`, //32px car 32px de margin entre les onglets
+        left: `${linkRect.left - navRect.left - 32}px`, //32px car margin entre les onglets
         width: `${linkRect.width}px`
       };
     } else {
-      // Si aucun lien actif n'est trouvé, on cache l'indicateur
+      // Si aucun élément actif n'est trouvé, on cache l'indicateur
       this.activeIndicatorStyle = {
         left: '0px',
         width: '0px'
@@ -66,9 +79,26 @@ export class Header implements OnInit, AfterViewInit {
   }
 
   isActiveRoute(routerLink: string): boolean {
-    return this.router.url === routerLink ||
-      (routerLink === '/' && this.router.url === '/') ||
-      (routerLink !== '/' && this.router.url.startsWith(routerLink));
+    const currentUrl = this.router.url;
+
+    if (routerLink === '/') {
+      return currentUrl === '/';
+    }
+
+    // Pour les routes teams, on vérifie les chemins exacts et les sous-chemins
+    if (routerLink.includes('/teams/')) {
+      return currentUrl === routerLink || currentUrl.startsWith(routerLink + '/');
+    }
+
+    // Pour les autres routes
+    return currentUrl === routerLink || currentUrl.startsWith(routerLink + '/');
+  }
+
+  isTeamsRouteActive(): boolean {
+    const currentUrl = this.router.url;
+    return currentUrl.startsWith('/teams/lol') ||
+      currentUrl.startsWith('/teams/tft') ||
+      currentUrl === '/teams/league-of-legends';
   }
 
   public showMenu(): void {
@@ -87,4 +117,5 @@ export class Header implements OnInit, AfterViewInit {
       }
     ]);
   }
+
 }

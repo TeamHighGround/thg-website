@@ -14,55 +14,47 @@
     <!-- Desktop Navigation -->
     <div class="hidden md:flex items-center justify-center h-16 relative">
       <nav class="flex space-x-8 relative" #navContainer>
-        <a routerLink="/"
-          routerLinkActive="router-link-active"
-          [routerLinkActiveOptions]="{exact: true}"
+        <a routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"
           class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative z-10">
           {{ 'header.home' | transloco }}
         </a>
 
-        <a routerLink="/about"
-          routerLinkActive="router-link-active"
+        <a routerLink="/about" routerLinkActive="router-link-active"
           class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative z-10">
           {{ 'header.about' | transloco }}
         </a>
 
         <!-- Teams Dropdown -->
         <div class="relative group">
-          <p-button
-            [class.router-link-active]="isActiveRoute('/teams/league-of-legends') || isActiveRoute('/teams/lol') || isActiveRoute('/teams/tft')"
+          <p-button [class.router-link-active]="isTeamsRouteActive()"
             class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center space-x-1 relative z-10"
             (click)="menu.toggle($event)">
             <span>{{ 'header.teams.title' | transloco }}</span>
             <i class="pi pi-chevron-down text-xs"></i>
           </p-button>
 
-          <p-menu #menu [model]="(dynamicMenuItems$ | async)!" [popup]="true" appendTo="body" styleClass="teams-menu" (onShow)="showMenu()"/>
+          <p-menu #menu [model]="(dynamicMenuItems$ | async)!" [popup]="true" appendTo="body" styleClass="teams-menu"
+            (onShow)="showMenu()" />
         </div>
 
-        <a routerLink="/news"
-          routerLinkActive="router-link-active"
+        <a routerLink="/news" routerLinkActive="router-link-active"
           class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative z-10">
           {{ 'header.news' | transloco }}
         </a>
 
-        <a routerLink="/partners"
-          routerLinkActive="router-link-active"
+        <a routerLink="/partners" routerLinkActive="router-link-active"
           class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative z-10">
           {{ 'header.partners' | transloco }}
         </a>
 
-        <a routerLink="/contact"
-          routerLinkActive="router-link-active"
+        <a routerLink="/contact" routerLinkActive="router-link-active"
           class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative z-10">
           {{ 'header.contact' | transloco }}
         </a>
 
         <!-- Indicateur animé -->
-        <div 
-          class="absolute bottom-0 h-0.5 bg-thgGreen rounded-full transition-all duration-300 ease-out"
-          [style.left]="activeIndicatorStyle.left"
-          [style.width]="activeIndicatorStyle.width">
+        <div class="absolute bottom-0 h-0.5 bg-thgGreen rounded-full transition-all duration-300 ease-out"
+          [style.left]="activeIndicatorStyle.left" [style.width]="activeIndicatorStyle.width">
         </div>
       </nav>
     </div>
@@ -79,15 +71,12 @@
   <!-- Mobile Navigation -->
   <div class="md:hidden" [class.hidden]="!mobileMenuOpen">
     <div class="px-2 pt-2 pb-3 space-y-1 bg-slate-800 rounded-lg mt-2">
-      <a routerLink="/"
-        routerLinkActive="router-link-active"
-        [routerLinkActiveOptions]="{exact: true}"
+      <a routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"
         class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
         {{ 'header.home' | transloco }}
       </a>
 
-      <a routerLink="/about"
-        routerLinkActive="router-link-active"
+      <a routerLink="/about" routerLinkActive="router-link-active"
         class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
         {{ 'header.about' | transloco }}
       </a>
@@ -96,8 +85,7 @@
       <div class="px-3 py-2">
         <span class="text-gray-400 text-sm font-medium">{{ 'header.teams.title' | transloco }}</span>
         <div class="ml-4 mt-1">
-          <a routerLink="/teams/league-of-legends"
-            routerLinkActive="router-link-active"
+          <a routerLink="/teams/league-of-legends" routerLinkActive="router-link-active"
             class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-sm transition-colors duration-200">
             <i class="pi pi-star mr-2"></i>
             {{ 'header.teams.lol' | transloco }}
@@ -105,20 +93,17 @@
         </div>
       </div>
 
-      <a routerLink="/news"
-        routerLinkActive="router-link-active"
+      <a routerLink="/news" routerLinkActive="router-link-active"
         class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
         {{ 'header.news' | transloco }}
       </a>
 
-      <a routerLink="/partners"
-        routerLinkActive="router-link-active"
+      <a routerLink="/partners" routerLinkActive="router-link-active"
         class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
         {{ 'header.partners' | transloco }}
       </a>
 
-      <a routerLink="/contact"
-        routerLinkActive="router-link-active"
+      <a routerLink="/contact" routerLinkActive="router-link-active"
         class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
         {{ 'header.contact' | transloco }}
       </a>
