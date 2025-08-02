@@ -22,31 +22,24 @@
                 </a>
             </div>
         </div>
-
         <!-- Colonne 2: Liens légaux -->
         <div class="flex flex-col">
             <h3 class="text-white font-semibold mb-4">{{ 'footer.legal.title' | transloco }}</h3>
             <ul class="space-y-2">
                 <li>
-                    <a href="/contact"
+                    <a routerLink="/contact" routerLinkActive="router-link-active"
                         class="text-gray-300 hover:text-thgGreen transition-colors duration-200 text-sm flex items-center">
                         {{ 'footer.contact' | transloco }}
                     </a>
                 </li>
                 <li>
-                    <a href="/cgv"
-                        class="text-gray-300 hover:text-thgGreen transition-colors duration-200 text-sm flex items-center">
-                        {{ 'footer.legal.cgv' | transloco }}
-                    </a>
-                </li>
-                <li>
-                    <a href="/mentions-legales"
+                    <a routerLink="/legal-notice" routerLinkActive="router-link-active"
                         class="text-gray-300 hover:text-thgGreen transition-colors duration-200 text-sm flex items-center">
                         {{ 'footer.legal.mentions' | transloco }}
                     </a>
                 </li>
                 <li>
-                    <a href="/politique-confidentialite"
+                    <a routerLink="/privacy-policy" routerLinkActive="router-link-active"
                         class="text-gray-300 hover:text-thgGreen transition-colors duration-200 text-sm flex items-center">
                         {{ 'footer.legal.privacy' | transloco }}
                     </a>
@@ -54,7 +47,6 @@
             </ul>
         </div>
     </div>
-
     <!-- Section copyright -->
     <div class="border-t border-slate-700 pt-3">
         <div class="flex flex-col md:flex-row justify-center items-center text-sm text-gray-400 pb-2">

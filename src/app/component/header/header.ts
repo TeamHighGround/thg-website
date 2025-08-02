@@ -101,6 +101,10 @@ export class Header implements OnInit, AfterViewInit {
       currentUrl === '/teams/league-of-legends';
   }
 
+  closeMobileMenu() {
+    this.mobileMenuOpen = false;
+  }
+  
   public showMenu(): void {
     this.dynamicMenuItems$.next([
       {

@@ -7,6 +7,8 @@ import { News } from './component/contents/news/news';
 import { Partners } from './component/contents/partners/partners';
 import { Contact } from './component/contents/contact/contact';
 import { TranslocoResolver } from './transloco/transloco.resolver'; // À créer
+import { LegalNotice } from './component/contents/legal-notice/legal-notice';
+import { PrivacyPolicy } from './component/contents/privacy-policy/privacy-policy';
 
 export const routes: Routes = [
   {
@@ -20,6 +22,8 @@ export const routes: Routes = [
       { path: 'news', component: News },
       { path: 'partners', component: Partners },
       { path: 'contact', component: Contact },
+      { path: 'legal-notice', component: LegalNotice },
+      { path: 'privacy-policy', component: PrivacyPolicy },
     ]
   },
   { path: '**', redirectTo: '' }
