@@ -1,4 +1,4 @@
-// Styles pour les chips
+// ===== STYLES PRIMENG UNIQUEMENT =====
 ::ng-deep .p-chip {
   background-color: #505f4e52 !important;
   border: 1px solid rgb(100, 100, 100) !important;
@@ -14,10 +14,16 @@
     font-weight: 600 !important;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    
+    // Responsive
+    @media (max-width: 640px) {
+      font-size: 0.625rem !important;
+      padding: 4px 8px !important;
+    }
   }
 }
 
-// Style pour l'effet hover sur les chips
+// Effet hover sur les chips
 ::ng-deep .group:hover .p-chip {
   transition: all 0.3s ease;
   
@@ -28,75 +34,23 @@
   }
 }
 
-// Styles pour les boutons de réseaux sociaux
-.social-btn {
-  @apply w-12 h-12 rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center;
-  @apply hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110;
-  @apply transition-all duration-200;
-  
-  &:hover {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+// ===== PRÉFÉRENCES UTILISATEUR =====
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
-// Animation pour la bordure
-@keyframes borderGlow {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-// Classe utilitaire pour limiter le nombre de lignes
-.line-clamp-4 {
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-// Animation d'apparition
-.partner-card-container {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: slideInUp 0.8s ease-out 0.2s forwards;
-}
-
-@keyframes slideInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Effet de survol sur la carte complète
-.partner-card-container:hover {
-  .social-btn {
-    transform: translateY(-2px);
+@media (prefers-contrast: high) {
+  ::ng-deep .p-chip {
+    border-width: 2px !important;
     
-    &:hover {
-      transform: translateY(-2px) scale(1.1);
-    }
-  }
-}
-
-// Responsive design
-@media (max-width: 768px) {
-  .partner-card-container {
-    .group {
-      &:hover {
-        transform: translateY(-1px);
-      }
-    }
-  }
-  
-  .social-btn {
-    @apply w-8 h-8;
-    
-    i {
-      font-size: 0.875rem;
+    &.partner-type, &.partner-role {
+      background-color: #000000 !important;
+      color: #ffffff !important;
+      border-color: #ffffff !important;
     }
   }
 }

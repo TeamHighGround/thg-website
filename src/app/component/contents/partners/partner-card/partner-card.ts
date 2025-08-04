@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ChipModule } from 'primeng/chip';
@@ -11,18 +11,55 @@ import { Partner } from './partner-interface';
   standalone: true,
   imports: [CommonModule, TranslocoModule, ChipModule, CardModule, ButtonModule],
   templateUrl: './partner-card.html',
-  styleUrl: './partner-card.scss'
+  styleUrl: './partner-card.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PartnerCard implements OnInit {
+export class PartnerCard implements OnInit, OnDestroy {
   @Input() partner!: Partner;
   
   currentImageIndex = 0;
+  private imageInterval?: number;
+  private readonly AUTO_SLIDE_DELAY = 5000; // 5 secondes
+  private isHovered = false;
 
   ngOnInit() {
     console.log('PartnerCard ngOnInit called for:', this.partner?.name);
     this.currentImageIndex = 0;
+    this.startAutoSlide();
   }
 
+  ngOnDestroy() {
+    this.stopAutoSlide();
+  }
+
+  // Gestion de l'auto-slide des images
+  private startAutoSlide() {
+    if (this.partner && this.partner.images && this.partner.images.length > 1) {
+      this.imageInterval = window.setInterval(() => {
+        if (!this.isHovered) {
+          this.nextImage();
+        }
+      }, this.AUTO_SLIDE_DELAY);
+    }
+  }
+
+  private stopAutoSlide() {
+    if (this.imageInterval) {
+      clearInterval(this.imageInterval);
+      this.imageInterval = undefined;
+    }
+  }
+
+  // Gestionnaires d'événements pour l'auto-slide
+  onMouseEnter() {
+    this.isHovered = true;
+  }
+
+  onMouseLeave() {
+    this.isHovered = false;
+  }
+
+  // Navigation des images
   nextImage(): void {
     console.log('Next image clicked, current index:', this.currentImageIndex);
     if (this.partner && this.partner.images && this.partner.images.length > 1) {
@@ -45,20 +82,51 @@ export class PartnerCard implements OnInit {
     console.log('Set image to index:', index);
     if (this.partner && this.partner.images && index >= 0 && index < this.partner.images.length) {
       this.currentImageIndex = index;
+      // Redémarrer l'auto-slide après sélection manuelle
+      this.stopAutoSlide();
+      setTimeout(() => this.startAutoSlide(), 1000);
     }
   }
 
+  // Gestion du clavier pour l'accessibilité
+  @HostListener('keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    if (this.partner && this.partner.images && this.partner.images.length > 1) {
+      switch (event.key) {
+        case 'ArrowLeft':
+          event.preventDefault();
+          this.previousImage();
+          break;
+        case 'ArrowRight':
+          event.preventDefault();
+          this.nextImage();
+          break;
+        case ' ':
+        case 'Enter':
+          event.preventDefault();
+          // Pause/play de l'auto-slide
+          if (this.imageInterval) {
+            this.stopAutoSlide();
+          } else {
+            this.startAutoSlide();
+          }
+          break;
+      }
+    }
+  }
+
+  // Gestion des réseaux sociaux
   openSocialMedia(platform: string): void {
     if (this.partner.socialMedia) {
       const url = this.partner.socialMedia[platform as keyof typeof this.partner.socialMedia];
       if (url) {
-        window.open(url, '_blank');
+        window.open(url, '_blank', 'noopener,noreferrer');
         console.log("Opening " + url);
       }
     }
   }
 
-  // Nouvelle méthode pour gérer le clic molette
+  // Gestion du clic molette
   onSocialMediaMouseDown(event: MouseEvent, platform: string): void {
     // Bouton molette (button 1) ou clic gauche avec Ctrl
     if (event.button === 1 || (event.button === 0 && event.ctrlKey)) {
@@ -68,7 +136,7 @@ export class PartnerCard implements OnInit {
     }
   }
 
-  // Alternative avec auxclick (plus moderne)
+  // Gestion de l'auxclick (plus moderne)
   onSocialMediaAuxClick(event: MouseEvent, platform: string): void {
     // auxclick se déclenche pour tous les clics sauf le clic gauche
     if (event.button === 1) { // Bouton molette

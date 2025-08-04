@@ -1,106 +1,178 @@
-<div class="group relative bg-black bg-opacity-30 border-2 border-gray-800 rounded-xl overflow-hidden 
-  transition-all duration-300 hover:transform hover:-translate-y-2 hover:border-thgGreen-900 hover:shadow-2xl hover:shadow-green-500/10
-  hover:bg-opacity-50 w-full max-h-[400px]">
+<div class="group relative bg-black/30 border-2 border-gray-800 rounded-xl overflow-hidden 
+  w-full transition-all duration-300 
+  hover:-translate-y-2 hover:border-thgGreen-800 hover:shadow-2xl hover:shadow-green-500/10 hover:bg-black/50
+   sm:max-h-[650px] md:max-h-[380px] lg:max-h-[400px]">
 
-  <div class="flex flex-col lg:flex-row">
+  <div class="flex flex-col lg:flex-row h-full">
     
     <!-- Section Images -->
-    <div class="max-h-[400px] w-auto object-cover transition-transform duration-300 group-hover:scale-105 lg:rounded-l-xl">
-      <div class="relative w-full max-h-[400px] flex items-center justify-center">
-        <img 
-          [src]="partner.images[currentImageIndex]" 
-          [alt]="partner.name"
-          class="w-full max-h-[400px] object-cover transition-transform duration-300 group-hover:scale-105 lg:rounded-l-xl">
+    <div class="relative flex-shrink-0 w-full lg:w-auto 
+      md:h-[400px] lg:max-h-[400px] lg:max-w-md xl:max-w-lg
+      overflow-hidden">
+      
+      <img 
+        [src]="partner.images[currentImageIndex]" 
+        [alt]="partner.name"
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 lg:rounded-l-xl">
+      
+      <!-- Navigation Images -->
+      <div *ngIf="partner.images.length > 1" 
+           class="absolute inset-0 flex items-center justify-between p-2 sm:p-4 
+             opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <button 
+          type="button"
+          (click)="previousImage(); $event.stopPropagation()"
+          class="bg-black/70 hover:bg-black/90 text-white rounded-full 
+            transition-all duration-200 z-20 flex items-center justify-center
+            w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
+            hover:scale-110 focus:outline-none focus:ring-2 focus:ring-green-400"
+          [attr.aria-label]="'Image précédente'">
+          <i class="pi pi-chevron-left text-xs sm:text-sm md:text-base"></i>
+        </button>
         
-        <!-- Image Navigation (si plusieurs images) -->
-        <div *ngIf="partner.images.length > 1" 
-             class="absolute inset-0 flex items-center justify-between p-4 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-          <button 
-            type="button"
-            (click)="previousImage(); $event.stopPropagation()"
-            class="bg-black/70 hover:bg-black/90 text-white rounded-full p-3 transition-all duration-200 z-20 flex items-center justify-center min-w-[44px] min-h-[44px]">
-            <i class="pi pi-chevron-left text-lg"></i>
-          </button>
-          <button 
-            type="button"
-            (click)="nextImage(); $event.stopPropagation()"
-            class="bg-black/70 hover:bg-black/90 text-white rounded-full p-3 transition-all duration-200 z-20 flex items-center justify-center min-w-[44px] min-h-[44px]">
-            <i class="pi pi-chevron-right text-lg"></i>
-          </button>
-        </div>
+        <button 
+          type="button"
+          (click)="nextImage(); $event.stopPropagation()"
+          class="bg-black/70 hover:bg-black/90 text-white rounded-full 
+            transition-all duration-200 z-20 flex items-center justify-center
+            w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
+            hover:scale-110 focus:outline-none focus:ring-2 focus:ring-green-400"
+          [attr.aria-label]="'Image suivante'">
+          <i class="pi pi-chevron-right text-xs sm:text-sm md:text-base"></i>
+        </button>
       </div>
     </div>
 
     <!-- Section Contenu -->
-    <div class="flex-1 p-8 lg:p-12 flex flex-col justify-center">
+    <div class="flex-1 flex flex-col justify-center 
+      p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
       
       <!-- Nom du partenaire -->
-      <h3 class="text-3xl lg:text-4xl font-bold text-white mb-4 group-hover:text-green-400 transition-colors duration-300">
+      <h3 class="font-bold text-white mb-3 sm:mb-4 leading-tight
+        text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl
+        group-hover:text-green-400 transition-colors duration-300">
         {{ partner.name }}
       </h3>
 
-      <!-- Types/Roles -->
-      <div class="mb-6">
-        <div class="flex flex-wrap gap-2">
-          <p-chip *ngFor="let type of partner.types" class="partner-role" [label]="type"></p-chip>
+      <!-- Types/Roles (Chips PrimeNG avec styles Tailwind) -->
+      <div class="mb-4 sm:mb-6">
+        <div class="flex flex-wrap gap-1 sm:gap-2">
+          <p-chip 
+            *ngFor="let type of partner.types" 
+            class="partner-role" 
+            [label]="type">
+          </p-chip>
         </div>
       </div>
 
       <!-- Description -->
-      <p class="text-gray-300 text-base lg:text-lg leading-relaxed mb-8 max-w-3xl">
+      <p class="text-gray-300 leading-relaxed mb-6 sm:mb-8 
+        text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl
+        max-w-none sm:max-w-2xl lg:max-w-3xl">
         {{ partner.description }}
       </p>
 
       <!-- Réseaux sociaux -->
-      <div *ngIf="partner.socialMedia" class="flex items-center space-x-4">
-        <span class="text-gray-400 text-sm uppercase tracking-wider font-medium">{{ 'contents.partners.socialMedia.follow' | transloco }} :</span>
+      <div *ngIf="partner.socialMedia" 
+           class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
         
-        <button *ngIf="partner.socialMedia.instagram"
-                type="button"
-                (click)="openSocialMedia('instagram')"
-                (mousedown)="onSocialMediaMouseDown($event, 'instagram')"
-                (auxclick)="onSocialMediaAuxClick($event, 'instagram')"
-                class="social-btn group/btn">
-          <i class="pi pi-instagram text-xl group-hover/btn:text-pink-400 transition-colors duration-200"></i>
-        </button>
+        <span class="text-gray-400 uppercase tracking-wider font-medium
+          text-xs sm:text-sm flex-shrink-0">
+          {{ 'contents.partners.socialMedia.follow' | transloco }} :
+        </span>
         
-        <button *ngIf="partner.socialMedia.twitter"
-                type="button"
-                (click)="openSocialMedia('twitter')"
-                (mousedown)="onSocialMediaMouseDown($event, 'twitter')"
-                (auxclick)="onSocialMediaAuxClick($event, 'twitter')"
-                class="social-btn group/btn">
-          <i class="pi pi-twitter text-xl group-hover/btn:text-blue-400 transition-colors duration-200"></i>
-        </button>
-        
-        <button *ngIf="partner.socialMedia.soundcloud"
-                type="button"
-                (click)="openSocialMedia('soundcloud')"
-                (mousedown)="onSocialMediaMouseDown($event, 'soundcloud')"
-                (auxclick)="onSocialMediaAuxClick($event, 'soundcloud')"
-                class="social-btn group/btn">
-          <i class="pi pi-volume-up text-xl group-hover/btn:text-orange-400 transition-colors duration-200"></i>
-        </button>
-        
-        <button *ngIf="partner.socialMedia.spotify"
-                type="button"
-                (click)="openSocialMedia('spotify')"
-                (mousedown)="onSocialMediaMouseDown($event, 'spotify')"
-                (auxclick)="onSocialMediaAuxClick($event, 'spotify')"
-                class="social-btn group/btn">
-          <i class="pi pi-play text-xl group-hover/btn:text-green-400 transition-colors duration-200"></i>
-        </button>
-        
-        <button *ngIf="partner.socialMedia.twitch"
-                type="button"
-                (click)="openSocialMedia('twitch')"
-                (mousedown)="onSocialMediaMouseDown($event, 'twitch')"
-                (auxclick)="onSocialMediaAuxClick($event, 'twitch')"
-                class="social-btn group/btn">
-          <i class="pi pi-twitch text-xl group-hover/btn:text-purple-400 transition-colors duration-200"></i>
-        </button>
+        <div class="flex flex-wrap gap-2 sm:gap-3">
+          <!-- Instagram -->
+          <button *ngIf="partner.socialMedia.instagram"
+                  type="button"
+                  (click)="openSocialMedia('instagram')"
+                  (mousedown)="onSocialMediaMouseDown($event, 'instagram')"
+                  (auxclick)="onSocialMediaAuxClick($event, 'instagram')"
+                  class="group/btn rounded-full bg-gray-800/50 border border-gray-600 
+                    flex items-center justify-center transition-all duration-200
+                    w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
+                    hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1
+                    hover:shadow-lg hover:shadow-pink-500/20
+                    focus:outline-none focus:ring-2 focus:ring-pink-400"
+                  [attr.aria-label]="'Suivre sur Instagram'">
+            <i class="pi pi-instagram transition-colors duration-200
+              text-sm sm:text-base md:text-lg
+              group-hover/btn:text-pink-400"></i>
+          </button>
+          
+          <!-- Twitter -->
+          <button *ngIf="partner.socialMedia.twitter"
+                  type="button"
+                  (click)="openSocialMedia('twitter')"
+                  (mousedown)="onSocialMediaMouseDown($event, 'twitter')"
+                  (auxclick)="onSocialMediaAuxClick($event, 'twitter')"
+                  class="group/btn rounded-full bg-gray-800/50 border border-gray-600 
+                    flex items-center justify-center transition-all duration-200
+                    w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
+                    hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1
+                    hover:shadow-lg hover:shadow-blue-500/20
+                    focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  [attr.aria-label]="'Suivre sur Twitter'">
+            <i class="pi pi-twitter transition-colors duration-200
+              text-sm sm:text-base md:text-lg
+              group-hover/btn:text-blue-400"></i>
+          </button>
+          
+          <!-- Twitch -->
+          <button *ngIf="partner.socialMedia.twitch"
+                  type="button"
+                  (click)="openSocialMedia('twitch')"
+                  (mousedown)="onSocialMediaMouseDown($event, 'twitch')"
+                  (auxclick)="onSocialMediaAuxClick($event, 'twitch')"
+                  class="group/btn rounded-full bg-gray-800/50 border border-gray-600 
+                    flex items-center justify-center transition-all duration-200
+                    w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
+                    hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1
+                    hover:shadow-lg hover:shadow-purple-500/20
+                    focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  [attr.aria-label]="'Suivre sur Twitch'">
+            <i class="pi pi-twitch transition-colors duration-200
+              text-sm sm:text-base md:text-lg
+              group-hover/btn:text-purple-400"></i>
+          </button>
+          
+          <!-- SoundCloud -->
+          <button *ngIf="partner.socialMedia.soundcloud"
+                  type="button"
+                  (click)="openSocialMedia('soundcloud')"
+                  (mousedown)="onSocialMediaMouseDown($event, 'soundcloud')"
+                  (auxclick)="onSocialMediaAuxClick($event, 'soundcloud')"
+                  class="group/btn rounded-full bg-gray-800/50 border border-gray-600 
+                    flex items-center justify-center transition-all duration-200
+                    w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
+                    hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1
+                    hover:shadow-lg hover:shadow-orange-500/20
+                    focus:outline-none focus:ring-2 focus:ring-orange-400"
+                  [attr.aria-label]="'Écouter sur SoundCloud'">
+            <i class="pi pi-volume-up transition-colors duration-200
+              text-sm sm:text-base md:text-lg
+              group-hover/btn:text-orange-400"></i>
+          </button>
+          
+          <!-- Spotify -->
+          <button *ngIf="partner.socialMedia.spotify"
+                  type="button"
+                  (click)="openSocialMedia('spotify')"
+                  (mousedown)="onSocialMediaMouseDown($event, 'spotify')"
+                  (auxclick)="onSocialMediaAuxClick($event, 'spotify')"
+                  class="group/btn rounded-full bg-gray-800/50 border border-gray-600 
+                    flex items-center justify-center transition-all duration-200
+                    w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
+                    hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1
+                    hover:shadow-lg hover:shadow-green-500/20
+                    focus:outline-none focus:ring-2 focus:ring-green-400"
+                  [attr.aria-label]="'Écouter sur Spotify'">
+            <i class="pi pi-play transition-colors duration-200
+              text-sm sm:text-base md:text-lg
+              group-hover/btn:text-green-400"></i>
+          </button>
+        </div>
       </div>
     </div>
-
   </div>
 </div>

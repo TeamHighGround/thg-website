@@ -22,6 +22,11 @@ export class Partners implements OnInit {
     this.initializePartners();
   }
 
+  // TrackBy function pour améliorer les performances
+  trackByPartnerId(index: number, partner: Partner): number {
+    return partner.id;
+  }
+
   private initializePartners(): void {
     this.partners = [
       {
@@ -51,7 +56,8 @@ export class Partners implements OnInit {
         ],
         description: this.translocoService.translate('contents.partners.list.1.description'),
         images: [
-          'assets/image/default_avatar.jpg'
+          'assets/image/partners/biche/1.jpg',
+          'assets/image/partners/biche/2.jpg'
         ],
         socialMedia: {
           instagram: 'https://www.instagram.com/turbobiche_/',
@@ -60,6 +66,4 @@ export class Partners implements OnInit {
       }
     ];
   }
-
-
 }
