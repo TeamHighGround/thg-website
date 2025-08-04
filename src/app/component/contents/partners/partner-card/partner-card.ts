@@ -37,6 +37,7 @@ export class PartnerCard {
       const url = this.partner.socialMedia[platform as keyof typeof this.partner.socialMedia];
       if (url) {
         window.open(url, '_blank');
+        console.log("OPening " + url)
       }
     }
   }

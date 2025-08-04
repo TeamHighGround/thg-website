@@ -26,24 +26,6 @@
             <i class="pi pi-chevron-right text-sm"></i>
           </button>
         </div>
-
-        <!-- Image Indicators -->
-        <div *ngIf="partner.images.length > 1" 
-             class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-          <div *ngFor="let image of partner.images; let i = index"
-               class="w-2 h-2 rounded-full transition-all duration-200"
-               [class]="i === currentImageIndex ? 'bg-green-400' : 'bg-white/50'">
-          </div>
-        </div>
-      </div>
-
-      <!-- Overlay avec types -->
-      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div class="absolute bottom-4 left-4 right-4">
-          <div class="flex flex-wrap gap-2">
-            <p-chip *ngFor="let type of partner.types" class="partner-type" [label]="type"></p-chip>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -93,6 +75,12 @@
                 (click)="openSocialMedia('spotify')"
                 class="social-btn group/btn">
           <i class="pi pi-circle-fill text-xl group-hover/btn:text-green-400 transition-colors duration-200"></i>
+
+        </button>
+                <button *ngIf="partner.socialMedia.twitch"
+                (click)="openSocialMedia('twitch')"
+                class="social-btn group/btn">
+          <i class="pi pi-twitch text-xl group-hover/btn:text-[#b48dfc73] transition-colors duration-200"></i>
         </button>
       </div>
     </div>

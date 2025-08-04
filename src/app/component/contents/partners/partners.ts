@@ -25,13 +25,13 @@ export class Partners {
         ],
         description: this.translocoService.translate('contents.partners.list.0.description'),
         images: [
-          'assets/image/default_avatar.jpg',
-          'assets/image/default_avatar.jpg'
+          'assets/image/partners/ezza/1.png',
+          'assets/image/partners/ezza/2.png'
         ],
         socialMedia: {
-          instagram: '#',
-          twitter: '#',
-          twitch: '#'
+          instagram: 'https://www.instagram.com/ezza_tv/',
+          twitter: 'https://x.com/EZZA_TV_',
+          twitch: 'https://www.twitch.tv/ezza_tv'
         }
       },
       {
@@ -46,9 +46,8 @@ export class Partners {
           'assets/image/default_avatar.jpg'
         ],
         socialMedia: {
-          instagram: '#',
-          twitter: '#',
-          spotify: '#'
+          instagram: 'https://www.instagram.com/turbobiche_/',
+          soundcloud: 'on.soundcloud.com/7tB5w6vTZnjb1SZF6'
         }
       }
     ];
