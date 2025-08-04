@@ -13,19 +13,3 @@
   filter: url(#gaussian-blur);
   -webkit-filter: url(#gaussian-blur);
 }
-
-/* Détection mobile pour ajuster le blur */
-@media screen and (max-width: 768px) {
-  .blur-group {
-    filter: url(#gaussian-blur-mobile);
-    -webkit-filter: url(#gaussian-blur-mobile);
-  }
-}
-
-/* Fallback si SVG ne marche pas (très rare) */
-@supports not (filter: url(#gaussian-blur)) {
-  .blur-group {
-    opacity: 0.7;
-    transform: scale(1.5);
-  }
-}
