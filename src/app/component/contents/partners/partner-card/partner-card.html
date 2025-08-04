@@ -1,16 +1,16 @@
 <div class="group relative bg-black bg-opacity-30 border-2 border-gray-800 rounded-xl overflow-hidden 
   transition-all duration-300 hover:transform hover:-translate-y-2 hover:border-thgGreen-900 hover:shadow-2xl hover:shadow-green-500/10
-  hover:bg-opacity-50 w-full">
+  hover:bg-opacity-50 w-full max-h-[400px]">
 
   <div class="flex flex-col lg:flex-row">
     
     <!-- Section Images -->
-    <div class="relative w-[300px] h-[400px] overflow-hidden lg:rounded-xl m-4">
-      <div class="relative w-full h-full flex items-center justify-center">
+    <div class="max-h-[400px] w-auto object-cover transition-transform duration-300 group-hover:scale-105 lg:rounded-l-xl">
+      <div class="relative w-full max-h-[400px] flex items-center justify-center">
         <img 
           [src]="partner.images[currentImageIndex]" 
           [alt]="partner.name"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 lg:rounded-l-xl">
+          class="w-full max-h-[400px] object-cover transition-transform duration-300 group-hover:scale-105 lg:rounded-l-xl">
         
         <!-- Image Navigation (si plusieurs images) -->
         <div *ngIf="partner.images.length > 1" 
