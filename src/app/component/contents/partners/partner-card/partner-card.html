@@ -5,25 +5,27 @@
   <div class="flex flex-col lg:flex-row">
     
     <!-- Section Images -->
-    <div class="relative lg:w-1/3 h-64 lg:h-80 overflow-hidden">
-      <div class="relative w-full h-full">
+    <div class="relative w-[300px] h-[400px] overflow-hidden">
+      <div class="relative w-full h-full flex items-center justify-center">
         <img 
           [src]="partner.images[currentImageIndex]" 
           [alt]="partner.name"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+          class="max-w-full max-h-full object-cover transition-transform duration-300 group-hover:scale-105">
         
         <!-- Image Navigation (si plusieurs images) -->
         <div *ngIf="partner.images.length > 1" 
-             class="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+             class="absolute inset-0 flex items-center justify-between p-4 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
           <button 
-            (click)="previousImage()"
-            class="bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-200">
-            <i class="pi pi-chevron-left text-sm"></i>
+            type="button"
+            (click)="previousImage(); $event.stopPropagation()"
+            class="bg-black/70 hover:bg-black/90 text-white rounded-full p-3 transition-all duration-200 z-20 flex items-center justify-center min-w-[44px] min-h-[44px]">
+            <i class="pi pi-chevron-left text-lg"></i>
           </button>
           <button 
-            (click)="nextImage()"
-            class="bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-200">
-            <i class="pi pi-chevron-right text-sm"></i>
+            type="button"
+            (click)="nextImage(); $event.stopPropagation()"
+            class="bg-black/70 hover:bg-black/90 text-white rounded-full p-3 transition-all duration-200 z-20 flex items-center justify-center min-w-[44px] min-h-[44px]">
+            <i class="pi pi-chevron-right text-lg"></i>
           </button>
         </div>
       </div>
@@ -54,30 +56,35 @@
         <span class="text-gray-400 text-sm uppercase tracking-wider font-medium">{{ 'contents.partners.socialMedia.follow' | transloco }} :</span>
         
         <button *ngIf="partner.socialMedia.instagram"
+                type="button"
                 (click)="openSocialMedia('instagram')"
                 class="social-btn group/btn">
           <i class="pi pi-instagram text-xl group-hover/btn:text-pink-400 transition-colors duration-200"></i>
         </button>
         
         <button *ngIf="partner.socialMedia.twitter"
+                type="button"
                 (click)="openSocialMedia('twitter')"
                 class="social-btn group/btn">
           <i class="pi pi-twitter text-xl group-hover/btn:text-blue-400 transition-colors duration-200"></i>
         </button>
         
         <button *ngIf="partner.socialMedia.soundcloud"
+                type="button"
                 (click)="openSocialMedia('soundcloud')"
                 class="social-btn group/btn">
           <i class="pi pi-volume-up text-xl group-hover/btn:text-orange-400 transition-colors duration-200"></i>
         </button>
         
         <button *ngIf="partner.socialMedia.spotify"
+                type="button"
                 (click)="openSocialMedia('spotify')"
                 class="social-btn group/btn">
           <i class="pi pi-circle-fill text-xl group-hover/btn:text-green-400 transition-colors duration-200"></i>
-
         </button>
-                <button *ngIf="partner.socialMedia.twitch"
+        
+        <button *ngIf="partner.socialMedia.twitch"
+                type="button"
                 (click)="openSocialMedia('twitch')"
                 class="social-btn group/btn">
           <i class="pi pi-twitch text-xl group-hover/btn:text-[#b48dfc73] transition-colors duration-200"></i>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ChipModule } from 'primeng/chip';
@@ -13,22 +13,38 @@ import { Partner } from './partner-interface';
   templateUrl: './partner-card.html',
   styleUrl: './partner-card.scss'
 })
-export class PartnerCard {
+export class PartnerCard implements OnInit {
   @Input() partner!: Partner;
   
   currentImageIndex = 0;
 
+  ngOnInit() {
+    console.log('PartnerCard ngOnInit called for:', this.partner?.name);
+    this.currentImageIndex = 0;
+  }
+
   nextImage(): void {
-    if (this.partner.images.length > 1) {
+    console.log('Next image clicked, current index:', this.currentImageIndex);
+    if (this.partner && this.partner.images && this.partner.images.length > 1) {
       this.currentImageIndex = (this.currentImageIndex + 1) % this.partner.images.length;
+      console.log('New index:', this.currentImageIndex);
     }
   }
 
   previousImage(): void {
-    if (this.partner.images.length > 1) {
+    console.log('Previous image clicked, current index:', this.currentImageIndex);
+    if (this.partner && this.partner.images && this.partner.images.length > 1) {
       this.currentImageIndex = this.currentImageIndex === 0 
         ? this.partner.images.length - 1 
         : this.currentImageIndex - 1;
+      console.log('New index:', this.currentImageIndex);
+    }
+  }
+
+  setCurrentImage(index: number): void {
+    console.log('Set image to index:', index);
+    if (this.partner && this.partner.images && index >= 0 && index < this.partner.images.length) {
+      this.currentImageIndex = index;
     }
   }
 
@@ -37,7 +53,7 @@ export class PartnerCard {
       const url = this.partner.socialMedia[platform as keyof typeof this.partner.socialMedia];
       if (url) {
         window.open(url, '_blank');
-        console.log("OPening " + url)
+        console.log("Opening " + url);
       }
     }
   }

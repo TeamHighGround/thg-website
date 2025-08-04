@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { PartnerCard } from './partner-card/partner-card';
@@ -11,11 +11,19 @@ import { Partner } from './partner-card/partner-interface';
   templateUrl: './partners.html',
   styleUrl: './partners.scss'
 })
-export class Partners {
+export class Partners implements OnInit {
   private translocoService = inject(TranslocoService);
 
-  get partners(): Partner[] {
-    return [
+  // Utiliser une propriété au lieu d'un getter
+  partners: Partner[] = [];
+
+  ngOnInit() {
+    // Initialiser les partners une seule fois
+    this.initializePartners();
+  }
+
+  private initializePartners(): void {
+    this.partners = [
       {
         id: 1,
         name: this.translocoService.translate('contents.partners.list.0.name'),
@@ -52,4 +60,6 @@ export class Partners {
       }
     ];
   }
+
+
 }
