@@ -7,9 +7,7 @@
   z-index: -1;
 }
 
-/* SUPPRESSION COMPLÈTE du blur CSS */
 .blur-group {
-  /* On utilise UNIQUEMENT le filtre SVG */
   filter: url(#gaussian-blur);
   -webkit-filter: url(#gaussian-blur);
 }
