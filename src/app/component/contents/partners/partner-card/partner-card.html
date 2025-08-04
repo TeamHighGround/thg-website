@@ -5,12 +5,12 @@
   <div class="flex flex-col lg:flex-row">
     
     <!-- Section Images -->
-    <div class="relative w-[300px] h-[400px] overflow-hidden">
+    <div class="relative w-[300px] h-[400px] overflow-hidden lg:rounded-xl m-4">
       <div class="relative w-full h-full flex items-center justify-center">
         <img 
           [src]="partner.images[currentImageIndex]" 
           [alt]="partner.name"
-          class="max-w-full max-h-full object-cover transition-transform duration-300 group-hover:scale-105">
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 lg:rounded-l-xl">
         
         <!-- Image Navigation (si plusieurs images) -->
         <div *ngIf="partner.images.length > 1" 
@@ -80,20 +80,17 @@
                 type="button"
                 (click)="openSocialMedia('spotify')"
                 class="social-btn group/btn">
-          <i class="pi pi-circle-fill text-xl group-hover/btn:text-green-400 transition-colors duration-200"></i>
+          <i class="pi pi-play text-xl group-hover/btn:text-green-400 transition-colors duration-200"></i>
         </button>
         
         <button *ngIf="partner.socialMedia.twitch"
                 type="button"
                 (click)="openSocialMedia('twitch')"
                 class="social-btn group/btn">
-          <i class="pi pi-twitch text-xl group-hover/btn:text-[#b48dfc73] transition-colors duration-200"></i>
+          <i class="pi pi-video text-xl group-hover/btn:text-purple-400 transition-colors duration-200"></i>
         </button>
       </div>
     </div>
-  </div>
 
-  <!-- Effet de brillance -->
-  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition-all duration-700 pointer-events-none">
   </div>
 </div>
