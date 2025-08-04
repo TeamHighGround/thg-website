@@ -1,3 +1,4 @@
+// background.scss - VERSION SIMPLE QUI MARCHE
 .background-container {
   position: fixed;
   top: 0;
@@ -8,5 +9,24 @@
 }
 
 .blur-group {
+  // Approche multi-navigateur
+  -webkit-filter: blur(149px);
+  -moz-filter: blur(149px);
+  -o-filter: blur(149px);
+  -ms-filter: blur(149px);
   filter: blur(149px);
+  
+  // Force l'accélération GPU
+  transform: translateZ(0);
+  will-change: filter;
+  
+  // Si le blur CSS ne marche vraiment pas sur mobile
+  @media screen and (max-width: 768px) {
+    // Essaie avec -webkit- spécifiquement
+    -webkit-filter: blur(149px) !important;
+    filter: blur(149px) !important;
+    
+    // Force le navigateur à recalculer
+    transform: translate3d(0, 0, 0);
+  }
 }
