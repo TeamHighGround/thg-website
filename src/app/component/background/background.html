@@ -1,6 +1,20 @@
 <div class="background-container bg-thgDark absolute top-0 left-0 w-screen h-screen -z-10">
-    <svg class="w-full h-full" id="visual" viewBox="0 0 1920 1080" width="1920" height="1080" xmlns="http://www.w3.org/2000/svg"
-        version="1.1">
+    <svg class="w-full h-full" id="visual" viewBox="0 0 1920 1080" width="1920" height="1080" 
+         xmlns="http://www.w3.org/2000/svg" version="1.1">
+        
+        <!-- AJOUT DES FILTRES SVG -->
+        <defs>
+            <!-- Filtre principal pour desktop -->
+            <filter id="gaussian-blur" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="75"/>
+            </filter>
+            
+            <!-- Filtre réduit pour mobile -->
+            <filter id="gaussian-blur-mobile" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="35"/>
+            </filter>
+        </defs>
+        
         <g class="blur-group">
             <circle r="119" cx="500" cy="592" fill="#AED4AC"></circle>
             <circle r="59" cx="790" cy="592" fill="#AED4AC"></circle>

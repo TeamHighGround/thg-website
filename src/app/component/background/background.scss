@@ -1,4 +1,3 @@
-// background.scss - VERSION SIMPLE QUI MARCHE
 .background-container {
   position: fixed;
   top: 0;
@@ -8,25 +7,25 @@
   z-index: -1;
 }
 
+/* SUPPRESSION COMPLÈTE du blur CSS */
 .blur-group {
-  // Approche multi-navigateur
-  -webkit-filter: blur(149px);
-  -moz-filter: blur(149px);
-  -o-filter: blur(149px);
-  -ms-filter: blur(149px);
-  filter: blur(149px);
-  
-  // Force l'accélération GPU
-  transform: translateZ(0);
-  will-change: filter;
-  
-  // Si le blur CSS ne marche vraiment pas sur mobile
-  @media screen and (max-width: 768px) {
-    // Essaie avec -webkit- spécifiquement
-    -webkit-filter: blur(149px) !important;
-    filter: blur(149px) !important;
-    
-    // Force le navigateur à recalculer
-    transform: translate3d(0, 0, 0);
+  /* On utilise UNIQUEMENT le filtre SVG */
+  filter: url(#gaussian-blur);
+  -webkit-filter: url(#gaussian-blur);
+}
+
+/* Détection mobile pour ajuster le blur */
+@media screen and (max-width: 768px) {
+  .blur-group {
+    filter: url(#gaussian-blur-mobile);
+    -webkit-filter: url(#gaussian-blur-mobile);
+  }
+}
+
+/* Fallback si SVG ne marche pas (très rare) */
+@supports not (filter: url(#gaussian-blur)) {
+  .blur-group {
+    opacity: 0.7;
+    transform: scale(1.5);
   }
 }
