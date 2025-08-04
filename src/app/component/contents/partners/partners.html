@@ -1,1 +1,23 @@
-<p class="text-3xl p-10 text-center font-bold">TODO Partners</p>
+<section class="min-h-screen py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header Section -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+        {{ 'contents.partners.title' | transloco }}
+      </h2>
+      <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        {{ 'contents.partners.description' | transloco }}
+      </p>
+    </div>
+
+    <!-- Partners List -->
+    <div class="space-y-16">
+      <app-partner-card 
+        *ngFor="let partner of partners" 
+        [partner]="partner">
+      </app-partner-card>
+    </div>
+
+  </div>
+</section>
