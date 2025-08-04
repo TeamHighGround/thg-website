@@ -57,4 +57,24 @@ export class PartnerCard implements OnInit {
       }
     }
   }
+
+  // Nouvelle méthode pour gérer le clic molette
+  onSocialMediaMouseDown(event: MouseEvent, platform: string): void {
+    // Bouton molette (button 1) ou clic gauche avec Ctrl
+    if (event.button === 1 || (event.button === 0 && event.ctrlKey)) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.openSocialMedia(platform);
+    }
+  }
+
+  // Alternative avec auxclick (plus moderne)
+  onSocialMediaAuxClick(event: MouseEvent, platform: string): void {
+    // auxclick se déclenche pour tous les clics sauf le clic gauche
+    if (event.button === 1) { // Bouton molette
+      event.preventDefault();
+      event.stopPropagation();
+      this.openSocialMedia(platform);
+    }
+  }
 }

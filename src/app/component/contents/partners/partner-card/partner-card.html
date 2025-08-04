@@ -58,6 +58,8 @@
         <button *ngIf="partner.socialMedia.instagram"
                 type="button"
                 (click)="openSocialMedia('instagram')"
+                (mousedown)="onSocialMediaMouseDown($event, 'instagram')"
+                (auxclick)="onSocialMediaAuxClick($event, 'instagram')"
                 class="social-btn group/btn">
           <i class="pi pi-instagram text-xl group-hover/btn:text-pink-400 transition-colors duration-200"></i>
         </button>
@@ -65,6 +67,8 @@
         <button *ngIf="partner.socialMedia.twitter"
                 type="button"
                 (click)="openSocialMedia('twitter')"
+                (mousedown)="onSocialMediaMouseDown($event, 'twitter')"
+                (auxclick)="onSocialMediaAuxClick($event, 'twitter')"
                 class="social-btn group/btn">
           <i class="pi pi-twitter text-xl group-hover/btn:text-blue-400 transition-colors duration-200"></i>
         </button>
@@ -72,6 +76,8 @@
         <button *ngIf="partner.socialMedia.soundcloud"
                 type="button"
                 (click)="openSocialMedia('soundcloud')"
+                (mousedown)="onSocialMediaMouseDown($event, 'soundcloud')"
+                (auxclick)="onSocialMediaAuxClick($event, 'soundcloud')"
                 class="social-btn group/btn">
           <i class="pi pi-volume-up text-xl group-hover/btn:text-orange-400 transition-colors duration-200"></i>
         </button>
@@ -79,6 +85,8 @@
         <button *ngIf="partner.socialMedia.spotify"
                 type="button"
                 (click)="openSocialMedia('spotify')"
+                (mousedown)="onSocialMediaMouseDown($event, 'spotify')"
+                (auxclick)="onSocialMediaAuxClick($event, 'spotify')"
                 class="social-btn group/btn">
           <i class="pi pi-play text-xl group-hover/btn:text-green-400 transition-colors duration-200"></i>
         </button>
@@ -86,8 +94,10 @@
         <button *ngIf="partner.socialMedia.twitch"
                 type="button"
                 (click)="openSocialMedia('twitch')"
+                (mousedown)="onSocialMediaMouseDown($event, 'twitch')"
+                (auxclick)="onSocialMediaAuxClick($event, 'twitch')"
                 class="social-btn group/btn">
-          <i class="pi pi-video text-xl group-hover/btn:text-purple-400 transition-colors duration-200"></i>
+          <i class="pi pi-twitch text-xl group-hover/btn:text-purple-400 transition-colors duration-200"></i>
         </button>
       </div>
     </div>

@@ -55,7 +55,7 @@ export class Partners implements OnInit {
         ],
         socialMedia: {
           instagram: 'https://www.instagram.com/turbobiche_/',
-          soundcloud: 'on.soundcloud.com/7tB5w6vTZnjb1SZF6'
+          soundcloud: 'https://on.soundcloud.com/7tB5w6vTZnjb1SZF6'
         }
       }
     ];
