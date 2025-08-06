@@ -3,8 +3,22 @@
     <div class="relative overflow-hidden py-24 lg:py-32">
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center">
-                <div class="relative w-[400px] h-[500px]">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="text-center lg:text-left">
+
+                    <!-- Title -->
+                    <h1 class="text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                        {{ 'contents.teams.lol.title' | transloco }}
+                    </h1>
+
+                    <!-- Description -->
+                    <p class="text-lg text-gray-300 mb-4 leading-relaxed">
+                        {{ 'contents.teams.lol.description' | transloco }}
+                    </p>
+                </div>
+
+                <!-- Image -->
+                <div class="relative">
                     <div class="relative rounded-2xl overflow-hidden shadow-2xl">
                         <img src="./assets/image/roster_lol.jpg" [alt]="'roster_lol'"
                             class="w-full h-auto object-cover">

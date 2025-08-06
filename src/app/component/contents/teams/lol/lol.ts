@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-lol',
-  imports: [],
+  imports: [TranslocoModule],
   templateUrl: './lol.html',
   styleUrl: './lol.scss'
 })

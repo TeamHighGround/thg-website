@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { Member, MemberCard } from './member-card/member-card';
+import { Member } from './member-card/member-card';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, MemberCard, TranslocoModule],
+  imports: [CommonModule, TranslocoModule],
   templateUrl: './about.html',
   styleUrl: './about.scss'
 })

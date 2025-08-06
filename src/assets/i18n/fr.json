@@ -13,15 +13,12 @@
     "contact": "Contact"
   },
   "contents": {
-    "home": {
-      "thgPresentation": "Créée en 2015 par une bande de potes passionnée par les jeux vidéos, notre club esport grandit et devient l'association THG, avec l'ambition d'être un club référent à Rennes et en Bretagne !"
-    },
     "about": {
       "title": "Team High Ground",
       "subtitle": "L'esport breton en devenir",
       "description": {
-        "part1": "Créée en 2015 par une bande de potes passionnée par les jeux vidéos, notre club esport grandit et devient l'association THG, avec l'ambition d'être un club référent à Rennes et en Bretagne !",
-        "part2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis."
+        "part1": "Créé en 2015 par une bande de potes passionnée par les jeux vidéo, notre club esport grandit et devient l'association THG, avec l'ambition d'être un club référent à Rennes et en Bretagne !",
+        "part2": "Notre souhait est de nous développer progressivement sur un maximum de jeux compétitifs, tout en organisant nos propres événements esportifs en Bretagne pour dynamiser la scène locale et rassembler les passionnés."
       },
       "image": {
         "alt": "Team High Ground - Association esport bretonne"
@@ -92,6 +89,23 @@
             "TFT"
           ]
         }
+      }
+    },
+    "teams":{
+      "lol":{
+        "title": "League of Legends",
+        "description": "League of Legends est le jeu historique et de cœur de la THG. Après plusieurs années à évoluer sur la scène amateure bretonne et française, nous passons un cap cet été avec un roster semi-professionnel engagé en Liga Portuguesa de League of Legends. Notre objectif est clair : progresser ensemble, structurer notre projet et affirmer notre place à l’échelle internationale.",
+        "roster": "Roster",
+        "staff": {
+          "title": "Coaching Staff",
+          "description": "Une équipe encadrée par des profils expérimentés pour accompagner la progression du roster"
+        },
+        "casting": {
+          "title": "Casting maison tout l'été !",
+          "description": " Tous les matchs sont castés en français sur nos plateformes, avec la voix et la passion d’Ezza & Toskaan. Merci à eux pour leur engagement "
+        },
+        "support-us":" On compte sur vous pour les soutenir à fond !",
+        "follow-us":"Suivez notre parcours tout au long de l’été… Ce n’est que le début."
       }
     },
     "partners": {
