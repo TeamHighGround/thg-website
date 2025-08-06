@@ -1,15 +1,16 @@
+<!-- src/app/component/contents/teams/lol/lol.html -->
 <section class="min-h-screen">
+    
+    <!-- Hero Section -->
     <div class="relative overflow-hidden py-24 lg:py-32">
-
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <div class="text-center lg:text-left">
-
                     <!-- Title -->
                     <h1 class="text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight">
                         {{ 'contents.teams.lol.title' | transloco }}
                     </h1>
-
+                    
                     <!-- Description -->
                     <p class="text-lg text-gray-300 mb-4 leading-relaxed">
                         {{ 'contents.teams.lol.description' | transloco }}
@@ -23,6 +24,135 @@
                             class="w-full h-auto object-cover">
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Roster Section -->
+    <div class="relative py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Roster Header -->
+            <div class="text-center mb-16">
+            
+                <h2 class="text-3xl lg:text-5xl font-bold text-white mb-4">
+                    {{ 'contents.teams.lol.roster.title' | transloco }}
+                </h2>
+                
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    {{ 'contents.teams.lol.roster.description' | transloco }}
+                </p>
+            </div>
+
+            <!-- Players Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-20">
+                <p-card *ngFor="let player of players" 
+                        class="player-card group">
+                    <ng-template pTemplate="content">
+                        <div class="text-center">
+                            <!-- Avatar with role icon -->
+                            <div class="relative mb-4">
+                                <p-avatar [image]="player.avatar" 
+                                          size="xlarge"
+                                          shape="circle"
+                                          class="border-2 border-gray-600 group-hover:border-thgGreen-400 transition-colors"></p-avatar>
+                                
+                                <!-- Role Icon -->
+                                <div class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center border-2 border-gray-800 text-white"
+                                     [class]="getRoleColor(player.role) + ' group-hover:border-thgGreen-400'">
+                                    <i [class]="getRoleIcon(player.role) + ' text-sm'"></i>
+                                </div>
+                            </div>
+
+                            <!-- Player Info -->
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-thgGreen-300 transition-colors">
+                                {{ player.name }}
+                            </h3>
+                            
+                            <!-- Role Chip -->
+                            <p-chip [label]="player.role" 
+                                    class="role-chip"
+                                    [class]="'role-' + player.role.toLowerCase().replace(' ', '-')"></p-chip>
+                        </div>
+                    </ng-template>
+                </p-card>
+            </div>
+
+            <!-- Staff Section -->
+            <div class="border-t border-gray-700/50 pt-16">
+                <!-- Staff Header -->
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">
+                        {{ 'contents.teams.lol.staff.title' | transloco }}
+                    </h2>
+                    
+                    <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                        {{ 'contents.teams.lol.staff.description' | transloco }}
+                    </p>
+                </div>
+
+                <!-- Staff Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <p-card *ngFor="let member of staff" 
+                            class="staff-card group">
+                        <ng-template pTemplate="content">
+                            <div class="text-center">
+                                <!-- Avatar with role icon -->
+                                <div class="relative mb-6">
+                                    <p-avatar [image]="member.avatar" 
+                                              size="xlarge"
+                                              shape="circle"
+                                              class="border-2 border-gray-600 group-hover:border-thgGreen-400 transition-colors"
+                                              [style]="{'width': '6rem', 'height': '6rem'}"></p-avatar>
+                                    
+                                    <!-- Role Icon -->
+                                    <div class="absolute -bottom-2 -right-2 w-10 h-10 rounded-full flex items-center justify-center border-2 border-gray-800 text-white"
+                                         [class]="getRoleColor(member.role) + ' group-hover:border-thgGreen-400'">
+                                        <i [class]="getRoleIcon(member.role)"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Staff Info -->
+                                <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-thgGreen-300 transition-colors">
+                                    {{ member.name }}
+                                </h3>
+                                
+                                <!-- Role Chip -->
+                                <p-chip [label]="member.role" 
+                                        class="staff-chip"
+                                        [class]="'staff-' + member.role.toLowerCase().replace(' ', '-')"></p-chip>
+                            </div>
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Section -->
+    <div class="relative py-16 border-t border-gray-700/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <!-- Casting Info -->
+            <p-card class="casting-card mb-8">
+                <ng-template pTemplate="content">
+                    <h3 class="text-2xl font-bold text-white mb-4">
+                        {{ 'contents.teams.lol.casting.title' | transloco }}
+                    </h3>
+                    <p class="text-thgGreen-200 leading-relaxed">
+                        {{ 'contents.teams.lol.casting.description' | transloco }}
+                    </p>
+                </ng-template>
+            </p-card>
+
+            <!-- Support Messages -->
+            <div class="space-y-4">
+                <p class="text-xl font-semibold text-thgGreen-300">
+                    {{ 'contents.teams.lol.support-us' | transloco }}
+                </p>
+                <p class="text-lg text-gray-300">
+                    {{ 'contents.teams.lol.follow-us' | transloco }}
+                </p>
             </div>
         </div>
     </div>
