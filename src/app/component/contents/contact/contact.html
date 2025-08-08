@@ -1,172 +1,172 @@
 <section class="min-h-screen py-12 sm:py-16 md:py-20 lg:py-28">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <!-- Header Section -->
-    <div class="text-center mb-12 sm:mb-16">
-      <h2 class="font-bold text-white mb-4 sm:mb-6 leading-tight
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Header Section -->
+        <div class="text-center mb-12 sm:mb-16">
+            <h2 class="font-bold text-white mb-4 sm:mb-6 leading-tight
         text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
-        {{ 'contents.contact.title' | transloco }}
-      </h2>
-      <p class="text-gray-300 leading-relaxed mx-auto px-4
+                {{ 'contents.contact.title' | transloco }}
+            </h2>
+            <p class="text-gray-300 leading-relaxed mx-auto px-4
         text-sm sm:text-base md:text-lg
         max-w-lg sm:max-w-2xl md:max-w-3xl">
-        {{ 'contents.contact.description' | transloco }}
-      </p>
-    </div>
+                {{ 'contents.contact.description' | transloco }}
+            </p>
+        </div>
 
-    <!-- Contact Cards Container -->
-    <div class="flex flex-col gap-8 sm:gap-12 md:gap-16 lg:gap-20">
-      
-      <!-- Email Card -->
-      <div class="group relative bg-gray-900/40 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12
+        <!-- Contact Cards Container -->
+        <div class="flex flex-col gap-8 sm:gap-12 md:gap-16 lg:gap-20">
+
+            <!-- Email Card -->
+            <div class="group relative bg-gray-900/40 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12
         border border-gray-700/50 hover:border-thgGreen/30 
         transition-all duration-300 hover:shadow-2xl hover:shadow-thgGreen/10 hover:-translate-y-1">
-        
-        <!-- Card Background Gradient -->
-        <div class="absolute inset-0 bg-gradient-to-r from-thgGreen/5 to-transparent rounded-2xl opacity-0 
+
+                <!-- Card Background Gradient -->
+                <div class="absolute inset-0 bg-gradient-to-r from-thgGreen/5 to-transparent rounded-2xl opacity-0 
           group-hover:opacity-100 transition-opacity duration-300"></div>
-        
-        <div class="relative z-10 text-center">
-          <!-- Email Icon -->
-          <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 
+
+                <div class="relative z-10 text-center">
+                    <!-- Email Icon -->
+                    <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 
             bg-thgGreen/10 rounded-full mb-6 
             group-hover:bg-thgGreen/20 transition-colors duration-300">
-            <i class="pi pi-envelope text-2xl sm:text-3xl text-thgGreen"></i>
-          </div>
-          
-          <!-- Email Title -->
-          <h3 class="font-bold text-white mb-4 sm:mb-6 leading-tight
+                        <i class="pi pi-envelope text-2xl sm:text-3xl text-thgGreen"></i>
+                    </div>
+
+                    <!-- Email Title -->
+                    <h3 class="font-bold text-white mb-4 sm:mb-6 leading-tight
             text-xl sm:text-2xl md:text-3xl lg:text-4xl
             group-hover:text-thgGreen transition-colors duration-300">
-            {{ 'contents.contact.email.title' | transloco }}
-          </h3>
-          
-          <!-- Email Description -->
-          <p class="text-gray-300 leading-relaxed mb-6 sm:mb-8 
+                        {{ 'contents.contact.email.title' | transloco }}
+                    </h3>
+
+                    <!-- Email Description -->
+                    <p class="text-gray-300 leading-relaxed mb-6 sm:mb-8 
             text-sm sm:text-base md:text-lg
             max-w-2xl mx-auto">
-            {{ 'contents.contact.email.description' | transloco }}
-          </p>
-          
-          <!-- Email Address with Copy Button -->
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-            <a href="mailto:contact@teamhighground.fr" 
-               class="inline-flex items-center justify-center gap-3 
+                        {{ 'contents.contact.email.description' | transloco }}
+                    </p>
+
+                    <!-- Email Address with Copy Button -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+                        <a href="mailto:contact@teamhighground.fr" class="inline-flex items-center justify-center gap-3 
                text-thgGreen hover:text-white font-semibold
                text-lg sm:text-xl md:text-2xl
                px-6 py-3 rounded-lg border border-thgGreen/30 hover:border-thgGreen
                bg-thgGreen/10 hover:bg-thgGreen
                transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-thgGreen/30">
-              <i class="pi pi-send text-base sm:text-lg"></i>
-              contact@teamhighground.fr
-            </a>
-            
-            <!-- Copy Button -->
-            <button type="button"
-                    onclick="navigator.clipboard.writeText('contact@teamhighground.fr').then(() => {
+                            <i class="pi pi-send text-base sm:text-lg"></i>
+                            contact@teamhighground.fr
+                        </a>
+
+                        <!-- Copy Button -->
+                        <button type="button" onclick="navigator.clipboard.writeText('contact@teamhighground.fr').then(() => {
                       const btn = this;
                       const originalText = btn.innerHTML;
                       btn.innerHTML = '<i class=&quot;pi pi-check text-base sm:text-lg text-green-400&quot;></i>';
                       setTimeout(() => btn.innerHTML = originalText, 2000);
-                    })"
-                    class="group/copy inline-flex items-center justify-center 
+                    })" class="group/copy inline-flex items-center justify-center 
                     w-12 h-12 sm:w-14 sm:h-14
                     text-gray-400 hover:text-thgGreen font-semibold
                     rounded-lg border border-gray-600/30 hover:border-thgGreen/30
                     bg-gray-800/20 hover:bg-thgGreen/10
                     transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-thgGreen/20
-                    focus:outline-none focus:ring-2 focus:ring-thgGreen"
-                    title="Copier l'adresse email">
-              <i class="pi pi-copy text-base sm:text-lg"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+                    focus:outline-none focus:ring-2 focus:ring-thgGreen" title="Copier l'adresse email">
+                            <i class="pi pi-copy text-base sm:text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-      <!-- Social Media Card -->
-      <div class="group relative bg-gray-900/40 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12
+            <!-- Social Media Card -->
+            <div class="group relative bg-gray-900/40 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12
         border border-gray-700/50 hover:border-thgGreen/30 
         transition-all duration-300 hover:shadow-2xl hover:shadow-thgGreen/10 hover:-translate-y-1">
-        
-        <!-- Card Background Gradient -->
-        <div class="absolute inset-0 bg-gradient-to-r from-thgGreen/5 to-transparent rounded-2xl opacity-0 
+
+                <!-- Card Background Gradient -->
+                <div class="absolute inset-0 bg-gradient-to-r from-thgGreen/5 to-transparent rounded-2xl opacity-0 
           group-hover:opacity-100 transition-opacity duration-300"></div>
-        
-        <div class="relative z-10 text-center">
-          <!-- Social Icon -->
-          <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 
+
+                <div class="relative z-10 text-center">
+                    <!-- Social Icon -->
+                    <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 
             bg-thgGreen/10 rounded-full mb-6 
             group-hover:bg-thgGreen/20 transition-colors duration-300">
-            <i class="pi pi-users text-2xl sm:text-3xl text-thgGreen"></i>
-          </div>
-          
-          <!-- Social Title -->
-          <h3 class="font-bold text-white mb-4 sm:mb-6 leading-tight
+                        <i class="pi pi-users text-2xl sm:text-3xl text-thgGreen"></i>
+                    </div>
+
+                    <!-- Social Title -->
+                    <h3 class="font-bold text-white mb-4 sm:mb-6 leading-tight
             text-xl sm:text-2xl md:text-3xl lg:text-4xl
             group-hover:text-thgGreen transition-colors duration-300">
-            {{ 'contents.contact.social.title' | transloco }}
-          </h3>
-          
-          <!-- Social Description -->
-          <p class="text-gray-300 leading-relaxed mb-8 sm:mb-10 
+                        {{ 'contents.contact.social.title' | transloco }}
+                    </h3>
+
+                    <!-- Social Description -->
+                    <p class="text-gray-300 leading-relaxed mb-8 sm:mb-10 
             text-sm sm:text-base md:text-lg
             max-w-2xl mx-auto">
-            {{ 'contents.contact.social.description' | transloco }}
-          </p>
-          
-          <!-- Social Media Links -->
-          <div class="flex justify-center items-center gap-4 sm:gap-6 md:gap-8">
-            
-            <!-- Twitter/X -->
-            <a href="https://x.com/teamhigh_ground" target="_blank" rel="noopener noreferrer"
-               class="group/social flex items-center justify-center 
-               w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18
-               bg-gray-800/50 hover:bg-blue-500/20 
-               border border-gray-600 hover:border-blue-400/50
-               rounded-full transition-all duration-300 
-               hover:scale-110 hover:-translate-y-2 hover:shadow-lg hover:shadow-blue-500/30
-               focus:outline-none focus:ring-2 focus:ring-blue-400">
-              <i class="pi pi-twitter text-xl sm:text-2xl md:text-3xl 
-                text-gray-300 group-hover/social:text-blue-400 transition-colors duration-300"></i>
-            </a>
-            
-            <!-- Instagram -->
-            <a href="https://www.instagram.com/team_high_ground_/" target="_blank" rel="noopener noreferrer"
-               class="group/social flex items-center justify-center 
-               w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18
-               bg-gray-800/50 hover:bg-pink-500/20 
-               border border-gray-600 hover:border-pink-400/50
-               rounded-full transition-all duration-300 
-               hover:scale-110 hover:-translate-y-2 hover:shadow-lg hover:shadow-pink-500/30
-               focus:outline-none focus:ring-2 focus:ring-pink-400">
-              <i class="pi pi-instagram text-xl sm:text-2xl md:text-3xl 
-                text-gray-300 group-hover/social:text-pink-400 transition-colors duration-300"></i>
-            </a>
-            
-            <!-- Discord -->
-            <a href="https://discord.gg/teamhighground" target="_blank" rel="noopener noreferrer"
-               class="group/social flex items-center justify-center 
-               w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18
-               bg-gray-800/50 hover:bg-indigo-500/20 
-               border border-gray-600 hover:border-indigo-400/50
-               rounded-full transition-all duration-300 
-               hover:scale-110 hover:-translate-y-2 hover:shadow-lg hover:shadow-indigo-500/30
-               focus:outline-none focus:ring-2 focus:ring-indigo-400">
-              <i class="pi pi-discord text-xl sm:text-2xl md:text-3xl 
-                text-gray-300 group-hover/social:text-indigo-400 transition-colors duration-300"></i>
-            </a>
-            
-          </div>
-          
-          <!-- Social Media Labels -->
-          <div class="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-4 max-w-xs mx-auto">
-            <span class="text-xs sm:text-sm text-gray-400 font-medium text-center">X</span>
-            <span class="text-xs sm:text-sm text-gray-400 font-medium text-center">Instagram</span>
-            <span class="text-xs sm:text-sm text-gray-400 font-medium text-center">Discord</span>
-          </div>
-        </div>
-      </div>
+                        {{ 'contents.contact.social.description' | transloco }}
+                    </p>
 
+                    <!-- Social Media Links -->
+                    <div class="flex justify-center items-center gap-4 sm:gap-6 md:gap-8">
+
+                        <!-- Twitter/X -->
+                        <a href="https://x.com/teamhigh_ground" target="_blank" rel="noopener noreferrer" class="group/social flex items-center justify-center 
+     w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18
+     bg-gray-800/50 hover:bg-blue-500/20 
+     border border-gray-600 hover:border-blue-400/50
+     rounded-full transition-all duration-300 
+     hover:scale-110 hover:-translate-y-2 hover:shadow-lg hover:shadow-blue-500/30
+     focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            <i class="pi pi-twitter text-xl sm:text-2xl md:text-3xl 
+      text-gray-300 group-hover/social:text-blue-400 transition-colors duration-300"></i>
+                        </a>
+
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/team_high_ground_/" target="_blank" rel="noopener noreferrer"
+                            class="group/social flex items-center justify-center 
+     w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18
+     bg-gray-800/50 hover:bg-pink-500/20 
+     border border-gray-600 hover:border-pink-400/50
+     rounded-full transition-all duration-300 
+     hover:scale-110 hover:-translate-y-2 hover:shadow-lg hover:shadow-pink-500/30
+     focus:outline-none focus:ring-2 focus:ring-pink-400">
+                            <i class="pi pi-instagram text-xl sm:text-2xl md:text-3xl 
+      text-gray-300 group-hover/social:text-pink-400 transition-colors duration-300"></i>
+                        </a>
+
+                        <!-- Discord -->
+                        <a href="https://discord.gg/teamhighground" target="_blank" rel="noopener noreferrer" class="group/social flex items-center justify-center 
+     w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18
+     bg-gray-800/50 hover:bg-indigo-500/20 
+     border border-gray-600 hover:border-indigo-400/50
+     rounded-full transition-all duration-300 
+     hover:scale-110 hover:-translate-y-2 hover:shadow-lg hover:shadow-indigo-500/30
+     focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                            <i class="pi pi-discord text-xl sm:text-2xl md:text-3xl 
+      text-gray-300 group-hover/social:text-indigo-400 transition-colors duration-300"></i>
+                        </a>
+
+                    </div>
+
+                    <!-- Social Media Labels -->
+                    <div class="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 mt-4">
+                        <div class="w-14 sm:w-16 md:w-18 text-center">
+                            <span class="text-xs sm:text-sm text-gray-400 font-medium">X</span>
+                        </div>
+                        <div class="w-14 sm:w-16 md:w-18 text-center">
+                            <span class="text-xs sm:text-sm text-gray-400 font-medium">Instagram</span>
+                        </div>
+                        <div class="w-14 sm:w-16 md:w-18 text-center">
+                            <span class="text-xs sm:text-sm text-gray-400 font-medium">Discord</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
 </section>

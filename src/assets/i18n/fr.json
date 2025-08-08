@@ -165,5 +165,93 @@
       "title": "Suivez-nous"
     },
     "all_rights_reserved": "Tous droits réservés"
+  },
+  "legalNotice": {
+    "title": "Mentions Légales",
+    "editor": {
+      "title": "Éditeur du site",
+      "denomination": "Dénomination",
+      "legalForm": "Forme juridique",
+      "headquarters": "Siège social",
+      "email": "Email",
+      "director": "Directeur de la publication",
+      "values": {
+        "denomination": "Team High Ground (THG)",
+        "legalForm": "Association loi 1901",
+        "headquarters": "4 avenue Sergent Maginot, 35000 Rennes",
+        "email": "[À compléter]",
+        "director": "Briac Pannetier-Becel, Président"
+      }
+    },
+    "hosting": {
+      "title": "Hébergement",
+      "host": "Hébergeur",
+      "address": "Adresse",
+      "values": {
+        "host": "Google LLC (Firebase Hosting)",
+        "address": "1600 Amphitheatre Parkway, Mountain View, CA 94043, États-Unis"
+      }
+    },
+    "intellectualProperty": {
+      "title": "Propriété intellectuelle",
+      "description1": "Le site web et tous ses éléments sont protégés par le droit d'auteur et appartiennent à l'association THG."
+    },
+    "responsibility": {
+      "title": "Responsabilité",
+      "description": "L'association THG s'efforce de fournir des informations exactes mais ne peut garantir l'exactitude de toutes les informations du site."
+    }
+  },
+  "privacyPolicy": {
+    "title": "Politique de Confidentialité",
+    "lastUpdate": "Dernière mise à jour : 08/08/2025",
+    "siteType": {
+      "title": "Type de site",
+      "description": "Ce site est un site vitrine statique présentant l'association THG. Nous ne collectons aucune donnée personnelle via des formulaires."
+    },
+    "dataCollection": {
+      "title": "Données collectées automatiquement",
+      "analytics": {
+        "title": "Google Analytics",
+        "description": "Nous utilisons Google Analytics pour comprendre comment notre site est utilisé :",
+        "collected": "Données collectées",
+        "purpose": "Finalité",
+        "retention": "Conservation",
+        "values": {
+          "collected": "Pages visitées, durée des visites, pays d'origine (anonymisées)",
+          "purpose": "Améliorer le contenu et l'expérience utilisateur",
+          "retention": "26 mois maximum"
+        }
+      },
+      "technical": {
+        "title": "Données techniques",
+        "ip": "Adresse IP : Automatiquement anonymisée par Google Analytics",
+        "browser": "Type de navigateur et appareil : Pour optimiser l'affichage du site"
+      }
+    },
+    "noCollection": {
+      "title": "Ce que nous NE collectons PAS",
+      "items": [
+        "Aucun formulaire de contact sur le site",
+        "Aucune newsletter",
+        "Aucune inscription ou compte utilisateur",
+        "Aucune donnée personnelle identifiable"
+      ]
+    },
+    "cookies": {
+      "title": "Cookies",
+      "analytics": {
+        "title": "Cookies Google Analytics",
+        "description": "_ga, _ga_*, _gid : Mesure d'audience anonyme",
+        "duration": "Durée : 2 ans maximum pour _ga, 24h pour _gid"
+      },
+      "management": {
+        "title": "Gestion des cookies",
+        "description": "Vous pouvez désactiver les cookies dans votre navigateur. Le site fonctionnera normalement sans ces cookies d'analyse."
+      }
+    },
+    "modifications": {
+      "title": "Modifications",
+      "description": "Cette politique peut être mise à jour. Les modifications seront publiées sur cette page."
+    }
   }
 }

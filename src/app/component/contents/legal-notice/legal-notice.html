@@ -1,1 +1,40 @@
-<p class="text-3xl p-10 text-center font-bold">TODO mentions legales</p>
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-8">{{ 'legalNotice.title' | transloco }}</h1>
+  
+  <div class="space-y-6">
+    <!-- Éditeur du site -->
+    <section>
+      <h2 class="text-xl font-semibold mb-3">{{ 'legalNotice.editor.title' | transloco }}</h2>
+      <div class="space-y-1">
+        <p><strong>{{ 'legalNotice.editor.denomination' | transloco }} :</strong> {{ 'legalNotice.editor.values.denomination' | transloco }}</p>
+        <p><strong>{{ 'legalNotice.editor.legalForm' | transloco }} :</strong> {{ 'legalNotice.editor.values.legalForm' | transloco }}</p>
+        <p><strong>{{ 'legalNotice.editor.headquarters' | transloco }} :</strong> {{ 'legalNotice.editor.values.headquarters' | transloco }}</p>
+        <p><strong>{{ 'legalNotice.editor.email' | transloco }} :</strong> {{ 'legalNotice.editor.values.email' | transloco }}</p>
+        <p><strong>{{ 'legalNotice.editor.director' | transloco }} :</strong> {{ 'legalNotice.editor.values.director' | transloco }}</p>
+      </div>
+    </section>
+
+    <!-- Hébergement -->
+    <section>
+      <h2 class="text-xl font-semibold mb-3">{{ 'legalNotice.hosting.title' | transloco }}</h2>
+      <div class="space-y-1">
+        <p><strong>{{ 'legalNotice.hosting.host' | transloco }} :</strong> {{ 'legalNotice.hosting.values.host' | transloco }}</p>
+        <p><strong>{{ 'legalNotice.hosting.address' | transloco }} :</strong> {{ 'legalNotice.hosting.values.address' | transloco }}</p>
+      </div>
+    </section>
+
+    <!-- Propriété intellectuelle -->
+    <section>
+      <h2 class="text-xl font-semibold mb-3">{{ 'legalNotice.intellectualProperty.title' | transloco }}</h2>
+      <div class="space-y-2">
+        <p>{{ 'legalNotice.intellectualProperty.description1' | transloco }}</p>
+      </div>
+    </section>
+
+    <!-- Responsabilité -->
+    <section>
+      <h2 class="text-xl font-semibold mb-3">{{ 'legalNotice.responsibility.title' | transloco }}</h2>
+      <p>{{ 'legalNotice.responsibility.description' | transloco }}</p>
+    </section>
+  </div>
+</div>

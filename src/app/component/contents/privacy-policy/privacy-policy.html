@@ -1,1 +1,71 @@
-<p class="text-3xl p-10 text-center font-bold">TODO Politique de confidentialité</p>
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-8">{{ 'privacyPolicy.title' | transloco }}</h1>
+  <p class="text-sm text-gray-600 mb-6">{{ 'privacyPolicy.lastUpdate' | transloco }}</p>
+  
+  <div class="space-y-6">
+    <!-- Type de site -->
+    <section>
+      <h2 class="text-xl font-semibold mb-3">{{ 'privacyPolicy.siteType.title' | transloco }}</h2>
+      <p>{{ 'privacyPolicy.siteType.description' | transloco }}</p>
+    </section>
+
+    <!-- Données collectées automatiquement -->
+    <section>
+      <h2 class="text-xl font-semibold mb-3">{{ 'privacyPolicy.dataCollection.title' | transloco }}</h2>
+      
+      <!-- Google Analytics -->
+      <div class="mt-4">
+        <h3 class="text-lg font-medium mb-2">{{ 'privacyPolicy.dataCollection.analytics.title' | transloco }}</h3>
+        <p class="mb-2">{{ 'privacyPolicy.dataCollection.analytics.description' | transloco }}</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong>{{ 'privacyPolicy.dataCollection.analytics.collected' | transloco }} :</strong> {{ 'privacyPolicy.dataCollection.analytics.values.collected' | transloco }}</li>
+          <li><strong>{{ 'privacyPolicy.dataCollection.analytics.purpose' | transloco }} :</strong> {{ 'privacyPolicy.dataCollection.analytics.values.purpose' | transloco }}</li>
+          <li><strong>{{ 'privacyPolicy.dataCollection.analytics.retention' | transloco }} :</strong> {{ 'privacyPolicy.dataCollection.analytics.values.retention' | transloco }}</li>
+        </ul>
+      </div>
+
+      <!-- Données techniques -->
+      <div class="mt-4">
+        <h3 class="text-lg font-medium mb-2">{{ 'privacyPolicy.dataCollection.technical.title' | transloco }}</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>{{ 'privacyPolicy.dataCollection.technical.ip' | transloco }}</li>
+          <li>{{ 'privacyPolicy.dataCollection.technical.browser' | transloco }}</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Ce que nous NE collectons PAS -->
+    <section>
+      <h2 class="text-xl font-semibold mb-3">{{ 'privacyPolicy.noCollection.title' | transloco }}</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li *ngFor="let item of 'privacyPolicy.noCollection.items' | transloco">{{ item }}</li>
+      </ul>
+    </section>
+
+    <!-- Cookies -->
+    <section>
+      <h2 class="text-xl font-semibold mb-3">{{ 'privacyPolicy.cookies.title' | transloco }}</h2>
+      
+      <!-- Cookies Google Analytics -->
+      <div class="mt-4">
+        <h3 class="text-lg font-medium mb-2">{{ 'privacyPolicy.cookies.analytics.title' | transloco }}</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>{{ 'privacyPolicy.cookies.analytics.description' | transloco }}</li>
+          <li>{{ 'privacyPolicy.cookies.analytics.duration' | transloco }}</li>
+        </ul>
+      </div>
+
+      <!-- Gestion des cookies -->
+      <div class="mt-4">
+        <h3 class="text-lg font-medium mb-2">{{ 'privacyPolicy.cookies.management.title' | transloco }}</h3>
+        <p>{{ 'privacyPolicy.cookies.management.description' | transloco }}</p>
+      </div>
+    </section>
+
+    <!-- Modifications -->
+    <section>
+      <h2 class="text-xl font-semibold mb-3">{{ 'privacyPolicy.modifications.title' | transloco }}</h2>
+      <p>{{ 'privacyPolicy.modifications.description' | transloco }}</p>
+    </section>
+  </div>
+</div>
