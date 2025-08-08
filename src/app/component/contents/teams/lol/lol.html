@@ -46,18 +46,12 @@
 
                     <div class="p-6">
                         <div class="text-center">
-                            <!-- Avatar avec icône SVG de rôle -->
-                            <div class="relative mb-4">
-                                <p-avatar [image]="player.avatar" size="xlarge" shape="circle"
-                                    class="border-2 border-gray-600 group-hover:border-thgGreen-400 transition-colors"></p-avatar>
-
-                                <!-- Icône SVG de rôle -->
-                                <div class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center border-2 border-gray-800 group-hover:border-thgGreen-400 transition-colors p-1"
-                                    >
+                            <!-- Icône SVG de rôle (remplace l'avatar) -->
+                            <div class="relative mb-4 flex justify-center">
+                                <div class="w-20 h-20 rounded-full border-2 border-gray-600 group-hover:border-thgGreen-400 transition-colors flex items-center justify-center">
                                     <img [src]="getRoleIcon(player.role)" [alt]="player.role"
-                                        class="w-5 h-5 text-white filter brightness-0 invert">
+                                        class="w-12 h-12 text-white filter brightness-0 invert">
                                 </div>
-
                             </div>
 
                             <!-- Info joueur -->
