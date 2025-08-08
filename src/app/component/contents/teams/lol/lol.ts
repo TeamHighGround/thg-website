@@ -27,7 +27,7 @@ interface TeamMember {
   styleUrls: ['./lol.scss']
 })
 export class Lol {
-  
+
   players: TeamMember[] = [
     { name: 'Phyraxx', role: 'Top', avatar: 'assets/image/default_avatar.jpg' },
     { name: 'Soren', role: 'Jungle', avatar: 'assets/image/default_avatar.jpg' },
@@ -44,11 +44,12 @@ export class Lol {
 
   getRoleIcon(role: string): string {
     const icons: { [key: string]: string } = {
-      'Top': 'pi-shield',
-      'Jungle': 'pi-sitemap',
-      'Mid': 'pi-bolt', 
-      'ADC': 'pi-crosshairs',
-      'Support': 'pi-heart',
+      'Top': 'assets/logo/lol-icons/top.svg',
+      'Jungle': 'assets/logo/lol-icons/jungle.svg',
+      'Mid': 'assets/logo/lol-icons/mid.svg',
+      'ADC': 'assets/logo/lol-icons/adc.svg',
+      'Support': 'assets/logo/lol-icons/support.svg',
+      // Pour le staff, gardez les icônes PrimeNG ou ajoutez d'autres SVG
       'Head Coach': 'pi-user-plus',
       'Manager': 'pi-briefcase',
       'Data Analyst': 'pi-chart-line'
@@ -61,7 +62,7 @@ export class Lol {
       'Top': 'bg-blue-500',
       'Jungle': 'bg-green-500',
       'Mid': 'bg-purple-500',
-      'ADC': 'bg-red-500', 
+      'ADC': 'bg-red-500',
       'Support': 'bg-yellow-500',
       'Head Coach': 'bg-teal-500',
       'Manager': 'bg-gray-500',
