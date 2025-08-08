@@ -21,7 +21,6 @@ const app = initializeApp(firebaseConfig);
 // 2. Initialisation de Google Analytics
 // C'est cette ligne qui active la collecte de données Analytics !
 const analytics = getAnalytics(app);
-console.log("AFTER getAnalytics(app)")
 
 bootstrapApplication(App, appConfig)
   .catch((err) => console.error(err));
