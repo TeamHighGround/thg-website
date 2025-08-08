@@ -1,7 +1,5 @@
-<!-- Version mise à jour du template avec le composant team-card unifié -->
 <section class="min-h-screen">
 
-    <!-- Hero Section -->
     <div class="relative overflow-hidden py-24 lg:py-32">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -37,7 +35,7 @@
                 </p>
             </div>
 
-            <!-- Players Grid avec le nouveau composant -->
+            <!-- Players Grid  -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-20">
                 <app-team-card 
                     *ngFor="let player of players" 
@@ -59,7 +57,7 @@
                     </p>
                 </div>
 
-                <!-- Staff Grid avec le nouveau composant -->
+                <!-- Staff Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <app-team-card 
                         *ngFor="let member of staff" 

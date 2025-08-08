@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-tft',
-  imports: [],
+  imports: [TranslocoModule],
   templateUrl: './tft.html',
   styleUrl: './tft.scss'
 })
