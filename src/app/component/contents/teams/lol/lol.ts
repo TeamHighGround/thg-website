@@ -5,12 +5,7 @@ import { ChipModule } from 'primeng/chip';
 import { CardModule } from 'primeng/card';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
-
-interface TeamMember {
-  name: string;
-  role: string;
-  avatar?: string;
-}
+import { TeamCard, TeamMember } from './team-card/team-card';
 
 @Component({
   selector: 'app-lol',
@@ -21,7 +16,8 @@ interface TeamMember {
     ChipModule,
     CardModule,
     AvatarModule,
-    ButtonModule
+    ButtonModule,
+    TeamCard
   ],
   templateUrl: './lol.html',
   styleUrls: ['./lol.scss']
@@ -29,30 +25,29 @@ interface TeamMember {
 export class Lol {
 
   players: TeamMember[] = [
-    { name: 'Phyraxx', role: 'Top', avatar: 'assets/image/default_avatar.jpg' },
-    { name: 'Soren', role: 'Jungle', avatar: 'assets/image/default_avatar.jpg' },
-    { name: 'Alex', role: 'Mid', avatar: 'assets/image/default_avatar.jpg' },
-    { name: 'Aitlade', role: 'ADC', avatar: 'assets/image/default_avatar.jpg' },
-    { name: 'Kwebz', role: 'Support', avatar: 'assets/image/default_avatar.jpg' }
+    { name: 'Phyraxx', role: 'Top'},
+    { name: 'Soren', role: 'Jungle'},
+    { name: 'Alex', role: 'Mid'},
+    { name: 'Aitlade', role: 'ADC'},
+    { name: 'Kwebz', role: 'Support'}
   ];
 
   staff: TeamMember[] = [
-    { name: 'Lago', role: 'Head Coach', avatar: 'assets/image/default_avatar.jpg' },
-    { name: 'Manzaro', role: 'Manager', avatar: 'assets/image/default_avatar.jpg' },
-    { name: 'Pouare', role: 'Data Analyst', avatar: 'assets/image/default_avatar.jpg' }
+    { name: 'Lago', role: 'Head Coach'},
+    { name: 'Manzaro', role: 'Manager'},
+    { name: 'Pouare', role: 'Data Analyst'}
   ];
 
-  getRoleIcon(role: string): string {
+  getRoleIcon = (role: string): string => {
     const icons: { [key: string]: string } = {
       'Top': 'assets/logo/lol-icons/top.svg',
       'Jungle': 'assets/logo/lol-icons/jungle.svg',
       'Mid': 'assets/logo/lol-icons/mid.svg',
       'ADC': 'assets/logo/lol-icons/adc.svg',
       'Support': 'assets/logo/lol-icons/support.svg',
-      // Pour le staff, gardez les icônes PrimeNG ou ajoutez d'autres SVG
-      'Head Coach': 'pi-user-plus',
+      'Head Coach': 'assets/logo/lol-icons/coach.svg',
       'Manager': 'pi-briefcase',
-      'Data Analyst': 'pi-chart-line'
+      'Data Analyst': 'assets/logo/lol-icons/analyst.svg'
     };
     return icons[role] || 'pi-user';
   }

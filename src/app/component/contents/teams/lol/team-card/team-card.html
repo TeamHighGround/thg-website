@@ -1,0 +1,40 @@
+<div class="group relative bg-black/30 border-2 border-gray-800 rounded-xl overflow-hidden 
+     transition-all duration-300 hover:transform hover:-translate-y-2 
+     hover:border-thgGreen-800 hover:shadow-2xl hover:shadow-green-500/10 hover:bg-black/50"
+     [class]="type + '-card'">
+
+    <div class="p-6">
+        <div class="text-center">
+            <!-- Icône de rôle -->
+            <div class="relative mb-4 flex justify-center">
+                <div class="w-20 h-20 rounded-full border-2 border-gray-600 group-hover:border-thgGreen-400 transition-colors flex items-center justify-center">
+                    <!-- Image SVG pour les joueurs -->
+                    <img *ngIf="isImageIcon()" 
+                         [src]="getRoleIcon(this.member.role)" 
+                         [alt]="member.role"
+                         class="w-12 h-12 text-white filter brightness-0 invert">
+                    
+                    <!-- Icône PrimeNG pour le staff -->
+                    <i *ngIf="!isImageIcon()" 
+                       [class]="'pi ' + getRoleIcon(this.member.role) + ' text-4xl text-white'"></i>
+                </div>
+            </div>
+
+            <!-- Info membre -->
+            <h3 class="text-3xl font-bold text-white mb-2 group-hover:text-thgGreen-300 transition-colors">
+                {{ member.name }}
+            </h3>
+
+            <!-- Chip rôle -->
+            <p-chip [label]="member.role" 
+                    [class]="getChipClass()">
+            </p-chip>
+        </div>
+    </div>
+
+    <!-- Effet de brillance -->
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent 
+         opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full 
+         transition-all duration-700 pointer-events-none">
+    </div>
+</div>

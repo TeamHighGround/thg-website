@@ -1,4 +1,4 @@
-<!-- Version mise à jour du template avec icônes SVG -->
+<!-- Version mise à jour du template avec le composant team-card unifié -->
 <section class="min-h-screen">
 
     <!-- Hero Section -->
@@ -37,41 +37,14 @@
                 </p>
             </div>
 
-            <!-- Players Grid -->
+            <!-- Players Grid avec le nouveau composant -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-20">
-                <div *ngFor="let player of players" class="group relative bg-black/30 border-2 border-gray-800 rounded-xl overflow-hidden 
-                            transition-all duration-300 hover:transform hover:-translate-y-2 
-                            hover:border-thgGreen-800 hover:shadow-2xl hover:shadow-green-500/10 hover:bg-black/50 
-                            player-card">
-
-                    <div class="p-6">
-                        <div class="text-center">
-                            <!-- Icône SVG de rôle (remplace l'avatar) -->
-                            <div class="relative mb-4 flex justify-center">
-                                <div class="w-20 h-20 rounded-full border-2 border-gray-600 group-hover:border-thgGreen-400 transition-colors flex items-center justify-center">
-                                    <img [src]="getRoleIcon(player.role)" [alt]="player.role"
-                                        class="w-12 h-12 text-white filter brightness-0 invert">
-                                </div>
-                            </div>
-
-                            <!-- Info joueur -->
-                            <h3
-                                class="text-3xl font-bold text-white mb-2 group-hover:text-thgGreen-300 transition-colors">
-                                {{ player.name }}
-                            </h3>
-
-                            <!-- Chip rôle -->
-                            <p-chip [label]="player.role" class="role-chip"
-                                [class]="'role-' + player.role.toLowerCase().replace(' ', '-')"></p-chip>
-                        </div>
-                    </div>
-
-                    <!-- Effet de brillance -->
-                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent 
-                               opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full 
-                               transition-all duration-700 pointer-events-none">
-                    </div>
-                </div>
+                <app-team-card 
+                    *ngFor="let player of players" 
+                    [member]="player" 
+                    type="player"
+                    [getRoleIcon]="getRoleIcon">
+                </app-team-card>
             </div>
 
             <!-- Staff Section -->
@@ -86,34 +59,14 @@
                     </p>
                 </div>
 
-                <!-- Staff Grid -->
+                <!-- Staff Grid avec le nouveau composant -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div *ngFor="let member of staff" class="group relative bg-black/30 border-2 border-gray-800 rounded-xl overflow-hidden 
-                                transition-all duration-300 hover:transform hover:-translate-y-2 
-                                hover:border-thgGreen-800 hover:shadow-2xl hover:shadow-green-500/10 hover:bg-black/50 
-                                staff-card">
-
-                        <div class="p-6">
-                            <div class="text-center">
-
-                                <!-- Info staff -->
-                                <h3
-                                    class="text-3xl font-bold text-white mb-2 group-hover:text-thgGreen-300 transition-colors">
-                                    {{ member.name }}
-                                </h3>
-
-                                <!-- Chip rôle -->
-                                <p-chip [label]="member.role" class="staff-chip"
-                                    [class]="'staff-' + member.role.toLowerCase().replace(' ', '-')"></p-chip>
-                            </div>
-                        </div>
-
-                        <!-- Effet de brillance -->
-                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent 
-                                   opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full 
-                                   transition-all duration-700 pointer-events-none">
-                        </div>
-                    </div>
+                    <app-team-card 
+                        *ngFor="let member of staff" 
+                        [member]="member" 
+                        type="staff"
+                        [getRoleIcon]="getRoleIcon">
+                    </app-team-card>
                 </div>
             </div>
         </div>
@@ -132,7 +85,7 @@
                     <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-thgGreen-300 transition-colors">
                         {{ 'contents.teams.lol.casting.title' | transloco }}
                     </h3>
-                    <p class="text-thgGreen-200 leading-relaxed">
+                    <p class="text-white leading-relaxed">
                         {{ 'contents.teams.lol.casting.description' | transloco }}
                     </p>
                 </div>

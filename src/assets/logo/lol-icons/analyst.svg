@@ -1,0 +1,19 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Barres du graphique -->
+  <rect x="20" y="120" width="25" height="60" fill="none" stroke="black" stroke-width="6"/>
+  <rect x="60" y="80" width="25" height="100" fill="none" stroke="black" stroke-width="6"/>
+  <rect x="100" y="140" width="25" height="40" fill="none" stroke="black" stroke-width="6"/>
+  <rect x="140" y="60" width="25" height="120" fill="none" stroke="black" stroke-width="6"/>
+  
+  <!-- Ligne de tendance avec points -->
+ <g fill="none" stroke="black" stroke-width="6">
+    <!-- Ligne connectant les points -->
+    <polyline points="32,90 72,50 112,70 152,30" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Points aux sommets -->
+    <circle cx="32" cy="90" r="12" fill="none" stroke="black" stroke-width="6"/>
+    <circle cx="72" cy="50" r="12" fill="none" stroke="black" stroke-width="6"/>
+    <circle cx="112" cy="70" r="12" fill="none" stroke="black" stroke-width="6"/>
+    <circle cx="152" cy="30" r="12" fill="none" stroke="black" stroke-width="6"/>
+  </g>
+</svg>
