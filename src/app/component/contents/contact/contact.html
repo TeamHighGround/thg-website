@@ -61,19 +61,16 @@
                         </a>
 
                         <!-- Copy Button -->
-                        <button type="button" onclick="navigator.clipboard.writeText(this.mail).then(() => {
-                      const btn = this;
-                      const originalText = btn.innerHTML;
-                      btn.innerHTML = '<i class=&quot;pi pi-check text-base sm:text-lg text-green-400&quot;></i>';
-                      setTimeout(() => btn.innerHTML = originalText, 2000);
-                    })" class="group/copy inline-flex items-center justify-center 
-                    w-12 h-12 sm:w-14 sm:h-14
-                    text-gray-400 hover:text-thgGreen font-semibold
-                    rounded-lg border border-gray-600/30 hover:border-thgGreen/30
-                    bg-gray-800/20 hover:bg-thgGreen/10
-                    transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-thgGreen/20
-                    focus:outline-none focus:ring-2 focus:ring-thgGreen" title="Copier l'adresse email">
-                            <i class="pi pi-copy text-base sm:text-lg"></i>
+                        <button type="button" (click)="copyMail()" class="group/copy inline-flex items-center justify-center 
+    w-12 h-12 sm:w-14 sm:h-14
+    text-gray-400 hover:text-thgGreen font-semibold
+    rounded-lg border border-gray-600/30 hover:border-thgGreen/30
+    bg-gray-800/20 hover:bg-thgGreen/10
+    transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-thgGreen/20
+    focus:outline-none focus:ring-2 focus:ring-thgGreen" title="Copier l'adresse email">
+
+                            <i *ngIf="!copied" class="pi pi-copy text-base sm:text-lg"></i>
+                            <i *ngIf="copied" class="pi pi-check text-base sm:text-lg text-green-400"></i>
                         </button>
                     </div>
                 </div>
