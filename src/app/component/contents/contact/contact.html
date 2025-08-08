@@ -50,18 +50,18 @@
 
                     <!-- Email Address with Copy Button -->
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-                        <a href="mailto:contact@teamhighground.fr" class="inline-flex items-center justify-center gap-3 
+                        <a href="mailto:{{mail}}" class="inline-flex items-center justify-center gap-3 
                text-thgGreen hover:text-white font-semibold
                text-lg sm:text-xl md:text-2xl
                px-6 py-3 rounded-lg border border-thgGreen/30 hover:border-thgGreen
                bg-thgGreen/10 hover:bg-thgGreen
                transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-thgGreen/30">
                             <i class="pi pi-send text-base sm:text-lg"></i>
-                            contact@teamhighground.fr
+                            {{ mail }}
                         </a>
 
                         <!-- Copy Button -->
-                        <button type="button" onclick="navigator.clipboard.writeText('contact@teamhighground.fr').then(() => {
+                        <button type="button" onclick="navigator.clipboard.writeText(this.mail).then(() => {
                       const btn = this;
                       const originalText = btn.innerHTML;
                       btn.innerHTML = '<i class=&quot;pi pi-check text-base sm:text-lg text-green-400&quot;></i>';

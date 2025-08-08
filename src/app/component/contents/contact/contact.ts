@@ -9,4 +9,6 @@ import { TranslocoModule } from '@jsverse/transloco';
 })
 export class Contact {
 
+  mail: string = "[mail]"
+  
 }
