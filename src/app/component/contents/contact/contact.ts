@@ -10,7 +10,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 })
 export class Contact {
 
-  mail: string = "[mail]"
+  mail: string = "contact.teamhighground@gmail.com"
   copied = false;
 
   copyMail() {
