@@ -13,3 +13,59 @@
         opacity: 1;
     }
 }
+
+// Améliorations pour une meilleure visibilité sur desktop
+.cookie-banner-container {
+    // Augmenter la hauteur minimale sur desktop
+    @media (min-width: 768px) {
+        min-height: 140px;
+    }
+    
+    @media (min-width: 1024px) {
+        min-height: 160px;
+    }
+}
+
+// Améliorer la lisibilité des boutons
+button {
+    // Transition plus douce pour tous les boutons
+    transition: all 0.2s ease-in-out;
+    
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+// Améliorer l'apparence du toggle switch
+.toggle-switch {
+    &:hover {
+        .toggle-background {
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+    }
+}
+
+// Assurer une bonne visibilité même avec du contenu en arrière-plan
+.cookie-banner-backdrop {
+    backdrop-filter: blur(2px);
+}
+
+// Responsive amélioré pour les très grands écrans
+@media (min-width: 1536px) {
+    .cookie-banner-content {
+        padding: 3rem 2rem;
+    }
+    
+    .cookie-banner-title {
+        font-size: 1.5rem;
+    }
+    
+    .cookie-banner-description {
+        font-size: 1.125rem;
+    }
+}
