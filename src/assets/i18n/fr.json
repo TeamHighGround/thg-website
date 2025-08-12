@@ -159,7 +159,8 @@
       "title": "Informations légales",
       "cgv": "Conditions Générales de Vente",
       "mentions": "Mentions légales",
-      "privacy": "Politique de confidentialité"
+      "privacy": "Politique de confidentialité",
+      "cookies": "Gestion des cookies"
     },
     "social": {
       "title": "Suivez-nous"
@@ -252,6 +253,42 @@
     "modifications": {
       "title": "Modifications",
       "description": "Cette politique peut être mise à jour. Les modifications seront publiées sur cette page."
+    }
+  },
+  "cookieBanner": {
+    "title": "Nous utilisons des cookies",
+    "description": "Ce site utilise Google Analytics pour comprendre comment vous utilisez notre site web. Ces données nous aident à améliorer votre expérience.",
+    "acceptAll": "Accepter tout",
+    "rejectAll": "Refuser",
+    "customize": "Personnaliser",
+    "required": "Obligatoire",
+    "detailedTitle": "Gestion des cookies",
+    "detailedDescription": "Nous respectons votre vie privée. Vous pouvez choisir quels types de cookies accepter :",
+    "backToSimple": "Retour",
+    "savePreferences": "Sauvegarder mes préférences",
+    "categories": {
+      "functional": {
+        "title": "Cookies techniques",
+        "description": "Ces cookies sont nécessaires au fonctionnement du site. Ils ne peuvent pas être désactivés.",
+        "cookies": "Cookies de session, préférences langue"
+      },
+      "analytics": {
+        "title": "Cookies d'analyse",
+        "description": "Ces cookies nous permettent de mesurer et améliorer les performances de notre site web.",
+        "cookies": "_ga, _ga_*, _gid (Google Analytics)"
+      }
+    }
+  },
+  "cookieSettings": {
+    "title": "Paramètres des cookies",
+    "description": "Gérez vos préférences de cookies à tout moment.",
+    "currentSettings": "Paramètres actuels",
+    "consentGiven": "Consentement donné le",
+    "resetConsent": "Réinitialiser les préférences",
+    "updateConsent": "Mettre à jour mes préférences",
+    "status": {
+      "accepted": "Accepté",
+      "rejected": "Refusé"
     }
   }
 }

@@ -1,0 +1,108 @@
+<div *ngIf="showBanner"
+    class="fixed bottom-0 left-0 right-0 bg-thgGreen-950 shadow-lg border-t-2 border-thgGreen z-50"
+    role="banner" aria-label="Cookie consent banner">
+
+    <!-- Version simple -->
+    <div *ngIf="!showDetails" class="max-w-7xl mx-auto p-4">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="flex-1">
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-2">
+                    {{ 'cookieBanner.title' | transloco }}
+                </h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                    {{ 'cookieBanner.description' | transloco }}
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-2 shrink-0">
+                <button (click)="toggleDetails()"
+                    class="px-4 py-2 text-sm text-thgGreen hover:underline">
+                    {{ 'cookieBanner.customize' | transloco }}
+                </button>
+
+                <button (click)="rejectAll()"
+                    class="px-4 py-2 text-sm bg-gray-700 text-gray-300 rounded hover:bg-gray-600 transition-colors">
+                    {{ 'cookieBanner.rejectAll' | transloco }}
+                </button>
+
+                <button (click)="acceptAll()"
+                    class="px-4 py-2 text-sm bg-thgGreen-800 text-white rounded hover:bg-thgGreen-900 transition-colors">
+                    {{ 'cookieBanner.acceptAll' | transloco }}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Version détaillée -->
+    <div *ngIf="showDetails" class="max-w-4xl mx-auto p-6">
+        <div class="mb-6">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                {{ 'cookieBanner.detailedTitle' | transloco }}
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+                {{ 'cookieBanner.detailedDescription' | transloco }}
+            </p>
+        </div>
+
+        <!-- Cookies techniques (toujours acceptés) -->
+        <div class="mb-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+            <div class="flex items-center justify-between mb-2">
+                <h4 class="font-medium text-gray-900 dark:text-white">
+                    {{ 'cookieBanner.categories.functional.title' | transloco }}
+                </h4>
+                <span
+                    class="text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">
+                    {{ 'cookieBanner.required' | transloco }}
+                </span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                {{ 'cookieBanner.categories.functional.description' | transloco }}
+            </p>
+            <p class="text-xs text-gray-500 dark:text-gray-400">
+                {{ 'cookieBanner.categories.functional.cookies' | transloco }}
+            </p>
+        </div>
+
+        <!-- Cookies Analytics -->
+        <div class="mb-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+            <div class="flex items-center justify-between mb-2">
+                <h4 class="font-medium text-gray-900 dark:text-white">
+                    {{ 'cookieBanner.categories.analytics.title' | transloco }}
+                </h4>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" class="sr-only peer" [(ngModel)]="analyticsConsent"
+                        (change)="updateConsent()">
+                    <div
+                        class="w-11 h-6 bg-gray-600 peer-focus:outline-none   rounded-full 
+                        peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px]
+                        after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all border-gray-600
+                        peer-checked:bg-thgGreen-700">
+                    </div>
+                </label>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                {{ 'cookieBanner.categories.analytics.description' | transloco }}
+            </p>
+            <p class="text-xs text-gray-500 dark:text-gray-400">
+                {{ 'cookieBanner.categories.analytics.cookies' | transloco }}
+            </p>
+        </div>
+
+        <!-- Boutons d'action -->
+        <div class="flex flex-col sm:flex-row gap-3 justify-end">
+            <button (click)="toggleDetails()"
+                class="px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200">
+                {{ 'cookieBanner.backToSimple' | transloco }}
+            </button>
+
+            <button (click)="saveCustom()"
+                class="px-6 py-2 bg-thgGreen-800 text-white rounded hover:bg-thgGreen-900 transition-colors">
+                {{ 'cookieBanner.savePreferences' | transloco }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Overlay pour la version mobile -->
+<div *ngIf="showBanner" class="fixed inset-0 bg-black bg-opacity-60 z-40">
+</div>

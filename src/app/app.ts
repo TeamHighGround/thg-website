@@ -3,10 +3,11 @@ import { Header } from './component/header/header';
 import { Footer } from './component/footer/footer';
 import { Background } from "./component/background/background";
 import { RouterOutlet } from '@angular/router';
+import { CookieBannerComponent } from "./component/cookie-banner/cookie-banner";
 
 @Component({
   selector: 'app-root',
-  imports: [Header, RouterOutlet, Footer, Background],
+  imports: [Header, RouterOutlet, Footer, Background, CookieBannerComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

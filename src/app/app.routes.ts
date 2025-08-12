@@ -24,6 +24,8 @@ export const routes: Routes = [
       { path: 'contact', component: Contact },
       { path: 'legal-notice', component: LegalNotice },
       { path: 'privacy-policy', component: PrivacyPolicy },
+      { path: 'cookie-settings', loadComponent: () => import('./component/cookie-settings/cookie-settings').then(m => m.CookieSettingsComponent) },
+  
     ]
   },
   { path: '**', redirectTo: '' }
