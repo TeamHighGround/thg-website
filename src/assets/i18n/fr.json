@@ -286,6 +286,18 @@
     "consentGiven": "Consentement donné le",
     "resetConsent": "Réinitialiser les préférences",
     "updateConsent": "Mettre à jour mes préférences",
+    "cancel": "Annuler",
+    "cookiesUsed": "Cookies utilisés :",
+    "purpose": "Finalité :",
+    "conservation": "Conservation :",
+    "provider": "Fournisseur :",
+    "transfer": "Transfert :",
+    "purposeAnalytics": "Mesure d'audience anonyme, analyse du trafic",
+    "conservationAnalytics": "26 mois maximum",
+    "providerAnalytics": "Google LLC",
+    "transferAnalytics": "États-Unis (décision d'adéquation)",
+    "confirmationMessage": "✓ Vos préférences ont été sauvegardées",
+    "resetConfirmation": "Êtes-vous sûr de vouloir réinitialiser toutes vos préférences de cookies ? Vous devrez donner votre consentement à nouveau.",
     "status": {
       "accepted": "Accepté",
       "rejected": "Refusé"

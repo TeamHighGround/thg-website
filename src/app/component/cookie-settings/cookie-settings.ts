@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TranslocoModule } from '@jsverse/transloco';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { CookieConsentService, CookieConsent } from '../../services/cookie-consent.service';
 import { Subscription } from 'rxjs';
 
@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs';
 export class CookieSettingsComponent implements OnInit, OnDestroy {
   private cookieService = inject(CookieConsentService);
   private subscription = new Subscription();
+  private transloco = inject(TranslocoService);
 
   currentConsent: CookieConsent = {
     analytics: false,
@@ -79,7 +80,9 @@ export class CookieSettingsComponent implements OnInit, OnDestroy {
   }
 
   resetConsent() {
-    if (confirm('Êtes-vous sûr de vouloir réinitialiser toutes vos préférences de cookies ? Vous devrez donner votre consentement à nouveau.')) {
+    const confirmMessage = this.transloco.translate('cookieSettings.resetConfirmation');
+    
+    if (confirm(confirmMessage)) {
       this.cookieService.resetConsent();
       // La bannière réapparaîtra automatiquement
       window.location.reload();
