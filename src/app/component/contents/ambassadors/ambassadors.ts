@@ -1,0 +1,69 @@
+import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { PartnerCard } from '../partners/partner-card/partner-card';
+import { Partner } from '../partners/partner-card/partner-interface';
+
+@Component({
+  selector: 'app-partners',
+  standalone: true,
+  imports: [CommonModule, TranslocoModule, PartnerCard],
+  templateUrl: './ambassadors.html',
+  styleUrl: './ambassadors.scss'
+})
+export class Ambassadors implements OnInit {
+  private translocoService = inject(TranslocoService);
+
+  // Utiliser une propriété au lieu d'un getter
+  partners: Partner[] = [];
+
+  ngOnInit() {
+    // Initialiser les partners une seule fois
+    this.initializePartners();
+  }
+
+  // TrackBy function pour améliorer les performances
+  trackByPartnerId(index: number, partner: Partner): number {
+    return partner.id;
+  }
+
+  private initializePartners(): void {
+    this.partners = [
+      {
+        id: 1,
+        name: this.translocoService.translate('contents.ambassadors.list.0.name'),
+        types: [
+          this.translocoService.translate('contents.ambassadors.list.0.types.0'),
+          this.translocoService.translate('contents.ambassadors.list.0.types.1')
+        ],
+        description: this.translocoService.translate('contents.ambassadors.list.0.description'),
+        images: [
+          'assets/image/partners/ezza/1.png',
+          'assets/image/partners/ezza/2.png'
+        ],
+        socialMedia: {
+          instagram: 'https://www.instagram.com/ezza_tv/',
+          twitter: 'https://x.com/EZZA_TV_',
+          twitch: 'https://www.twitch.tv/ezza_tv'
+        }
+      },
+      {
+        id: 2,
+        name: this.translocoService.translate('contents.ambassadors.list.1.name'),
+        types: [
+          this.translocoService.translate('contents.ambassadors.list.1.types.0'),
+          this.translocoService.translate('contents.ambassadors.list.1.types.1')
+        ],
+        description: this.translocoService.translate('contents.ambassadors.list.1.description'),
+        images: [
+          'assets/image/partners/biche/1.jpg',
+          'assets/image/partners/biche/2.jpg'
+        ],
+        socialMedia: {
+          instagram: 'https://www.instagram.com/turbobiche_/',
+          soundcloud: 'https://on.soundcloud.com/7tB5w6vTZnjb1SZF6'
+        }
+      }
+    ];
+  }
+}

@@ -6,10 +6,10 @@
     <div *ngIf="!showDetails" class="max-w-7xl mx-auto px-4 py-6 md:px-6 md:py-8">
         <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-8">
             <div class="flex-1">
-                <h3 class="font-semibold text-lg md:text-xl text-gray-900 dark:text-white mb-3 md:mb-4">
+                <h3 class="font-semibold text-lg md:text-xl text-white mb-3 md:mb-4">
                     {{ 'cookieBanner.title' | transloco }}
                 </h3>
-                <p class="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p class="text-sm md:text-base text-gray-300 leading-relaxed">
                     {{ 'cookieBanner.description' | transloco }}
                 </p>
             </div>
@@ -36,37 +36,37 @@
     <!-- Version détaillée -->
     <div *ngIf="showDetails" class="max-w-5xl mx-auto px-4 py-6 md:px-6 md:py-8">
         <div class="mb-8">
-            <h3 class="text-lg md:text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white mb-3 md:mb-4">
+            <h3 class="text-lg md:text-xl lg:text-2xl font-semibold text-white mb-3 md:mb-4">
                 {{ 'cookieBanner.detailedTitle' | transloco }}
             </h3>
-            <p class="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p class="text-sm md:text-base text-gray-300 leading-relaxed">
                 {{ 'cookieBanner.detailedDescription' | transloco }}
             </p>
         </div>
 
         <!-- Cookies techniques (toujours acceptés) -->
-        <div class="mb-6 p-4 md:p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
+        <div class="mb-6 p-4 md:p-6 bg-gray-700 rounded-lg">
             <div class="flex items-center justify-between mb-3 md:mb-4">
-                <h4 class="font-medium text-base md:text-lg text-gray-900 dark:text-white">
+                <h4 class="font-medium text-base md:text-lg text-white">
                     {{ 'cookieBanner.categories.functional.title' | transloco }}
                 </h4>
                 <span
-                    class="text-xs md:text-sm bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 md:px-4 md:py-2 rounded-full font-medium">
+                    class="text-xs md:text-sm bg-green-900 text-green-200 px-3 py-1 md:px-4 md:py-2 rounded-full font-medium">
                     {{ 'cookieBanner.required' | transloco }}
                 </span>
             </div>
-            <p class="text-sm md:text-base text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">
+            <p class="text-sm md:text-base text-gray-300 mb-3 leading-relaxed">
                 {{ 'cookieBanner.categories.functional.description' | transloco }}
             </p>
-            <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400">
+            <p class="text-xs md:text-sm text-gray-400">
                 {{ 'cookieBanner.categories.functional.cookies' | transloco }}
             </p>
         </div>
 
         <!-- Cookies Analytics -->
-        <div class="mb-8 p-4 md:p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
+        <div class="mb-8 p-4 md:p-6 bg-gray-700 rounded-lg">
             <div class="flex items-center justify-between mb-3 md:mb-4">
-                <h4 class="font-medium text-base md:text-lg text-gray-900 dark:text-white">
+                <h4 class="font-medium text-base md:text-lg text-white">
                     {{ 'cookieBanner.categories.analytics.title' | transloco }}
                 </h4>
                 <label class="relative inline-flex items-center cursor-pointer">
@@ -83,10 +83,10 @@
                     </div>
                 </label>
             </div>
-            <p class="text-sm md:text-base text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">
+            <p class="text-sm md:text-base text-gray-300 mb-3 leading-relaxed">
                 {{ 'cookieBanner.categories.analytics.description' | transloco }}
             </p>
-            <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400">
+            <p class="text-xs md:text-sm text-gray-400">
                 {{ 'cookieBanner.categories.analytics.cookies' | transloco }}
             </p>
         </div>
@@ -94,7 +94,7 @@
         <!-- Boutons d'action -->
         <div class="flex flex-col sm:flex-row gap-4 justify-end">
             <button (click)="toggleDetails()"
-                class="px-4 py-3 md:px-6 md:py-3 text-sm md:text-base text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 font-medium transition-colors">
+                class="px-4 py-3 md:px-6 md:py-3 text-sm md:text-base text-gray-400 hover:text-gray-200 font-medium transition-colors">
                 {{ 'cookieBanner.backToSimple' | transloco }}
             </button>
 
