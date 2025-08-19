@@ -2,7 +2,7 @@
   "header": {
     "logo": "Mon Équipe",
     "home": "Accueil",
-    "about": "Qui sommes nous",
+    "about": "Qui sommes-nous",
     "teams": {
       "title": "Équipes",
       "lol": "League Of Legends",
@@ -93,8 +93,8 @@
     },
     "teams": {
       "lol": {
-        "title": "League of Legends",
-        "description": "League of Legends est le jeu historique et de cœur de la THG. Après plusieurs années à évoluer sur la scène amateure bretonne et française, nous passons un cap cet été avec un roster semi-professionnel engagé en Liga Portuguesa de League of Legends. Notre objectif est clair : progresser ensemble, structurer notre projet et affirmer notre place à l’échelle internationale.",
+        "title": "League Of Legends",
+        "description": "League Of Legends est le jeu historique et de cœur de la THG. Après plusieurs années à évoluer sur la scène amateure bretonne et française, nous passons un cap cet été avec un roster semi-professionnel engagé en Liga Portuguesa de League Of Legends. Notre objectif est clair : progresser ensemble, structurer notre projet et affirmer notre place à l’échelle internationale.",
         "roster": {
           "title": "Roster",
           "description": "Les joueurs représentants la THG en compétition"
@@ -112,7 +112,7 @@
       },
       "tft": {
         "title": "Teamfight Tactics",
-        "text": "Nous sommes une organisation bretonne présente aussi sur TFT.  Si toi aussi tu veux progresser sur le jeu et que tu souhaites venir représenter nos couleurs en tournoi, n'hésite pas nous contacter"
+        "text": "Nous sommes une organisation bretonne présente aussi sur TFT.  Si toi aussi tu veux progresser sur le jeu et que tu souhaites venir représenter nos couleurs en tournoi, n'hésite pas à nous contacter"
       }
     },
     "ambassadors": {
@@ -128,7 +128,7 @@
             "0": "Casteur",
             "1": "Organisateur d'événements E-Sport"
           },
-          "description": "Originaire de Brest, EZZA joue à League of Legends depuis la saison 2, un Émeraude bien stacké, passionné depuis toujours ! Depuis 2020, il s’épanouit derrière le micro en tant que casteur, lançant même ses propres tournois pour vivre son rêve. Il nous a promis de mettre un maximum d’ambiance !"
+          "description": "Originaire de Brest, EZZA joue à League Of Legends depuis la saison 2, un Émeraude bien stacké, passionné depuis toujours ! Depuis 2020, il s’épanouit derrière le micro en tant que casteur, lançant même ses propres tournois pour vivre son rêve. Il nous a promis de mettre un maximum d’ambiance !"
         },
         "1": {
           "name": "Toskaan",
@@ -136,7 +136,7 @@
             "0": "Casteur",
             "1": "Animateur E-Sport"
           },
-          "description": "Sudiste provincial parti à Paris pour vivre la vie d'Artiste qu'il rêvait. Avec une formation d'acteur et une passion pour l'E-sport en guise de bagage. Toskaan se lance en Novembre 2023 dans l'aventure de commentateur E-sport. Il crée d'abord son collectif, avec lequel il organisera des tournois sur League Of Legends. En 2025, il fera la rencontre d'un autre caster, Ezza, qui deviendra tel un mentor par la suite. L'aventure ne fait que commencer !"
+          "description": "Sudiste provincial parti à Paris pour vivre la vie d'artiste qu'il rêvait. Avec une formation d'acteur et une passion pour l'E-sport en guise de bagage. Toskaan se lance en Novembre 2023 dans l'aventure de commentateur E-sport. Il crée d'abord son collectif, avec lequel il organisera des tournois sur League Of Legends. En 2025, il fera la rencontre d'un autre caster, Ezza, qui deviendra tel un mentor par la suite. L'aventure ne fait que commencer !"
         },
         "2": {
           "name": "DJ Turbo Biche",
