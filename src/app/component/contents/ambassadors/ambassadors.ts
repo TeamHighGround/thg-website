@@ -14,15 +14,12 @@ import { Partner } from '../partners/partner-card/partner-interface';
 export class Ambassadors implements OnInit {
   private translocoService = inject(TranslocoService);
 
-  // Utiliser une propriété au lieu d'un getter
   partners: Partner[] = [];
 
   ngOnInit() {
-    // Initialiser les partners une seule fois
     this.initializePartners();
   }
 
-  // TrackBy function pour améliorer les performances
   trackByPartnerId(index: number, partner: Partner): number {
     return partner.id;
   }
@@ -55,6 +52,24 @@ export class Ambassadors implements OnInit {
           this.translocoService.translate('contents.ambassadors.list.1.types.1')
         ],
         description: this.translocoService.translate('contents.ambassadors.list.1.description'),
+        images: [
+          'assets/image/partners/toskaan/1.jpg',
+          'assets/image/partners/toskaan/2.jpg'
+        ],
+        socialMedia: {
+          twitter: 'https://x.com/toskaan13',
+          instagram: 'https://www.instagram.com/kevin_deroche/',
+          twitch: 'https://www.twitch.tv/toskaan'
+        }
+      },
+      {
+        id: 3,
+        name: this.translocoService.translate('contents.ambassadors.list.2.name'),
+        types: [
+          this.translocoService.translate('contents.ambassadors.list.2.types.0'),
+          this.translocoService.translate('contents.ambassadors.list.2.types.1')
+        ],
+        description: this.translocoService.translate('contents.ambassadors.list.2.description'),
         images: [
           'assets/image/partners/biche/1.jpg',
           'assets/image/partners/biche/2.jpg'
