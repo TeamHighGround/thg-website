@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, OnDestroy, HostListener, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit, OnDestroy, HostListener, ChangeDetectionStrategy, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ChipModule } from 'primeng/chip';
 import { CardModule } from 'primeng/card';
@@ -16,7 +16,8 @@ import { Partner } from './partner-interface';
 })
 export class PartnerCard implements OnInit, OnDestroy {
   @Input() partner!: Partner;
-  
+  private platformId = inject(PLATFORM_ID);
+
   currentImageIndex = 0;
   private imageInterval?: number;
   private readonly AUTO_SLIDE_DELAY = 5000; // 5 secondes
@@ -24,7 +25,9 @@ export class PartnerCard implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentImageIndex = 0;
-    this.startAutoSlide();
+    if (isPlatformBrowser(this.platformId)) {
+      this.startAutoSlide();
+    }
   }
 
   ngOnDestroy() {
@@ -111,6 +114,8 @@ export class PartnerCard implements OnInit, OnDestroy {
 
   // Gestion des réseaux sociaux
   openSocialMedia(platform: string): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     if (this.partner.socialMedia) {
       const url = this.partner.socialMedia[platform as keyof typeof this.partner.socialMedia];
       if (url) {

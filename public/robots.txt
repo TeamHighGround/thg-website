@@ -1,0 +1,13 @@
+# Team High Ground - robots.txt
+# https://teamhighground.fr
+
+User-agent: *
+Allow: /
+
+# Disallow utility pages
+Disallow: /cookie-settings
+Disallow: /legal-notice
+Disallow: /privacy-policy
+
+# Sitemap location
+Sitemap: https://teamhighground.fr/sitemap.xml

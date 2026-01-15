@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(ng build)",
+      "Bash(wc:*)",
+      "Bash(dir distthg-websitebrowser /s /b)",
+      "WebSearch"
+    ]
+  }
+}
