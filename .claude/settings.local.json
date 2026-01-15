@@ -5,7 +5,10 @@
       "Bash(ng build)",
       "Bash(wc:*)",
       "Bash(dir distthg-websitebrowser /s /b)",
-      "WebSearch"
+      "WebSearch",
+      "WebFetch(domain:registry.npmjs.org)",
+      "Bash(npm view:*)",
+      "Bash(findstr:*)"
     ]
   }
 }
