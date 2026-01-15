@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 import { getAnalytics, Analytics } from 'firebase/analytics';
 import { initializeApp } from 'firebase/app';
@@ -18,7 +19,8 @@ export interface CookieConsent {
 export class CookieConsentService {
   private readonly CONSENT_KEY = 'thg-cookie-consent';
   private readonly CONSENT_VERSION = '1.0';
-  
+  private platformId = inject(PLATFORM_ID);
+
   private consentSubject = new BehaviorSubject<CookieConsent>({
     analytics: false,
     marketing: false,
@@ -30,10 +32,14 @@ export class CookieConsentService {
   private analytics: Analytics | null = null;
 
   constructor() {
-    this.loadStoredConsent();
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadStoredConsent();
+    }
   }
 
   private loadStoredConsent(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     try {
       const stored = localStorage.getItem(this.CONSENT_KEY);
       if (stored) {
@@ -68,6 +74,8 @@ export class CookieConsentService {
   }
 
   public saveConsent(consent: Partial<CookieConsent>): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     const fullConsent: CookieConsent = {
       ...this.consentSubject.value,
       ...consent,
@@ -108,6 +116,8 @@ export class CookieConsentService {
   }
 
   public resetConsent(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     try {
       localStorage.removeItem(this.CONSENT_KEY);
       this.consentSubject.next({
@@ -138,6 +148,8 @@ export class CookieConsentService {
   }
 
   private initializeAnalytics(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     if (!this.analytics) {
       try {
         // Configuration Firebase (remplacez par vos vraies valeurs)
@@ -160,22 +172,26 @@ export class CookieConsentService {
   }
 
   private disableAnalytics(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     // Désactiver la collecte Analytics
     if (window.gtag) {
       window.gtag('consent', 'update', {
         'analytics_storage': 'denied'
       });
     }
-    
+
     // Supprimer les cookies existants
     this.deleteCookie('_ga');
     this.deleteCookie('_ga_G-Z3QZ2KFZLN'); // Remplacez par votre vrai ID de mesure
     this.deleteCookie('_gid');
-    
+
     this.analytics = null;
   }
 
   private deleteCookie(name: string): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=.${window.location.hostname}`;
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
   }

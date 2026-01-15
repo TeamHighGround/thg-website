@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { PartnerCard } from '../partners/partner-card/partner-card';
-import { Partner } from '../partners/partner-card/partner-interface';
+import { PartnerCard } from '../partner-card/partner-card';
+import { Partner } from '../partner-card/partner-interface';
 
 @Component({
   selector: 'app-partners',

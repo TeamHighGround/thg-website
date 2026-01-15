@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
@@ -7,7 +8,7 @@ import { filter } from 'rxjs/operators';
 import { Menu, MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { BehaviorSubject } from 'rxjs';
-import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-header',
   imports: [TranslocoModule, RouterModule, MenuModule, ButtonModule, CommonModule],
@@ -16,6 +17,7 @@ import { CommonModule } from '@angular/common';
 })
 export class Header implements OnInit, AfterViewInit {
   @ViewChild('navContainer', { static: false }) navContainer!: ElementRef;
+  private platformId = inject(PLATFORM_ID);
 
   mobileMenuOpen = false;
   activeIndicatorStyle = { left: '0px', width: '0px' };
@@ -29,6 +31,8 @@ export class Header implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     // Écouter les changements de route
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -39,10 +43,12 @@ export class Header implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    if (!isPlatformBrowser(this.platformId)) return;
     setTimeout(() => this.updateActiveIndicator(), 100);
   }
 
   private updateActiveIndicator() {
+    if (!isPlatformBrowser(this.platformId)) return;
     if (!this.navContainer) return;
 
     const navElement = this.navContainer.nativeElement;

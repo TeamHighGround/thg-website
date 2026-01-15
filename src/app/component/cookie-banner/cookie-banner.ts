@@ -1,6 +1,6 @@
 // src/app/components/cookie-banner/cookie-banner.component.ts
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, OnDestroy, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { CookieConsentService, CookieConsent } from '../../services/cookie-consent.service';
 import { Subscription } from 'rxjs';
@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class CookieBannerComponent implements OnInit, OnDestroy {
   private cookieService = inject(CookieConsentService);
+  private platformId = inject(PLATFORM_ID);
   private subscription = new Subscription();
 
   showBanner = false;
@@ -81,26 +82,30 @@ export class CookieBannerComponent implements OnInit, OnDestroy {
 
   // Méthodes pour gérer le scroll
   private preventScroll(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     // Sauvegarder la position actuelle du scroll
     const scrollY = window.scrollY;
     document.body.style.position = 'fixed';
     document.body.style.top = `-${scrollY}px`;
     document.body.style.width = '100%';
-    
+
     // Empêcher le scroll sur le body
     document.body.style.overflow = 'hidden';
   }
 
   private allowScroll(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     // Récupérer la position sauvegardée
     const scrollY = document.body.style.top;
-    
+
     // Rétablir les styles
     document.body.style.position = '';
     document.body.style.top = '';
     document.body.style.width = '';
     document.body.style.overflow = '';
-    
+
     // Rétablir la position du scroll
     if (scrollY) {
       window.scrollTo(0, parseInt(scrollY || '0') * -1);

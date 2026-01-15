@@ -10,23 +10,33 @@ import { LegalNotice } from './component/contents/legal-notice/legal-notice';
 import { PrivacyPolicy } from './component/contents/privacy-policy/privacy-policy';
 import { Ambassadors } from './component/contents/ambassadors/ambassadors';
 
+const contentRoutes: Routes = [
+  { path: '', component: Home },
+  { path: 'about', component: About },
+  { path: 'teams/lol', component: Lol },
+  { path: 'teams/tft', component: Tft },
+  { path: 'news', component: News },
+  { path: 'ambassadors', component: Ambassadors },
+  { path: 'contact', component: Contact },
+  { path: 'legal-notice', component: LegalNotice },
+  { path: 'privacy-policy', component: PrivacyPolicy },
+  { path: 'cookie-settings', loadComponent: () => import('./component/cookie-settings/cookie-settings').then(m => m.CookieSettingsComponent) },
+];
+
 export const routes: Routes = [
+  // French routes (default)
   {
     path: '',
     resolve: { transloco: TranslocoResolver },
-    children: [
-      { path: '', component: Home },
-      { path: 'about', component: About },
-      { path: 'teams/lol', component: Lol },
-      { path: 'teams/tft', component: Tft },
-      { path: 'news', component: News },
-      { path: 'ambassadors', component: Ambassadors },
-      { path: 'contact', component: Contact },
-      { path: 'legal-notice', component: LegalNotice },
-      { path: 'privacy-policy', component: PrivacyPolicy },
-      { path: 'cookie-settings', loadComponent: () => import('./component/cookie-settings/cookie-settings').then(m => m.CookieSettingsComponent) },
-  
-    ]
+    data: { lang: 'fr' },
+    children: contentRoutes
+  },
+  // English routes
+  {
+    path: 'en',
+    resolve: { transloco: TranslocoResolver },
+    data: { lang: 'en' },
+    children: contentRoutes
   },
   { path: '**', redirectTo: '' }
 ];
