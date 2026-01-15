@@ -27,12 +27,6 @@ Après le premier déploiement, configurer **Google Search Console** :
 3. Soumettre le sitemap : `Sitemaps > Ajouter > sitemap.xml`
 4. Demander l'indexation des pages principales
 
-## Troubleshooting
-
-```bash
-rm -rf .angular/cache     # Clear cache if SSR errors occur
-```
-
 ## Tech Stack
 
 - Angular 20 + SSR/Prerendering
