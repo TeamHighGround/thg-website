@@ -37,7 +37,8 @@ export class Lol {
       name: 'Artanis',
       role: 'Jungle',
       socialLinks: {
-        twitter: 'https://x.com/lol_artanis'
+        twitter: 'https://x.com/lol_artanis',
+        lolpros: 'https://lolpros.gg/player/artanis'
       }
     },
     {
@@ -78,19 +79,21 @@ export class Lol {
       name: 'Karken',
       role: 'Assistant Coach',
       socialLinks: {
-
+        twitter: 'https://x.com/karkenlol'
       }
     },
     {
       name: 'Pouare',
       role: 'Data Analyst',
       socialLinks: {
+        twitter: 'https://x.com/0xPouare'
       }
     },
     {
       name: 'Manzaro',
       role: 'Manager',
       socialLinks: {
+        twitter: 'https://x.com/Manzarow'
       }
     }
   ];
