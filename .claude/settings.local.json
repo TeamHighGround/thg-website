@@ -8,7 +8,8 @@
       "WebSearch",
       "WebFetch(domain:registry.npmjs.org)",
       "Bash(npm view:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(ng build:*)"
     ]
   }
 }
