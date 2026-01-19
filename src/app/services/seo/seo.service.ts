@@ -1,4 +1,4 @@
-import { Injectable, inject, PLATFORM_ID } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID, Renderer2, RendererFactory2 } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
@@ -17,8 +17,18 @@ export class SeoService {
   private transloco = inject(TranslocoService);
   private document = inject(DOCUMENT);
   private platformId = inject(PLATFORM_ID);
+  private renderer: Renderer2;
+
+  constructor() {
+    const rendererFactory = inject(RendererFactory2);
+    this.renderer = rendererFactory.createRenderer(null, null);
+  }
 
   initialize(): void {
+    // Update SEO for initial route (important for SSR prerendering)
+    this.updateSeoForRoute(this.router.url);
+
+    // Then listen for route changes
     this.initRouteListener();
   }
 
@@ -100,44 +110,43 @@ export class SeoService {
       this.meta.updateTag({ name: 'twitter:image:alt', content: config.imageAlt });
     }
 
-    if (isPlatformBrowser(this.platformId)) {
-      this.updateCanonical(fullUrl);
-      this.updateAlternateLinks(currentPath);
-    }
+    // Update canonical and alternate links for both server (SSR) and client
+    this.updateCanonical(fullUrl);
+    this.updateAlternateLinks(currentPath);
   }
 
   private updateCanonical(url: string): void {
     let link: HTMLLinkElement | null = this.document.querySelector('link[rel="canonical"]');
 
     if (!link) {
-      link = this.document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      this.document.head.appendChild(link);
+      link = this.renderer.createElement('link');
+      this.renderer.setAttribute(link, 'rel', 'canonical');
+      this.renderer.appendChild(this.document.head, link);
     }
 
-    link.setAttribute('href', url);
+    this.renderer.setAttribute(link, 'href', url);
   }
 
   private updateAlternateLinks(path: string): void {
     const existingLinks = this.document.querySelectorAll('link[rel="alternate"][hreflang]');
-    existingLinks.forEach(link => link.remove());
+    existingLinks.forEach(link => this.renderer.removeChild(this.document.head, link));
 
-    const frLink = this.document.createElement('link');
-    frLink.setAttribute('rel', 'alternate');
-    frLink.setAttribute('hreflang', 'fr');
-    frLink.setAttribute('href', `${SITE_URL}${path}`);
-    this.document.head.appendChild(frLink);
+    const frLink = this.renderer.createElement('link');
+    this.renderer.setAttribute(frLink, 'rel', 'alternate');
+    this.renderer.setAttribute(frLink, 'hreflang', 'fr');
+    this.renderer.setAttribute(frLink, 'href', `${SITE_URL}${path}`);
+    this.renderer.appendChild(this.document.head, frLink);
 
-    const enLink = this.document.createElement('link');
-    enLink.setAttribute('rel', 'alternate');
-    enLink.setAttribute('hreflang', 'en');
-    enLink.setAttribute('href', `${SITE_URL}/en${path === '/' ? '' : path}`);
-    this.document.head.appendChild(enLink);
+    const enLink = this.renderer.createElement('link');
+    this.renderer.setAttribute(enLink, 'rel', 'alternate');
+    this.renderer.setAttribute(enLink, 'hreflang', 'en');
+    this.renderer.setAttribute(enLink, 'href', `${SITE_URL}/en${path === '/' ? '' : path}`);
+    this.renderer.appendChild(this.document.head, enLink);
 
-    const defaultLink = this.document.createElement('link');
-    defaultLink.setAttribute('rel', 'alternate');
-    defaultLink.setAttribute('hreflang', 'x-default');
-    defaultLink.setAttribute('href', `${SITE_URL}${path}`);
-    this.document.head.appendChild(defaultLink);
+    const defaultLink = this.renderer.createElement('link');
+    this.renderer.setAttribute(defaultLink, 'rel', 'alternate');
+    this.renderer.setAttribute(defaultLink, 'hreflang', 'x-default');
+    this.renderer.setAttribute(defaultLink, 'href', `${SITE_URL}${path}`);
+    this.renderer.appendChild(this.document.head, defaultLink);
   }
 }
