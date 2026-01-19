@@ -6,6 +6,5 @@ export interface Partner {
   types: string[];
   description: string;
   images: string[];
-  website?: string;
   socialMedia?: SocialLinks;
 }
