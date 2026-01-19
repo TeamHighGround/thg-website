@@ -25,11 +25,51 @@ import { TeamCard, TeamMember } from './team-card/team-card';
 export class Lol {
 
   players: TeamMember[] = [
-    { name: 'Phyraxx', role: 'Top'},
-    { name: 'Soren', role: 'Jungle'},
-    { name: 'Alex', role: 'Mid'},
-    { name: 'Aitlade', role: 'ADC'},
-    { name: 'Kwebz', role: 'Support'}
+    {
+      name: 'Phyraxx',
+      role: 'Top',
+      socialLinks: {
+        twitch: 'https://www.twitch.tv/phyraxx',
+        lolpros: 'https://lolpros.gg/player/phyraxx',
+        liquipedia: 'https://liquipedia.net/leagueoflegends/Phyraxx'
+      }
+    },
+    {
+      name: 'Artanis',
+      role: 'Jungle',
+      socialLinks: {
+        twitch: 'https://www.twitch.tv/artanis',
+        lolpros: 'https://lolpros.gg/player/artanis',
+        liquipedia: 'https://liquipedia.net/leagueoflegends/Artanis'
+      }
+    },
+    {
+      name: 'Orcybe',
+      role: 'Mid',
+      socialLinks: {
+        twitch: 'https://www.twitch.tv/orcybe',
+        lolpros: 'https://lolpros.gg/player/orcybe',
+        liquipedia: 'https://liquipedia.net/leagueoflegends/Orcybe'
+      }
+    },
+    {
+      name: 'Obli',
+      role: 'ADC',
+      socialLinks: {
+        twitch: 'https://www.twitch.tv/obli',
+        lolpros: 'https://lolpros.gg/player/obli',
+        liquipedia: 'https://liquipedia.net/leagueoflegends/Obli'
+      }
+    },
+    {
+      name: 'Elliot',
+      role: 'Support',
+      socialLinks: {
+        twitch: 'https://www.twitch.tv/elliot',
+        lolpros: 'https://lolpros.gg/player/elliot',
+        liquipedia: 'https://liquipedia.net/leagueoflegends/Elliot'
+      }
+    }
   ];
 
   staff: TeamMember[] = [

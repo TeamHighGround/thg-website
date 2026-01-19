@@ -73,105 +73,15 @@
       </p>
 
       <!-- Réseaux sociaux -->
-      <div *ngIf="partner.socialMedia" 
+      <div *ngIf="partner.socialMedia"
            class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-        
+
         <span class="text-gray-400 uppercase tracking-wider font-medium
           text-xs sm:text-sm flex-shrink-0">
           {{ 'contents.ambassadors.socialMedia.follow' | transloco }} :
         </span>
-        
-        <div class="flex flex-wrap gap-2 sm:gap-3">
-          <!-- Instagram -->
-          <button *ngIf="partner.socialMedia.instagram"
-                  type="button"
-                  (click)="openSocialMedia('instagram')"
-                  (mousedown)="onSocialMediaMouseDown($event, 'instagram')"
-                  (auxclick)="onSocialMediaAuxClick($event, 'instagram')"
-                  class="group/btn rounded-full bg-gray-800/50 border border-gray-600 
-                    flex items-center justify-center transition-all duration-200
-                    w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
-                    hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1
-                    hover:shadow-lg hover:shadow-pink-500/20
-                    focus:outline-none focus:ring-2 focus:ring-pink-400"
-                  [attr.aria-label]="'Suivre sur Instagram'">
-            <i class="pi pi-instagram transition-colors duration-200
-              text-sm sm:text-base md:text-lg
-              group-hover/btn:text-pink-400"></i>
-          </button>
-          
-          <!-- Twitter -->
-          <button *ngIf="partner.socialMedia.twitter"
-                  type="button"
-                  (click)="openSocialMedia('twitter')"
-                  (mousedown)="onSocialMediaMouseDown($event, 'twitter')"
-                  (auxclick)="onSocialMediaAuxClick($event, 'twitter')"
-                  class="group/btn rounded-full bg-gray-800/50 border border-gray-600 
-                    flex items-center justify-center transition-all duration-200
-                    w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
-                    hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1
-                    hover:shadow-lg hover:shadow-blue-500/20
-                    focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  [attr.aria-label]="'Suivre sur Twitter'">
-            <i class="pi pi-twitter transition-colors duration-200
-              text-sm sm:text-base md:text-lg
-              group-hover/btn:text-blue-400"></i>
-          </button>
-          
-          <!-- Twitch -->
-          <button *ngIf="partner.socialMedia.twitch"
-                  type="button"
-                  (click)="openSocialMedia('twitch')"
-                  (mousedown)="onSocialMediaMouseDown($event, 'twitch')"
-                  (auxclick)="onSocialMediaAuxClick($event, 'twitch')"
-                  class="group/btn rounded-full bg-gray-800/50 border border-gray-600 
-                    flex items-center justify-center transition-all duration-200
-                    w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
-                    hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1
-                    hover:shadow-lg hover:shadow-purple-500/20
-                    focus:outline-none focus:ring-2 focus:ring-purple-400"
-                  [attr.aria-label]="'Suivre sur Twitch'">
-            <i class="pi pi-twitch transition-colors duration-200
-              text-sm sm:text-base md:text-lg
-              group-hover/btn:text-purple-400"></i>
-          </button>
-          
-          <!-- SoundCloud -->
-          <button *ngIf="partner.socialMedia.soundcloud"
-                  type="button"
-                  (click)="openSocialMedia('soundcloud')"
-                  (mousedown)="onSocialMediaMouseDown($event, 'soundcloud')"
-                  (auxclick)="onSocialMediaAuxClick($event, 'soundcloud')"
-                  class="group/btn rounded-full bg-gray-800/50 border border-gray-600 
-                    flex items-center justify-center transition-all duration-200
-                    w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
-                    hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1
-                    hover:shadow-lg hover:shadow-orange-500/20
-                    focus:outline-none focus:ring-2 focus:ring-orange-400"
-                  [attr.aria-label]="'Écouter sur SoundCloud'">
-            <i class="pi pi-volume-up transition-colors duration-200
-              text-sm sm:text-base md:text-lg
-              group-hover/btn:text-orange-400"></i>
-          </button>
-          
-          <!-- Spotify -->
-          <button *ngIf="partner.socialMedia.spotify"
-                  type="button"
-                  (click)="openSocialMedia('spotify')"
-                  (mousedown)="onSocialMediaMouseDown($event, 'spotify')"
-                  (auxclick)="onSocialMediaAuxClick($event, 'spotify')"
-                  class="group/btn rounded-full bg-gray-800/50 border border-gray-600 
-                    flex items-center justify-center transition-all duration-200
-                    w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
-                    hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1
-                    hover:shadow-lg hover:shadow-green-500/20
-                    focus:outline-none focus:ring-2 focus:ring-green-400"
-                  [attr.aria-label]="'Écouter sur Spotify'">
-            <i class="pi pi-play transition-colors duration-200
-              text-sm sm:text-base md:text-lg
-              group-hover/btn:text-green-400"></i>
-          </button>
-        </div>
+
+        <app-social-links [links]="partner.socialMedia" size="medium"></app-social-links>
       </div>
     </div>
   </div>
