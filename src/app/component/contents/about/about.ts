@@ -13,6 +13,9 @@ import { Member } from './member-card/member-card';
 export class About {
   private translocoService = inject(TranslocoService);
 
+  /**
+   * Ancienne présentation des membres du CA
+   */
   get members(): Member[] {
     return [
       {
