@@ -29,53 +29,70 @@ export class Lol {
       name: 'Phyraxx',
       role: 'Top',
       socialLinks: {
-        twitch: 'https://www.twitch.tv/phyraxx',
-        lolpros: 'https://lolpros.gg/player/phyraxx',
-        liquipedia: 'https://liquipedia.net/leagueoflegends/Phyraxx'
+        twitter: 'https://x.com/Phyraxx_LoL',
+        lolpros: 'https://lolpros.gg/player/phyraxx'
       }
     },
     {
       name: 'Artanis',
       role: 'Jungle',
       socialLinks: {
-        twitch: 'https://www.twitch.tv/artanis',
-        lolpros: 'https://lolpros.gg/player/artanis',
-        liquipedia: 'https://liquipedia.net/leagueoflegends/Artanis'
+        twitter: 'https://x.com/lol_artanis'
       }
     },
     {
       name: 'Orcybe',
       role: 'Mid',
       socialLinks: {
-        twitch: 'https://www.twitch.tv/orcybe',
-        lolpros: 'https://lolpros.gg/player/orcybe',
-        liquipedia: 'https://liquipedia.net/leagueoflegends/Orcybe'
+        twitter: 'https://www.twitch.tv/orcybe',
+        lolpros: 'https://lolpros.gg/player/orcybe'
       }
     },
     {
       name: 'Obli',
       role: 'ADC',
       socialLinks: {
-        twitch: 'https://www.twitch.tv/obli',
-        lolpros: 'https://lolpros.gg/player/obli',
-        liquipedia: 'https://liquipedia.net/leagueoflegends/Obli'
+        twitter: 'https://x.com/Obli_LOL',
+        lolpros: 'https://lolpros.gg/player/obli'
       }
     },
     {
       name: 'Elliot',
       role: 'Support',
       socialLinks: {
-        twitch: 'https://www.twitch.tv/elliot',
-        lolpros: 'https://lolpros.gg/player/elliot',
-        liquipedia: 'https://liquipedia.net/leagueoflegends/Elliot'
+        twitter: 'https://x.com/_elliot_LoL',
+        lolpros: 'https://lolpros.gg/player/elliot'
       }
     }
   ];
 
   staff: TeamMember[] = [
-    { name: 'Lago', role: 'Head Coach'},
-    { name: 'Manzaro', role: 'Manager'},
-    { name: 'Pouare', role: 'Data Analyst'}
+    {
+      name: 'Sollaw',
+      role: 'Head Coach',
+      socialLinks: {
+        twitter: 'https://x.com/CoachSollaw',
+      }
+    },
+    {
+      name: 'Karken',
+      role: 'Assistant Coach',
+      socialLinks: {
+
+      }
+    },
+    {
+      name: 'Pouare',
+      role: 'Data Analyst',
+      socialLinks: {
+      }
+    },
+    {
+      name: 'Manzaro',
+      role: 'Manager',
+      socialLinks: {
+      }
+    }
   ];
 
   getRoleIcon = (role: string): string => {
@@ -86,6 +103,7 @@ export class Lol {
       'ADC': 'assets/logo/lol-icons/adc.svg',
       'Support': 'assets/logo/lol-icons/support.svg',
       'Head Coach': 'assets/logo/lol-icons/coach.svg',
+      'Assistant Coach': 'assets/logo/lol-icons/coach.svg',
       'Manager': 'pi-briefcase',
       'Data Analyst': 'assets/logo/lol-icons/analyst.svg'
     };
