@@ -10,7 +10,8 @@
       "Bash(npm view:*)",
       "Bash(findstr:*)",
       "Bash(curl:*)",
-      "Bash(tr:*)"
+      "Bash(tr:*)",
+      "Bash(findstr:*)"
     ]
   }
 }

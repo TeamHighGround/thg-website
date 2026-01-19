@@ -5,11 +5,12 @@ import { ChipModule } from 'primeng/chip';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { Partner } from './partner-interface';
+import { SocialLinksComponent } from '../../shared/social-links/social-links';
 
 @Component({
   selector: 'app-partner-card',
   standalone: true,
-  imports: [CommonModule, TranslocoModule, ChipModule, CardModule, ButtonModule],
+  imports: [CommonModule, TranslocoModule, ChipModule, CardModule, ButtonModule, SocialLinksComponent],
   templateUrl: './partner-card.html',
   styleUrl: './partner-card.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -112,35 +113,4 @@ export class PartnerCard implements OnInit, OnDestroy {
     }
   }
 
-  // Gestion des réseaux sociaux
-  openSocialMedia(platform: string): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-
-    if (this.partner.socialMedia) {
-      const url = this.partner.socialMedia[platform as keyof typeof this.partner.socialMedia];
-      if (url) {
-        window.open(url, '_blank', 'noopener,noreferrer');
-      }
-    }
-  }
-
-  // Gestion du clic molette
-  onSocialMediaMouseDown(event: MouseEvent, platform: string): void {
-    // Bouton molette (button 1) ou clic gauche avec Ctrl
-    if (event.button === 1 || (event.button === 0 && event.ctrlKey)) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.openSocialMedia(platform);
-    }
-  }
-
-  // Gestion de l'auxclick (plus moderne)
-  onSocialMediaAuxClick(event: MouseEvent, platform: string): void {
-    // auxclick se déclenche pour tous les clics sauf le clic gauche
-    if (event.button === 1) { // Bouton molette
-      event.preventDefault();
-      event.stopPropagation();
-      this.openSocialMedia(platform);
-    }
-  }
 }

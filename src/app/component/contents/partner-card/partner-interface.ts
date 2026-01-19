@@ -1,3 +1,5 @@
+import { SocialLinks } from '../../shared/social-links/social-links.interface';
+
 export interface Partner {
   id: number;
   name: string;
@@ -5,11 +7,5 @@ export interface Partner {
   description: string;
   images: string[];
   website?: string;
-  socialMedia?: {
-    instagram?: string;
-    soundcloud?: string;
-    spotify?: string;
-    twitter?: string;
-    twitch?: string;
-  };
+  socialMedia?: SocialLinks;
 }
