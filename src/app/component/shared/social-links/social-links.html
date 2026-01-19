@@ -1,5 +1,16 @@
 <div *ngIf="links" class="flex flex-wrap gap-2 sm:gap-3">
 
+  <!-- Website -->
+  <button *ngIf="links.website"
+          type="button"
+          (click)="openLink('website')"
+          (mousedown)="onLinkMouseDown($event, 'website')"
+          (auxclick)="onLinkAuxClick($event, 'website')"
+          [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-thgGreen-500/20 focus:outline-none focus:ring-2 focus:ring-thgGreen-400 ' + getSizeClasses()"
+          [attr.aria-label]="'Visiter le site web'">
+    <i class="pi pi-globe transition-colors duration-200 group-hover/btn:text-thgGreen-400"></i>
+  </button>
+
   <!-- Instagram -->
   <button *ngIf="links.instagram"
           type="button"

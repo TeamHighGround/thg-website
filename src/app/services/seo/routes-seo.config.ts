@@ -111,6 +111,22 @@ export const ROUTES_SEO_CONFIG: RoutesSeoConfig = {
       image: DEFAULT_IMAGE
     }
   },
+  '/partners': {
+    fr: {
+      title: 'Nos Partenaires | THG Esport Bretagne',
+      description: 'Decouvrez les partenaires qui accompagnent Team High Ground dans le developpement de l\'esport en Bretagne : Mon Tournoi Esport, Station 35.',
+      keywords: ['partenaires esport', 'mon tournoi esport', 'station 35 rennes', 'partenariats esport bretagne', 'sponsors thg'],
+      type: 'website',
+      image: DEFAULT_IMAGE
+    },
+    en: {
+      title: 'Our Partners | THG Esports Brittany',
+      description: 'Discover the partners who support Team High Ground in the development of esports in Brittany: Mon Tournoi Esport, Station 35.',
+      keywords: ['esports partners', 'mon tournoi esport', 'station 35 rennes', 'esports partnerships brittany', 'thg sponsors'],
+      type: 'website',
+      image: DEFAULT_IMAGE
+    }
+  },
   '/contact': {
     fr: {
       title: 'Contact | Rejoindre THG ou Devenir Partenaire',

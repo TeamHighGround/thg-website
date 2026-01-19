@@ -9,6 +9,7 @@ import { TranslocoResolver } from './transloco/transloco.resolver';
 import { LegalNotice } from './component/contents/legal-notice/legal-notice';
 import { PrivacyPolicy } from './component/contents/privacy-policy/privacy-policy';
 import { Ambassadors } from './component/contents/ambassadors/ambassadors';
+import { Partners } from './component/contents/partners/partners';
 
 const contentRoutes: Routes = [
   { path: '', component: Home },
@@ -17,6 +18,7 @@ const contentRoutes: Routes = [
   { path: 'teams/tft', component: Tft },
   { path: 'news', component: News },
   { path: 'ambassadors', component: Ambassadors },
+  { path: 'partners', component: Partners },
   { path: 'contact', component: Contact },
   { path: 'legal-notice', component: LegalNotice },
   { path: 'privacy-policy', component: PrivacyPolicy },

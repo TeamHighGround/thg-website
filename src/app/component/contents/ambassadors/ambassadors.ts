@@ -5,7 +5,7 @@ import { PartnerCard } from '../partner-card/partner-card';
 import { Partner } from '../partner-card/partner-interface';
 
 @Component({
-  selector: 'app-partners',
+  selector: 'app-ambassadors',
   standalone: true,
   imports: [CommonModule, TranslocoModule, PartnerCard],
   templateUrl: './ambassadors.html',
@@ -14,18 +14,18 @@ import { Partner } from '../partner-card/partner-interface';
 export class Ambassadors implements OnInit {
   private translocoService = inject(TranslocoService);
 
-  partners: Partner[] = [];
+  ambassadors: Partner[] = [];
 
   ngOnInit() {
-    this.initializePartners();
+    this.initializeAmbassadors();
   }
 
-  trackByPartnerId(index: number, partner: Partner): number {
-    return partner.id;
+  trackByAmbassadorId(index: number, ambassador: Partner): number {
+    return ambassador.id;
   }
 
-  private initializePartners(): void {
-    this.partners = [
+  private initializeAmbassadors(): void {
+    this.ambassadors = [
       {
         id: 1,
         name: this.translocoService.translate('contents.ambassadors.list.0.name'),
@@ -35,8 +35,8 @@ export class Ambassadors implements OnInit {
         ],
         description: this.translocoService.translate('contents.ambassadors.list.0.description'),
         images: [
-          'assets/image/partners/ezza/1.png',
-          'assets/image/partners/ezza/2.png'
+          'assets/image/ambassadors/ezza/1.png',
+          'assets/image/ambassadors/ezza/2.png'
         ],
         socialMedia: {
           instagram: 'https://www.instagram.com/ezza_tv/',
@@ -53,8 +53,8 @@ export class Ambassadors implements OnInit {
         ],
         description: this.translocoService.translate('contents.ambassadors.list.1.description'),
         images: [
-          'assets/image/partners/toskaan/1.jpg',
-          'assets/image/partners/toskaan/2.jpg'
+          'assets/image/ambassadors/toskaan/1.jpg',
+          'assets/image/ambassadors/toskaan/2.jpg'
         ],
         socialMedia: {
           twitter: 'https://x.com/toskaan13',
@@ -71,8 +71,8 @@ export class Ambassadors implements OnInit {
         ],
         description: this.translocoService.translate('contents.ambassadors.list.2.description'),
         images: [
-          'assets/image/partners/biche/1.jpg',
-          'assets/image/partners/biche/2.jpg'
+          'assets/image/ambassadors/biche/1.jpg',
+          'assets/image/ambassadors/biche/2.jpg'
         ],
         socialMedia: {
           instagram: 'https://www.instagram.com/turbobiche_/',

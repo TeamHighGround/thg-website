@@ -10,6 +10,7 @@
     },
     "news": "News",
     "ambassadors": "Our Ambassadors",
+    "partners": "Our Partners",
     "contact": "Contact"
   },
   "contents": {
@@ -145,6 +146,26 @@
             "1": "Artist"
           },
           "description": "Arthur Biche, alias DJ TURBOBICHE, is a DJ/producer from Dinan. Passionate about electro since childhood, he officially launched in 2024. His style blends bouncy Trance, Hard Trance and Hardtechno, driven by explosive energy. A member of THG, he electrifies parties and events with intensity!"
+        }
+      }
+    },
+    "partners": {
+      "title": "Our Partners",
+      "description": "Discover the partners who support us in the development of esports in Brittany",
+      "list": {
+        "0": {
+          "name": "Mon Tournoi Esport",
+          "types": {
+            "0": "Esports tournament platform"
+          },
+          "description": "Platform dedicated to organizing and managing esports tournaments, Mon Tournoi Esport supports players, teams and organizers in creating accessible and structured competitive events, from amateur to semi-professional level."
+        },
+        "1": {
+          "name": "Station 35",
+          "types": {
+            "0": "Esports and gaming venue"
+          },
+          "description": "Esports and gaming venue in Rennes, Station 35 is a hybrid space blending competition, community events and gaming experiences, regularly hosting tournaments, parties and esports activities."
         }
       }
     },

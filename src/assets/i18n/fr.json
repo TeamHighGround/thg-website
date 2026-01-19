@@ -10,6 +10,7 @@
     },
     "news": "Actualités",
     "ambassadors": "Nos ambassadeurs",
+    "partners": "Nos partenaires",
     "contact": "Contact"
   },
   "contents": {
@@ -128,7 +129,7 @@
             "0": "Casteur",
             "1": "Organisateur d'événements E-Sport"
           },
-          "description": "Originaire de Brest, EZZA joue à League Of Legends depuis la saison 2, un Émeraude bien stacké, passionné depuis toujours ! Depuis 2020, il s’épanouit derrière le micro en tant que casteur, lançant même ses propres tournois pour vivre son rêve. Il nous a promis de mettre un maximum d’ambiance !"
+          "description": "Originaire de Brest, EZZA joue à League Of Legends depuis la saison 2, un Émeraude bien stacké, passionné depuis toujours ! Depuis 2020, il s'épanouit derrière le micro en tant que casteur, lançant même ses propres tournois pour vivre son rêve. Il nous a promis de mettre un maximum d'ambiance !"
         },
         "1": {
           "name": "Toskaan",
@@ -144,7 +145,27 @@
             "0": "DJ",
             "1": "Artiste"
           },
-          "description": "Arthur Biche, alias DJ TURBOBICHE, est un DJ/producteur de Dinan. Passionné d’électro depuis l’enfance, il se lance officiellement en 2024. Son style mêle Trance bouncy, Hard Trance et Hardtechno, porté par une énergie explosive. Membre de la THG, il électrise soirées et événements avec intensité !"
+          "description": "Arthur Biche, alias DJ TURBOBICHE, est un DJ/producteur de Dinan. Passionné d'électro depuis l'enfance, il se lance officiellement en 2024. Son style mêle Trance bouncy, Hard Trance et Hardtechno, porté par une énergie explosive. Membre de la THG, il électrise soirées et événements avec intensité !"
+        }
+      }
+    },
+    "partners": {
+      "title": "Nos partenaires",
+      "description": "Découvrez les partenaires qui nous accompagnent dans le développement de l'esport en Bretagne",
+      "list": {
+        "0": {
+          "name": "Mon Tournoi Esport",
+          "types": {
+            "0": "Plateforme de tournois esport"
+          },
+          "description": "Plateforme dédiée à l'organisation et à la gestion de tournois esport, Mon Tournoi Esport accompagne joueurs, équipes et organisateurs dans la création d'événements compétitifs accessibles et structurés, du niveau amateur au semi-professionnel."
+        },
+        "1": {
+          "name": "Station 35",
+          "types": {
+            "0": "Lieu esport et gaming"
+          },
+          "description": "Lieu esport et gaming à Rennes, Station 35 est un espace hybride mêlant compétition, événements communautaires et expériences gaming, accueillant régulièrement tournois, soirées et animations esportives."
         }
       }
     },
