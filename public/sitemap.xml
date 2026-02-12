@@ -66,6 +66,15 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Shop -->
+  <url>
+    <loc>https://teamhighground.fr/shop</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://teamhighground.fr/shop"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://teamhighground.fr/en/shop"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Contact -->
   <url>
     <loc>https://teamhighground.fr/contact</loc>
@@ -130,6 +139,14 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://teamhighground.fr/en/partners"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamhighground.fr/en/shop</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://teamhighground.fr/shop"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://teamhighground.fr/en/shop"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>

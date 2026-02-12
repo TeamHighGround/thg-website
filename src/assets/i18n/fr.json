@@ -11,6 +11,7 @@
     "news": "Actualités",
     "ambassadors": "Nos ambassadeurs",
     "partners": "Nos partenaires",
+    "shop": "Boutique",
     "contact": "Contact"
   },
   "contents": {
@@ -180,6 +181,41 @@
         "title": "Réseaux Sociaux",
         "description": "Suivez notre actualité et interagissez avec notre communauté sur nos différentes plateformes."
       }
+    }
+  },
+  "shop": {
+    "title": "Boutique THG",
+    "subtitle": "Précommandez votre merch officiel",
+    "loading": "Chargement...",
+    "selectProduct": "Sélectionnez un produit pour commencer",
+    "colors": {
+      "black": "Noir",
+      "white": "Blanc",
+      "green": "Vert"
+    },
+    "form": {
+      "product": "Produit",
+      "selectProduct": "Choisir un produit",
+      "color": "Couleur",
+      "selectColor": "Choisir une couleur",
+      "size": "Taille",
+      "selectSize": "Choisir une taille",
+      "quantity": "Quantité",
+      "customerInfo": "Vos informations",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "notes": "Notes / Commentaires",
+      "notesPlaceholder": "Des précisions sur votre commande ?",
+      "optional": "optionnel",
+      "submit": "Précommander",
+      "required": "Ce champ est obligatoire",
+      "invalidEmail": "Adresse email invalide",
+      "invalidQuantity": "La quantité doit être entre 1 et 10",
+      "requiredFields": "Champs obligatoires",
+      "successMessage": "Votre précommande a été envoyée avec succès ! Nous vous contacterons bientôt.",
+      "errorMessage": "Une erreur s'est produite lors de l'envoi. Veuillez réessayer."
     }
   },
   "footer": {
