@@ -11,6 +11,7 @@
     "news": "News",
     "ambassadors": "Our Ambassadors",
     "partners": "Our Partners",
+    "shop": "Shop",
     "contact": "Contact"
   },
   "contents": {
@@ -330,6 +331,41 @@
         "accepted": "Accepted",
         "rejected": "Refused"
       }
+    }
+  },
+  "shop": {
+    "title": "THG Shop",
+    "subtitle": "Pre-order your official merch",
+    "loading": "Loading...",
+    "selectProduct": "Select a product to get started",
+    "colors": {
+      "black": "Black",
+      "white": "White",
+      "green": "Green"
+    },
+    "form": {
+      "product": "Product",
+      "selectProduct": "Choose a product",
+      "color": "Color",
+      "selectColor": "Choose a color",
+      "size": "Size",
+      "selectSize": "Choose a size",
+      "quantity": "Quantity",
+      "customerInfo": "Your information",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "notes": "Notes / Comments",
+      "notesPlaceholder": "Any details about your order?",
+      "optional": "optional",
+      "submit": "Pre-order",
+      "required": "This field is required",
+      "invalidEmail": "Invalid email address",
+      "invalidQuantity": "Quantity must be between 1 and 10",
+      "requiredFields": "Required fields",
+      "successMessage": "Your pre-order has been sent successfully! We will contact you soon.",
+      "errorMessage": "An error occurred while sending. Please try again."
     }
   },
   "footer": {
