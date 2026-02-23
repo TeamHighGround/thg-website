@@ -11,7 +11,8 @@
       "Bash(findstr:*)",
       "Bash(curl:*)",
       "Bash(tr:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(grep:*)"
     ]
   }
 }
