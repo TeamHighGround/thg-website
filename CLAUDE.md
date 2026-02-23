@@ -158,6 +158,54 @@ Browser-only APIs that require this check:
 - `navigator`
 - DOM methods like `getBoundingClientRect()`
 
+## Shop (`src/app/component/contents/shop/`)
+
+La boutique permet de précommander le merch THG via un formulaire EmailJS.
+
+### Produits actuels
+
+| ID       | Nom            | Prix | Couleurs              | Tailles       |
+|----------|----------------|------|-----------------------|---------------|
+| hoodie   | Hoodie THG     | 55€  | Noir, Blanc, Gris     | S, M, L, XL   |
+| tshirt   | T-Shirt THG    | 30€  | Noir, Blanc, Gris     | S, M, L, XL   |
+| cap      | Casquette THG  | 25€  | Noir uniquement       | Unique        |
+
+### Conventions images
+
+Chaque produit a deux images dans `src/assets/shop/{id}/` :
+- `{id}_front.jpg` — vue avant (affichée par défaut)
+- `{id}_back.jpg` — vue arrière (affichée au survol sur la grille, toggle dans le modal)
+
+### Interface `Product`
+
+```typescript
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  imageFront: string;
+  imageBack: string;
+  colors: Color[];
+  sizes: Size[];
+}
+```
+
+### Comportements clés
+
+- **Grille** : hover → transition opacity front→back (`hoveredProductId`)
+- **Modal** : bouton toggle avant/arrière (`showingFrontImage`)
+- **Casquette** : `object-position` personnalisé via `[style.object-position]` pour le cadrage (image paysage dans conteneur portrait)
+- **EmailJS** : credentials dans `onSubmit()` — service `service_oipvf9u`, template `template_c1j90pf`
+
+### Clés de traduction shop
+
+```
+shop.products.{id}.material   — référence textile et matière
+shop.products.{id}.description — description marketing
+shop.colors.{black|white|grey}
+shop.showFront / shop.showBack
+```
+
 ## SEO
 
 SEO is managed by dedicated services in `src/app/services/seo/`:
