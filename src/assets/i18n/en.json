@@ -338,10 +338,26 @@
     "subtitle": "Pre-order your official merch",
     "loading": "Loading...",
     "selectProduct": "Select a product to get started",
+    "showFront": "Front view",
+    "showBack": "Back view",
     "colors": {
       "black": "Black",
       "white": "White",
-      "green": "Green"
+      "grey": "Grey"
+    },
+    "products": {
+      "hoodie": {
+        "material": "JH120 · Oversize hoodie · Brushed interior 440g · 100% cotton",
+        "description": "An oversized hoodie built for everyday comfort. Made from thick 440g cotton with a brushed interior for unmatched softness, it proudly displays THG's colors."
+      },
+      "tshirt": {
+        "material": "JJ3911 · Oversize t-shirt · 100% organic cotton · 180g",
+        "description": "An oversized t-shirt in 180g organic cotton, combining style and eco-conscious commitment. Light, breathable and comfortable — perfect for representing THG every day."
+      },
+      "cap": {
+        "material": "BF025 · 5-panel cap · Adjustable strap · 100% twill cotton 230g",
+        "description": "A structured 5-panel cap in 230g twill cotton with an adjustable strap at the back. An essential accessory to complete your THG look."
+      }
     },
     "form": {
       "product": "Product",
@@ -365,7 +381,10 @@
       "invalidQuantity": "Quantity must be between 1 and 10",
       "requiredFields": "Required fields",
       "successMessage": "Your pre-order has been sent successfully! We will contact you soon.",
-      "errorMessage": "An error occurred while sending. Please try again."
+      "errorMessage": "An error occurred while sending. Please try again.",
+      "confirmMessage": "After confirmation, your pre-order will be sent to the THG team.",
+      "confirmSubmit": "Confirm",
+      "cancel": "Cancel"
     }
   },
   "footer": {

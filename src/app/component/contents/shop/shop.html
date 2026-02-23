@@ -24,15 +24,26 @@
           class="group cursor-pointer"
           (click)="openModal(product)"
           (keydown.enter)="openModal(product)"
+          (mouseenter)="hoveredProductId = product.id"
+          (mouseleave)="hoveredProductId = null"
           tabindex="0"
           [attr.aria-label]="product.name + ' - ' + product.price + '€'"
         >
           <!-- Image -->
-          <div class="aspect-[3/4] overflow-hidden rounded-2xl bg-neutral-900 border border-white/5 group-hover:border-thgGreen-500/30 transition-all duration-300">
+          <div class="relative aspect-[3/4] overflow-hidden rounded-2xl bg-neutral-900 border border-white/5 group-hover:border-thgGreen-500/30 transition-all duration-300">
             <img
-              [src]="product.image"
+              [src]="product.imageFront"
               [alt]="product.name"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+              [style.object-position]="product.id === 'cap' ? '60% center' : 'center'"
+              [class.opacity-0]="hoveredProductId === product.id"
+            />
+            <img
+              [src]="product.imageBack"
+              [alt]="product.name + ' dos'"
+              class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0"
+              [style.object-position]="product.id === 'cap' ? '30% center' : 'center'"
+              [class.opacity-100]="hoveredProductId === product.id"
             />
           </div>
           <!-- Info -->
@@ -60,18 +71,29 @@
   @if (selectedProduct) {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <!-- Left: Product Image -->
-      <div class="aspect-square rounded-xl overflow-hidden bg-neutral-800">
-        <img
-          [src]="selectedProduct.image"
-          [alt]="selectedProduct.name"
-          class="w-full h-full object-cover"
-        />
+      <div class="flex flex-col gap-3">
+        <div class="relative aspect-square rounded-xl overflow-hidden bg-neutral-800">
+          <img
+            [src]="showingFrontImage ? selectedProduct.imageFront : selectedProduct.imageBack"
+            [alt]="selectedProduct.name"
+            class="w-full h-full object-cover transition-opacity duration-300"
+          />
+          <button
+            type="button"
+            class="absolute bottom-3 right-3 bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm hover:bg-black/80 transition-colors"
+            (click)="toggleImage()"
+          >
+            {{ showingFrontImage ? ('shop.showBack' | transloco) : ('shop.showFront' | transloco) }}
+          </button>
+        </div>
+        <p class="text-xs text-gray-500 text-center italic">{{ 'shop.products.' + selectedProduct.id + '.material' | transloco }}</p>
       </div>
 
       <!-- Right: Order Form -->
       <div class="flex flex-col">
         <h2 class="text-2xl font-bold text-white">{{ selectedProduct.name }}</h2>
-        <p class="text-thgGreen-400 text-xl font-bold mt-1 mb-6">{{ selectedProduct.price }}€</p>
+        <p class="text-thgGreen-400 text-xl font-bold mt-1">{{ selectedProduct.price }}€</p>
+        <p class="text-gray-400 text-sm mt-2 mb-4 leading-relaxed">{{ 'shop.products.' + selectedProduct.id + '.description' | transloco }}</p>
 
         <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-5 flex-1">
           <!-- Color Selection -->
@@ -213,16 +235,46 @@
 
           <!-- Submit -->
           <p-button
-            type="submit"
+            type="button"
             [label]="'shop.form.submit' | transloco"
-            [loading]="isSubmitting"
             [disabled]="!selectedColor || !selectedSize || orderForm.invalid || isSubmitting"
             styleClass="w-full bg-thgGreen h-10"
             severity="success"
             size="large"
+            (onClick)="showConfirmDialog()"
           />
         </form>
       </div>
     </div>
   }
+</p-dialog>
+
+<!-- Confirmation Dialog -->
+<p-dialog
+  [(visible)]="confirmVisible"
+  [modal]="true"
+  [dismissableMask]="true"
+  [closable]="true"
+  [draggable]="false"
+  styleClass="shop-modal"
+  [style]="{ width: '28rem' }"
+>
+  <div class="text-center py-4">
+    <p class="text-white text-lg mb-6">
+      {{ 'shop.form.confirmMessage' | transloco }}
+    </p>
+    <div class="flex gap-3 justify-center">
+      <p-button
+        [label]="'shop.form.cancel' | transloco"
+        styleClass="!bg-red-400/20 !text-red-300 !border-red-400/30 px-4 py-1"
+        (onClick)="confirmVisible = false"
+      />
+      <p-button
+        [label]="'shop.form.confirmSubmit' | transloco"
+        styleClass="bg-thgGreen px-4 py-1"
+        [loading]="isSubmitting"
+        (onClick)="onSubmit()"
+      />
+    </div>
+  </div>
 </p-dialog>

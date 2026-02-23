@@ -12,7 +12,8 @@ interface Product {
   id: string;
   name: string;
   price: number;
-  image: string;
+  imageFront: string;
+  imageBack: string;
   colors: Color[];
   sizes: Size[];
 }
@@ -54,24 +55,29 @@ export class ShopComponent implements OnInit {
   selectedColor: Color | null = null;
   selectedSize: Size | null = null;
   modalVisible = false;
+  confirmVisible = false;
   isSubmitting = false;
   submitSuccess = false;
   submitError = false;
   isBrowser = false;
+  hoveredProductId: string | null = null;
+  showingFrontImage = true;
 
   private readonly COLORS: Color[] = [
-    { id: 'black', name: 'Black', hex: '#1a1a1a' },
-    { id: 'white', name: 'White', hex: '#ffffff' },
-    { id: 'green', name: 'Green', hex: '#6ba968' }
+    { id: 'black', name: 'Noir', hex: '#1a1a1a' },
+    { id: 'white', name: 'Blanc', hex: '#e5e5e5' },
+    { id: 'grey', name: 'Gris', hex: '#6b7280' }
+  ];
+
+  private readonly CAP_COLORS: Color[] = [
+    { id: 'black', name: 'Noir', hex: '#1a1a1a' }
   ];
 
   private readonly CLOTHING_SIZES: Size[] = [
-    { id: 'XS', name: 'XS' },
     { id: 'S', name: 'S' },
     { id: 'M', name: 'M' },
     { id: 'L', name: 'L' },
-    { id: 'XL', name: 'XL' },
-    { id: 'XXL', name: 'XXL' }
+    { id: 'XL', name: 'XL' }
   ];
 
   private readonly UNIQUE_SIZE: Size[] = [
@@ -89,25 +95,28 @@ export class ShopComponent implements OnInit {
       {
         id: 'hoodie',
         name: 'Hoodie THG',
-        price: 45,
-        image: 'assets/shop/hoodie/hoodie.jpg',
+        price: 55,
+        imageFront: 'assets/shop/hoodie/hoodie_front.jpg',
+        imageBack: 'assets/shop/hoodie/hoodie_back.jpg',
         colors: this.COLORS,
         sizes: this.CLOTHING_SIZES
       },
       {
         id: 'tshirt',
         name: 'T-Shirt THG',
-        price: 25,
-        image: 'assets/shop/tshirt/tshirt.jpg',
+        price: 30,
+        imageFront: 'assets/shop/tshirt/tshirt_front.jpg',
+        imageBack: 'assets/shop/tshirt/tshirt_back.jpg',
         colors: this.COLORS,
         sizes: this.CLOTHING_SIZES
       },
       {
         id: 'cap',
         name: 'Casquette THG',
-        price: 20,
-        image: 'assets/shop/cap/cap.jpg',
-        colors: this.COLORS,
+        price: 25,
+        imageFront: 'assets/shop/cap/cap_front.jpg',
+        imageBack: 'assets/shop/cap/cap_back.jpg',
+        colors: this.CAP_COLORS,
         sizes: this.UNIQUE_SIZE
       }
     ];
@@ -131,6 +140,7 @@ export class ShopComponent implements OnInit {
     this.selectedColor = product.colors[0] ?? null;
     this.selectedSize = null;
     this.submitError = false;
+    this.showingFrontImage = true;
     this.orderForm.reset({ quantity: 1, color: this.selectedColor });
 
     if (product.sizes.length === 1) {
@@ -141,6 +151,10 @@ export class ShopComponent implements OnInit {
     this.modalVisible = true;
   }
 
+  toggleImage(): void {
+    this.showingFrontImage = !this.showingFrontImage;
+  }
+
   selectColor(color: Color): void {
     this.selectedColor = color;
     this.orderForm.patchValue({ color });
@@ -149,6 +163,14 @@ export class ShopComponent implements OnInit {
   selectSize(size: Size): void {
     this.selectedSize = size;
     this.orderForm.patchValue({ size });
+  }
+
+  showConfirmDialog(): void {
+    if (this.orderForm.invalid) {
+      this.orderForm.markAllAsTouched();
+      return;
+    }
+    this.confirmVisible = true;
   }
 
   async onSubmit(): Promise<void> {
@@ -173,15 +195,22 @@ export class ShopComponent implements OnInit {
       const formData = this.orderForm.value;
 
       const templateParams = {
-        product_name: this.selectedProduct.name,
-        color: this.selectedColor.name,
-        size: this.selectedSize.name,
-        quantity: formData.quantity,
+        orders: [{
+          image_url: `${window.location.origin}/${this.selectedProduct.imageFront}`,
+          name: this.selectedProduct.name,
+          color: this.selectedColor.name,
+          size: this.selectedSize.name,
+          units: formData.quantity,
+          price: this.selectedProduct.price
+        }],
+        cost: {
+          total: this.selectedProduct.price * formData.quantity
+        },
         first_name: formData.firstName,
         last_name: formData.lastName,
         email: formData.email,
-        phone: formData.phone || 'N/A',
-        notes: formData.notes || 'N/A',
+        phone: formData.phone || '—',
+        notes: formData.notes || '—',
         order_date: new Date().toLocaleString('fr-FR')
       };
 
@@ -189,13 +218,14 @@ export class ShopComponent implements OnInit {
 
       // TODO: Replace with your EmailJS credentials
       await emailjs.default.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        'service_oipvf9u',
+        'template_c1j90pf',
         templateParams,
-        'YOUR_PUBLIC_KEY'
+        'Aq4CiWO2_X2I_ejUl'
       );
 
       this.submitSuccess = true;
+      this.confirmVisible = false;
       this.modalVisible = false;
       this.orderForm.reset();
       this.selectedProduct = null;
