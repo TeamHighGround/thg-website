@@ -185,57 +185,8 @@
   },
   "shop": {
     "title": "Boutique THG",
-    "subtitle": "Précommandez votre merch officiel",
-    "loading": "Chargement...",
-    "selectProduct": "Sélectionnez un produit pour commencer",
-    "showFront": "Vue avant",
-    "showBack": "Vue dos",
-    "colors": {
-      "black": "Noir",
-      "white": "Blanc",
-      "grey": "Gris"
-    },
-    "products": {
-      "hoodie": {
-        "material": "JH120 · Sweat oversize · Intérieur brossé 440g · 100% coton",
-        "description": "Un sweat à capuche oversize taillé pour le confort du quotidien. Fabriqué en coton épais 440g avec un intérieur brossé d'une douceur incomparable."
-      },
-      "tshirt": {
-        "material": "JJ3911 · T-shirt oversize · 100% coton bio · 180g",
-        "description": "Un t-shirt oversize en coton biologique 180g, alliant style et éco-responsabilité."
-      },
-      "cap": {
-        "material": "BF025 · Casquette 5 panneaux · Sangle réglable · 100% coton sergé 230g",
-        "description": "Une casquette structurée en coton sergé 230g avec sangle de réglage au dos."
-      }
-    },
-    "form": {
-      "product": "Produit",
-      "selectProduct": "Choisir un produit",
-      "color": "Couleur",
-      "selectColor": "Choisir une couleur",
-      "size": "Taille",
-      "selectSize": "Choisir une taille",
-      "quantity": "Quantité",
-      "customerInfo": "Vos informations",
-      "firstName": "Prénom",
-      "lastName": "Nom",
-      "email": "Email",
-      "phone": "Téléphone",
-      "notes": "Notes / Commentaires",
-      "notesPlaceholder": "Des précisions sur votre commande ?",
-      "optional": "optionnel",
-      "submit": "Précommander",
-      "required": "Ce champ est obligatoire",
-      "invalidEmail": "Adresse email invalide",
-      "invalidQuantity": "La quantité doit être entre 1 et 10",
-      "requiredFields": "Champs obligatoires",
-      "successMessage": "Votre précommande a été envoyée avec succès ! Nous vous contacterons bientôt.",
-      "errorMessage": "Une erreur s'est produite. Si l'erreur persiste, merci de passer commande via MP (discord ou X).",
-      "confirmMessage": "Après validation, votre précommande sera envoyée à l'équipe THG.",
-      "confirmSubmit": "Confirmer",
-      "cancel": "Annuler"
-    }
+    "subtitle": "Commandez votre merch officiel",
+    "loading": "Chargement de la boutique..."
   },
   "footer": {
     "contact": "Contact",
