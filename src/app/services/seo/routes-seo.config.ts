@@ -130,7 +130,7 @@ export const ROUTES_SEO_CONFIG: RoutesSeoConfig = {
   '/shop': {
     fr: {
       title: 'Boutique THG | Merchandise Officiel Team High Ground',
-      description: 'Precommandez votre merchandise officiel Team High Ground : hoodies, t-shirts et casquettes aux couleurs de la THG. Soutenez votre equipe esport bretonne !',
+      description: 'Commandez votre merchandise officiel Team High Ground : hoodies, t-shirts et casquettes aux couleurs de la THG. Soutenez votre equipe esport bretonne !',
       keywords: ['merch esport', 'boutique thg', 'vetements esport', 'hoodie team high ground', 'tshirt esport', 'merchandise gaming', 'boutique esport france'],
       type: 'website',
       image: DEFAULT_IMAGE,
@@ -139,7 +139,7 @@ export const ROUTES_SEO_CONFIG: RoutesSeoConfig = {
     },
     en: {
       title: 'THG Shop | Official Team High Ground Merchandise',
-      description: 'Pre-order your official Team High Ground merchandise: hoodies, t-shirts and caps in THG colors. Support your Breton esports team!',
+      description: 'Order your official Team High Ground merchandise: hoodies, t-shirts and caps in THG colors. Support your Breton esports team!',
       keywords: ['esports merch', 'thg shop', 'esports clothing', 'team high ground hoodie', 'esports tshirt', 'gaming merchandise', 'esports shop france'],
       type: 'website',
       image: DEFAULT_IMAGE,
