@@ -14,11 +14,13 @@
     @if (isBrowser) {
       <div class="w-full rounded-2xl overflow-hidden">
         <iframe
+          id="haWidget"
           [src]="widgetUrl"
           class="w-full border-0"
-          style="min-height: 800px;"
+          style="min-height: 800px; width: 100%;"
           loading="lazy"
           allow="payment"
+          onload="window.addEventListener('message', function(e) { if (e.data.height) { document.getElementById('haWidget').height = e.data.height + 'px'; } })"
         ></iframe>
       </div>
     } @else {
