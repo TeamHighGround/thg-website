@@ -12,7 +12,9 @@
       "Bash(curl:*)",
       "Bash(tr:*)",
       "Bash(findstr:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "WebFetch(domain:dev.helloasso.com)",
+      "WebFetch(domain:centredaide.helloasso.com)"
     ]
   }
 }
