@@ -34,66 +34,62 @@ export class Lol {
       }
     },
     {
-      name: 'Artanis',
+      name: 'Banabeer',
       role: 'Jungle',
       socialLinks: {
-        twitter: 'https://x.com/lol_artanis',
-        lolpros: 'https://lolpros.gg/player/artanis'
+        lolpros: 'https://lolpros.gg/player/mrbanabeer'
       }
     },
     {
       name: 'Orcybe',
       role: 'Mid',
       socialLinks: {
-        twitter: 'https://www.twitch.tv/orcybe',
-        lolpros: 'https://lolpros.gg/player/orcybe'
+        twitter: 'https://x.com/Orcybee'
       }
     },
     {
-      name: 'Obli',
+      name: 'Kyx',
       role: 'ADC',
       socialLinks: {
-        twitter: 'https://x.com/Obli_LOL',
-        lolpros: 'https://lolpros.gg/player/obli'
+        twitter: 'https://x.com/SynapseKyx'
       }
     },
     {
-      name: 'Elliot',
+      name: 'Rush',
       role: 'Support',
       socialLinks: {
-        twitter: 'https://x.com/_elliot_LoL',
-        lolpros: 'https://lolpros.gg/player/elliot'
+        twitter: 'https://x.com/Rushounai'
       }
     }
   ];
 
   staff: TeamMember[] = [
     {
-      name: 'Sollaw',
-      role: 'Head Coach',
-      socialLinks: {
-        twitter: 'https://x.com/CoachSollaw',
-      }
-    },
-    {
       name: 'Karken',
-      role: 'Assistant Coach',
+      role: 'Head Coach',
       socialLinks: {
         twitter: 'https://x.com/karkenlol'
       }
     },
     {
-      name: 'Pouare',
-      role: 'Data Analyst',
+      name: 'D1verse',
+      role: 'Assistant Coach',
       socialLinks: {
-        twitter: 'https://x.com/0xPouare'
+        twitter: 'https://x.com/D1verse3'
       }
     },
     {
-      name: 'Manzaro',
+      name: 'Luwey',
       role: 'Manager',
       socialLinks: {
-        twitter: 'https://x.com/Manzarow'
+        twitter: 'https://x.com/Luwey_LoL'
+      }
+    },
+    {
+      name: 'xLmnry',
+      role: 'Assistant Manager',
+      socialLinks: {
+        twitter: 'https://x.com/xLmnry'
       }
     }
   ];
@@ -108,6 +104,7 @@ export class Lol {
       'Head Coach': 'assets/logo/lol-icons/coach.svg',
       'Assistant Coach': 'assets/logo/lol-icons/coach.svg',
       'Manager': 'pi-briefcase',
+      'Assistant Manager': 'pi-briefcase',
       'Data Analyst': 'assets/logo/lol-icons/analyst.svg'
     };
     return icons[role] || 'pi-user';
@@ -122,6 +119,7 @@ export class Lol {
       'Support': 'bg-yellow-500',
       'Head Coach': 'bg-teal-500',
       'Manager': 'bg-gray-500',
+      'Assistant Manager': 'bg-gray-400',
       'Data Analyst': 'bg-cyan-500'
     };
     return colors[role] || 'bg-gray-500';
