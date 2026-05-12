@@ -6,6 +6,14 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "trailingSlash": false,
+    "redirects": [
+      {
+        "source": "/:path+/",
+        "destination": "/:path+",
+        "type": 301
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
