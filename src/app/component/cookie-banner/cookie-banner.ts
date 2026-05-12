@@ -23,8 +23,13 @@ export class CookieBannerComponent implements OnInit, OnDestroy {
   analyticsConsent = false;
 
   ngOnInit() {
+    // Ne calculer l'affichage que côté navigateur : sinon le HTML prérendu (SSR)
+    // contient toujours la bannière (pas de localStorage côté serveur), ce qui
+    // provoque un flash de ~1s à l'hydratation quand le consentement existe déjà.
+    if (!isPlatformBrowser(this.platformId)) return;
+
     this.showBanner = this.cookieService.shouldShowBanner();
-    
+
     // Bloquer le scroll si la bannière s'affiche
     if (this.showBanner) {
       this.preventScroll();
