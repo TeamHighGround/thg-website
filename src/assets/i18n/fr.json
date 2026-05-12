@@ -93,6 +93,105 @@
         }
       }
     },
+    "timeline": {
+      "kicker": "Timeline",
+      "titlePart1": "Dix ans à",
+      "highlight": "graver",
+      "titlePart2": "notre nom",
+      "subtitle": "Dix ans de passion, de communauté et de compétition — du salon des fondateurs aux scènes nationales et européennes.",
+      "rosterLabel": "Roster",
+      "resultLabel": "Résultat",
+      "cap": "À suivre — la suite s'écrit maintenant",
+      "nextChapter": {
+        "kicker": "Chapitre suivant",
+        "label": "Découvrir le parcours compétitif"
+      },
+      "chapters": {
+        "history": {
+          "kicker": "Chapitre I",
+          "title": "Histoire du club",
+          "subtitle": "Retour sur dix années qui ont transformé une bande de potes en véritable club esport.",
+          "milestones": {
+            "b1": {
+              "year": "2015 — 2017",
+              "tag": "Origines",
+              "title": "Les débuts",
+              "description": "La THG naît d'une bande de lycéens avec une passion commune pour League of Legends, qui se lancent dans la création de contenus sur YouTube. Une première phase centrée sur le fun, la communauté et l'expérimentation."
+            },
+            "b2": {
+              "year": "2017",
+              "tag": "Compétition",
+              "title": "Premières compétitions",
+              "description": "Le club fait ses premiers pas en compétition en participant à des LAN en Bretagne, notamment l'Insalan. La THG passe d'un projet de création de contenu à une structure orientée esportif amateur."
+            },
+            "b3": {
+              "year": "2017 — 2020",
+              "tag": "Média",
+              "title": "Le Canapé Show",
+              "description": "En parallèle de la compétition, THG développe sa présence sur Twitch avec le Canapé Show, un talk show communautaire qui renforce son identité et son lien avec sa petite communauté."
+            },
+            "b4": {
+              "year": "2025",
+              "tag": "Structuration",
+              "title": "Création de l'association",
+              "description": "La THG franchit une étape clé avec la création de son association. Le projet se structure avec une vision à long terme et une ambition de professionnalisation dans l'esport."
+            },
+            "b5": {
+              "year": "2025 →",
+              "tag": "Performance",
+              "title": "Virage compétitif",
+              "description": "Lancement d'une équipe League of Legends semi-professionnelle. THG affirme son positionnement compétitif et pose les bases de son développement esportif."
+            }
+          }
+        },
+        "competitive": {
+          "kicker": "Chapitre II",
+          "title": "Parcours compétitif",
+          "subtitle": "Retour sur les compétitions, les rosters et les résultats qui forgent l'identité esport de la THG.",
+          "milestones": {
+            "b6": {
+              "year": "2025",
+              "tag": "Première LAN majeure",
+              "title": "Gamers Assembly",
+              "description": "THG participe à sa première grande LAN nationale, marquant une étape importante dans son entrée sur la scène compétitive.",
+              "result": "Top 64",
+              "badge": "Première LAN majeure"
+            },
+            "b7": {
+              "year": "Été 2025",
+              "tag": "Première ligue",
+              "title": "LPLOL — ERL Portugal",
+              "description": "THG rejoint la scène compétitive structurée avec sa première participation en ligue. L'équipe passe proche des playoffs dès sa première saison.",
+              "result": "Dernier tour avant les playoffs",
+              "badge": "Première ligue"
+            },
+            "b8": {
+              "year": "2026",
+              "tag": "Circuit national",
+              "title": "Nexus Tour",
+              "description": "THG s'inscrit sur le circuit officiel amateur français, avec l'objectif de s'installer durablement dans l'écosystème compétitif.",
+              "result": "Top 7-8 (Étape 2)",
+              "badge": "Circuit national"
+            },
+            "b9": {
+              "year": "2026",
+              "tag": "Progression",
+              "title": "Retour à la Gamers Assembly",
+              "description": "THG revient avec plus d'expérience et améliore nettement ses performances en physique. Remplacement : Artanis → D1verse en jungle.",
+              "result": "Top 32",
+              "badge": "Progression"
+            },
+            "b10": {
+              "year": "2026 → Aujourd'hui",
+              "tag": "Nouvelle génération",
+              "title": "Nouvelle ère",
+              "description": "THG entame une nouvelle phase de développement avec un roster international, visant des performances encore plus élevées sur le circuit compétitif.",
+              "badge": "Nouvelle génération"
+            }
+          }
+        }
+      }
+    },
     "teams": {
       "lol": {
         "title": "League Of Legends",
