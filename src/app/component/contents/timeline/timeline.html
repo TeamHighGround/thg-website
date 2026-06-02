@@ -1,128 +1,61 @@
-<section #timelineSection class="thg-timeline relative overflow-hidden py-24 lg:py-24">
+<section class="thg-timeline py-20 lg:py-28">
 
   <!-- Section header -->
-  <header class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 lg:mb-28">
-    <div class="flex items-center gap-3 mb-5">
-      <span class="text-thgGreen-400 font-mono text-xs tracking-[0.35em] uppercase">
-        {{ 'contents.timeline.kicker' | transloco }}
-      </span>
-    </div>
-    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.05] max-w-3xl">
+  <header class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 lg:mb-20">
+    <span class="thg-timeline__kicker">{{ 'contents.timeline.kicker' | transloco }}</span>
+    <h2 class="thg-timeline__heading">
       {{ 'contents.timeline.titlePart1' | transloco }}
       <span class="thg-timeline__highlight">{{ 'contents.timeline.highlight' | transloco }}</span>
       {{ 'contents.timeline.titlePart2' | transloco }}<span class="text-thgGreen-400">.</span>
     </h2>
-    <p class="mt-6 text-lg text-gray-200 max-w-2xl leading-relaxed">
-      {{ 'contents.timeline.subtitle' | transloco }}
-    </p>
+    <p class="thg-timeline__subtitle">{{ 'contents.timeline.subtitle' | transloco }}</p>
   </header>
 
-  <!-- Chapter selector -->
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-14 lg:mb-20">
-    <div class="thg-tabs" role="tablist">
-      <span class="thg-tabs__indicator" [style.transform]="'translateX(' + (activeIndex() * 100) + '%)'"></span>
-      <button *ngFor="let chapter of chapters; let i = index"
-              type="button"
-              role="tab"
-              [attr.aria-selected]="activeIndex() === i"
-              class="thg-tabs__btn"
-              [class.thg-tabs__btn--active]="activeIndex() === i"
-              (click)="selectChapter(i)">
-        <span class="thg-tabs__index">{{ chapter.index }}</span>
-        <span class="thg-tabs__label">{{ chapter.key + '.title' | transloco }}</span>
-      </button>
-    </div>
-  </div>
-
   <!-- Chapters -->
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div *ngFor="let chapter of chapters; let chapterIndex = index"
-         class="thg-chapter"
-         [class.thg-chapter--alt]="chapterIndex === 1"
-         [hidden]="activeIndex() !== chapterIndex">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div *ngFor="let chapter of chapters" class="thg-chapter">
 
       <!-- Chapter header -->
       <div class="thg-chapter__header">
-        <div class="flex items-end gap-6">
-          <span class="thg-chapter__index">{{ chapter.index }}</span>
-          <div class="flex-1 pb-2">
-            <span class="block font-mono text-xs uppercase tracking-[0.35em] text-thgGreen-500/80">
-              {{ chapter.key + '.kicker' | transloco }}
-            </span>
-            <h3 class="mt-2 text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
-              {{ chapter.key + '.title' | transloco }}
-            </h3>
-          </div>
-        </div>
-        <p class="mt-5 lg:ml-[7.5rem] text-base lg:text-lg text-gray-200 max-w-2xl leading-relaxed">
-          {{ chapter.key + '.subtitle' | transloco }}
-        </p>
+        <h3 class="thg-chapter__title">{{ chapter.key + '.title' | transloco }}</h3>
       </div>
 
-      <!-- Spine + milestones -->
-      <ol class="thg-spine">
-        <li *ngFor="let m of chapter.milestones; let i = index"
-            class="thg-node"
-            [class.thg-node--right]="i % 2 === 1"
-            [style.--node-accent]="accentColor(m.accent)">
+      <!-- Timeline -->
+      <ol class="thg-line">
+        <li *ngFor="let m of chapter.milestones" class="thg-item">
+          <span class="thg-item__dot" aria-hidden="true"></span>
 
-          <!-- Spine marker -->
-          <span class="thg-node__marker" aria-hidden="true">
-            <span class="thg-node__marker-ring"></span>
-            <span class="thg-node__marker-dot">{{ m.icon }}</span>
-          </span>
+          <div class="thg-item__body">
+            <span class="thg-item__year">{{ m.key + '.year' | transloco }}</span>
 
-          <!-- Card -->
-          <article class="thg-card">
-            <div class="thg-card__topline">
-              <span class="thg-card__year">{{ m.key + '.year' | transloco }}</span>
-              <span class="thg-card__tag">{{ m.key + '.tag' | transloco }}</span>
-            </div>
+            <article class="thg-card">
+              <!-- Image (only when available) -->
+              <div *ngIf="m.image" class="thg-card__media">
+                <img [src]="m.image" [alt]="m.key + '.title' | transloco" loading="lazy" />
+              </div>
 
-            <h4 class="thg-card__title">{{ m.key + '.title' | transloco }}</h4>
-            <p class="thg-card__desc">{{ m.key + '.description' | transloco }}</p>
+              <div class="thg-card__content">
+                <h4 class="thg-card__title">{{ m.key + '.title' | transloco }}</h4>
+                <p class="thg-card__desc">{{ m.key + '.description' | transloco }}</p>
 
-            <!-- Roster -->
-            <div *ngIf="m.roster?.length" class="thg-card__roster">
-              <span class="thg-card__roster-label">{{ 'contents.timeline.rosterLabel' | transloco }}</span>
-              <ul class="thg-card__chips">
-                <li *ngFor="let player of m.roster">{{ player }}</li>
-              </ul>
-            </div>
+                <!-- Roster -->
+                <div *ngIf="m.roster?.length" class="thg-card__roster">
+                  <span class="thg-card__label">{{ 'contents.timeline.rosterLabel' | transloco }}</span>
+                  <ul class="thg-card__chips">
+                    <li *ngFor="let player of m.roster">{{ player }}</li>
+                  </ul>
+                </div>
 
-            <!-- Result -->
-            <div *ngIf="m.hasResult" class="thg-card__result">
-              <span class="thg-card__result-label">{{ 'contents.timeline.resultLabel' | transloco }}</span>
-              <span class="thg-card__result-value">{{ m.key + '.result' | transloco }}</span>
-            </div>
-
-            <!-- Badge -->
-            <span *ngIf="m.hasBadge" class="thg-card__badge">★ {{ m.key + '.badge' | transloco }}</span>
-          </article>
+                <!-- Result -->
+                <p *ngIf="m.hasResult" class="thg-card__result">
+                  <span class="thg-card__label">{{ 'contents.timeline.resultLabel' | transloco }}</span>
+                  <span class="thg-card__result-value">{{ m.key + '.result' | transloco }}</span>
+                </p>
+              </div>
+            </article>
+          </div>
         </li>
       </ol>
-
-      <!-- Next chapter CTA (only on chapter 1) -->
-      <div *ngIf="chapterIndex === 0" class="thg-chapter__next">
-        <button type="button" class="thg-next-btn" (click)="goToNextChapter(timelineSection)">
-          <span class="thg-next-btn__kicker">{{ 'contents.timeline.nextChapter.kicker' | transloco }}</span>
-          <span class="thg-next-btn__label">
-            {{ 'contents.timeline.nextChapter.label' | transloco }}
-            <span class="thg-next-btn__arrow" aria-hidden="true">→</span>
-          </span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer cap -->
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 lg:mt-24">
-    <div class="thg-timeline__cap">
-      <span class="thg-timeline__cap-line"></span>
-      <span class="font-mono text-xs uppercase tracking-[0.35em] text-thgGreen-400">
-        {{ 'contents.timeline.cap' | transloco }}
-      </span>
-      <span class="thg-timeline__cap-line"></span>
     </div>
   </div>
 </section>
