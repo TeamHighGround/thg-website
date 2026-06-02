@@ -20,7 +20,9 @@
       "Bash(git mv *)",
       "Bash(mv \"src/assets/image/timeline/débuts.jpg\" \"src/assets/image/timeline/debuts.jpg\")",
       "Bash(npx ng *)",
-      "Bash(git stash *)"
+      "Bash(git stash *)",
+      "Bash(node -e \"const d=require\\('./src/assets/i18n/fr.json'\\); console.log\\(JSON.stringify\\(d.contents.about,null,1\\)\\); console.log\\('---HEADER---'\\); console.log\\(JSON.stringify\\(d.header,null,1\\)\\);\")",
+      "Bash(node -e \"const d=require\\('./src/assets/i18n/en.json'\\); console.log\\(JSON.stringify\\(d.contents.about,null,1\\)\\);\")"
     ]
   }
 }

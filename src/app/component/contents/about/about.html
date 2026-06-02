@@ -1,59 +1,30 @@
-<section class="">
-  <!-- présentation -->
-  <div class="relative overflow-hidden py-24 lg:py-32">
-    
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <div class="text-center lg:text-left">
-          
-          <!-- Title -->
-          <h1 class="text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-            {{ 'contents.about.title' | transloco }}
-          </h1>
-          
-          <!-- Subtitle -->
-          <h2 class="text-xl lg:text-2xl font-semibold text-green-400 mb-6">
-            {{ 'contents.about.subtitle' | transloco }}
-          </h2>
-          
-          <!-- Description -->
-          <p class="text-lg text-gray-300 mb-4 leading-relaxed">
-            {{ 'contents.about.description.part1' | transloco }}
-          </p>
-          <p class="text-lg text-gray-300 mb-8 leading-relaxed">
-            {{ 'contents.about.description.part2' | transloco }}
-          </p>
-        </div>
-        
-        <!-- Image -->
-        <div class="relative">
-          <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-            <img src="./assets/image/about.jpg" [alt]="'contents.about.image.alt' | transloco" 
-                 class="w-full h-auto object-cover">
-          </div>
-        </div>
-      </div>
-    </div>
+<section class="hero" *transloco="let t">
+
+  <!-- Slogan vertical gauche -->
+  <div class="hero__side hero__side--left" aria-hidden="true">
+    <img class="hero__side-gem hero__side-gem--up" src="assets/logo/green/GEMME_VERTE.png" alt="" />
+    <span class="hero__side-text">Trust the process</span>
+    <img class="hero__side-gem" src="assets/logo/green/GEMME_VERTE.png" alt="" />
   </div>
 
-  <!-- Section équipe 
-  <div class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Slogan vertical droite -->
+  <div class="hero__side hero__side--right" aria-hidden="true">
+    <img class="hero__side-gem hero__side-gem--up" src="assets/logo/green/GEMME_VERTE.png" alt="" />
+    <span class="hero__side-text">Trust the process</span>
+    <img class="hero__side-gem" src="assets/logo/green/GEMME_VERTE.png" alt="" />
+  </div>
 
-    <div class="text-center mb-16">
-      <h2 class="text-3xl lg:text-5xl font-bold text-white mb-6">
-        {{ 'contents.about.team.title' | transloco }}
-      </h2>
-      <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-        {{ 'contents.about.team.description' | transloco }}
-      </p>
-    </div>
-    
+  <!-- Logo central (au-dessus, hors du centrage du titre) -->
+  <a routerLink="/" class="hero__logo" [attr.aria-label]="t('contents.about.title')">
+    <img src="assets/logo/green/V1_VERT_PNG.png" alt="Team High Ground" />
+  </a>
 
-    <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-      <app-member-card 
-        *ngFor="let member of members" 
-        [member]="member">
-      </app-member-card>
-    </div>
-  </div>-->
+  <!-- Titre centré verticalement -->
+  <div class="hero__center">
+    <h1 class="hero__title">
+      <span class="hero__title-line">Team High</span>
+      <span class="hero__title-line hero__title-accent">Ground</span>
+    </h1>
+  </div>
+
 </section>
