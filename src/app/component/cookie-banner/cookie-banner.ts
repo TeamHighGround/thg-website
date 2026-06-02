@@ -30,20 +30,14 @@ export class CookieBannerComponent implements OnInit, OnDestroy {
 
     this.showBanner = this.cookieService.shouldShowBanner();
 
-    // Bloquer le scroll si la bannière s'affiche
-    if (this.showBanner) {
-      this.preventScroll();
-    }
-    
     // Écouter les changements de consentement
     this.subscription.add(
       this.cookieService.consent$.subscribe(consent => {
         this.analyticsConsent = consent.analytics;
-        
+
         // Masquer la bannière si le consentement a été donné
         if (consent.consentGiven && !this.cookieService.hasConsentExpired()) {
           this.showBanner = false;
-          this.allowScroll(); // Rétablir le scroll
         }
       })
     );
@@ -51,20 +45,16 @@ export class CookieBannerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-    // S'assurer que le scroll est rétabli même si le composant est détruit
-    this.allowScroll();
   }
 
   acceptAll() {
     this.cookieService.acceptAll();
     this.showBanner = false;
-    this.allowScroll(); // Rétablir le scroll
   }
 
   rejectAll() {
     this.cookieService.rejectAll();
     this.showBanner = false;
-    this.allowScroll(); // Rétablir le scroll
   }
 
   toggleDetails() {
@@ -82,38 +72,5 @@ export class CookieBannerComponent implements OnInit, OnDestroy {
       functional: true
     });
     this.showBanner = false;
-    this.allowScroll(); // Rétablir le scroll
-  }
-
-  // Méthodes pour gérer le scroll
-  private preventScroll(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-
-    // Sauvegarder la position actuelle du scroll
-    const scrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
-
-    // Empêcher le scroll sur le body
-    document.body.style.overflow = 'hidden';
-  }
-
-  private allowScroll(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-
-    // Récupérer la position sauvegardée
-    const scrollY = document.body.style.top;
-
-    // Rétablir les styles
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
-    document.body.style.overflow = '';
-
-    // Rétablir la position du scroll
-    if (scrollY) {
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
-    }
   }
 }

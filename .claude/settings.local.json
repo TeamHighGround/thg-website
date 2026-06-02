@@ -14,7 +14,13 @@
       "Bash(findstr:*)",
       "Bash(grep:*)",
       "WebFetch(domain:dev.helloasso.com)",
-      "WebFetch(domain:centredaide.helloasso.com)"
+      "WebFetch(domain:centredaide.helloasso.com)",
+      "Bash(python -c \"import json; d=json.load\\(open\\('src/assets/i18n/fr.json',encoding='utf-8'\\)\\); import sys; t=d['contents']['timeline']; print\\(json.dumps\\(t, ensure_ascii=False, indent=2\\)\\)\")",
+      "Bash(node -e \"const d=require\\('./src/assets/i18n/fr.json'\\); console.log\\(JSON.stringify\\(d.contents.timeline, null, 2\\)\\)\")",
+      "Bash(git mv *)",
+      "Bash(mv \"src/assets/image/timeline/débuts.jpg\" \"src/assets/image/timeline/debuts.jpg\")",
+      "Bash(npx ng *)",
+      "Bash(git stash *)"
     ]
   }
 }
