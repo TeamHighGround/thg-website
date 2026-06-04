@@ -8,6 +8,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
 
+// Police personnalisée Parsi (titre hero de la home)
+@font-face {
+  font-family: "Parsi";
+  src: url("/assets/fonts/Parsi/Parsi-Light.woff2") format("woff2"),
+       url("/assets/fonts/Parsi/Parsi-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Parsi";
+  src: url("/assets/fonts/Parsi/Parsi-Regular.woff2") format("woff2"),
+       url("/assets/fonts/Parsi/Parsi-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Parsi";
+  src: url("/assets/fonts/Parsi/Parsi-Bold.woff2") format("woff2"),
+       url("/assets/fonts/Parsi/Parsi-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 // 3. Styles personnalisés globaux
 html, body {
   height: 100%;
