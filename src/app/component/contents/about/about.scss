@@ -89,8 +89,9 @@
 .hero__title {
   display: flex;
   flex-direction: column;
-  font-weight: 800;
-  line-height: .92;
+  font-family: "Parsi", "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  line-height: .8;
   letter-spacing: -.02em;
   color: #fff;
   font-size: clamp(3.25rem, 13vw, 9.5rem);

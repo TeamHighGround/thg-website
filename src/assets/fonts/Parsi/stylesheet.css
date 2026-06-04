@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Parsi';
+    src: url('Parsi-Light.eot');
+    src: local('Parsi Light'), local('Parsi-Light'),
+        url('Parsi-Light.eot?#iefix') format('embedded-opentype'),
+        url('Parsi-Light.woff2') format('woff2'),
+        url('Parsi-Light.woff') format('woff'),
+        url('Parsi-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Parsi';
+    src: url('Parsi-Bold.eot');
+    src: local('Parsi Bold'), local('Parsi-Bold'),
+        url('Parsi-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Parsi-Bold.woff2') format('woff2'),
+        url('Parsi-Bold.woff') format('woff'),
+        url('Parsi-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Parsi';
+    src: url('Parsi-Regular.eot');
+    src: local('Parsi Regular'), local('Parsi-Regular'),
+        url('Parsi-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Parsi-Regular.woff2') format('woff2'),
+        url('Parsi-Regular.woff') format('woff'),
+        url('Parsi-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
