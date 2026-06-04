@@ -18,6 +18,12 @@
     "about": {
       "title": "Team High Ground",
       "subtitle": "L'esport breton en devenir",
+      "meta": {
+        "club": "Club esport breton",
+        "location": "Rennes · Bretagne",
+        "since": "Depuis 2015"
+      },
+      "scrollHint": "L'histoire du club",
       "description": {
         "part1": "Créé en 2015 par une bande de potes passionnée par les jeux vidéo, notre club esport grandit et devient l'association THG, avec l'ambition d'être un club référent à Rennes et en Bretagne !",
         "part2": "Notre souhait est de nous développer progressivement sur un maximum de jeux compétitifs, tout en organisant nos propres événements esportifs en Bretagne pour dynamiser la scène locale et rassembler les passionnés."

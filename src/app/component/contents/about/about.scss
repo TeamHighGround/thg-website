@@ -9,12 +9,11 @@
    ============================================================ */
 .hero {
   position: relative;
-  /* 100vh moins 2× la navbar (h-24 = 6rem) pour recentrer le contenu
-     dans le viewport en compensant la barre de navigation au-dessus */
-  min-height: calc(100vh - 12rem);
+  /* remplit le 1er écran : 100vh moins la navbar (h-24 = 6rem),
+     donc le bas du hero = bas du viewport */
+  min-height: calc(100vh - 6rem);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   overflow: hidden;
 }
 
@@ -80,6 +79,10 @@
    ============================================================ */
 .hero__center {
   position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
 
@@ -101,6 +104,67 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+}
+
+/* ============================================================
+   Bas du hero : infos minimalistes + indice de scroll
+   ============================================================ */
+.hero__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  width: 100%;
+  padding-bottom: clamp(1.25rem, 4vh, 2.5rem);
+}
+
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0 1rem;
+  max-width: 92vw;
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(229, 231, 235, .58);
+  animation: heroFadeIn 1s ease both .7s;
+}
+
+.hero__scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: rgba(174, 212, 172, .85);
+  animation: heroFadeIn 1s ease both .85s;
+}
+.hero__scroll .pi {
+  font-size: .7rem;
+  animation: scrollNudge 1.8s ease-in-out infinite;
+}
+.hero__meta li {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+/* séparateur losange vert entre les items */
+.hero__meta li:not(:last-child)::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  margin: 0 1rem;
+  transform: rotate(45deg);
+  background: var(--accent);
+  opacity: .75;
 }
 
 /* ============================================================
@@ -127,12 +191,51 @@
   from { opacity: 0; transform: translateY(26px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes scrollNudge {
+  0%, 100% { transform: translateY(0); opacity: .85; }
+  50%      { transform: translateY(4px); opacity: 1; }
+}
 
 /* ============================================================
    Responsive
    ============================================================ */
 @media (max-width: 640px) {
-  .hero__side { display: none; }
+  /* logo central masqué sur mobile (trop chargé) */
+  .hero__logo { display: none; }
+
+  /* slogans empilés avec le titre : haut → titre → bas, centrés ensemble */
+  .hero__center {
+    flex-direction: column;
+    gap: clamp(2rem, 8vw, 3.5rem);
+  }
+
+  .hero__side {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    width: auto;
+    gap: .9rem;
+  }
+  .hero__side--left  { order: 0; }
+  .hero__title       { order: 1; }
+  .hero__side--right { order: 2; }
+
+  .hero__side-text {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: .72rem;
+    letter-spacing: .4em;
+  }
+  /* annule la rotation verticale du slogan de gauche */
+  .hero__side--left .hero__side-text { transform: none; }
+
+  /* gemmes pivotées pour pointer vers le texte (gauche/droite) */
+  .hero__side-gem {
+    height: clamp(30px, 8vw, 44px);
+    width: auto;
+    transform: rotate(90deg);
+  }
+  .hero__side-gem--up { transform: rotate(-90deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -141,7 +244,10 @@
   .hero__logo,
   .hero__title-line,
   .hero__side--left,
-  .hero__side--right { animation: none; }
+  .hero__side--right,
+  .hero__meta,
+  .hero__scroll,
+  .hero__scroll .pi { animation: none; }
   /* sans l'animation, le titre doit retrouver son état visible */
   .hero__title-line { opacity: 1; transform: none; }
 }
