@@ -141,16 +141,27 @@
   display: inline-flex;
   align-items: center;
   gap: .6rem;
+  padding: 0;
+  border: 0;
+  background: none;
   font-family: var(--mono);
   font-size: .68rem;
   letter-spacing: .26em;
   text-transform: uppercase;
   color: rgba(174, 212, 172, .85);
+  cursor: pointer;
   animation: heroFadeIn 1s ease both .85s;
+  transition: color .25s ease;
+}
+.hero__scroll:hover {
+  color: var(--accent);
+}
+.hero__scroll:hover .pi {
+  transform: translateY(2px);
 }
 .hero__scroll .pi {
   font-size: .7rem;
-  animation: scrollNudge 1.8s ease-in-out infinite;
+  transition: transform .25s ease;
 }
 .hero__meta li {
   display: flex;
@@ -191,10 +202,6 @@
 @keyframes heroRise {
   from { opacity: 0; transform: translateY(26px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes scrollNudge {
-  0%, 100% { transform: translateY(0); opacity: .85; }
-  50%      { transform: translateY(4px); opacity: 1; }
 }
 
 /* ============================================================
@@ -247,8 +254,7 @@
   .hero__side--left,
   .hero__side--right,
   .hero__meta,
-  .hero__scroll,
-  .hero__scroll .pi { animation: none; }
+  .hero__scroll { animation: none; }
   /* sans l'animation, le titre doit retrouver son état visible */
   .hero__title-line { opacity: 1; transform: none; }
 }

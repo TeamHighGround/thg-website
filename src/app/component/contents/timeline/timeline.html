@@ -1,7 +1,7 @@
 <section class="thg-timeline py-20 lg:py-28">
 
   <!-- Section header -->
-  <header class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 lg:mb-20">
+  <header id="timeline" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 lg:mb-20">
     <span class="thg-timeline__kicker">{{ 'contents.timeline.kicker' | transloco }}</span>
     <h2 class="thg-timeline__heading">
       {{ 'contents.timeline.titlePart1' | transloco }}
@@ -31,7 +31,7 @@
             <article class="thg-card">
               <!-- Image (only when available) -->
               <div *ngIf="m.image" class="thg-card__media">
-                <img [src]="m.image" [alt]="m.key + '.title' | transloco" loading="lazy" />
+                <img [src]="m.image" [alt]="m.key + '.title' | transloco" [width]="m.width" [height]="m.height" loading="lazy" />
               </div>
 
               <div class="thg-card__content">
