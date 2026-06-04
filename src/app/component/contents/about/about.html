@@ -1,30 +1,46 @@
 <section class="hero" *transloco="let t">
 
-  <!-- Slogan vertical gauche -->
-  <div class="hero__side hero__side--left" aria-hidden="true">
-    <img class="hero__side-gem hero__side-gem--up" src="assets/logo/green/GEMME_VERTE.png" alt="" />
-    <span class="hero__side-text">Trust the process</span>
-    <img class="hero__side-gem" src="assets/logo/green/GEMME_VERTE.png" alt="" />
-  </div>
-
-  <!-- Slogan vertical droite -->
-  <div class="hero__side hero__side--right" aria-hidden="true">
-    <img class="hero__side-gem hero__side-gem--up" src="assets/logo/green/GEMME_VERTE.png" alt="" />
-    <span class="hero__side-text">Trust the process</span>
-    <img class="hero__side-gem" src="assets/logo/green/GEMME_VERTE.png" alt="" />
-  </div>
-
   <!-- Logo central (au-dessus, hors du centrage du titre) -->
   <a routerLink="/" class="hero__logo" [attr.aria-label]="t('contents.about.title')">
     <img src="assets/logo/green/V1_VERT_PNG.png" alt="Team High Ground" />
   </a>
 
-  <!-- Titre centré verticalement -->
+  <!-- Bloc central : titre centré verticalement + slogans latéraux -->
   <div class="hero__center">
+
+    <!-- Slogan vertical gauche -->
+    <div class="hero__side hero__side--left" aria-hidden="true">
+      <img class="hero__side-gem hero__side-gem--up" src="assets/logo/green/GEMME_VERTE.png" alt="" />
+      <span class="hero__side-text">Trust the process</span>
+      <img class="hero__side-gem" src="assets/logo/green/GEMME_VERTE.png" alt="" />
+    </div>
+
+    <!-- Slogan vertical droite -->
+    <div class="hero__side hero__side--right" aria-hidden="true">
+      <img class="hero__side-gem hero__side-gem--up" src="assets/logo/green/GEMME_VERTE.png" alt="" />
+      <span class="hero__side-text">Trust the process</span>
+      <img class="hero__side-gem" src="assets/logo/green/GEMME_VERTE.png" alt="" />
+    </div>
+
     <h1 class="hero__title">
       <span class="hero__title-line">Team High</span>
       <span class="hero__title-line hero__title-accent">Ground</span>
     </h1>
+  </div>
+
+  <!-- Bas du hero : infos + indice de scroll (collés en bas de l'écran) -->
+  <div class="hero__bottom">
+    <ul class="hero__meta">
+      <li>{{ t('contents.about.meta.club') }}</li>
+      <li>{{ t('contents.about.meta.location') }}</li>
+      <li>LoL · TFT</li>
+      <li>{{ t('contents.about.meta.since') }}</li>
+    </ul>
+
+    <span class="hero__scroll">
+      {{ t('contents.about.scrollHint') }}
+      <i class="pi pi-chevron-down" aria-hidden="true"></i>
+    </span>
   </div>
 
 </section>

@@ -18,6 +18,12 @@
     "about": {
       "title": "Team High Ground",
       "subtitle": "Breton esports in the making",
+      "meta": {
+        "club": "Breton esports club",
+        "location": "Rennes · Brittany",
+        "since": "Since 2015"
+      },
+      "scrollHint": "The club's history",
       "description": {
         "part1": "Created in 2015 by a group of friends passionate about video games, our esports club has grown to become the THG association, with the ambition of being a benchmark club in Rennes and Brittany!",
         "part2": "Our goal is to progressively develop across as many competitive games as possible, while organizing our own esports events in Brittany to energize the local scene and bring enthusiasts together."
