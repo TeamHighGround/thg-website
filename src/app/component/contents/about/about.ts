@@ -1,12 +1,11 @@
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [RouterLink, TranslocoModule],
+  imports: [TranslocoModule],
   templateUrl: './about.html',
   styleUrl: './about.scss'
 })
