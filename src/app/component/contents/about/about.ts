@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 
@@ -9,4 +10,11 @@ import { TranslocoModule } from '@jsverse/transloco';
   templateUrl: './about.html',
   styleUrl: './about.scss'
 })
-export class About {}
+export class About {
+  private platformId = inject(PLATFORM_ID);
+
+  scrollToTimeline(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    document.getElementById('timeline')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
