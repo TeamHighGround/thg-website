@@ -35,6 +35,12 @@ export class Timeline {
       key: 'contents.timeline.chapters.competitive',
       milestones: [
         {
+          id: 'b11', key: 'contents.timeline.chapters.competitive.milestones.b11',
+          image: 'assets/image/ssbu.jpg', width: 1080, height: 1350,
+          roster: ['NaetorU'],
+          hasBadge: true
+        },
+        {
           id: 'b10', key: 'contents.timeline.chapters.competitive.milestones.b10',
           image: IMG + 'NTDEUXIEMEGEN.jpg', width: 1080, height: 1350,
           roster: ['Phyraxx', 'D1verse', 'Orcybe', 'Kyx', 'Rush'],
