@@ -4,14 +4,15 @@
   min-height: 100vh;
   position: relative;
   
-  app-header,
   .main-content,
   app-footer {
     position: relative;
     z-index: 1;
   }
-  
+
   .main-content {
     flex: 1;
+    // Compense la hauteur du header fixe (h-24) pour ne pas masquer le contenu
+    padding-top: 6rem;
   }
 }
