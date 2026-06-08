@@ -1,6 +1,6 @@
-<div class="group relative bg-black/30 border-2 border-gray-800 rounded-xl overflow-hidden 
-  w-full transition-all duration-300 
-  hover:-translate-y-2 hover:border-thgGreen-800 hover:shadow-2xl hover:shadow-green-500/10 hover:bg-black/50
+<div class="group relative bg-white/[0.025] border border-white/[0.08] rounded-[10px] overflow-hidden
+  w-full transition-all duration-300
+  hover:-translate-y-0.5 hover:border-thgGreen/30
    sm:max-h-[650px] md:max-h-[380px] lg:max-h-[450px]">
 
   <div class="flex flex-col lg:flex-row h-full">
@@ -13,7 +13,7 @@
       <img 
         [src]="partner.images[currentImageIndex]" 
         [alt]="partner.name"
-        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 lg:rounded-l-xl">
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 lg:rounded-l-[10px]">
       
       <!-- Navigation Images -->
       <div *ngIf="partner.images.length > 1" 
@@ -50,7 +50,7 @@
       <!-- Nom du partenaire -->
       <h3 class="font-bold text-white mb-3 sm:mb-4 leading-tight
         text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl
-        group-hover:text-green-400 transition-colors duration-300">
+        group-hover:text-thgGreen transition-colors duration-300">
         {{ partner.name }}
       </h3>
 
