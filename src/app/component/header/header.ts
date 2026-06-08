@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, inject, PLATFORM_ID, HostListener } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { RouterModule } from '@angular/router';
@@ -21,6 +21,29 @@ export class Header implements OnInit, AfterViewInit {
 
   mobileMenuOpen = false;
   activeIndicatorStyle = { left: '0px', width: '0px' };
+
+  // Auto-hide du header au scroll (mobile) : caché en descendant, visible en remontant
+  headerHidden = false;
+  private lastScrollY = 0;
+  private readonly scrollThreshold = 80; // px avant de commencer à cacher
+
+  @HostListener('window:scroll')
+  onWindowScroll() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    const currentScrollY = window.scrollY;
+
+    // En haut de page ou menu mobile ouvert : toujours visible
+    if (currentScrollY <= this.scrollThreshold || this.mobileMenuOpen) {
+      this.headerHidden = false;
+    } else if (currentScrollY > this.lastScrollY) {
+      this.headerHidden = true;  // on descend → cacher
+    } else if (currentScrollY < this.lastScrollY) {
+      this.headerHidden = false; // on remonte → afficher
+    }
+
+    this.lastScrollY = currentScrollY;
+  }
 
   public dynamicMenuItems$: BehaviorSubject<MenuItem[]> = new BehaviorSubject( //FIX PRIMENG P-MENU
     [] as MenuItem[]

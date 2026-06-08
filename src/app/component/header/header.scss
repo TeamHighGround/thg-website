@@ -8,6 +8,19 @@
   z-index: 50;
 }
 
+// Auto-hide au scroll, uniquement en mobile :
+// le header glisse vers le haut quand on descend, et réapparaît quand on remonte.
+@media (max-width: 767px) {
+  header {
+    transition: transform 0.3s ease;
+  }
+
+  header.header-hidden {
+    // -100% = hauteur de la barre ; le -2rem supplémentaire cache le logo qui déborde dessous
+    transform: translateY(calc(-100% - 2rem));
+  }
+}
+
 // Fond + blur + ombre uniquement sur la barre des onglets (pas le logo)
 .nav-pill {
   background-color: rgba(10, 13, 10, 0.4);
