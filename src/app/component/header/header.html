@@ -1,4 +1,4 @@
-<header class="">
+<header [class.mobile-menu-open]="mobileMenuOpen">
   <div class="h-24 relative">
 
     <!-- Logo THG -->
@@ -12,7 +12,7 @@
 
     <!-- Desktop Navigation -->
     <div class="hidden md:flex items-center justify-center h-16 relative">
-      <nav class="flex space-x-8 relative" #navContainer>
+      <nav class="nav-pill flex items-center space-x-8 relative" #navContainer>
         <a routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"
           class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative z-10">
           {{ 'header.home' | transloco }}
@@ -79,7 +79,7 @@
 
   <!-- Mobile Navigation -->
   <div class="md:hidden" [class.hidden]="!mobileMenuOpen">
-    <div class="px-2 pt-2 pb-3 space-y-1 rounded-lg mt-2">
+    <div class="px-2 pt-2 pb-3 space-y-1">
       <a routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"
         class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
         (click)="closeMobileMenu()">

@@ -1,3 +1,34 @@
+// Le header reste toujours fixé en haut de l'écran, quel que soit le scroll
+// (transparent : le fond est porté uniquement par la barre d'onglets, pas toute la largeur)
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+// Fond + blur + ombre uniquement sur la barre des onglets (pas le logo)
+.nav-pill {
+  background-color: rgba(10, 13, 10, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 9999px;
+  padding: 0.5rem 1.5rem;
+}
+
+// Fond plein largeur sur tout le header quand le menu mobile est ouvert
+// (couvre la barre du logo + le menu, jusqu'en haut de l'écran)
+.mobile-menu-open {
+  background-color: rgba(10, 13, 10, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
 // Styles pour l'indicateur actif
 .router-link-active {
   color: var(--thg-green) !important;
