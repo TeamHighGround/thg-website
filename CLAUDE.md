@@ -160,50 +160,22 @@ Browser-only APIs that require this check:
 
 ## Shop (`src/app/component/contents/shop/`)
 
-La boutique permet de précommander le merch THG via un formulaire EmailJS.
+La boutique est une **iframe HelloAsso intégrée** : tout le merch est géré directement sur la boutique HelloAsso de l'association, le site se contente d'afficher le widget.
 
-### Produits actuels
+### Fonctionnement
 
-| ID       | Nom            | Prix | Couleurs              | Tailles       |
-|----------|----------------|------|-----------------------|---------------|
-| hoodie   | Hoodie THG     | 55€  | Noir, Blanc, Gris     | S, M, L, XL   |
-| tshirt   | T-Shirt THG    | 30€  | Noir, Blanc, Gris     | S, M, L, XL   |
-| cap      | Casquette THG  | 25€  | Noir uniquement       | Unique        |
+- L'URL du widget est définie dans `shop.ts` (`HELLOASSO_URL`) et assainie via `DomSanitizer.bypassSecurityTrustResourceUrl()`.
+- L'iframe n'est rendue que côté navigateur (`isPlatformBrowser`) ; en SSR/prerender un message de chargement (`shop.loading`) est affiché à la place.
+- L'attribut `allow="payment"` autorise le paiement dans l'iframe ; un handler `onload` ajuste la hauteur via les `postMessage` envoyés par HelloAsso.
 
-### Conventions images
-
-Chaque produit a deux images dans `src/assets/shop/{id}/` :
-- `{id}_front.jpg` — vue avant (affichée par défaut)
-- `{id}_back.jpg` — vue arrière (affichée au survol sur la grille, toggle dans le modal)
-
-### Interface `Product`
-
-```typescript
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  imageFront: string;
-  imageBack: string;
-  colors: Color[];
-  sizes: Size[];
-}
-```
-
-### Comportements clés
-
-- **Grille** : hover → transition opacity front→back (`hoveredProductId`)
-- **Modal** : bouton toggle avant/arrière (`showingFrontImage`)
-- **Casquette** : `object-position` personnalisé via `[style.object-position]` pour le cadrage (image paysage dans conteneur portrait)
-- **EmailJS** : credentials dans `onSubmit()` — service `service_oipvf9u`, template `template_c1j90pf`
+Pour changer de boutique, mettre à jour `HELLOASSO_URL` dans `shop.ts`.
 
 ### Clés de traduction shop
 
 ```
-shop.products.{id}.material   — référence textile et matière
-shop.products.{id}.description — description marketing
-shop.colors.{black|white|grey}
-shop.showFront / shop.showBack
+shop.title    — titre de la page
+shop.subtitle — sous-titre
+shop.loading  — message affiché avant le rendu de l'iframe
 ```
 
 ## SEO

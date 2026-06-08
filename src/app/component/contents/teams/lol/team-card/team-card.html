@@ -1,6 +1,5 @@
-<div class="group relative bg-black/30 border-2 border-gray-800 rounded-xl overflow-hidden
-     transition-all duration-300 hover:transform hover:-translate-y-2
-     hover:border-thgGreen-800 hover:shadow-2xl hover:shadow-green-500/10 hover:bg-black/50 h-full"
+<div class="group relative bg-white/[0.025] border border-white/[0.08] rounded-[10px] overflow-hidden
+     transition-all duration-300 hover:-translate-y-0.5 hover:border-thgGreen/30 h-full"
      [class]="type + '-card'">
 
     <div class="p-6 flex flex-col h-full">
@@ -35,11 +34,5 @@
         <div class="mt-6 flex justify-center min-h-[40px]">
             <app-social-links *ngIf="member.socialLinks" [links]="member.socialLinks" size="small"></app-social-links>
         </div>
-    </div>
-
-    <!-- Effet de brillance -->
-    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent
-         opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full
-         transition-all duration-700 pointer-events-none">
     </div>
 </div>
