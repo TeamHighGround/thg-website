@@ -7,18 +7,18 @@ export const TWITTER_HANDLE = '@TeamHigh_Ground';
 export const ROUTES_SEO_CONFIG: RoutesSeoConfig = {
   '/': {
     fr: {
-      title: 'Team High Ground | Equipe Esport Bretonne - LoL & TFT',
-      description: 'Team High Ground (THG) - Association esport bretonne basee a Rennes. Equipes competitives League of Legends et Teamfight Tactics. Rejoignez-nous !',
-      keywords: ['esport bretagne', 'equipe esport rennes', 'team high ground', 'thg esport', 'lol france', 'tft france', 'esport amateur france'],
+      title: 'Team High Ground | Equipe Esport Bretonne - LoL, SSBU & TFT',
+      description: 'Team High Ground (THG) - Association esport bretonne basee a Rennes. Equipes competitives League of Legends, Super Smash Bros. Ultimate et Teamfight Tactics. Rejoignez-nous !',
+      keywords: ['esport bretagne', 'equipe esport rennes', 'team high ground', 'thg esport', 'lol france', 'tft france', 'ssbu france', 'esport amateur france'],
       type: 'website',
       image: DEFAULT_IMAGE,
       imageAlt: 'Logo Team High Ground',
       twitterCard: 'summary_large_image'
     },
     en: {
-      title: 'Team High Ground | Breton Esports Team - LoL & TFT',
-      description: 'Team High Ground (THG) - Breton esports association based in Rennes, France. Competitive League of Legends and Teamfight Tactics teams. Join us!',
-      keywords: ['esports france', 'esports team rennes', 'team high ground', 'thg esports', 'lol france', 'tft france', 'amateur esports'],
+      title: 'Team High Ground | Breton Esports Team - LoL, SSBU & TFT',
+      description: 'Team High Ground (THG) - Breton esports association based in Rennes, France. Competitive League of Legends, Super Smash Bros. Ultimate and Teamfight Tactics teams. Join us!',
+      keywords: ['esports france', 'esports team rennes', 'team high ground', 'thg esports', 'lol france', 'tft france', 'ssbu france', 'amateur esports'],
       type: 'website',
       image: DEFAULT_IMAGE,
       imageAlt: 'Team High Ground Logo',
