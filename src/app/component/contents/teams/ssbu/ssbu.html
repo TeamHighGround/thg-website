@@ -1,0 +1,33 @@
+<section class="min-h-screen">
+
+    <!-- Hero -->
+    <div class="relative overflow-hidden py-16 lg:py-16">
+        <div class="relative max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="text-center lg:text-justify">
+                    <h1 class="text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                        {{ 'contents.teams.ssbu.title' | transloco }}
+                    </h1>
+                    <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                        {{ 'contents.teams.ssbu.description' | transloco }}
+                    </p>
+
+                    <!-- Vidéo d'annonce X / Twitter -->
+                    <div class="flex justify-center lg:justify-start">
+                        <div class="w-full max-w-[550px] twitter-embed">
+                            <blockquote class="twitter-tweet" data-theme="dark" data-dnt="true">
+                                <a href="https://twitter.com/TeamHigh_Ground/status/2063267716912271564"></a>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl max-w-[100%]">
+                        <img src="./assets/image/ssbu.jpg" [alt]="'contents.teams.ssbu.imageAlt' | transloco"
+                            class="w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

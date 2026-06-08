@@ -1,0 +1,8 @@
+.twitter-embed {
+  min-height: 300px;
+}
+
+:host ::ng-deep .twitter-tweet {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}

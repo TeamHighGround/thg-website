@@ -79,6 +79,24 @@ export const ROUTES_SEO_CONFIG: RoutesSeoConfig = {
       imageAlt: 'THG Teamfight Tactics'
     }
   },
+  '/teams/ssbu': {
+    fr: {
+      title: 'Equipe Super Smash Bros Ultimate | THG Esport',
+      description: 'La THG recrute NaetorU, figure cle de l\'esport SSBU breton, et se lance sur Super Smash Bros Ultimate. Decouvrez notre nouvelle section Smash.',
+      keywords: ['super smash bros ultimate', 'ssbu france', 'naetoru', 'smash bretagne', 'esport smash', 'ssbu bretagne', 'tournoi smash'],
+      type: 'website',
+      image: DEFAULT_IMAGE,
+      imageAlt: 'NaetorU rejoint la THG sur Super Smash Bros Ultimate'
+    },
+    en: {
+      title: 'Super Smash Bros Ultimate Team | THG Esport',
+      description: 'THG signs NaetorU, a key figure of the Breton SSBU esports scene, and launches on Super Smash Bros Ultimate. Discover our new Smash section.',
+      keywords: ['super smash bros ultimate', 'ssbu france', 'naetoru', 'smash brittany', 'smash esports', 'ssbu brittany', 'smash tournament'],
+      type: 'website',
+      image: DEFAULT_IMAGE,
+      imageAlt: 'NaetorU joins THG on Super Smash Bros Ultimate'
+    }
+  },
   '/news': {
     fr: {
       title: 'Actualites | THG - News Esport',

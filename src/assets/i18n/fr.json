@@ -6,7 +6,8 @@
     "teams": {
       "title": "Équipes",
       "lol": "League Of Legends",
-      "tft": "Teamfight Tactics"
+      "tft": "Teamfight Tactics",
+      "ssbu": "Super Smash Bros Ultimate"
     },
     "news": "Actualités",
     "ambassadors": "Nos ambassadeurs",
@@ -193,6 +194,13 @@
               "title": "Nouvelle ère",
               "description": "THG entame une nouvelle phase de développement avec un roster international, visant des performances encore plus élevées sur le circuit compétitif.",
               "badge": "Nouvelle génération"
+            },
+            "b11": {
+              "year": "2026",
+              "tag": "Nouveau jeu",
+              "title": "Arrivée sur Super Smash Bros Ultimate",
+              "description": "THG se lance sur Super Smash Bros Ultimate avec le recrutement de NaetorU, figure clé de l'esport SSBU breton. Un nouveau terrain de jeu pour porter haut les couleurs de la Bretagne.",
+              "badge": "Nouveau jeu"
             }
           }
         }
@@ -220,6 +228,11 @@
       "tft": {
         "title": "Teamfight Tactics",
         "text": "Nous sommes une organisation bretonne présente aussi sur TFT.  Si toi aussi tu veux progresser sur le jeu et que tu souhaites venir représenter nos couleurs en tournoi, n'hésite pas à nous contacter"
+      },
+      "ssbu": {
+        "title": "Super Smash Bros Ultimate",
+        "description": "La THG pose ses marques sur la scène Super Smash Bros Ultimate avec l'arrivée de NaetorU, figure clé de l'esport SSBU breton ! Un nouveau terrain de jeu, une même ambition : représenter la Bretagne au plus haut niveau et faire vibrer la communauté Smash à nos couleurs.",
+        "imageAlt": "NaetorU rejoint la THG sur Super Smash Bros Ultimate"
       }
     },
     "ambassadors": {

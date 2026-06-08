@@ -43,6 +43,8 @@ export class JsonLdService {
       this.addSportsTeamSchema('League of Legends', 'lol');
     } else if (cleanUrl === '/teams/tft') {
       this.addSportsTeamSchema('Teamfight Tactics', 'tft');
+    } else if (cleanUrl === '/teams/ssbu') {
+      this.addSportsTeamSchema('Super Smash Bros Ultimate', 'ssbu');
     }
   }
 
@@ -104,6 +106,7 @@ export class JsonLdService {
       '/teams': { fr: 'Equipes', en: 'Teams' },
       '/teams/lol': { fr: 'League of Legends', en: 'League of Legends' },
       '/teams/tft': { fr: 'Teamfight Tactics', en: 'Teamfight Tactics' },
+      '/teams/ssbu': { fr: 'Super Smash Bros Ultimate', en: 'Super Smash Bros Ultimate' },
       '/news': { fr: 'Actualites', en: 'News' },
       '/ambassadors': { fr: 'Ambassadeurs', en: 'Ambassadors' },
       '/contact': { fr: 'Contact', en: 'Contact' }

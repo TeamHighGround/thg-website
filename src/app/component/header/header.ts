@@ -127,6 +127,7 @@ export class Header implements OnInit, AfterViewInit {
     const currentUrl = this.router.url;
     return currentUrl.startsWith('/teams/lol') ||
       currentUrl.startsWith('/teams/tft') ||
+      currentUrl.startsWith('/teams/ssbu') ||
       currentUrl === '/teams/league-of-legends';
   }
 
@@ -146,6 +147,12 @@ export class Header implements OnInit, AfterViewInit {
         label: this.translocoService.translate('header.teams.tft'),
         command: () => {
           this.router.navigate(['/teams/tft']);
+        }
+      },
+      {
+        label: this.translocoService.translate('header.teams.ssbu'),
+        command: () => {
+          this.router.navigate(['/teams/ssbu']);
         }
       }
     ]);

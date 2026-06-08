@@ -6,7 +6,8 @@
     "teams": {
       "title": "Teams",
       "lol": "League Of Legends",
-      "tft": "Teamfight Tactics"
+      "tft": "Teamfight Tactics",
+      "ssbu": "Super Smash Bros Ultimate"
     },
     "news": "News",
     "ambassadors": "Our Ambassadors",
@@ -193,6 +194,13 @@
               "title": "A new era",
               "description": "THG begins a new phase of development with an international roster, aiming for even higher performance on the competitive circuit.",
               "badge": "New generation"
+            },
+            "b11": {
+              "year": "2026",
+              "tag": "New game",
+              "title": "Entering Super Smash Bros Ultimate",
+              "description": "THG launches on Super Smash Bros Ultimate with the signing of NaetorU, a key figure of the Breton SSBU esports scene. A new playground to proudly carry the colors of Brittany.",
+              "badge": "New game"
             }
           }
         }
@@ -220,6 +228,11 @@
       "tft": {
         "title": "Teamfight Tactics",
         "text": "We are a Breton organization also present on TFT. If you also want to improve at the game and wish to represent our colors in tournaments, do not hesitate to contact us."
+      },
+      "ssbu": {
+        "title": "Super Smash Bros Ultimate",
+        "description": "THG is making its mark on the Super Smash Bros Ultimate scene with the arrival of NaetorU, a key figure of the Breton SSBU esports scene! A new playground, the same ambition: representing Brittany at the highest level and bringing the Smash community to life in our colors.",
+        "imageAlt": "NaetorU joins THG on Super Smash Bros Ultimate"
       }
     },
     "ambassadors": {
