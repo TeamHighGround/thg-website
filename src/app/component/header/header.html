@@ -1,7 +1,9 @@
 <header [class.mobile-menu-open]="mobileMenuOpen" [class.header-hidden]="headerHidden">
-  <div class="h-24 relative">
 
-    <!-- Logo THG -->
+  <!-- ===================== DESKTOP (≥ lg) ===================== -->
+  <div class="hidden lg:block h-24 relative">
+
+    <!-- Logo THG (haut-gauche) -->
     <div class="absolute left-0 top-2 h-full flex items-center z-30">
       <a routerLink="/" (click)="onHomeClick()" class="flex items-center space-x-2 relative z-30">
         <div class="w-28 h-28 flex items-center justify-center">
@@ -10,19 +12,14 @@
       </a>
     </div>
 
-    <!-- Desktop Navigation -->
-    <div class="hidden lg:flex items-center justify-center h-16 relative">
+    <!-- Pilule d'onglets, centrée -->
+    <div class="flex items-center justify-center h-16 relative">
       <nav class="nav-pill flex items-center space-x-8 relative" #navContainer>
         <a routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"
           (click)="onHomeClick()"
           class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative z-10">
           {{ 'header.home' | transloco }}
         </a>
-
-      <!--   <a routerLink="/about" routerLinkActive="router-link-active"
-          class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative z-10">
-          {{ 'header.about' | transloco }}
-        </a> -->
 
         <!-- Teams Dropdown -->
         <div class="relative group">
@@ -36,11 +33,6 @@
           <p-menu #menu [model]="(dynamicMenuItems$ | async)!" [popup]="true" appendTo="body" styleClass="teams-menu"
             (onShow)="showMenu()" />
         </div>
-
-        <!-- <a routerLink="/news" routerLinkActive="router-link-active"
-          class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative z-10">
-          {{ 'header.news' | transloco }}
-        </a>-->
 
         <a routerLink="/partners" routerLinkActive="router-link-active"
            class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative z-10">
@@ -68,86 +60,83 @@
         </div>
       </nav>
     </div>
-
-    <!-- Mobile menu button -->
-    <div class="lg:hidden absolute right-0 top-0 h-full flex items-center">
-      <button (click)="mobileMenuOpen = !mobileMenuOpen"
-        class="text-gray-300 hover:text-thgGreen p-2 rounded-md transition-colors duration-200">
-        <i class="pi pi-bars text-lg"></i>
-      </button>
-    </div>
   </div>
 
-  <!-- Mobile Navigation -->
-  <div class="lg:hidden" [class.hidden]="!mobileMenuOpen">
-    <div class="px-2 pt-2 pb-3 space-y-1">
-      <a routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"
-        class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-        (click)="closeMobileMenu(); onHomeClick()">
-        {{ 'header.home' | transloco }}
-      </a>
+  <!-- ===================== MOBILE (< lg) ===================== -->
+  <!-- Une seule pilule : barre (logo + burger) qui s'agrandit vers le bas
+       quand on déplie le menu, en continuité du même fond blur. -->
+  <div class="lg:hidden flex justify-center pt-3 px-3">
+    <div class="nav-pill-mobile w-[min(24rem,100%)] flex flex-col overflow-hidden">
 
-      <!-- <a routerLink="/about" routerLinkActive="router-link-active"
-        class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-        (click)="closeMobileMenu()">
-        {{ 'header.about' | transloco }}
-      </a> -->
-
-      <!-- Mobile Teams Section -->
-      <div class="px-3 py-2">
-        <span class="text-gray-400 text-sm font-medium">{{ 'header.teams.title' | transloco }}</span>
-        <div class="ml-4 mt-1">
-          <a routerLink="/teams/lol" routerLinkActive="router-link-active"
-            class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-sm transition-colors duration-200"
-            (click)="closeMobileMenu()">
-            {{ 'header.teams.lol' | transloco }}
-          </a>
-        </div>
-        <div class="ml-4 mt-1">
-          <a routerLink="/teams/tft" routerLinkActive="router-link-active"
-            class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-sm transition-colors duration-200"
-            (click)="closeMobileMenu()">
-            {{ 'header.teams.tft' | transloco }}
-          </a>
-        </div>
-        <div class="ml-4 mt-1">
-          <a routerLink="/teams/ssbu" routerLinkActive="router-link-active"
-            class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-sm transition-colors duration-200"
-            (click)="closeMobileMenu()">
-            {{ 'header.teams.ssbu' | transloco }}
-          </a>
-        </div>
+      <!-- Barre : logo + burger -->
+      <div class="flex items-center justify-between h-12 pl-4 pr-2">
+        <a routerLink="/" (click)="onHomeClick()" class="flex items-center" aria-label="Accueil">
+          <img src="assets/logo/green/V1_VERT_PNG.png" alt="Logo" class="w-9 h-9 object-contain" />
+        </a>
+        <button (click)="mobileMenuOpen = !mobileMenuOpen" [attr.aria-expanded]="mobileMenuOpen" aria-label="Menu"
+          class="text-gray-300 hover:text-thgGreen transition-colors duration-200 p-2 flex items-center">
+          <i class="pi text-lg" [ngClass]="mobileMenuOpen ? 'pi-times' : 'pi-bars'"></i>
+        </button>
       </div>
 
-      <!-- <a routerLink="/news" routerLinkActive="router-link-active"
-        class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-        (click)="closeMobileMenu()">
-        {{ 'header.news' | transloco }}
-      </a> -->
+      <!-- Menu déroulant, dans la même pilule -->
+      <div [class.hidden]="!mobileMenuOpen" class="border-t border-white/5 px-2 pt-2 pb-3 space-y-1">
+        <a routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"
+          class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+          (click)="closeMobileMenu(); onHomeClick()">
+          {{ 'header.home' | transloco }}
+        </a>
 
-      <a routerLink="/ambassadors" routerLinkActive="router-link-active"
-        class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-        (click)="closeMobileMenu()">
-        {{ 'header.ambassadors' | transloco }}
-      </a>
+        <!-- Teams -->
+        <div class="px-3 py-2">
+          <span class="text-gray-400 text-sm font-medium">{{ 'header.teams.title' | transloco }}</span>
+          <div class="ml-4 mt-1">
+            <a routerLink="/teams/lol" routerLinkActive="router-link-active"
+              class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-sm transition-colors duration-200"
+              (click)="closeMobileMenu()">
+              {{ 'header.teams.lol' | transloco }}
+            </a>
+          </div>
+          <div class="ml-4 mt-1">
+            <a routerLink="/teams/tft" routerLinkActive="router-link-active"
+              class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-sm transition-colors duration-200"
+              (click)="closeMobileMenu()">
+              {{ 'header.teams.tft' | transloco }}
+            </a>
+          </div>
+          <div class="ml-4 mt-1">
+            <a routerLink="/teams/ssbu" routerLinkActive="router-link-active"
+              class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-sm transition-colors duration-200"
+              (click)="closeMobileMenu()">
+              {{ 'header.teams.ssbu' | transloco }}
+            </a>
+          </div>
+        </div>
 
-      <a routerLink="/partners" routerLinkActive="router-link-active"
-        class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-        (click)="closeMobileMenu()">
-        {{ 'header.partners' | transloco }}
-      </a>
+        <a routerLink="/ambassadors" routerLinkActive="router-link-active"
+          class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+          (click)="closeMobileMenu()">
+          {{ 'header.ambassadors' | transloco }}
+        </a>
 
-      <a routerLink="/shop" routerLinkActive="router-link-active"
-        class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-        (click)="closeMobileMenu()">
-        {{ 'header.shop' | transloco }}
-      </a>
+        <a routerLink="/partners" routerLinkActive="router-link-active"
+          class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+          (click)="closeMobileMenu()">
+          {{ 'header.partners' | transloco }}
+        </a>
 
-      <a routerLink="/contact" routerLinkActive="router-link-active"
-        class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-        (click)="closeMobileMenu()">
-        {{ 'header.contact' | transloco }}
-      </a>
+        <a routerLink="/shop" routerLinkActive="router-link-active"
+          class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+          (click)="closeMobileMenu()">
+          {{ 'header.shop' | transloco }}
+        </a>
+
+        <a routerLink="/contact" routerLinkActive="router-link-active"
+          class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+          (click)="closeMobileMenu()">
+          {{ 'header.contact' | transloco }}
+        </a>
+      </div>
     </div>
   </div>
 </header>

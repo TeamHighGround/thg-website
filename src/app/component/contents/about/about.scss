@@ -218,46 +218,37 @@
 /* ============================================================
    Responsive
    ============================================================ */
+/* header plus bas en mobile (h-16 = 4rem) : le hero remplit la
+   hauteur restante en conséquence */
+@media (max-width: 1023px) {
+  .hero { min-height: calc(100vh - 4rem); }
+}
+
 @media (max-width: 640px) {
-  /* logo central masqué sur mobile (trop chargé) */
-  .hero__logo { display: none; }
-
-  /* slogans empilés : plus de slogans sur les côtés, on récupère la largeur */
-  .hero__bottom { padding-inline: 1rem; }
-
-  /* slogans empilés avec le titre : haut → titre → bas, centrés ensemble */
-  .hero__center {
-    flex-direction: column;
-    gap: clamp(2rem, 8vw, 3.5rem);
+  /* logo conservé : en portrait on a de la hauteur disponible.
+     (24vw serait trop petit ici, on le base plutôt sur la largeur dispo) */
+  .hero__logo {
+    width: clamp(110px, 30vw, 170px);
   }
 
+  /* « Trust the process » reste vertical sur les côtés (comme en desktop),
+     simplement resserré pour tenir sur un écran étroit */
   .hero__side {
-    position: static;
-    transform: none;
-    flex-direction: row;
-    width: auto;
-    gap: .9rem;
+    gap: .8rem;
   }
-  .hero__side--left  { order: 0; }
-  .hero__title       { order: 1; }
-  .hero__side--right { order: 2; }
-
+  .hero__side--left  { left:  clamp(.4rem, 2vw, 1rem); }
+  .hero__side--right { right: clamp(.4rem, 2vw, 1rem); }
   .hero__side-text {
-    writing-mode: horizontal-tb;
-    transform: none;
-    font-size: .72rem;
-    letter-spacing: .4em;
+    font-size: .62rem;
+    letter-spacing: .3em;
   }
-  /* annule la rotation verticale du slogan de gauche */
-  .hero__side--left .hero__side-text { transform: none; }
-
-  /* gemmes pivotées pour pointer vers le texte (gauche/droite) */
   .hero__side-gem {
-    height: clamp(30px, 8vw, 44px);
-    width: auto;
-    transform: rotate(90deg);
+    height: clamp(34px, 9vw, 56px);
   }
-  .hero__side-gem--up { transform: rotate(-90deg); }
+
+  /* on réserve la zone (étroite) des slogans pour que le bas ne passe pas
+     par-dessus, sans trop rogner la largeur du contenu */
+  .hero__bottom { padding-inline: clamp(2.5rem, 10vw, 3.5rem); }
 }
 
 /* ------------------------------------------------------------
