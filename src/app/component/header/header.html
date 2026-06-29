@@ -11,7 +11,7 @@
     </div>
 
     <!-- Desktop Navigation -->
-    <div class="hidden md:flex items-center justify-center h-16 relative">
+    <div class="hidden lg:flex items-center justify-center h-16 relative">
       <nav class="nav-pill flex items-center space-x-8 relative" #navContainer>
         <a routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"
           (click)="onHomeClick()"
@@ -70,7 +70,7 @@
     </div>
 
     <!-- Mobile menu button -->
-    <div class="md:hidden absolute right-0 top-0 h-full flex items-center">
+    <div class="lg:hidden absolute right-0 top-0 h-full flex items-center">
       <button (click)="mobileMenuOpen = !mobileMenuOpen"
         class="text-gray-300 hover:text-thgGreen p-2 rounded-md transition-colors duration-200">
         <i class="pi pi-bars text-lg"></i>
@@ -79,7 +79,7 @@
   </div>
 
   <!-- Mobile Navigation -->
-  <div class="md:hidden" [class.hidden]="!mobileMenuOpen">
+  <div class="lg:hidden" [class.hidden]="!mobileMenuOpen">
     <div class="px-2 pt-2 pb-3 space-y-1">
       <a routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"
         class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
