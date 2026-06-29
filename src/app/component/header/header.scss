@@ -11,6 +11,8 @@
 // Auto-hide au scroll, uniquement en mobile :
 // le header glisse vers le haut quand on descend, et réapparaît quand on remonte.
 @media (max-width: 1023px) {
+  // Header transparent en mobile : le blur est porté par la pilule du burger
+  // (et par le fond plein largeur uniquement quand le menu est ouvert)
   header {
     transition: transform 0.3s ease;
   }
@@ -32,14 +34,16 @@
   padding: 0.5rem 1.5rem;
 }
 
-// Fond plein largeur sur tout le header quand le menu mobile est ouvert
-// (couvre la barre du logo + le menu, jusqu'en haut de l'écran)
-.mobile-menu-open {
+// Pilule mobile : même fond/blur que la barre d'onglets desktop.
+// flex-col + overflow-hidden => le menu déroulé prolonge la pilule
+// (continuité du blur), avec des coins arrondis homogènes.
+.nav-pill-mobile {
   background-color: rgba(10, 13, 10, 0.4);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.5rem;
 }
 
 // Styles pour l'indicateur actif

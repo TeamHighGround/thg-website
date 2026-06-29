@@ -12,7 +12,11 @@
 
   .main-content {
     flex: 1;
-    // Compense la hauteur du header fixe (h-24) pour ne pas masquer le contenu
+    // Compense la hauteur du header fixe (h-24 desktop / h-16 mobile)
     padding-top: 6rem;
+
+    @media (max-width: 1023px) {
+      padding-top: 4rem;
+    }
   }
 }
