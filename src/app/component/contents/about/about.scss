@@ -38,7 +38,6 @@
   width: 100%;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 6px 22px rgba(174, 212, 172, .25));
 }
 
 /* ============================================================
@@ -75,7 +74,6 @@
   width: auto;
   height: clamp(54px, 12vh, 96px);
   object-fit: contain;
-  filter: drop-shadow(0 4px 14px rgba(174, 212, 172, .28));
 }
 /* gemme du haut : pointe vers le haut */
 .hero__side-gem--up { transform: rotate(180deg); }
@@ -280,14 +278,18 @@
     font-size: clamp(3rem, 13vh, 6rem);
   }
 
-  /* slogans latéraux : footprint vertical réduit pour rester dans
-     la bande centrale et ne pas chevaucher les infos du bas */
+  /* slogans latéraux : footprint vertical fortement réduit pour que
+     l'ensemble (texte + 2 gemmes) tienne dans la faible hauteur et ne
+     soit pas coupé par overflow:hidden */
   .hero__side {
-    gap: .5rem;
+    gap: clamp(.2rem, 1.2vh, .5rem);
   }
   .hero__side-text {
-    font-size: .68rem;
-    letter-spacing: .3em;
+    font-size: .58rem;
+    letter-spacing: .26em;
+  }
+  .hero__side-gem {
+    height: clamp(18px, 5.5vh, 34px);
   }
 
   /* rapproche les slogans des bords pour libérer la zone du titre */
