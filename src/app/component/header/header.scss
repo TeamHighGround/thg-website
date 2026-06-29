@@ -10,7 +10,7 @@
 
 // Auto-hide au scroll, uniquement en mobile :
 // le header glisse vers le haut quand on descend, et réapparaît quand on remonte.
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   header {
     transition: transform 0.3s ease;
   }
@@ -52,7 +52,7 @@
 }
 
 // Style pour l'indicateur mobile
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .mobile-active-indicator {
     height: 2px;
     background: var(--thg-green);

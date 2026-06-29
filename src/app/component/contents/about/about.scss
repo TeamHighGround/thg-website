@@ -12,11 +12,12 @@
   /* remplit le 1er écran : 100vh moins la navbar (h-24 = 6rem),
      donc le bas du hero = bas du viewport */
   min-height: calc(100vh - 6rem);
-  /* 3 rangées : logo (haut) · titre (centré) · infos (bas).
-     Les deux rangées 1fr étant égales, la rangée centrale est
-     parfaitement centrée par rapport à l'écran. */
-  display: grid;
-  grid-template-rows: 1fr auto 1fr;
+  /* le bloc central est centré sur tout l'écran ; logo et infos du bas
+     sont en position absolue, donc leur hauteur n'influe pas sur ce
+     centrage (centrage stable quelle que soit la taille d'écran). */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
@@ -24,9 +25,10 @@
    Logo central (statique)
    ============================================================ */
 .hero__logo {
-  align-self: start;         /* rangée du haut, collé en haut */
-  justify-self: center;      /* centré horizontalement */
-  margin-top: clamp(0.15rem, 1vh, 1rem);
+  position: absolute;
+  top: clamp(0.15rem, 1vh, 1rem);
+  left: 50%;
+  transform: translateX(-50%);
   /* taille couplée à la hauteur du viewport : sur un écran court le
      logo rétrécit et ne déborde donc pas sur le titre */
   width: min(24vw, clamp(130px, 16vh, 224px));
@@ -83,6 +85,7 @@
    ============================================================ */
 .hero__center {
   position: relative;        /* ancre les slogans latéraux (absolus) */
+  width: 100%;               /* pleine largeur : les slogans s'ancrent aux bords */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,12 +117,18 @@
    Bas du hero : infos minimalistes + indice de scroll
    ============================================================ */
 .hero__bottom {
-  align-self: end;           /* rangée du bas, collé en bas */
+  position: absolute;        /* collé en bas, hors du flux : n'influe pas
+                                sur le centrage du bloc central */
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.1rem;
-  width: 100%;
+  /* réserve la zone occupée par les slogans latéraux (offset + largeur)
+     pour que le contenu du bas ne passe pas par-dessus « Trust the process » */
+  padding-inline: clamp(5rem, 14vw, 9rem);
   padding-bottom: clamp(1.25rem, 4vh, 2.5rem);
 }
 
@@ -215,6 +224,9 @@
   /* logo central masqué sur mobile (trop chargé) */
   .hero__logo { display: none; }
 
+  /* slogans empilés : plus de slogans sur les côtés, on récupère la largeur */
+  .hero__bottom { padding-inline: 1rem; }
+
   /* slogans empilés avec le titre : haut → titre → bas, centrés ensemble */
   .hero__center {
     flex-direction: column;
@@ -256,12 +268,16 @@
    titre et que les slogans latéraux débordent sur les infos du bas.
    ------------------------------------------------------------ */
 @media (max-height: 560px) and (orientation: landscape) {
-  /* logo central masqué : il recouvrirait le titre faute de place */
-  .hero__logo { display: none; }
+  /* logo conservé mais réduit (couplé à la hauteur, plancher abaissé)
+     pour qu'il reste en haut sans toucher le titre */
+  .hero__logo {
+    width: clamp(80px, 14vh, 150px);
+    top: clamp(0.1rem, 0.6vh, .5rem);
+  }
 
-  /* le titre reste centré mais plus compact */
+  /* le titre reste centré, un peu plus grand qu'avant */
   .hero__title {
-    font-size: clamp(2.5rem, 9vh, 5rem);
+    font-size: clamp(3rem, 13vh, 6rem);
   }
 
   /* slogans latéraux : footprint vertical réduit pour rester dans
