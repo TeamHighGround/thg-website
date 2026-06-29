@@ -12,8 +12,11 @@
   /* remplit le 1er écran : 100vh moins la navbar (h-24 = 6rem),
      donc le bas du hero = bas du viewport */
   min-height: calc(100vh - 6rem);
-  display: flex;
-  flex-direction: column;
+  /* 3 rangées : logo (haut) · titre (centré) · infos (bas).
+     Les deux rangées 1fr étant égales, la rangée centrale est
+     parfaitement centrée par rapport à l'écran. */
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
   overflow: hidden;
 }
 
@@ -21,11 +24,12 @@
    Logo central (statique)
    ============================================================ */
 .hero__logo {
-  position: absolute;
-  top: clamp(0.15rem, 1vh, 1rem);
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(150px, 22vw, 224px);
+  align-self: start;         /* rangée du haut, collé en haut */
+  justify-self: center;      /* centré horizontalement */
+  margin-top: clamp(0.15rem, 1vh, 1rem);
+  /* taille couplée à la hauteur du viewport : sur un écran court le
+     logo rétrécit et ne déborde donc pas sur le titre */
+  width: min(24vw, clamp(130px, 16vh, 224px));
   z-index: 2;
 }
 .hero__logo img {
@@ -78,8 +82,7 @@
    Titre central
    ============================================================ */
 .hero__center {
-  position: relative;
-  flex: 1;
+  position: relative;        /* ancre les slogans latéraux (absolus) */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,6 +114,7 @@
    Bas du hero : infos minimalistes + indice de scroll
    ============================================================ */
 .hero__bottom {
+  align-self: end;           /* rangée du bas, collé en bas */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -244,6 +248,42 @@
     transform: rotate(90deg);
   }
   .hero__side-gem--up { transform: rotate(-90deg); }
+}
+
+/* ------------------------------------------------------------
+   Écrans larges mais peu hauts (téléphone en paysage, etc.)
+   Hauteur limitée : on évite que le logo central chevauche le
+   titre et que les slogans latéraux débordent sur les infos du bas.
+   ------------------------------------------------------------ */
+@media (max-height: 560px) and (orientation: landscape) {
+  /* logo central masqué : il recouvrirait le titre faute de place */
+  .hero__logo { display: none; }
+
+  /* le titre reste centré mais plus compact */
+  .hero__title {
+    font-size: clamp(2.5rem, 9vh, 5rem);
+  }
+
+  /* slogans latéraux : footprint vertical réduit pour rester dans
+     la bande centrale et ne pas chevaucher les infos du bas */
+  .hero__side {
+    gap: .5rem;
+  }
+  .hero__side-text {
+    font-size: .68rem;
+    letter-spacing: .3em;
+  }
+
+  /* rapproche les slogans des bords pour libérer la zone du titre */
+  .hero__side--left  { left:  clamp(.5rem, 2vw, 1.5rem); }
+  .hero__side--right { right: clamp(.5rem, 2vw, 1.5rem); }
+
+  /* bas du hero : plus compact pour tenir dans la hauteur réduite */
+  .hero__bottom {
+    gap: .5rem;
+    padding-bottom: clamp(.5rem, 2vh, 1rem);
+  }
+  .hero__meta { font-size: .66rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

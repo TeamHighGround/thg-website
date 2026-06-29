@@ -3,7 +3,7 @@
 
     <!-- Logo THG -->
     <div class="absolute left-0 top-2 h-full flex items-center z-30">
-      <a routerLink="/" class="flex items-center space-x-2 relative z-30">
+      <a routerLink="/" (click)="onHomeClick()" class="flex items-center space-x-2 relative z-30">
         <div class="w-28 h-28 flex items-center justify-center">
           <img src="assets/logo/green/V1_VERT_PNG.png" alt="Logo" class="w-full h-full object-contain rounded-lg" />
         </div>
@@ -14,6 +14,7 @@
     <div class="hidden md:flex items-center justify-center h-16 relative">
       <nav class="nav-pill flex items-center space-x-8 relative" #navContainer>
         <a routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"
+          (click)="onHomeClick()"
           class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative z-10">
           {{ 'header.home' | transloco }}
         </a>
@@ -82,7 +83,7 @@
     <div class="px-2 pt-2 pb-3 space-y-1">
       <a routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"
         class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-        (click)="closeMobileMenu()">
+        (click)="closeMobileMenu(); onHomeClick()">
         {{ 'header.home' | transloco }}
       </a>
 

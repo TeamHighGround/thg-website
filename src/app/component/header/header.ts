@@ -134,6 +134,15 @@ export class Header implements OnInit, AfterViewInit {
   closeMobileMenu() {
     this.mobileMenuOpen = false;
   }
+
+  // Clic sur Accueil / logo : si on est déjà sur l'accueil, on remonte en haut
+  // (sinon le routerLink ne déclenche aucune navigation et rien ne se passe).
+  onHomeClick() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    if (this.router.url === '/' || this.router.url === '/en') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
   
   public showMenu(): void {
     this.dynamicMenuItems$.next([
