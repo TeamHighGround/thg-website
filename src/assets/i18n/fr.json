@@ -201,6 +201,13 @@
               "title": "Arrivée sur Super Smash Bros Ultimate",
               "description": "THG se lance sur Super Smash Bros Ultimate avec le recrutement de NaetorU, figure clé de l'esport SSBU breton. Un nouveau terrain de jeu pour porter haut les couleurs de la Bretagne.",
               "badge": "Nouveau jeu"
+            },
+            "b12": {
+              "year": "Été 2026",
+              "tag": "Semi-professionnel",
+              "title": "Nexus League",
+              "description": "THG franchit un cap et débarque sur la Nexus League avec un roster semi-professionnel, prêt à défendre les couleurs de la Bretagne au plus haut niveau national.",
+              "badge": "Semi-professionnel"
             }
           }
         }
@@ -209,7 +216,14 @@
     "teams": {
       "lol": {
         "title": "League Of Legends",
-        "description": "League Of Legends est le jeu historique et de cœur de la THG. Après plusieurs années à évoluer sur la scène amateure bretonne et française, nous passons un cap cet été avec un roster semi-professionnel engagé dans le nexus tour de League Of Legends. Notre objectif est clair : progresser ensemble, structurer notre projet et affirmer notre place sur la scène française.",
+        "teams": {
+          "league": {
+            "description": "League Of Legends est le jeu historique et de cœur de la THG. Après plusieurs années à évoluer sur la scène amateure bretonne et française, nous passons un cap cet été avec un roster semi-professionnel engagé dans la Nexus League de League Of Legends. Notre objectif est clair : progresser ensemble, structurer notre projet et affirmer notre place sur la scène française."
+          },
+          "tour": {
+            "description": "La THG Skol est notre équipe académie, engagée dans le Nexus Tour. Véritable tremplin du projet, elle réunit des joueurs prometteurs venus progresser et se révéler."
+          }
+        },
         "roster": {
           "title": "Roster",
           "description": "Les joueurs représentants la THG en compétition"
@@ -304,7 +318,11 @@
   "shop": {
     "title": "Boutique THG",
     "subtitle": "Commandez votre merch officiel",
-    "loading": "Chargement de la boutique..."
+    "loading": "Chargement de la boutique...",
+    "closed": {
+      "title": "La boutique est actuellement fermée",
+      "message": "Notre boutique fait une petite pause. Elle rouvrira très bientôt avec de nouveaux produits — merci pour votre patience !"
+    }
   },
   "footer": {
     "contact": "Contact",

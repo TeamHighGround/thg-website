@@ -1,19 +1,42 @@
 <section class="min-h-screen">
 
-    <div class="relative overflow-hidden py-16 lg:py-16">
+    <div class="relative overflow-hidden py-2 lg:py-2">
         <div class="relative max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                <div class="text-center lg:text-justify">
-                    <h1 class="text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-                        {{ 'contents.teams.lol.title' | transloco }}
-                    </h1>
-                    <p class="text-lg text-gray-300 mb-4 leading-relaxed">
-                        {{ 'contents.teams.lol.description' | transloco }}
-                    </p>
+
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 lg:items-stretch">
+                <div class="flex flex-col text-center lg:text-justify">
+
+                    <!-- Team Selector -->
+                    <div class="flex flex-row justify-start gap-4 mb-8">
+                        <button *ngFor="let team of teams"
+                                type="button"
+                                (click)="selectTeam(team)"
+                                [ngClass]="selectedTeam.key === team.key
+                                    ? 'border-thgGreen bg-thgGreen/10 opacity-100'
+                                    : 'border-white/[0.08] bg-white/[0.025] opacity-60'"
+                                class="group flex items-center gap-3 px-6 py-3 rounded-xl border-2
+                                       transition-all duration-300
+                                       hover:border-thgGreen/40 hover:opacity-100">
+                            <img [src]="team.logo" [alt]="team.name"
+                                 class="w-10 h-10 object-contain">
+                            <span class="text-lg font-bold text-white group-hover:text-thgGreen-300 transition-colors">
+                                {{ team.name }}
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="flex-grow flex flex-col justify-center">
+                        <h1 class="text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                            {{ 'contents.teams.lol.title' | transloco }}
+                        </h1>
+                        <p class="text-lg text-gray-300 mb-4 leading-relaxed">
+                            {{ 'contents.teams.lol.teams.' + selectedTeam.key + '.description' | transloco }}
+                        </p>
+                    </div>
                 </div>
                 <div class="relative">
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl max-w-[100%]">
-                        <img src="./assets/image/roster_lol.jpg" [alt]="'roster_lol'"
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl max-w-[92%] mx-auto">
+                        <img [src]="selectedTeam.rosterImage" [alt]="selectedTeam.name"
                             class="w-full h-auto object-cover">
                     </div>
                 </div>
@@ -38,7 +61,7 @@
             <!-- Players Grid  -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-20">
                 <app-team-card
-                    *ngFor="let player of players"
+                    *ngFor="let player of selectedTeam.players"
                     [member]="player"
                     type="player"
                     [getRoleIcon]="getRoleIcon">
@@ -59,7 +82,7 @@
 
                 <!-- Staff Grid -->
                 <div class="flex flex-wrap justify-center gap-6">
-                    <div *ngFor="let member of staff" class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(20%-19.2px)]">
+                    <div *ngFor="let member of selectedTeam.staff" class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(20%-19.2px)]">
                         <app-team-card
                             [member]="member"
                             type="staff"
@@ -67,36 +90,6 @@
                         </app-team-card>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Support Section -->
-    <div class="relative py-16 border-t border-gray-700/50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-
-            <!-- Casting Info -->
-            <div class="group relative bg-white/[0.025] border border-white/[0.08] rounded-[10px] overflow-hidden
-                       transition-all duration-300 hover:-translate-y-0.5 hover:border-thgGreen/30 mb-8 casting-card">
-
-                <div class="p-8">
-                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-thgGreen-300 transition-colors">
-                        {{ 'contents.teams.lol.casting.title' | transloco }}
-                    </h3>
-                    <p class="text-white leading-relaxed">
-                        {{ 'contents.teams.lol.casting.description' | transloco }}
-                    </p>
-                </div>
-            </div>
-
-            <!-- Support Messages -->
-            <div class="space-y-4">
-                <p class="text-xl font-semibold text-thgGreen-300">
-                    {{ 'contents.teams.lol.support-us' | transloco }}
-                </p>
-                <p class="text-lg text-gray-300">
-                    {{ 'contents.teams.lol.follow-us' | transloco }}
-                </p>
             </div>
         </div>
     </div>

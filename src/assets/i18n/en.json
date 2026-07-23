@@ -201,6 +201,13 @@
               "title": "Entering Super Smash Bros Ultimate",
               "description": "THG launches on Super Smash Bros Ultimate with the signing of NaetorU, a key figure of the Breton SSBU esports scene. A new playground to proudly carry the colors of Brittany.",
               "badge": "New game"
+            },
+            "b12": {
+              "year": "Summer 2026",
+              "tag": "Semi-professional",
+              "title": "Nexus League",
+              "description": "THG steps up and joins the Nexus League with a semi-professional roster, ready to defend Brittany's colors at the highest national level.",
+              "badge": "Semi-professional"
             }
           }
         }
@@ -209,7 +216,14 @@
     "teams": {
       "lol": {
         "title": "League Of Legends",
-        "description": "League Of Legends is THG's historic and core game. After several years evolving in the Breton and French amateur scene, we are taking a step up this summer with a semi-professional roster competing in the nexus tour of League Of Legends. Our objective is clear: to progress together, structure our project, and assert our place on the french stage.",
+        "teams": {
+          "league": {
+            "description": "League Of Legends is THG's historic and core game. After several years evolving in the Breton and French amateur scene, we are taking a step up this summer with a semi-professional roster competing in the Nexus League of League Of Legends. Our objective is clear: to progress together, structure our project, and assert our place on the french stage."
+          },
+          "tour": {
+            "description": "THG Skol is our academy team, competing in the Nexus Tour. A true springboard for the project, it brings together promising players coming to grow and prove themselves."
+          }
+        },
         "roster": {
           "title": "Roster",
           "description": "The players representing THG in competition"
@@ -454,7 +468,11 @@
   "shop": {
     "title": "THG Shop",
     "subtitle": "Order your official merch",
-    "loading": "Loading shop..."
+    "loading": "Loading shop...",
+    "closed": {
+      "title": "The shop is currently closed",
+      "message": "Our shop is taking a short break. It will reopen very soon with new products — thanks for your patience and stay tuned!"
+    }
   },
   "footer": {
     "contact": "Contact",
