@@ -8,6 +8,7 @@ import { SocialLinksComponent } from '../../../../shared/social-links/social-lin
 export interface TeamMember {
   name: string;
   role: string;
+  image?: string;
   socialLinks?: SocialLinks;
 }
 

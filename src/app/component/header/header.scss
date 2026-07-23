@@ -6,6 +6,17 @@
   left: 0;
   width: 100%;
   z-index: 50;
+  // Le header couvre toute la largeur mais n'est visible qu'au centre (pilule + logo).
+  // On laisse donc passer les clics dans les zones vides, et on réactive les clics
+  // uniquement sur les éléments réellement interactifs (voir plus bas).
+  pointer-events: none;
+}
+
+// Réactive les clics sur les parties visibles/interactives du header
+.nav-pill,
+.nav-pill-mobile,
+.header-interactive {
+  pointer-events: auto;
 }
 
 // Auto-hide au scroll, uniquement en mobile :

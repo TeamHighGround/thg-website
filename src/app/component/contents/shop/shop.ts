@@ -17,6 +17,9 @@ export class ShopComponent implements OnInit {
   isBrowser = false;
   widgetUrl!: SafeResourceUrl;
 
+  /** Passer à true pour rouvrir la boutique (widget HelloAsso). */
+  shopOpen = false;
+
   private readonly HELLOASSO_URL = 'https://www.helloasso.com/associations/team-high-ground/boutiques/merch-thg-2026/widget';
 
   ngOnInit(): void {

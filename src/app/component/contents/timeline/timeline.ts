@@ -35,6 +35,12 @@ export class Timeline {
       key: 'contents.timeline.chapters.competitive',
       milestones: [
         {
+          id: 'b12', key: 'contents.timeline.chapters.competitive.milestones.b12',
+          image: IMG + 'nexus_league.jpg', width: 1080, height: 1350,
+          roster: ['Kitano', 'Infinity', 'Scimmia', 'Tebox', 'Metha'],
+          hasBadge: true
+        },
+        {
           id: 'b11', key: 'contents.timeline.chapters.competitive.milestones.b11',
           image: 'assets/image/ssbu.jpg', width: 1080, height: 1350,
           roster: ['NaetorU'],
