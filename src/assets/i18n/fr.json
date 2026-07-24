@@ -383,21 +383,21 @@
     "dataCollection": {
       "title": "Données collectées automatiquement",
       "analytics": {
-        "title": "Google Analytics",
-        "description": "Nous utilisons Google Analytics pour comprendre comment notre site est utilisé :",
+        "title": "Mesure d'audience",
+        "description": "Nous mesurons de façon anonyme la fréquentation du site, sans cookie et sans donnée personnelle :",
         "collected": "Données collectées",
         "purpose": "Finalité",
         "retention": "Conservation",
         "values": {
-          "collected": "Pages visitées, durée des visites, pays d'origine (anonymisées)",
+          "collected": "Pages visitées, sources de trafic, pays et type d'appareil (données agrégées, sans identification)",
           "purpose": "Améliorer le contenu et l'expérience utilisateur",
-          "retention": "26 mois maximum"
+          "retention": "Statistiques agrégées conservées sur nos serveurs, jamais partagées avec des tiers"
         }
       },
       "technical": {
         "title": "Données techniques",
-        "ip": "Adresse IP : Automatiquement anonymisée par Google Analytics",
-        "browser": "Type de navigateur et appareil : Pour optimiser l'affichage du site"
+        "ip": "Adresse IP : anonymisée, jamais stockée en clair ni partagée",
+        "browser": "Type de navigateur et appareil : pour optimiser l'affichage du site"
       }
     },
     "noCollection": {
@@ -411,67 +411,17 @@
     },
     "cookies": {
       "title": "Cookies",
-      "analytics": {
-        "title": "Cookies Google Analytics",
-        "description": "_ga, _ga_*, _gid : Mesure d'audience anonyme",
-        "duration": "Durée : 2 ans maximum pour _ga, 24h pour _gid"
-      },
-      "management": {
-        "title": "Gestion des cookies",
-        "description": "Vous pouvez désactiver les cookies dans votre navigateur. Le site fonctionnera normalement sans ces cookies d'analyse."
-      }
+      "description": "Ce site n'utilise aucun cookie ; aucun consentement n'est donc requis."
     },
     "modifications": {
       "title": "Modifications",
       "description": "Cette politique peut être mise à jour. Les modifications seront publiées sur cette page."
     }
   },
-  "cookieBanner": {
-    "title": "Nous utilisons des cookies",
-    "description": "Ce site utilise Google Analytics pour comprendre comment vous utilisez notre site web. Ces données nous aident à améliorer votre expérience.",
-    "acceptAll": "Accepter tout",
-    "rejectAll": "Refuser",
-    "customize": "Personnaliser",
-    "required": "Obligatoire",
-    "detailedTitle": "Gestion des cookies",
-    "detailedDescription": "Nous respectons votre vie privée. Vous pouvez choisir quels types de cookies accepter :",
-    "backToSimple": "Retour",
-    "savePreferences": "Sauvegarder mes préférences",
-    "categories": {
-      "functional": {
-        "title": "Cookies techniques",
-        "description": "Ces cookies sont nécessaires au fonctionnement du site. Ils ne peuvent pas être désactivés.",
-        "cookies": "Cookies de session, préférences langue"
-      },
-      "analytics": {
-        "title": "Cookies d'analyse",
-        "description": "Ces cookies nous permettent de mesurer et améliorer les performances de notre site web.",
-        "cookies": "_ga, _ga_*, _gid (Google Analytics)"
-      }
-    }
-  },
   "cookieSettings": {
-    "title": "Paramètres des cookies",
-    "description": "Gérez vos préférences de cookies à tout moment.",
-    "currentSettings": "Paramètres actuels",
-    "consentGiven": "Consentement donné le",
-    "resetConsent": "Réinitialiser les préférences",
-    "updateConsent": "Mettre à jour mes préférences",
-    "cancel": "Annuler",
-    "cookiesUsed": "Cookies utilisés :",
-    "purpose": "Finalité :",
-    "conservation": "Conservation :",
-    "provider": "Fournisseur :",
-    "transfer": "Transfert :",
-    "purposeAnalytics": "Mesure d'audience anonyme, analyse du trafic",
-    "conservationAnalytics": "26 mois maximum",
-    "providerAnalytics": "Google LLC",
-    "transferAnalytics": "États-Unis (décision d'adéquation)",
-    "confirmationMessage": "✓ Vos préférences ont été sauvegardées",
-    "resetConfirmation": "Êtes-vous sûr de vouloir réinitialiser toutes vos préférences de cookies ? Vous devrez donner votre consentement à nouveau.",
-    "status": {
-      "accepted": "Accepté",
-      "rejected": "Refusé"
-    }
+    "title": "Cookies & confidentialité",
+    "intro": "Ce site n'utilise aucun cookie et ne collecte aucune donnée personnelle.",
+    "moreInfo": "Pour en savoir plus,",
+    "moreInfoLink": "consultez notre politique de confidentialité."
   }
 }

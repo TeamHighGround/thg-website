@@ -373,20 +373,20 @@
       "dataCollection": {
         "title": "Automatically Collected Data",
         "analytics": {
-          "title": "Google Analytics",
-          "description": "We use Google Analytics to understand how our site is used:",
+          "title": "Audience measurement",
+          "description": "We measure site traffic anonymously, without cookies and without personal data:",
           "collected": "Collected Data",
           "purpose": "Purpose",
           "retention": "Retention",
           "values": {
-            "collected": "Pages visited, visit duration, country of origin (anonymized)",
+            "collected": "Pages visited, traffic sources, country and device type (aggregated, non-identifying)",
             "purpose": "Improve content and user experience",
-            "retention": "26 months maximum"
+            "retention": "Aggregated statistics kept on our servers, never shared with third parties"
           }
         },
         "technical": {
           "title": "Technical Data",
-          "ip": "IP Address: Automatically anonymized by Google Analytics",
+          "ip": "IP Address: anonymized, never stored in clear text nor shared",
           "browser": "Browser type and device: To optimize site display"
         }
       },
@@ -401,68 +401,18 @@
       },
       "cookies": {
         "title": "Cookies",
-        "analytics": {
-          "title": "Google Analytics Cookies",
-          "description": "_ga, _ga_*, _gid: Anonymous audience measurement",
-          "duration": "Duration: 2 years maximum for _ga, 24h for _gid"
-        },
-        "management": {
-          "title": "Cookie Management",
-          "description": "You can disable cookies in your browser. The site will function normally without these analysis cookies."
-        }
+        "description": "This site does not use any cookies; no consent is therefore required."
       },
       "modifications": {
         "title": "Modifications",
         "description": "This policy may be updated. Modifications will be published on this page."
       }
     },
-    "cookieBanner": {
-      "title": "We use cookies",
-      "description": "This site uses Google Analytics to understand how you use our website. This data helps us improve your experience.",
-      "acceptAll": "Accept All",
-      "rejectAll": "Reject",
-      "customize": "Customize",
-      "required": "Required",
-      "detailedTitle": "Cookie Management",
-      "detailedDescription": "We respect your privacy. You can choose which types of cookies to accept:",
-      "backToSimple": "Back",
-      "savePreferences": "Save my preferences",
-      "categories": {
-        "functional": {
-          "title": "Technical Cookies",
-          "description": "These cookies are necessary for the site to function. They cannot be disabled.",
-          "cookies": "Session cookies, language preferences"
-        },
-        "analytics": {
-          "title": "Analytics Cookies",
-          "description": "These cookies allow us to measure and improve our website's performance.",
-          "cookies": "_ga, _ga_*, _gid (Google Analytics)"
-        }
-      }
-    },
     "cookieSettings": {
-      "title": "Cookie Settings",
-      "description": "Manage your cookie preferences at any time.",
-      "currentSettings": "Current Settings",
-      "consentGiven": "Consent given on",
-      "resetConsent": "Reset preferences",
-      "updateConsent": "Update my preferences",
-      "cancel": "Cancel",
-      "cookiesUsed": "Cookies used:",
-      "purpose": "Purpose:",
-      "conservation": "Retention:",
-      "provider": "Provider:",
-      "transfer": "Transfer:",
-      "purposeAnalytics": "Anonymous audience measurement, traffic analysis",
-      "conservationAnalytics": "26 months maximum",
-      "providerAnalytics": "Google LLC",
-      "transferAnalytics": "United States (Adequacy Decision)",
-      "confirmationMessage": "✓ Your preferences have been saved",
-      "resetConfirmation": "Are you sure you want to reset all your cookie preferences? You will need to give your consent again.",
-      "status": {
-        "accepted": "Accepted",
-        "rejected": "Refused"
-      }
+      "title": "Cookies & Privacy",
+      "intro": "This site uses no cookies and collects no personal data.",
+      "moreInfo": "To learn more,",
+      "moreInfoLink": "see our privacy policy."
     }
   },
   "shop": {

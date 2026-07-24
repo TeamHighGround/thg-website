@@ -1,18 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { TranslocoTestingModule } from '@jsverse/transloco';
 
-import { CookieSettings } from './cookie-settings';
+import { CookieSettingsComponent } from './cookie-settings';
 
-describe('CookieSettings', () => {
-  let component: CookieSettings;
-  let fixture: ComponentFixture<CookieSettings>;
+describe('CookieSettingsComponent', () => {
+  let component: CookieSettingsComponent;
+  let fixture: ComponentFixture<CookieSettingsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CookieSettings]
+      imports: [
+        CookieSettingsComponent,
+        TranslocoTestingModule.forRoot({
+          langs: { fr: {}, en: {} },
+          translocoConfig: { availableLangs: ['fr', 'en'], defaultLang: 'fr' }
+        })
+      ],
+      providers: [provideRouter([])]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CookieSettings);
+    fixture = TestBed.createComponent(CookieSettingsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
