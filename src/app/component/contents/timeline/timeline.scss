@@ -42,6 +42,12 @@
   color: #fff;
   line-height: 1.1;
 }
+/* Sous-titre facultatif, saisi depuis l'admin */
+.thg-chapter__subtitle {
+  margin-top: .5rem;
+  font-size: .95rem;
+  color: rgba(229, 231, 235, .7);
+}
 
 /* ---------- Vertical line ---------- */
 .thg-line {

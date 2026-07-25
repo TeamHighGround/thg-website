@@ -10,9 +10,11 @@
       md:h-[450px] lg:max-h-[450px] lg:max-w-md xl:max-w-lg
       overflow-hidden">
       
-      <img 
-        [src]="partner.images[currentImageIndex]" 
-        [alt]="partner.name"
+      <img *ngIf="imageCourante() as image"
+        [src]="image.url"
+        [alt]="image.alt || partner.name"
+        [width]="image.width"
+        [height]="image.height"
         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 lg:rounded-l-[10px]">
       
       <!-- Navigation Images -->

@@ -1,0 +1,30 @@
+<div>
+  <label class="libelle-champ">{{ libelle() }}</label>
+
+  <div class="flex flex-wrap items-center gap-1.5 rounded-lg border border-white/14 bg-white/4 p-2">
+    @for (valeur of valeurs(); track valeur; let i = $index) {
+      <span
+        class="inline-flex items-center gap-1.5 rounded-full bg-thgGreen-500/15 py-0.5 pl-2.5 pr-1 text-xs font-medium text-thgGreen-300">
+        {{ valeur }}
+        <button
+          type="button"
+          class="rounded-full px-1 text-thgGreen-300/70 transition-colors hover:bg-white/10 hover:text-white"
+          [attr.aria-label]="'Retirer ' + valeur"
+          (click)="retirer(i)">
+          <i class="pi pi-times text-[0.6rem]"></i>
+        </button>
+      </span>
+    }
+
+    <input
+      type="text"
+      class="min-w-[8rem] flex-1 bg-transparent px-1 py-0.5 text-sm text-white outline-none placeholder:text-white/30"
+      [placeholder]="placeholder()"
+      [ngModel]="saisie()"
+      (ngModelChange)="saisie.set($event)"
+      (keydown)="surTouche($event)"
+      (blur)="ajouter()" />
+  </div>
+
+  <p class="aide-champ">{{ aide() }}</p>
+</div>

@@ -44,5 +44,11 @@ export const routes: Routes = [
     data: { lang: 'en' },
     children: contentRoutes
   },
+  // Panel d'administration : hors i18n d'URL, chargé à la demande pour ne rien
+  // ajouter au bundle public.
+  {
+    path: 'admin',
+    loadChildren: () => import('./component/admin/admin.routes').then(m => m.adminRoutes)
+  },
   { path: '**', redirectTo: '' }
 ];

@@ -1,0 +1,54 @@
+.zone-envoi {
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 0.85rem;
+  border: 2px dashed rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.75rem 1rem;
+  text-align: center;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    border-color: #6ba968;
+    background: rgba(174, 212, 172, 0.06);
+  }
+
+  &--survol {
+    border-style: solid;
+    border-color: #AED4AC;
+    background: rgba(174, 212, 172, 0.12);
+  }
+}
+
+.vignette {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.35);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+
+  img {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  &:hover {
+    border-color: rgba(174, 212, 172, 0.5);
+    transform: translateY(-2px);
+  }
+}
+
+.vignette-infos {
+  display: block;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.4rem 0.55rem;
+  text-align: left;
+}

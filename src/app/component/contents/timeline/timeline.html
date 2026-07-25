@@ -11,35 +11,49 @@
     <p class="thg-timeline__subtitle">{{ 'contents.timeline.subtitle' | transloco }}</p>
   </header>
 
+  <!-- Chargement / état dégradé quand l'API ne répond pas -->
+  <p *ngIf="etat().status === 'loading'"
+     class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-gray-400">
+    {{ 'contents.common.loading' | transloco }}
+  </p>
+  <p *ngIf="etat().status === 'error'"
+     class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-gray-300">
+    {{ 'contents.common.error' | transloco }}
+  </p>
+
   <!-- Chapters -->
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div *ngFor="let chapter of chapters" class="thg-chapter">
+    <div *ngFor="let chapter of chapters(); trackBy: trackByChapterId" class="thg-chapter">
 
       <!-- Chapter header -->
       <div class="thg-chapter__header">
-        <h3 class="thg-chapter__title">{{ chapter.key + '.title' | transloco }}</h3>
+        <h3 class="thg-chapter__title">{{ chapter.title }}</h3>
+        <p *ngIf="chapter.subtitle" class="thg-chapter__subtitle">{{ chapter.subtitle }}</p>
       </div>
 
       <!-- Timeline -->
       <ol class="thg-line">
-        <li *ngFor="let m of chapter.milestones" class="thg-item">
+        <li *ngFor="let m of chapter.milestones; trackBy: trackByMilestoneId" class="thg-item">
           <span class="thg-item__dot" aria-hidden="true"></span>
 
           <div class="thg-item__body">
-            <span class="thg-item__year">{{ m.key + '.year' | transloco }}</span>
+            <span class="thg-item__year">{{ m.dateLabel }}</span>
 
             <article class="thg-card">
               <!-- Image (only when available) -->
-              <div *ngIf="m.image" class="thg-card__media">
-                <img [src]="m.image" [alt]="m.key + '.title' | transloco" [width]="m.width" [height]="m.height" loading="lazy" />
+              <!-- width/height viennent du média : ils réservent l'espace et
+                   évitent le décalage de mise en page au chargement. -->
+              <div *ngIf="m.image as image" class="thg-card__media">
+                <img [src]="image.url" [alt]="image.alt || m.title"
+                     [width]="image.width" [height]="image.height" loading="lazy" />
               </div>
 
               <div class="thg-card__content">
-                <h4 class="thg-card__title">{{ m.key + '.title' | transloco }}</h4>
-                <p class="thg-card__desc">{{ m.key + '.description' | transloco }}</p>
+                <h4 class="thg-card__title">{{ m.title }}</h4>
+                <p class="thg-card__desc">{{ m.description }}</p>
 
                 <!-- Roster -->
-                <div *ngIf="m.roster?.length" class="thg-card__roster">
+                <div *ngIf="m.roster.length" class="thg-card__roster">
                   <span class="thg-card__label">{{ 'contents.timeline.rosterLabel' | transloco }}</span>
                   <ul class="thg-card__chips">
                     <li *ngFor="let player of m.roster">{{ player }}</li>
@@ -47,9 +61,9 @@
                 </div>
 
                 <!-- Result -->
-                <p *ngIf="m.hasResult" class="thg-card__result">
+                <p *ngIf="m.result" class="thg-card__result">
                   <span class="thg-card__label">{{ 'contents.timeline.resultLabel' | transloco }}</span>
-                  <span class="thg-card__result-value">{{ m.key + '.result' | transloco }}</span>
+                  <span class="thg-card__result-value">{{ m.result }}</span>
                 </p>
               </div>
             </article>

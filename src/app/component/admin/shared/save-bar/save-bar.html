@@ -1,0 +1,35 @@
+@if (visible()) {
+  <div class="barre-enregistrement" role="status">
+    <div class="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3">
+      <p class="flex items-center gap-2 text-sm font-medium text-amber-200">
+        <i class="pi pi-exclamation-circle"></i>
+        @if (blocage()) {
+          {{ blocage() }}
+        } @else {
+          Modifications non enregistrées
+        }
+      </p>
+
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          class="btn btn-discret"
+          [disabled]="enregistrement()"
+          (click)="annuler.emit()">
+          Annuler
+        </button>
+        <button
+          type="button"
+          class="btn btn-principal"
+          [disabled]="enregistrement() || !!blocage()"
+          (click)="enregistrer.emit()">
+          @if (enregistrement()) {
+            <i class="pi pi-spin pi-spinner"></i> Enregistrement…
+          } @else {
+            <i class="pi pi-check"></i> {{ libelleEnregistrer() }}
+          }
+        </button>
+      </div>
+    </div>
+  </div>
+}
