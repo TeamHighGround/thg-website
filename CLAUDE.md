@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the THG (Team High Ground) website - an Angular 20 application with **static prerendering (SSR)**, internationalization, Firebase hosting, and a gaming esports focus. The site features team pages (LoL, TFT), news, ambassadors, and contact pages.
+This is the THG (Team High Ground) website - an Angular 20 application with **hybrid rendering (SSR + prerendering)**, internationalization, and a gaming esports focus. The site features team pages (LoL, TFT), news, ambassadors, and contact pages.
+
+**Le contenu éditorial (rosters, timeline, partenaires, ambassadeurs, actualités) ne vit plus dans le code** : il est servi par une API séparée et administré depuis un panel `/admin`. Voir les sections « API THG » et « Panel d'administration » plus bas, et `docs/demarrage-local.md` pour lancer l'ensemble.
 
 ## Build Commands
 
@@ -125,9 +127,63 @@ Components use a consistent naming pattern:
 - **Bundle budgets**: Initial max 1MB error, component styles max 8kB error
 - **Test runner**: Karma with Jasmine
 
+## API THG (`thg-api`)
+
+Dépôt **séparé**. Express 5 + Prisma 7 + PostgreSQL (Docker, port 5433), API sur le port 4001.
+
+- **`docs/api-contract.md` fait foi** pour toute évolution : formes JSON, codes d'erreur, noms de routes. Toute nouvelle route s'y inscrit **avant** d'être codée.
+- Les routes publiques (`/api/teams`, `/api/timeline`, `/api/partners`, `/api/news`) acceptent `?lang=fr|en` et renvoient les textes **déjà résolus** : le front ne manipule jamais de suffixes `Fr`/`En`.
+- Les routes `/api/admin/*` sont fermées par `requireAuth` (session par cookie). **C'est la seule barrière de sécurité réelle** — le guard Angular n'est que du confort UX.
+- En dev, `proxy.conf.json` renvoie `/api` et `/media` de 4200 vers 4001.
+
+### Appeler l'API depuis un composant
+
+Utiliser `ApiService` (`src/app/core/api/`). Ne jamais construire une URL à la main :
+le token `API_BASE_URL` fournit un préfixe **relatif dans le navigateur et absolu côté
+SSR**, parce que le `fetch` de Node refuse les URL relatives. C'est l'erreur n°1 de
+cette architecture.
+
+Toutes les méthodes renvoient un `ApiState<T>` (`loading` / `ready` / `error`) et ne
+peuvent pas échouer : **une API tombée doit dégrader l'affichage, jamais casser le
+rendu serveur.**
+
+## Panel d'administration (`src/app/component/admin/`)
+
+Route `/admin`, lazy-loadée, rendu client uniquement, `noindex`. Public visé : un
+membre d'association qui n'est pas développeur.
+
+Composants transverses à réutiliser plutôt qu'à réinventer :
+- `<app-image-drop>` — glisser-déposer + sélecteur Windows + collage, ré-encodage serveur
+- `<app-sortable-list>` — réordonnancement CDK, poignée visible, sauvegarde au dépôt
+- `<app-i18n-field>` — champ bilingue FR/EN à onglets
+- `<app-save-bar>` — barre collante + garde `CanDeactivate`
+
+Règles de l'interface : chaque champ a une explication d'une ligne, chaque erreur est
+en français lisible (jamais un code HTTP), chaque action a un retour visuel.
+
+**Les gardes de route sont inertes côté serveur** (`isPlatformBrowser`) : sinon le
+prérendu figerait une redirection vers l'écran de connexion dans le HTML livré.
+
 ## SSR / Prerendering
 
-The application uses **static prerendering** for SEO optimization. Key files:
+Le rendu est **hybride** — voir `src/app/app.routes.server.ts` :
+
+- **`RenderMode.Server`** pour les pages dont le contenu vient de l'API (accueil, about, teams, news, ambassadors, partners, et leurs variantes `/en`). Rendues à chaque requête, pour que le HTML livré contienne les données à jour.
+- **`RenderMode.Prerender`** pour les pages figées (contact, mentions légales, confidentialité, boutique, cookies).
+- **`RenderMode.Client`** pour `/admin`.
+
+L'hydratation est activée (`provideClientHydration`). Conséquence : **un composant qui
+manipule le DOM ou lance un timer doit être vérifié**. Un `setInterval` dans la zone
+Angular empêche l'application de se stabiliser et fait avorter l'hydratation (cas déjà
+rencontré sur `partner-card`) ; un composant qui injecte un script tiers a besoin de
+`ngSkipHydration` sur son nœud hôte (cas de `ssbu`).
+
+Le cache de transfert HTTP intégré d'Angular **ne peut pas** servir ici : il indexe sur
+l'URL complète, or le serveur appelle `http://localhost:4001/api/…` et le navigateur
+`/api/…`. `ApiService` gère donc son propre `TransferState`, indexé sur chemin +
+paramètres. Ne pas le « simplifier » en réactivant `transferCache`.
+
+Key files:
 
 - `src/main.server.ts` - Server entry point
 - `src/app/app.config.server.ts` - Server-side Angular configuration
