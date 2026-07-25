@@ -1,0 +1,83 @@
+<p-dialog
+  [visible]="ouvert()"
+  (visibleChange)="ouvert.set($event)"
+  [header]="estCreation() ? 'Nouvelle date' : 'Modifier la date'"
+  [modal]="true"
+  [draggable]="false"
+  [style]="{ width: '42rem' }"
+  [breakpoints]="{ '640px': '95vw' }">
+
+  <div class="space-y-5">
+    <app-i18n-field
+      [(fr)]="dateFr"
+      [(en)]="dateEn"
+      libelle="Date affichée"
+      [obligatoire]="true"
+      placeholder="Ex. : Janvier 2026"
+      aide="Écrite en toutes lettres, telle qu'elle apparaîtra. Ce n'est pas un calendrier." />
+
+    <app-i18n-field
+      [(fr)]="titreFr"
+      [(en)]="titreEn"
+      libelle="Titre"
+      [obligatoire]="true"
+      placeholder="Ex. : Qualification en Division 2"
+      aide="Le fait marquant, en quelques mots." />
+
+    <app-i18n-field
+      [(fr)]="descriptionFr"
+      [(en)]="descriptionEn"
+      libelle="Description"
+      [multiligne]="true"
+      [lignes]="4"
+      aide="Deux ou trois phrases de contexte. Laissez vide si le titre se suffit à lui-même." />
+
+    <app-i18n-field
+      [(fr)]="resultatFr"
+      [(en)]="resultatEn"
+      libelle="Résultat (facultatif)"
+      placeholder="Ex. : 1re place — 12 victoires / 2 défaites"
+      aide="Affiché en évidence sous la description. Laissez vide s'il n'y a pas de résultat chiffré." />
+
+    <app-image-drop
+      [(media)]="image"
+      libelle="Photo"
+      proportion="aspect-video"
+      aide="Photo illustrant l'événement. Format paysage, 1200 px de large minimum. Les dimensions sont détectées automatiquement." />
+
+    <app-tags-field
+      [(valeurs)]="roster"
+      libelle="Roster présent"
+      placeholder="Ajouter un joueur…"
+      aide="Les pseudos des joueurs concernés. Tapez un pseudo puis Entrée. Laissez vide si ce n'est pas pertinent." />
+
+    <div class="flex items-start gap-3 rounded-lg border border-white/8 bg-white/2 px-3.5 py-3">
+      <p-toggleswitch
+        [ngModel]="badge()"
+        (ngModelChange)="badge.set($event)"
+        inputId="badge-jalon"
+        ariaLabel="Mettre en avant" />
+      <div>
+        <label for="badge-jalon" class="block cursor-pointer text-sm font-medium text-white">
+          Mettre en avant
+        </label>
+        <p class="aide-champ">
+          Ajoute une pastille visuelle sur la timeline pour signaler un moment important.
+        </p>
+      </div>
+    </div>
+
+    <app-publish-toggle [(publie)]="publie" nomElement="cette date" />
+  </div>
+
+  <ng-template #footer>
+    <button type="button" class="btn btn-discret" (click)="ouvert.set(false)">Annuler</button>
+    <button type="button" class="btn btn-principal" [disabled]="enregistrement()" (click)="valider()">
+      @if (enregistrement()) {
+        <i class="pi pi-spin pi-spinner"></i> Enregistrement…
+      } @else {
+        <i class="pi pi-check"></i> Enregistrer
+      }
+    </button>
+  </ng-template>
+</p-dialog>

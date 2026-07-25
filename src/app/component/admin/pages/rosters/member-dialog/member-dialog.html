@@ -1,0 +1,68 @@
+<p-dialog
+  [visible]="ouvert()"
+  (visibleChange)="ouvert.set($event)"
+  [header]="estCreation() ? 'Ajouter un ' + libelleType() : 'Modifier ' + (membre()?.name ?? '')"
+  [modal]="true"
+  [draggable]="false"
+  [style]="{ width: '38rem' }"
+  [breakpoints]="{ '640px': '95vw' }">
+
+  <div class="space-y-5">
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div>
+        <label class="libelle-champ" for="nom-membre">
+          Nom affiché <span class="text-thgGreen-500">*</span>
+        </label>
+        <input
+          id="nom-membre"
+          type="text"
+          class="champ-texte"
+          placeholder="Ex. : Kitano"
+          [ngModel]="nom()"
+          (ngModelChange)="nom.set($event)" />
+        <p class="aide-champ">Le pseudo tel qu'il apparaît sur le site, pas le prénom.</p>
+      </div>
+
+      <div>
+        <label class="libelle-champ" for="role-membre">Rôle</label>
+        <p-select
+          inputId="role-membre"
+          [options]="optionsRoles()"
+          optionLabel="label"
+          optionValue="value"
+          [ngModel]="roleId()"
+          (ngModelChange)="roleId.set($event)"
+          [showClear]="true"
+          placeholder="Choisir un rôle"
+          styleClass="w-full" />
+        <p class="aide-champ">
+          Détermine l'icône et la couleur affichées sur la carte du {{ libelleType() }}.
+        </p>
+      </div>
+    </div>
+
+    <app-image-drop
+      [(media)]="image"
+      libelle="Photo"
+      proportion="aspect-square"
+      aide="Photo du {{ libelleType() }} — carrée, 500 × 500 px minimum. Fond transparent recommandé." />
+
+    <div>
+      <h3 class="titre-section mb-1.5 !text-sm">Réseaux sociaux</h3>
+      <app-social-links [(valeurs)]="reseaux" [reseaux]="reseauxMembre" />
+    </div>
+
+    <app-publish-toggle [(publie)]="publie" [nomElement]="'ce ' + libelleType()" />
+  </div>
+
+  <ng-template #footer>
+    <button type="button" class="btn btn-discret" (click)="ouvert.set(false)">Annuler</button>
+    <button type="button" class="btn btn-principal" [disabled]="enregistrement()" (click)="valider()">
+      @if (enregistrement()) {
+        <i class="pi pi-spin pi-spinner"></i> Enregistrement…
+      } @else {
+        <i class="pi pi-check"></i> Enregistrer
+      }
+    </button>
+  </ng-template>
+</p-dialog>

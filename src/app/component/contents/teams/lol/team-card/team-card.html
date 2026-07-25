@@ -3,7 +3,7 @@
      [class]="type + '-card'">
 
     <!-- Variante avec photo du joueur -->
-    <ng-container *ngIf="member.image; else iconVariant">
+    <ng-container *ngIf="member.image as photo; else iconVariant">
         <!-- Photo -->
         <div class="relative overflow-hidden">
             <!-- Halo derrière le joueur -->
@@ -11,8 +11,11 @@
                 <div class="w-40 h-40 rounded-full bg-thgGreen/20 blur-3xl group-hover:bg-thgGreen/30 transition-colors"></div>
             </div>
 
-            <img [src]="member.image"
-                 [alt]="member.name"
+            <!-- width/height : réservation d'espace, évite le décalage de mise en page -->
+            <img [src]="photo.url"
+                 [alt]="photo.alt || member.name"
+                 [width]="photo.width"
+                 [height]="photo.height"
                  class="relative w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.03]">
 
             <!-- Badge du rôle -->

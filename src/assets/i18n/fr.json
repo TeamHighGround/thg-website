@@ -16,6 +16,10 @@
     "contact": "Contact"
   },
   "contents": {
+    "common": {
+      "loading": "Chargement des données…",
+      "error": "Ce contenu est momentanément indisponible. Merci de réessayer dans quelques instants."
+    },
     "about": {
       "title": "Team High Ground",
       "subtitle": "L'esport breton en devenir",
@@ -112,118 +116,11 @@
       "nextChapter": {
         "kicker": "Chapitre suivant",
         "label": "Découvrir le parcours compétitif"
-      },
-      "chapters": {
-        "history": {
-          "kicker": "Chapitre I",
-          "title": "Histoire du club",
-          "subtitle": "Retour sur dix années qui ont transformé une bande de potes en véritable club esport.",
-          "milestones": {
-            "b1": {
-              "year": "2015 — 2017",
-              "tag": "Origines",
-              "title": "Les débuts",
-              "description": "La THG naît d'une bande de lycéens avec une passion commune pour League of Legends, qui se lancent dans la création de contenus sur YouTube. Une première phase centrée sur le fun, la communauté et l'expérimentation."
-            },
-            "b2": {
-              "year": "2017",
-              "tag": "Compétition",
-              "title": "Premières compétitions",
-              "description": "Le club fait ses premiers pas en compétition en participant à des LAN en Bretagne, notamment l'Insalan. La THG passe d'un projet de création de contenu à une structure orientée esportif amateur."
-            },
-            "b3": {
-              "year": "2017 — 2020",
-              "tag": "Média",
-              "title": "Le Canapé Show",
-              "description": "En parallèle de la compétition, THG développe sa présence sur Twitch avec le Canapé Show, un talk show communautaire qui renforce son identité et son lien avec sa petite communauté."
-            },
-            "b4": {
-              "year": "2025",
-              "tag": "Structuration",
-              "title": "Création de l'association",
-              "description": "La THG franchit une étape clé avec la création de son association. Le projet se structure avec une vision à long terme et une ambition de professionnalisation dans l'esport."
-            },
-            "b5": {
-              "year": "2025 →",
-              "tag": "Performance",
-              "title": "Virage compétitif",
-              "description": "Lancement d'une équipe League of Legends semi-professionnelle. THG affirme son positionnement compétitif et pose les bases de son développement esportif."
-            }
-          }
-        },
-        "competitive": {
-          "kicker": "Chapitre II",
-          "title": "Parcours compétitif",
-          "subtitle": "Retour sur les compétitions, les rosters et les résultats qui forgent l'identité esport de la THG.",
-          "milestones": {
-            "b6": {
-              "year": "2025",
-              "tag": "Première LAN majeure",
-              "title": "Gamers Assembly",
-              "description": "THG participe à sa première grande LAN nationale, marquant une étape importante dans son entrée sur la scène compétitive.",
-              "result": "Top 64",
-              "badge": "Première LAN majeure"
-            },
-            "b7": {
-              "year": "Été 2025",
-              "tag": "Première ligue",
-              "title": "LPLOL — ERL Portugal",
-              "description": "THG rejoint la scène compétitive structurée avec sa première participation en ligue. L'équipe passe proche des playoffs dès sa première saison.",
-              "result": "Dernier tour avant les playoffs",
-              "badge": "Première ligue"
-            },
-            "b8": {
-              "year": "2026",
-              "tag": "Circuit national",
-              "title": "Nexus Tour",
-              "description": "THG s'inscrit sur le circuit officiel amateur français, avec l'objectif de s'installer durablement dans l'écosystème compétitif.",
-              "result": "Top 7-8 (Étape 2)",
-              "badge": "Circuit national"
-            },
-            "b9": {
-              "year": "2026",
-              "tag": "Progression",
-              "title": "Retour à la Gamers Assembly",
-              "description": "THG revient avec plus d'expérience et améliore nettement ses performances en physique. Remplacement : Artanis → D1verse en jungle.",
-              "result": "Top 32",
-              "badge": "Progression"
-            },
-            "b10": {
-              "year": "2026 → Aujourd'hui",
-              "tag": "Nouvelle génération",
-              "title": "Nouvelle ère",
-              "description": "THG entame une nouvelle phase de développement avec un roster international, visant des performances encore plus élevées sur le circuit compétitif.",
-              "badge": "Nouvelle génération"
-            },
-            "b11": {
-              "year": "2026",
-              "tag": "Nouveau jeu",
-              "title": "Arrivée sur Super Smash Bros Ultimate",
-              "description": "THG se lance sur Super Smash Bros Ultimate avec le recrutement de NaetorU, figure clé de l'esport SSBU breton. Un nouveau terrain de jeu pour porter haut les couleurs de la Bretagne.",
-              "badge": "Nouveau jeu"
-            },
-            "b12": {
-              "year": "Été 2026",
-              "tag": "Semi-professionnel",
-              "title": "Nexus League",
-              "description": "THG franchit un cap et débarque sur la Nexus League avec un roster semi-professionnel, prêt à défendre les couleurs de la Bretagne au plus haut niveau national.",
-              "badge": "Semi-professionnel"
-            }
-          }
-        }
       }
     },
     "teams": {
       "lol": {
         "title": "League Of Legends",
-        "teams": {
-          "league": {
-            "description": "League Of Legends est le jeu historique et de cœur de la THG. Après plusieurs années à évoluer sur la scène amateure bretonne et française, nous passons un cap cet été avec un roster semi-professionnel engagé dans la Nexus League de League Of Legends. Notre objectif est clair : progresser ensemble, structurer notre projet et affirmer notre place sur la scène française."
-          },
-          "tour": {
-            "description": "La THG Skol est notre équipe académie, engagée dans le Nexus Tour. Véritable tremplin du projet, elle réunit des joueurs prometteurs venus progresser et se révéler."
-          }
-        },
         "roster": {
           "title": "Roster",
           "description": "Les joueurs représentants la THG en compétition"
@@ -254,53 +151,11 @@
       "description": "Découvrez nos ambassadeurs talentueux qui collaborent avec nous",
       "socialMedia": {
         "follow": "Suivre"
-      },
-      "list": {
-        "0": {
-          "name": "Ezza",
-          "types": {
-            "0": "Casteur",
-            "1": "Organisateur d'événements E-Sport"
-          },
-          "description": "Originaire de Brest, EZZA joue à League Of Legends depuis la saison 2, un Émeraude bien stacké, passionné depuis toujours ! Depuis 2020, il s'épanouit derrière le micro en tant que casteur, lançant même ses propres tournois pour vivre son rêve. Il nous a promis de mettre un maximum d'ambiance !"
-        },
-        "1": {
-          "name": "Toskaan",
-          "types": {
-            "0": "Casteur",
-            "1": "Animateur E-Sport"
-          },
-          "description": "Sudiste provincial parti à Paris pour vivre la vie d'artiste qu'il rêvait. Avec une formation d'acteur et une passion pour l'E-sport en guise de bagage. Toskaan se lance en Novembre 2023 dans l'aventure de commentateur E-sport. Il crée d'abord son collectif, avec lequel il organisera des tournois sur League Of Legends. En 2025, il fera la rencontre d'un autre caster, Ezza, qui deviendra tel un mentor par la suite. L'aventure ne fait que commencer !"
-        },
-        "2": {
-          "name": "DJ Turbo Biche",
-          "types": {
-            "0": "DJ",
-            "1": "Artiste"
-          },
-          "description": "Arthur Biche, alias DJ TURBOBICHE, est un DJ/producteur de Dinan. Passionné d'électro depuis l'enfance, il se lance officiellement en 2024. Son style mêle Trance bouncy, Hard Trance et Hardtechno, porté par une énergie explosive. Membre de la THG, il électrise soirées et événements avec intensité !"
-        }
       }
     },
     "partners": {
       "title": "Nos partenaires",
-      "description": "Découvrez les partenaires qui nous accompagnent dans le développement de l'esport en Bretagne",
-      "list": {
-        "0": {
-          "name": "Mon Tournoi Esport",
-          "types": {
-            "0": "Plateforme de tournois esport"
-          },
-          "description": "Plateforme dédiée à l'organisation et à la gestion de tournois esport, Mon Tournoi Esport accompagne joueurs, équipes et organisateurs dans la création d'événements compétitifs accessibles et structurés, du niveau amateur au semi-professionnel."
-        },
-        "1": {
-          "name": "Station 35",
-          "types": {
-            "0": "Lieu esport et gaming"
-          },
-          "description": "Lieu esport et gaming à Rennes, Station 35 est un espace hybride mêlant compétition, événements communautaires et expériences gaming, accueillant régulièrement tournois, soirées et animations esportives."
-        }
-      }
+      "description": "Découvrez les partenaires qui nous accompagnent dans le développement de l'esport en Bretagne"
     },
     "contact": {
       "title": "Nous Contacter",

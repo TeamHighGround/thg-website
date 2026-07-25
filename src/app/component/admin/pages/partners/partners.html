@@ -1,0 +1,63 @@
+<app-page-header
+  [titre]="titre()"
+  [description]="estAmbassadeur()
+    ? 'Les créateurs et créatrices qui représentent THG. L\'ordre ci-dessous est celui de la page publique.'
+    : 'Les structures qui soutiennent THG. L\'ordre ci-dessous est celui de la page publique.'"
+  [lienPublic]="pagePublique()">
+  <button actions type="button" class="btn btn-principal" [disabled]="creation()" (click)="creer()">
+    @if (creation()) {
+      <i class="pi pi-spin pi-spinner"></i> Création…
+    } @else {
+      <i class="pi pi-plus"></i> Ajouter un {{ nomSingulier() }}
+    }
+  </button>
+</app-page-header>
+
+@if (chargement()) {
+  <p class="flex items-center gap-2 py-8 text-sm text-white/50">
+    <i class="pi pi-spin pi-spinner"></i> Chargement…
+  </p>
+} @else {
+  <app-sortable-list
+    [(elements)]="entrees"
+    [reordonner]="reordonner"
+    [nomElement]="nomSingulier()"
+    [messageVide]="'Aucun ' + nomSingulier() + ' pour le moment.'">
+    <ng-template #ligne let-entree>
+      <a [routerLink]="[baseAdmin(), entree.id]" class="flex items-center gap-3">
+        @if (entree.images?.length && entree.images[0].media) {
+          <img
+            [src]="entree.images[0].media.url"
+            alt=""
+            class="h-10 w-10 shrink-0 rounded-md object-cover" />
+        } @else {
+          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-white/6 text-white/30">
+            <i class="pi pi-image text-xs"></i>
+          </span>
+        }
+
+        <span class="min-w-0 flex-1">
+          <span class="block truncate text-sm font-semibold text-white">{{ entree.name }}</span>
+          <span class="block truncate text-xs text-white/45">
+            {{ entree.typesFr?.length ? entree.typesFr.join(' · ') : 'Aucune étiquette' }}
+          </span>
+        </span>
+
+        @if (entree.published) {
+          <span class="pastille pastille-publie">En ligne</span>
+        } @else {
+          <span class="pastille pastille-brouillon">Brouillon</span>
+        }
+
+        <span
+          class="btn btn-danger !px-2 !py-1"
+          role="button"
+          [attr.aria-label]="'Supprimer ' + entree.name"
+          (click)="supprimer(entree, $event)">
+          <i class="pi pi-trash text-xs"></i>
+        </span>
+        <i class="pi pi-chevron-right text-xs text-white/30"></i>
+      </a>
+    </ng-template>
+  </app-sortable-list>
+}

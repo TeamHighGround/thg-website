@@ -1,10 +1,10 @@
-import { SocialLinks } from '../../shared/social-links/social-links.interface';
+import { PartnerEntry } from '../../../core/api/models';
 
-export interface Partner {
-  id: number;
-  name: string;
-  types: string[];
-  description: string;
-  images: string[];
-  socialMedia?: SocialLinks;
-}
+/**
+ * Un partenaire ou un ambassadeur, tel que renvoyé par `GET /api/partners`.
+ *
+ * L'alias conserve le nom historique utilisé par `app-partner-card` : la forme
+ * est désormais celle du contrat d'API (`id` en uuid, `images` en objets
+ * `Media` porteurs de leurs dimensions).
+ */
+export type Partner = PartnerEntry;
