@@ -1,0 +1,188 @@
+<app-page-header
+  titre="Médiathèque"
+  description="Toutes les images envoyées sur le site. Une image utilisée quelque part ne peut pas être supprimée." />
+
+<!-- Zone d'envoi multiple -->
+<div
+  class="zone-envoi"
+  [class.zone-envoi--survol]="survol()"
+  role="button"
+  tabindex="0"
+  (click)="ouvrirSelecteur(champFichiers)"
+  (keydown.enter)="ouvrirSelecteur(champFichiers)"
+  (dragover)="surSurvolFichier($event)"
+  (dragenter)="surSurvolFichier($event)"
+  (dragleave)="surSortieFichier($event)"
+  (drop)="surDepot($event)">
+  <i class="pi pi-cloud-upload text-2xl text-thgGreen-600"></i>
+  <p class="text-sm font-medium text-white/90">
+    Glissez vos images ici, ou
+    <span class="text-thgGreen-500 underline">cliquez pour les choisir</span>
+  </p>
+  <p class="text-xs text-white/45">
+    Plusieurs fichiers à la fois. JPG, PNG, WebP ou AVIF, 10 Mo maximum par image.
+  </p>
+
+  <input
+    #champFichiers
+    type="file"
+    class="hidden"
+    multiple
+    accept="image/jpeg,image/png,image/webp,image/avif"
+    (change)="surSelection($event)" />
+</div>
+
+<!-- Envois en cours -->
+@if (envois().length) {
+  <div class="mt-3 space-y-2">
+    @for (envoi of envois(); track envoi.nom) {
+      <div class="rounded-lg border border-white/8 bg-white/3 px-3 py-2">
+        <div class="mb-1 flex items-center justify-between text-xs text-white/70">
+          <span class="truncate">{{ envoi.nom }}</span>
+          <span>{{ envoi.pourcentage }} %</span>
+        </div>
+        <div class="h-1.5 overflow-hidden rounded-full bg-white/12">
+          <div class="h-full rounded-full bg-thgGreen-500 transition-all"
+               [style.width.%]="envoi.pourcentage"></div>
+        </div>
+      </div>
+    }
+  </div>
+}
+
+<!-- Recherche -->
+<div class="mt-5 flex flex-wrap items-center gap-3">
+  <div class="relative flex-1 sm:max-w-xs">
+    <i class="pi pi-search absolute left-3 top-1/2 -translate-y-1/2 text-xs text-white/35"></i>
+    <input
+      type="search"
+      class="champ-texte pl-8"
+      placeholder="Rechercher une image…"
+      [ngModel]="recherche()"
+      (ngModelChange)="recherche.set($event)" />
+  </div>
+  <p class="text-xs text-white/45">
+    {{ resultats().length }} image{{ resultats().length > 1 ? 's' : '' }}
+  </p>
+</div>
+
+<!-- Grille -->
+@if (chargement()) {
+  <p class="flex items-center gap-2 py-8 text-sm text-white/50">
+    <i class="pi pi-spin pi-spinner"></i> Chargement de la médiathèque…
+  </p>
+} @else if (!resultats().length) {
+  <p class="mt-5 rounded-lg border border-dashed border-white/10 px-4 py-10 text-center text-sm text-white/45">
+    @if (recherche()) {
+      Aucune image ne correspond à « {{ recherche() }} ».
+    } @else {
+      Aucune image pour l'instant. Envoyez-en une avec la zone ci-dessus.
+    }
+  </p>
+} @else {
+  <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+    @for (media of resultats(); track media.id) {
+      <button type="button" class="vignette" (click)="ouvrir(media)">
+        <img [src]="media.url" [alt]="media.altFr || media.originalName" loading="lazy" />
+        <span class="vignette-infos">
+          <span class="block truncate text-xs font-medium text-white">
+            {{ media.originalName || 'Sans nom' }}
+          </span>
+          <span class="block text-[0.68rem]"
+                [class.text-amber-300]="media.usageCount > 0"
+                [class.text-white]="media.usageCount === 0">
+            @if (media.usageCount > 0) {
+              Utilisée {{ media.usageCount }} fois
+            } @else {
+              Inutilisée
+            }
+          </span>
+        </span>
+      </button>
+    }
+  </div>
+}
+
+<!-- Détail d'une image -->
+<p-dialog
+  [visible]="!!selection()"
+  (visibleChange)="$event ? null : fermer()"
+  header="Détail de l'image"
+  [modal]="true"
+  [draggable]="false"
+  [style]="{ width: '34rem' }"
+  [breakpoints]="{ '640px': '95vw' }">
+  @if (selection(); as media) {
+    <div class="space-y-4">
+      <img [src]="media.url" [alt]="media.altFr || ''"
+           class="max-h-64 w-full rounded-lg bg-black/30 object-contain" />
+
+      <dl class="grid grid-cols-2 gap-2 text-xs">
+        <div>
+          <dt class="text-white/40">Nom d'origine</dt>
+          <dd class="truncate text-white/80">{{ media.originalName || '—' }}</dd>
+        </div>
+        <div>
+          <dt class="text-white/40">Dimensions</dt>
+          <dd class="text-white/80">{{ media.width }} × {{ media.height }} px</dd>
+        </div>
+        <div>
+          <dt class="text-white/40">Poids</dt>
+          <dd class="text-white/80">{{ poids(media) }}</dd>
+        </div>
+        <div>
+          <dt class="text-white/40">Utilisation</dt>
+          <dd [class.text-amber-300]="media.usageCount > 0" [class.text-white]="!media.usageCount">
+            @if (media.usageCount > 0) {
+              Utilisée dans {{ media.usageCount }} endroit{{ media.usageCount > 1 ? 's' : '' }}
+            } @else {
+              Utilisée nulle part
+            }
+          </dd>
+        </div>
+      </dl>
+
+      <div>
+        <label class="libelle-champ" for="alt-fr">Texte alternatif (français)</label>
+        <input id="alt-fr" type="text" class="champ-texte"
+               [ngModel]="altFr()" (ngModelChange)="altFr.set($event)" />
+        <p class="aide-champ">
+          Décrit l'image pour les personnes malvoyantes et pour Google.
+        </p>
+      </div>
+
+      <div>
+        <label class="libelle-champ" for="alt-en">Texte alternatif (anglais)</label>
+        <input id="alt-en" type="text" class="champ-texte"
+               [ngModel]="altEn()" (ngModelChange)="altEn.set($event)" />
+        <p class="aide-champ">La même description, pour la version anglaise du site.</p>
+      </div>
+
+      @if (media.usageCount > 0) {
+        <p class="bandeau-explication !border-amber-400/30 !bg-amber-400/8">
+          <i class="pi pi-lock mt-0.5"></i>
+          <span>
+            Cette image est utilisée sur le site : elle ne peut pas être supprimée. Retirez-la
+            d'abord des pages concernées.
+          </span>
+        </p>
+      }
+    </div>
+
+    <ng-template #footer>
+      <button type="button" class="btn btn-danger" [disabled]="media.usageCount > 0"
+              (click)="supprimer(media)">
+        <i class="pi pi-trash"></i> Supprimer
+      </button>
+      <button type="button" class="btn btn-discret" (click)="fermer()">Fermer</button>
+      <button type="button" class="btn btn-principal" [disabled]="enregistrementAlt()"
+              (click)="enregistrerAlt()">
+        @if (enregistrementAlt()) {
+          <i class="pi pi-spin pi-spinner"></i> Enregistrement…
+        } @else {
+          <i class="pi pi-check"></i> Enregistrer
+        }
+      </button>
+    </ng-template>
+  }
+</p-dialog>

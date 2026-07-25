@@ -1,0 +1,26 @@
+<div class="flex items-start gap-3 rounded-lg border border-white/8 bg-white/2 px-3.5 py-3">
+  <p-toggleswitch
+    [ngModel]="publie()"
+    (ngModelChange)="publie.set($event)"
+    [disabled]="desactive()"
+    inputId="interrupteur-visible"
+    ariaLabel="Visible sur le site" />
+
+  <div class="min-w-0">
+    <label for="interrupteur-visible" class="block cursor-pointer text-sm font-medium text-white">
+      Visible sur le site
+      @if (publie()) {
+        <span class="pastille pastille-publie ml-1.5">En ligne</span>
+      } @else {
+        <span class="pastille pastille-brouillon ml-1.5">Brouillon</span>
+      }
+    </label>
+    <p class="aide-champ">
+      @if (publie()) {
+        {{ nomElement() | titlecase }} apparaît sur le site public.
+      } @else {
+        Désactivé, {{ nomElement() }} n'apparaît pas sur le site public.
+      }
+    </p>
+  </div>
+</div>
