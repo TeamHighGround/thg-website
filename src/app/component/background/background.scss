@@ -1,10 +1,36 @@
+// L'hote couvre toute la hauteur du document (le parent app-root est en
+// position: relative), ce qui donne a l'enfant sticky une plage d'accroche
+// couvrant l'integralite du scroll.
+:host {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+// sticky et non fixed : WebKit iOS clippe les elements fixed au viewport
+// visuel, ils ne sont donc jamais peints sous la barre du navigateur. Un
+// element sticky reste en flux normal — comme le contenu de la page, qui lui
+// s'affiche bien derriere la barre — tout en restant immobile au scroll.
 .background-container {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
+
+  // Debord en dur sous le bord bas de l'ecran : env(safe-area-inset-bottom)
+  // est inutilisable ici, iOS 15+ renvoie 0 quand la barre est retractee.
+  // Le SVG mobile est en preserveAspectRatio="slice" : la hauteur en trop est
+  // recadree, jamais deformee.
   height: 100vh;
-  z-index: -1;
+  height: calc(100lvh + 200px);
+}
+
+// Le fond et le SVG vivent sur cet enfant absolu, jamais sur le conteneur
+// sticky lui-meme.
+.background-inner {
+  position: absolute;
+  inset: 0;
 }
 
 .blur-group {

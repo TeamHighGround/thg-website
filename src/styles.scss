@@ -35,6 +35,17 @@
 }
 
 // 3. Styles personnalisés globaux
+// Couleur de fond de secours : evite tout bandeau clair dans les zones que le
+// SVG de fond n'atteindrait pas (bords d'ecran sous les barres navigateur
+// mobile, rebond d'overscroll).
+//
+// A poser UNIQUEMENT sur html : cette couleur est propagee au canvas et peinte
+// avant tout le reste. Sur body, elle deviendrait un fond de bloc normal,
+// peint par-dessus les elements en z-index negatif (dont app-background).
+html {
+  background-color: #0a0d0a;
+}
+
 html, body {
   height: 100%;
   margin: 0;
