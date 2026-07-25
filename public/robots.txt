@@ -9,5 +9,12 @@ Disallow: /cookie-settings
 Disallow: /legal-notice
 Disallow: /privacy-policy
 
+# Panel d'administration : contenu privé, aucun intérêt pour l'indexation
+Disallow: /admin
+Disallow: /admin/
+
+# Endpoints de l'API : ce sont des données brutes, pas des pages
+Disallow: /api/
+
 # Sitemap location
 Sitemap: https://teamhighground.fr/sitemap.xml

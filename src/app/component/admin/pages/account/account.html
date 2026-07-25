@@ -1,0 +1,172 @@
+<app-page-header
+  titre="Mon compte"
+  description="Vos identifiants de connexion au panel d'administration." />
+
+<!-- Identité -->
+<section class="carte">
+  <h2 class="titre-section">Vous êtes connecté</h2>
+  <dl class="mt-3 grid gap-3 sm:grid-cols-2">
+    <div>
+      <dt class="text-xs text-white/40">Adresse e-mail</dt>
+      <dd class="text-sm text-white">{{ utilisateur()?.email }}</dd>
+    </div>
+    <div>
+      <dt class="text-xs text-white/40">Rôle</dt>
+      <dd class="text-sm text-white">
+        {{ utilisateur() ? libelleRole(utilisateur()!.role) : '—' }}
+      </dd>
+    </div>
+  </dl>
+  <p class="aide-champ">
+    L'adresse e-mail ne se change pas depuis le panel : demandez à un administrateur.
+  </p>
+</section>
+
+<!-- Mot de passe -->
+<section class="carte mt-5">
+  <h2 class="titre-section">Changer mon mot de passe</h2>
+  <p class="sous-titre-section mb-3">
+    Un mot de passe long vaut mieux qu'un mot de passe compliqué. Une phrase de quatre mots fait
+    très bien l'affaire.
+  </p>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div>
+      <label class="libelle-champ" for="mdp-nouveau">Nouveau mot de passe</label>
+      <input
+        id="mdp-nouveau"
+        type="password"
+        class="champ-texte"
+        autocomplete="new-password"
+        [ngModel]="nouveauMdp()"
+        (ngModelChange)="nouveauMdp.set($event)" />
+      <p class="aide-champ">12 caractères minimum.</p>
+    </div>
+    <div>
+      <label class="libelle-champ" for="mdp-confirmation">Confirmer le mot de passe</label>
+      <input
+        id="mdp-confirmation"
+        type="password"
+        class="champ-texte"
+        autocomplete="new-password"
+        [ngModel]="confirmationMdp()"
+        (ngModelChange)="confirmationMdp.set($event)" />
+      <p class="aide-champ">Retapez-le à l'identique.</p>
+    </div>
+  </div>
+
+  @if (problemeMdp()) {
+    <p class="erreur-champ mt-2">{{ problemeMdp() }}</p>
+  }
+
+  <button
+    type="button"
+    class="btn btn-principal mt-4"
+    [disabled]="!peutChanger() || changementEnCours()"
+    (click)="changerMotDePasse()">
+    @if (changementEnCours()) {
+      <i class="pi pi-spin pi-spinner"></i> Enregistrement…
+    } @else {
+      Changer mon mot de passe
+    }
+  </button>
+</section>
+
+<!-- Comptes (ADMIN uniquement) -->
+@if (estAdmin()) {
+  <section class="carte mt-5">
+    <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+      <div>
+        <h2 class="titre-section">Comptes du panel</h2>
+        <p class="sous-titre-section">
+          Les personnes qui peuvent se connecter ici. Réservé aux administrateurs.
+        </p>
+      </div>
+      <button type="button" class="btn btn-secondaire" (click)="dialogueCompte.set(true)">
+        <i class="pi pi-user-plus"></i> Ajouter un compte
+      </button>
+    </div>
+
+    @if (chargementComptes()) {
+      <p class="flex items-center gap-2 text-sm text-white/50">
+        <i class="pi pi-spin pi-spinner"></i> Chargement…
+      </p>
+    } @else {
+      <div class="space-y-2">
+        @for (compte of comptes(); track compte.id) {
+          <div class="flex items-center gap-3 rounded-lg border border-white/8 bg-white/2 px-3 py-2.5">
+            <i class="pi pi-user text-white/35"></i>
+            <span class="min-w-0 flex-1">
+              <span class="block truncate text-sm text-white">{{ compte.email }}</span>
+              <span class="text-xs text-white/45">{{ libelleRole(compte.role) }}</span>
+            </span>
+            @if (compte.id === utilisateur()?.id) {
+              <span class="pastille pastille-publie">Vous</span>
+            } @else {
+              <button
+                type="button"
+                class="btn btn-danger !px-2 !py-1"
+                [attr.aria-label]="'Supprimer le compte ' + compte.email"
+                (click)="supprimerCompte(compte)">
+                <i class="pi pi-trash text-xs"></i>
+              </button>
+            }
+          </div>
+        } @empty {
+          <p class="text-sm text-white/45">Aucun compte à afficher.</p>
+        }
+      </div>
+    }
+  </section>
+}
+
+<!-- Création de compte -->
+<p-dialog
+  [visible]="dialogueCompte()"
+  (visibleChange)="dialogueCompte.set($event)"
+  header="Nouveau compte"
+  [modal]="true"
+  [draggable]="false"
+  [style]="{ width: '28rem' }">
+  <div class="space-y-4">
+    <div>
+      <label class="libelle-champ" for="compte-email">Adresse e-mail</label>
+      <input id="compte-email" type="email" class="champ-texte"
+             [ngModel]="nouvelEmail()" (ngModelChange)="nouvelEmail.set($event)" />
+      <p class="aide-champ">Elle servira d'identifiant de connexion.</p>
+    </div>
+
+    <div>
+      <label class="libelle-champ" for="compte-role">Rôle</label>
+      <p-select
+        inputId="compte-role"
+        [options]="optionsRoles"
+        optionLabel="label"
+        optionValue="value"
+        [ngModel]="nouveauRole()"
+        (ngModelChange)="nouveauRole.set($event)"
+        styleClass="w-full" />
+      <p class="aide-champ">Dans le doute, choisissez « Éditeur ».</p>
+    </div>
+
+    <div>
+      <label class="libelle-champ" for="compte-mdp">Mot de passe provisoire</label>
+      <input id="compte-mdp" type="text" class="champ-texte" autocomplete="off"
+             [ngModel]="nouveauMdpCompte()" (ngModelChange)="nouveauMdpCompte.set($event)" />
+      <p class="aide-champ">
+        12 caractères minimum. Transmettez-le à la personne, qui pourra le changer ensuite.
+      </p>
+    </div>
+  </div>
+
+  <ng-template #footer>
+    <button type="button" class="btn btn-discret" (click)="dialogueCompte.set(false)">Annuler</button>
+    <button type="button" class="btn btn-principal" [disabled]="creation()" (click)="creerCompte()">
+      @if (creation()) {
+        <i class="pi pi-spin pi-spinner"></i> Création…
+      } @else {
+        Créer le compte
+      }
+    </button>
+  </ng-template>
+</p-dialog>

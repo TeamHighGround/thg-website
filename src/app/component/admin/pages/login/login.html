@@ -1,0 +1,70 @@
+<div class="admin-panel flex min-h-screen items-center justify-center bg-thgDark px-4 py-10 text-white">
+  <div class="w-full max-w-sm">
+    <div class="mb-7 text-center">
+      <span
+        class="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-xl bg-thgGreen-500 text-xl font-black text-thgDark">
+        T
+      </span>
+      <h1 class="text-lg font-bold">Administration du site</h1>
+      <p class="mt-1 text-sm text-white/50">Team High Ground</p>
+    </div>
+
+    <form class="carte space-y-4" (ngSubmit)="valider()">
+      <div>
+        <label class="libelle-champ" for="champ-email">Adresse e-mail</label>
+        <input
+          id="champ-email"
+          type="email"
+          class="champ-texte"
+          autocomplete="username"
+          placeholder="prenom@teamhighground.fr"
+          [ngModel]="email()"
+          (ngModelChange)="email.set($event)"
+          name="email"
+          required />
+      </div>
+
+      <div>
+        <label class="libelle-champ" for="champ-mot-de-passe">Mot de passe</label>
+        <div class="relative">
+          <input
+            id="champ-mot-de-passe"
+            [type]="motDePasseVisible() ? 'text' : 'password'"
+            class="champ-texte pr-10"
+            autocomplete="current-password"
+            [ngModel]="motDePasse()"
+            (ngModelChange)="motDePasse.set($event)"
+            name="motDePasse"
+            required />
+          <button
+            type="button"
+            class="absolute inset-y-0 right-0 px-3 text-white/45 transition-colors hover:text-white"
+            [attr.aria-label]="motDePasseVisible() ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"
+            (click)="motDePasseVisible.set(!motDePasseVisible())">
+            <i class="pi" [class.pi-eye]="!motDePasseVisible()" [class.pi-eye-slash]="motDePasseVisible()"></i>
+          </button>
+        </div>
+      </div>
+
+      @if (erreur()) {
+        <p class="flex items-start gap-2 rounded-md bg-red-500/10 px-3 py-2.5 text-sm text-red-300">
+          <i class="pi pi-exclamation-circle mt-0.5"></i>
+          <span>{{ erreur() }}</span>
+        </p>
+      }
+
+      <button type="submit" class="btn btn-principal w-full" [disabled]="enCours()">
+        @if (enCours()) {
+          <i class="pi pi-spin pi-spinner"></i> Connexion…
+        } @else {
+          Se connecter
+        }
+      </button>
+    </form>
+
+    <p class="mt-4 text-center text-xs leading-relaxed text-white/35">
+      Les comptes sont créés par l'administrateur du site. Si vous n'arrivez pas à vous connecter,
+      contactez-le : il n'y a pas d'inscription en ligne.
+    </p>
+  </div>
+</div>
