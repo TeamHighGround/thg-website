@@ -38,7 +38,9 @@
     <section>
       <h2 class="text-xl font-semibold mb-3">{{ 'privacyPolicy.noCollection.title' | transloco }}</h2>
       <ul class="list-disc pl-6 space-y-1">
-        <li *ngFor="let item of 'privacyPolicy.noCollection.items' | transloco">{{ item }}</li>
+        @for (item of pointsNonCollectes(); track item) {
+          <li>{{ item }}</li>
+        }
       </ul>
     </section>
 
