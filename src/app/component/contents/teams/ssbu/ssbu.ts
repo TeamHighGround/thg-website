@@ -17,7 +17,12 @@ declare global {
   standalone: true,
   imports: [CommonModule, TranslocoModule],
   templateUrl: './ssbu.html',
-  styleUrl: './ssbu.scss'
+  styleUrl: './ssbu.scss',
+  // `widgets.js` remplace le <blockquote> par une iframe qu'Angular n'a jamais
+  // rendue : l'hydratation ne doit pas essayer de réconcilier ce sous-arbre.
+  // `ngSkipHydration` ne s'applique qu'à un nœud hôte de composant, d'où sa
+  // déclaration ici plutôt que sur le <div> de l'embed dans le template.
+  host: { ngSkipHydration: 'true' }
 })
 export class Ssbu implements AfterViewInit {
   private platformId = inject(PLATFORM_ID);

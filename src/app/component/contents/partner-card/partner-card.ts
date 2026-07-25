@@ -1,10 +1,11 @@
-import { Component, Input, OnInit, OnDestroy, HostListener, ChangeDetectionStrategy, inject, PLATFORM_ID } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, OnDestroy, HostListener, ChangeDetectionStrategy, NgZone, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ChipModule } from 'primeng/chip';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { Partner } from './partner-interface';
+import { Media } from '../../../core/api/models';
 import { SocialLinksComponent } from '../../shared/social-links/social-links';
 
 @Component({
@@ -18,6 +19,8 @@ import { SocialLinksComponent } from '../../shared/social-links/social-links';
 export class PartnerCard implements OnInit, OnDestroy {
   @Input() partner!: Partner;
   private platformId = inject(PLATFORM_ID);
+  private zone = inject(NgZone);
+  private cdr = inject(ChangeDetectorRef);
 
   currentImageIndex = 0;
   private imageInterval?: number;
@@ -35,14 +38,28 @@ export class PartnerCard implements OnInit, OnDestroy {
     this.stopAutoSlide();
   }
 
+  /** Média actuellement affiché dans le carrousel, `null` si l'entrée n'a aucune image. */
+  imageCourante(): Media | null {
+    return this.partner?.images?.[this.currentImageIndex] ?? null;
+  }
+
   // Gestion de l'auto-slide des images
+  //
+  // L'intervalle tourne HORS de la zone Angular : depuis l'activation de
+  // `provideClientHydration()`, une minuterie récurrente dans la zone empêche
+  // l'application de devenir stable et l'hydratation avorte au bout de 10 s
+  // (NG0506). On ne rentre dans la zone que pour appliquer le changement.
   private startAutoSlide() {
     if (this.partner && this.partner.images && this.partner.images.length > 1) {
-      this.imageInterval = window.setInterval(() => {
-        if (!this.isHovered) {
-          this.nextImage();
-        }
-      }, this.AUTO_SLIDE_DELAY);
+      this.zone.runOutsideAngular(() => {
+        this.imageInterval = window.setInterval(() => {
+          if (this.isHovered) return;
+          this.zone.run(() => {
+            this.nextImage();
+            this.cdr.markForCheck();
+          });
+        }, this.AUTO_SLIDE_DELAY);
+      });
     }
   }
 
@@ -80,9 +97,10 @@ export class PartnerCard implements OnInit, OnDestroy {
   setCurrentImage(index: number): void {
     if (this.partner && this.partner.images && index >= 0 && index < this.partner.images.length) {
       this.currentImageIndex = index;
-      // Redémarrer l'auto-slide après sélection manuelle
+      // Redémarrer l'auto-slide après sélection manuelle, hors zone pour la
+      // même raison que ci-dessus.
       this.stopAutoSlide();
-      setTimeout(() => this.startAutoSlide(), 1000);
+      this.zone.runOutsideAngular(() => setTimeout(() => this.startAutoSlide(), 1000));
     }
   }
 

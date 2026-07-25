@@ -2,15 +2,8 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ChipModule } from 'primeng/chip';
-import { SocialLinks } from '../../../../shared/social-links/social-links.interface';
 import { SocialLinksComponent } from '../../../../shared/social-links/social-links';
-
-export interface TeamMember {
-  name: string;
-  role: string;
-  image?: string;
-  socialLinks?: SocialLinks;
-}
+import { TeamMember } from '../../../../../core/api/models';
 
 @Component({
   selector: 'app-team-card',
