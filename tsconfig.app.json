@@ -4,7 +4,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    // `app.config.server.ts` lit `process.env` pour l'URL interne de l'API :
+    // sans les typages Node, la compilation du bundle serveur échoue (TS2591).
+    "types": ["node"]
   },
   "include": [
     "src/**/*.ts"
