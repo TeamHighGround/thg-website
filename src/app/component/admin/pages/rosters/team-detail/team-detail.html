@@ -40,13 +40,13 @@
         [(media)]="logo"
         libelle="Logo de l'équipe"
         proportion="aspect-square"
-        aide="Carré, 300 × 300 px minimum. Un fond transparent (PNG ou WebP) rend mieux sur le site." />
+        aide="128 px minimum sur le plus grand côté. Fond transparent (PNG ou WebP) conseillé." />
 
       <app-image-drop
         [(media)]="imageRoster"
         libelle="Photo d'équipe"
-        proportion="aspect-video"
-        aide="Photo de groupe affichée en bandeau. Format paysage, 1600 px de large minimum." />
+        proportion="aspect-[3/4]"
+        aide="Affiche verticale, 1080 px de large minimum." />
     </div>
 
     <app-publish-toggle [(publie)]="publie" nomElement="cette équipe" />
