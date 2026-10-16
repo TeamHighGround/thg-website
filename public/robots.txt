@@ -9,7 +9,7 @@ Disallow: /cookie-settings
 Disallow: /legal-notice
 Disallow: /privacy-policy
 
-# Panel d'administration : contenu privé, aucun intérêt pour l'indexation
+# Ancienne adresse du panel, redirigée vers admin.teamhighground.fr
 Disallow: /admin
 Disallow: /admin/
 

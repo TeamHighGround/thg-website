@@ -1,5 +1,8 @@
 # Panel d'administration THG — plan détaillé
 
+> **Document historique.** Le panel a depuis quitté ce dépôt : c'est un projet
+> Angular séparé (`thg-admin`), servi sur admin.teamhighground.fr. Voir son README.
+
 > Branche : `feat/admin-api` (créée depuis `main`)
 > Objectif : remplacer toutes les données en dur du front par une API, avec un panel d'admin
 > utilisable par n'importe qui dans l'asso. **Aucun déploiement serveur dans ce lot.**

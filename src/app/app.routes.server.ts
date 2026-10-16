@@ -46,21 +46,6 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'en/privacy-policy', renderMode: RenderMode.Server },
   { path: 'en/cookie-settings', renderMode: RenderMode.Server },
 
-  // ── Panel d'administration ──────────────────────────────────────────────────
-  // Jamais rendu côté serveur : contenu privé, aucun intérêt SEO, et le rendu
-  // dépend d'une session navigateur.
-  //
-  // Les routes à paramètre sont déclarées une par une : le joker `admin/**` ne
-  // les couvre pas. Sans ces lignes, Angular les considère comme à prérendre et
-  // le build échoue en réclamant un `getPrerenderParams` — qui n'aurait aucun
-  // sens ici, puisqu'il faudrait interroger la base au moment du build pour
-  // générer des pages privées.
-  { path: 'admin', renderMode: RenderMode.Client },
-  { path: 'admin/rosters/:id', renderMode: RenderMode.Client },
-  { path: 'admin/partenaires/:id', renderMode: RenderMode.Client },
-  { path: 'admin/ambassadeurs/:id', renderMode: RenderMode.Client },
-  { path: 'admin/**', renderMode: RenderMode.Client },
-
   // ── Reste ───────────────────────────────────────────────────────────────────
   { path: '**', renderMode: RenderMode.Client }
 ];

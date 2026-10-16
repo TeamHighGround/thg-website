@@ -1,15 +1,18 @@
 # Démarrage local — site + API + panel d'administration
 
-Le projet se compose désormais de **deux dépôts** et d'**une base de données** :
+Le projet se compose de **trois dépôts** et d'**une base de données** :
 
 | Composant | Emplacement | Port |
 |---|---|---|
 | Site Angular (SSR) | `thg-website` | 4200 |
+| Panel d'administration | `thg-admin` | 4300 |
 | API Express | `thg-api` | 4001 |
 | PostgreSQL (Docker) | conteneur `thg-postgres-dev` | 5433 |
 
-En développement, `proxy.conf.json` renvoie `/api` et `/media` de 4200 vers 4001.
-Tu n'as donc qu'une seule adresse à ouvrir : **http://localhost:4200**.
+En développement, le `proxy.conf.json` du site comme celui du panel renvoient `/api`
+et `/media` vers 4001.
+
+Le panel exige **Node 24.15 ou plus** (Angular 22) : voir le README de `thg-admin`.
 
 ---
 
@@ -82,7 +85,8 @@ npm start
 ```
 
 - Site public : http://localhost:4200
-- Panel d'administration : http://localhost:4200/admin
+- Panel d'administration : http://localhost:4300 (troisième terminal, `npm start`
+  dans `thg-admin`)
 
 ---
 

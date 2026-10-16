@@ -9,7 +9,8 @@ Serveur : conteneur LXD `backend` sur `54.37.85.136`, accès `ssh ubuntu@54.37.8
 | `thg-web` | service systemd | 127.0.0.1:4000 | `/opt/thg/web` |
 | `thg-api` | service systemd | 127.0.0.1:4001 | `/opt/thg/api` |
 | `thg-db` | conteneur Docker | 127.0.0.1:5433 | `/opt/thg/postgres` |
-| nginx | service système | 7000 | `/etc/nginx/sites-available/thg` |
+| panel (thg-admin) | fichiers statiques | via nginx | `/opt/thg/admin` |
+| nginx | service système | 7000 | `/etc/nginx/sites-available/thg` et `thg-admin` |
 
 Le nginx de la VM termine le HTTPS et transmet vers le port 7000 du conteneur.
 
@@ -20,14 +21,25 @@ indisponible.
 
 ### Routage nginx
 
+teamhighground.fr (`deploy/nginx-thg.conf`) :
+
 ```
-/media/  ──► thg-api   (images envoyées depuis le panel)
-/api/    ──► thg-api
-/admin   ──► thg-web   (+ X-Robots-Tag: noindex)
-/        ──► thg-web   (rendu serveur Angular)
+/media/                  ──► thg-api   (images envoyées depuis le panel)
+/api/admin/, /api/auth/  ──► 404       (le panel a son propre domaine)
+/api/                    ──► thg-api
+/admin…                  ──► 301 vers admin.teamhighground.fr…
+/                        ──► thg-web   (rendu serveur Angular)
 ```
 
-> Les trois premiers blocs utilisent `location ^~`. C'est **indispensable** :
+admin.teamhighground.fr (`thg-admin/deploy/nginx-admin.conf`) :
+
+```
+/media/  ──► thg-api
+/api/    ──► thg-api   (session du panel, cookie limité à ce domaine)
+/        ──► /opt/thg/admin (application statique, CSP stricte)
+```
+
+> Les blocs `/media/` et `/api/` utilisent `location ^~`. C'est **indispensable** :
 > sans le `^~`, le bloc en expression régulière qui gère les extensions de
 > fichiers (`.webp`, `.png`…) est évalué en premier et détourne `/media/xxx.webp`
 > vers le rendu Angular au lieu de l'API. Toutes les images du site tombent.
@@ -43,6 +55,9 @@ cd thg-website && ./deploy.sh
 
 # L'API (sauvegarde la base avant migration)
 cd thg-api && ./deploy.sh
+
+# Le panel
+cd thg-admin && ./deploy.sh
 ```
 
 Les deux scripts vérifient le résultat et sortent en erreur si le service ne

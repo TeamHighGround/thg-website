@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is the THG (Team High Ground) website - an Angular 20 application with **hybrid rendering (SSR + prerendering)**, internationalization, and a gaming esports focus. The site features team pages (LoL, TFT), news, ambassadors, and contact pages.
 
-**Le contenu éditorial (rosters, timeline, partenaires, ambassadeurs, actualités) ne vit plus dans le code** : il est servi par une API séparée et administré depuis un panel `/admin`. Voir les sections « API THG » et « Panel d'administration » plus bas, et `docs/demarrage-local.md` pour lancer l'ensemble.
+**Le contenu éditorial (rosters, timeline, partenaires, ambassadeurs, actualités) ne vit plus dans le code** : il est servi par une API séparée et administré depuis un panel, projet Angular distinct (`thg-admin`, servi sur admin.teamhighground.fr). Voir les sections « API THG » et « Panel d'administration » plus bas, et `docs/demarrage-local.md` pour lancer l'ensemble.
 
 ## Git
 
@@ -151,29 +151,23 @@ Toutes les méthodes renvoient un `ApiState<T>` (`loading` / `ready` / `error`) 
 peuvent pas échouer : **une API tombée doit dégrader l'affichage, jamais casser le
 rendu serveur.**
 
-## Panel d'administration (`src/app/component/admin/`)
+## Panel d'administration (`thg-admin`)
 
-Route `/admin`, lazy-loadée, rendu client uniquement, `noindex`. Public visé : un
-membre d'association qui n'est pas développeur.
+Dépôt **séparé** (Angular 22, application statique), servi sur
+**admin.teamhighground.fr**. Ce site-ci ne contient plus aucun code du panel.
 
-Composants transverses à réutiliser plutôt qu'à réinventer :
-- `<app-image-drop>` — glisser-déposer + sélecteur Windows + collage, ré-encodage serveur
-- `<app-sortable-list>` — réordonnancement CDK, poignée visible, sauvegarde au dépôt
-- `<app-i18n-field>` — champ bilingue FR/EN à onglets
-- `<app-save-bar>` — barre collante + garde `CanDeactivate`
-
-Règles de l'interface : chaque champ a une explication d'une ligne, chaque erreur est
-en français lisible (jamais un code HTTP), chaque action a un retour visuel.
-
-**Les gardes de route sont inertes côté serveur** (`isPlatformBrowser`) : sinon le
-prérendu figerait une redirection vers l'écran de connexion dans le HTML livré.
+- `teamhighground.fr/admin…` est redirigé (301) vers le sous-domaine par nginx.
+- `/api/admin/*` et `/api/auth/*` répondent 404 sur `teamhighground.fr` : la session
+  n'existe que sur le sous-domaine du panel, hors de portée des scripts tiers
+  chargés par le site public (widgets X, Umami). Voir `deploy/nginx-thg.conf`.
+- Le site public n'a donc **jamais** besoin d'authentification : ne pas y appeler
+  de route `/api/admin` ou `/api/auth`.
 
 ## SSR / Prerendering
 
 Le rendu est **hybride** — voir `src/app/app.routes.server.ts` :
 
 - **`RenderMode.Server`** pour toutes les pages publiques et leurs variantes `/en`. Rendues à chaque requête, pour que le HTML livré contienne les données à jour. Même les pages au contenu figé (contact, mentions légales…) : le footer affiche les réseaux sociaux configurés dans le panel (`SiteSettingsService`), un prérendu les figerait au build.
-- **`RenderMode.Client`** pour `/admin`.
 
 L'hydratation est activée (`provideClientHydration`). Conséquence : **un composant qui
 manipule le DOM ou lance un timer doit être vérifié**. Un `setInterval` dans la zone
@@ -223,7 +217,7 @@ La boutique est une **iframe HelloAsso intégrée** : tout le merch est géré d
 
 ### Fonctionnement
 
-- Ouverture/fermeture et URL du widget se règlent dans le panel (`/admin/boutique`), stockées dans `site_settings` (`shopEnabled`, `shopUrl`) et lues via `SiteSettingsService.boutique()`. Fermée (ou API injoignable), la page affiche `shop.closed.*`.
+- Ouverture/fermeture et URL du widget se règlent dans le panel (admin.teamhighground.fr/boutique), stockées dans `site_settings` (`shopEnabled`, `shopUrl`) et lues via `SiteSettingsService.boutique()`. Fermée (ou API injoignable), la page affiche `shop.closed.*`.
 - L'URL n'est acceptée que sur `helloasso.com` en https — vérifié par l'API **et** par `shop.ts` avant `DomSanitizer.bypassSecurityTrustResourceUrl()`.
 - L'iframe n'est rendue que côté navigateur (`isPlatformBrowser`) ; en SSR/prerender un message de chargement (`shop.loading`) est affiché à la place.
 - L'attribut `allow="payment"` autorise le paiement dans l'iframe ; un handler `onload` ajuste la hauteur via les `postMessage` envoyés par HelloAsso.
