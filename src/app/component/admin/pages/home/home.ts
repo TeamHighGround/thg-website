@@ -60,6 +60,12 @@ export class AdminHome {
       icone: 'pi-share-alt'
     },
     {
+      chemin: '/admin/boutique',
+      titre: 'Boutique',
+      explication: 'Ouvrir ou fermer la boutique du site, et choisir la boutique HelloAsso affichée.',
+      icone: 'pi-shopping-bag'
+    },
+    {
       chemin: '/admin/medias',
       titre: 'Médiathèque',
       explication: 'Toutes les images envoyées sur le site, au même endroit, avec leur utilisation.',

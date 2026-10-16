@@ -131,15 +131,19 @@ Idem + `"body"` (markdown brut, le front le rend). `404` si absent ou non publi�
 
 ### `GET /api/settings`
 Réglages globaux du site, sans paramètre de langue. Les réseaux non renseignés sont
-**omis** (même règle que les autres blocs de réseaux sociaux).
+**omis** (même règle que les autres blocs de réseaux sociaux). `shop.url` ne vaut une
+adresse que si la boutique est ouverte, sinon `null`.
 
 ```json
 { "socialLinks": { "twitter": "https://x.com/teamhigh_ground",
                    "instagram": "https://www.instagram.com/team_high_ground_/",
-                   "discord": "https://discord.gg/teamhighground" } }
+                   "discord": "https://discord.gg/teamhighground" },
+  "shop": { "enabled": true,
+            "url": "https://www.helloasso.com/associations/team-high-ground/boutiques/maillot-2026/widget" } }
 ```
 
-Consommé par le footer (toutes les pages), la page contact et le JSON-LD `sameAs`.
+Consommé par le footer (toutes les pages), la page contact, le JSON-LD `sameAs` et la
+page boutique.
 
 ---
 
@@ -194,8 +198,12 @@ pas de liste, pas de création, pas de suppression.
 
 | Route | Détail |
 |---|---|
-| `GET /api/admin/settings` | `{ "id": 1, "twitter", "instagram", "discord", "updatedAt" }` — champs nuls inclus |
-| `PATCH /api/admin/settings` | mise à jour partielle de `twitter` / `instagram` / `discord` ; `""` ou `null` efface le lien |
+| `GET /api/admin/settings` | `{ "id": 1, "twitter", "instagram", "discord", "shopEnabled", "shopUrl", "updatedAt" }` — champs nuls inclus |
+| `PATCH /api/admin/settings` | mise à jour partielle ; `""` ou `null` efface un lien |
+
+- `shopUrl` n'accepte qu'une adresse `https://` sur le domaine `helloasso.com` (elle est
+  intégrée en iframe sur le site public), sinon `400`.
+- Ouvrir la boutique (`shopEnabled: true`) sans `shopUrl` enregistrée → `400`.
 
 Accessible aux rôles `ADMIN` et `EDITOR`.
 

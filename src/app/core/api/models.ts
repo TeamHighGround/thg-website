@@ -154,9 +154,16 @@ export interface SiteSocialLinks {
   discord?: string;
 }
 
+/** Boutique HelloAsso. `url` ne vaut une adresse que boutique ouverte. */
+export interface SiteShop {
+  enabled: boolean;
+  url: string | null;
+}
+
 /** `GET /api/settings` */
 export interface SiteSettingsResponse {
   socialLinks: SiteSocialLinks;
+  shop: SiteShop;
 }
 
 // ── Erreurs ───────────────────────────────────────────────────────────────────

@@ -1,0 +1,79 @@
+<app-page-header
+  titre="Boutique"
+  description="Ouvrez ou fermez la boutique du site, et choisissez la boutique HelloAsso qui y est affichée."
+  lienPublic="/shop" />
+
+@if (chargement()) {
+  <p class="flex items-center gap-2 py-8 text-sm text-white/50">
+    <i class="pi pi-spin pi-spinner"></i> Chargement…
+  </p>
+} @else if (!reglages()) {
+  <p class="carte text-sm text-white/60">
+    Les réglages de la boutique n'ont pas pu être chargés. Rechargez la page dans quelques instants.
+  </p>
+} @else {
+  <section class="carte space-y-5">
+    <div class="flex items-start gap-3 rounded-lg border border-white/8 bg-white/2 px-3.5 py-3">
+      <p-toggleswitch
+        [ngModel]="ouverte()"
+        (ngModelChange)="ouverte.set($event)"
+        inputId="interrupteur-boutique"
+        ariaLabel="Boutique ouverte" />
+
+      <div class="min-w-0">
+        <label for="interrupteur-boutique" class="block cursor-pointer text-sm font-medium text-white">
+          Boutique ouverte
+          @if (ouverte()) {
+            <span class="pastille pastille-publie ml-1.5">Ouverte</span>
+          } @else {
+            <span class="pastille pastille-brouillon ml-1.5">Fermée</span>
+          }
+        </label>
+        <p class="aide-champ">
+          @if (ouverte()) {
+            La page Boutique du site affiche la boutique HelloAsso ci-dessous.
+          } @else {
+            La page Boutique du site affiche « La boutique est actuellement fermée ».
+          }
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <label class="libelle-champ" for="adresse-boutique">
+        Adresse de la boutique HelloAsso
+        @if (ouverte()) {
+          <span class="text-thgGreen-500">*</span>
+        }
+      </label>
+      <input
+        id="adresse-boutique"
+        type="url"
+        class="champ-texte"
+        [class.champ-invalide]="!!erreurAdresse()"
+        placeholder="https://www.helloasso.com/associations/team-high-ground/boutiques/…/widget"
+        [ngModel]="adresse()"
+        (ngModelChange)="adresse.set($event)" />
+      @if (erreurAdresse()) {
+        <p class="erreur-champ">{{ erreurAdresse() }}</p>
+      } @else if (avertissementWidget()) {
+        <p class="aide-champ !text-amber-200">
+          Cette adresse ne se termine pas par « /widget » : HelloAsso risque de refuser de
+          s'afficher dans le site. Ajoutez « /widget » à la fin de l'adresse de la boutique.
+        </p>
+      } @else {
+        <p class="aide-champ">
+          L'adresse de la boutique sur HelloAsso, suivie de « /widget ». Elle est conservée même
+          quand la boutique est fermée.
+        </p>
+      }
+    </div>
+  </section>
+}
+
+<app-save-bar
+  [visible]="modifie()"
+  [enregistrement]="enregistrement()"
+  [blocage]="blocage()"
+  (enregistrer)="enregistrer()"
+  (annuler)="annuler()" />

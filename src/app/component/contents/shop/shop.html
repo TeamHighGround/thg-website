@@ -10,13 +10,17 @@
       </p>
     </div>
 
-    @if (shopOpen) {
+    @if (chargement()) {
+      <div class="text-center text-gray-400 py-16">
+        <p>{{ 'shop.loading' | transloco }}</p>
+      </div>
+    } @else if (widgetUrl()) {
       <!-- HelloAsso Widget -->
       @if (isBrowser) {
         <div class="w-full rounded-2xl overflow-hidden">
           <iframe
             id="haWidget"
-            [src]="widgetUrl"
+            [src]="widgetUrl()"
             class="w-full border-0"
             style="min-height: 800px; width: 100%;"
             loading="lazy"

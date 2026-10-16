@@ -107,6 +107,14 @@ export const adminRoutes: Routes = [
             loadComponent: () => import('./pages/social/social').then(m => m.AdminSocial)
           },
 
+          // Boutique HelloAsso
+          {
+            path: 'boutique',
+            title: 'Boutique — Administration THG',
+            canDeactivate: [gardeModificationsNonEnregistrees],
+            loadComponent: () => import('./pages/shop/shop').then(m => m.AdminShop)
+          },
+
           // Médiathèque
           {
             path: 'medias',
