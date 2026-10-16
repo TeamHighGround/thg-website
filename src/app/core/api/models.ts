@@ -163,6 +163,8 @@ export interface SiteShop {
 /** `GET /api/settings` */
 export interface SiteSettingsResponse {
   socialLinks: SiteSocialLinks;
+  /** Adresse de contact de l'association, `null` si non renseignée. */
+  contactEmail: string | null;
   shop: SiteShop;
 }
 

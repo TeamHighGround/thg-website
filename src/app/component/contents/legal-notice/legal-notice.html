@@ -9,7 +9,9 @@
         <p><strong>{{ 'legalNotice.editor.denomination' | transloco }} :</strong> {{ 'legalNotice.editor.values.denomination' | transloco }}</p>
         <p><strong>{{ 'legalNotice.editor.legalForm' | transloco }} :</strong> {{ 'legalNotice.editor.values.legalForm' | transloco }}</p>
         <p><strong>{{ 'legalNotice.editor.headquarters' | transloco }} :</strong> {{ 'legalNotice.editor.values.headquarters' | transloco }}</p>
-        <p><strong>{{ 'legalNotice.editor.email' | transloco }} :</strong> {{ 'legalNotice.editor.values.email' | transloco }}</p>
+        @if (email()) {
+          <p><strong>{{ 'legalNotice.editor.email' | transloco }} :</strong> <a [href]="'mailto:' + email()" class="underline">{{ email() }}</a></p>
+        }
         <p><strong>{{ 'legalNotice.editor.director' | transloco }} :</strong> {{ 'legalNotice.editor.values.director' | transloco }}</p>
       </div>
     </section>

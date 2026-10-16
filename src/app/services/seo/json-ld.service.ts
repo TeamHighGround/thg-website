@@ -19,6 +19,8 @@ export class JsonLdService {
   private siteSettings = inject(SiteSettingsService);
   /** URL des réseaux de l'association (`sameAs`), configurées dans le panel. */
   private sameAs: string[] = [];
+  /** Adresse de contact de l'Organization, configurée dans le panel. */
+  private email: string | null = null;
   private scriptElements: HTMLScriptElement[] = [];
 
   initialize(): void {
@@ -38,6 +40,7 @@ export class JsonLdService {
     ]).subscribe(([event, etat]) => {
       const liens = etat.data?.socialLinks ?? {};
       this.sameAs = [liens.twitter, liens.instagram, liens.discord].filter((url): url is string => !!url);
+      this.email = etat.data?.contactEmail ?? null;
       this.updateJsonLdForRoute(event.urlAfterRedirects);
     });
   }
@@ -100,6 +103,7 @@ export class JsonLdService {
         ? 'Association esport bretonne basee a Rennes, competitive sur League of Legends et Teamfight Tactics'
         : 'Breton esports association based in Rennes, competing in League of Legends and Teamfight Tactics',
       foundingDate: '2015',
+      ...(this.email ? { email: this.email } : {}),
       ...(this.sameAs.length ? { sameAs: this.sameAs } : {})
     });
   }

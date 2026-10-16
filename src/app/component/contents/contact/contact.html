@@ -17,7 +17,8 @@
         <!-- Contact Cards Container -->
         <div class="flex flex-col gap-8 sm:gap-12 md:gap-16 lg:gap-20">
 
-            <!-- Email Card -->
+            <!-- Email Card (adresse configurée dans le panel, masquée si vide) -->
+            @if (mail()) {
             <div class="group relative bg-white/[0.025] rounded-[10px] p-6 sm:p-8 md:p-10 lg:p-12
         border border-white/[0.08] hover:border-thgGreen/30
         transition-all duration-300 hover:-translate-y-0.5">
@@ -46,14 +47,14 @@
 
                     <!-- Email Address with Copy Button -->
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-                        <a href="mailto:{{mail}}" class="inline-flex items-center justify-center gap-3 
+                        <a href="mailto:{{ mail() }}" class="inline-flex items-center justify-center gap-3 
                text-thgGreen hover:text-white font-semibold
                text-lg sm:text-xl md:text-2xl
                px-6 py-3 rounded-lg border border-thgGreen/30 hover:border-thgGreen
                bg-thgGreen/10 hover:bg-thgGreen
                transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-thgGreen/30">
                             <i class="pi pi-send text-base sm:text-lg"></i>
-                            {{ mail }}
+                            {{ mail() }}
                         </a>
 
                         <!-- Copy Button -->
@@ -71,6 +72,7 @@
                     </div>
                 </div>
             </div>
+            }
 
             <!-- Social Media Card -->
             <div class="group relative bg-white/[0.025] rounded-[10px] p-6 sm:p-8 md:p-10 lg:p-12

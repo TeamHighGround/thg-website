@@ -191,6 +191,7 @@ export interface ReglagesSite {
   twitter: string | null;
   instagram: string | null;
   discord: string | null;
+  contactEmail: string | null;
   shopEnabled: boolean;
   shopUrl: string | null;
   updatedAt?: string;
