@@ -18,14 +18,5 @@
     @media (max-width: 1023px) {
       padding-top: 4rem;
     }
-
-    // Panel d'administration : pas de header fixe, donc rien à compenser.
-    &--nu {
-      padding-top: 0;
-
-      @media (max-width: 1023px) {
-        padding-top: 0;
-      }
-    }
   }
 }

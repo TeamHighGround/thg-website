@@ -47,14 +47,18 @@ Puis ouvrir https://teamhighground.fr.
 ## Infrastructure
 
 ```
-Internet ─▶ nginx VM (TLS/Let's Encrypt) ─▶ :7000 [proxy LXD] ─▶ nginx conteneur ─┬─▶ /var/www/thg-website  (site statique)
-                                                                                   └─▶ 127.0.0.1:3000        (Umami, analytics)
+Internet ─▶ nginx VM (TLS/Let's Encrypt) ─▶ :7000 [proxy LXD] ─▶ nginx conteneur ─┬─▶ 127.0.0.1:4000  thg-web (site, rendu serveur)
+                                                                                   ├─▶ 127.0.0.1:4001  thg-api (/api, /media)
+                                                                                   ├─▶ /opt/thg/admin  panel (admin.teamhighground.fr)
+                                                                                   └─▶ 127.0.0.1:3000  Umami (analytics)
 ```
 
+Détails d'exploitation : [`docs/production.md`](docs/production.md).
+
 - **Conteneur LXD** (Ubuntu) : accès SSH sur le port `2222`, forwards `7000-7010` vers le host.
-- **nginx du conteneur** : sert le site statique sur `7000` et route `analytics.teamhighground.fr` vers Umami. Config versionnée dans [`deploy/nginx-thg.conf`](deploy/nginx-thg.conf) — à recopier dans le conteneur après modification.
+- **nginx du conteneur** : écoute sur `7000` et route par nom de domaine (site, panel, Umami). Config versionnée dans [`deploy/nginx-thg.conf`](deploy/nginx-thg.conf) — à recopier dans le conteneur après modification.
 - **nginx de la VM** : reverse proxy + HTTPS, géré par l'admin de la VM (hors de ce dépôt).
-- **DNS (OVH)** : `teamhighground.fr`, `www` et `analytics` en A vers `54.37.85.136`.
+- **DNS (OVH)** : `teamhighground.fr`, `www`, `analytics` et `admin` en A vers `54.37.85.136`.
 
 ### Analytics (Umami)
 

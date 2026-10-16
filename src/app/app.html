@@ -1,12 +1,8 @@
-@if (!estPanelAdmin()) {
-  <app-background></app-background>
-  <app-header></app-header>
-}
+<app-background></app-background>
+<app-header></app-header>
 
-<main class="main-content" [class.main-content--nu]="estPanelAdmin()">
+<main class="main-content">
   <router-outlet></router-outlet>
 </main>
 
-@if (!estPanelAdmin()) {
-  <app-footer></app-footer>
-}
+<app-footer></app-footer>
