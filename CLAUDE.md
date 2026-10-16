@@ -223,11 +223,12 @@ La boutique est une **iframe HelloAsso intégrée** : tout le merch est géré d
 
 ### Fonctionnement
 
-- L'URL du widget est définie dans `shop.ts` (`HELLOASSO_URL`) et assainie via `DomSanitizer.bypassSecurityTrustResourceUrl()`.
+- Ouverture/fermeture et URL du widget se règlent dans le panel (`/admin/boutique`), stockées dans `site_settings` (`shopEnabled`, `shopUrl`) et lues via `SiteSettingsService.boutique()`. Fermée (ou API injoignable), la page affiche `shop.closed.*`.
+- L'URL n'est acceptée que sur `helloasso.com` en https — vérifié par l'API **et** par `shop.ts` avant `DomSanitizer.bypassSecurityTrustResourceUrl()`.
 - L'iframe n'est rendue que côté navigateur (`isPlatformBrowser`) ; en SSR/prerender un message de chargement (`shop.loading`) est affiché à la place.
 - L'attribut `allow="payment"` autorise le paiement dans l'iframe ; un handler `onload` ajuste la hauteur via les `postMessage` envoyés par HelloAsso.
 
-Pour changer de boutique, mettre à jour `HELLOASSO_URL` dans `shop.ts`.
+Pour changer de boutique : panel → Boutique, rien à modifier dans le code.
 
 ### Clés de traduction shop
 

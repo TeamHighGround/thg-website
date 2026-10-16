@@ -186,10 +186,12 @@ export interface ErreurApi {
 
 // ── Réglages du site ────────────────────────────────────────────────────────
 
-/** `GET /api/admin/settings` — réseaux sociaux de l'association. */
+/** `GET /api/admin/settings` — réseaux sociaux de l'association et boutique. */
 export interface ReglagesSite {
   twitter: string | null;
   instagram: string | null;
   discord: string | null;
+  shopEnabled: boolean;
+  shopUrl: string | null;
   updatedAt?: string;
 }

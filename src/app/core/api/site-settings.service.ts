@@ -4,7 +4,7 @@ import { shareReplay } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { API_LOADING, ApiState } from './api-state';
-import { SiteSettingsResponse, SiteSocialLinks } from './models';
+import { SiteSettingsResponse, SiteShop, SiteSocialLinks } from './models';
 
 /** Réseau social de l'association, prêt à afficher. */
 export interface ReseauSite {
@@ -43,4 +43,12 @@ export class SiteSettingsService {
     const liens = this.etat().data?.socialLinks ?? {};
     return RESEAUX.filter(r => !!liens[r.cle]).map(r => ({ ...r, url: liens[r.cle]! }));
   });
+
+  /** Statut de chargement brut, pour distinguer « en cours » de « boutique fermée ». */
+  readonly statut = computed(() => this.etat().status);
+
+  /** Boutique HelloAsso. Fermée tant que l'API n'a pas répondu, ou si elle est injoignable. */
+  readonly boutique = computed<SiteShop>(
+    () => this.etat().data?.shop ?? { enabled: false, url: null }
+  );
 }
