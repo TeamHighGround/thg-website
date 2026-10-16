@@ -11,6 +11,7 @@ import {
   MediaItem,
   Membre,
   Partenaire,
+  ReglagesSite,
   RoleJeu,
   Utilisateur
 } from './admin-api.types';
@@ -76,6 +77,18 @@ export class AdminApiService {
   readonly jalons = this.ressource<Jalon>('timeline/milestones');
   readonly partenaires = this.ressource<Partenaire>('partners');
   readonly utilisateurs = this.ressource<Utilisateur>('users');
+
+  // ── Réglages du site ──────────────────────────────────────────────────────
+
+  /** `GET /api/admin/settings` — ligne unique, pas d'enveloppe. */
+  reglages() {
+    return firstValueFrom(this.http.get<ReglagesSite>('/api/admin/settings'));
+  }
+
+  /** `PATCH /api/admin/settings` — mise à jour partielle. */
+  modifierReglages(corps: Partial<ReglagesSite>) {
+    return firstValueFrom(this.http.patch<ReglagesSite>('/api/admin/settings', corps));
+  }
 
   // ── Médiathèque ───────────────────────────────────────────────────────────
 

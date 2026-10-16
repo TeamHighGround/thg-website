@@ -1,27 +1,21 @@
 <footer class="bg-thgGreen-950">
     <!-- Section principale du footer -->
     <div class="flex justify-center items-start gap-24 py-8">
-        <!-- Colonne 1: Réseaux sociaux -->
-        <div class="flex flex-col items-center">
-            <h3 class="text-white font-semibold mb-4">{{ 'footer.social.title' | transloco }}</h3>
-            <div class="flex space-x-4">
-                <a href="https://x.com/teamhigh_ground" target="_blank" rel="noopener noreferrer"
-                    class="text-gray-300 hover:text-thgGreen transition-colors duration-200 p-2 rounded-lg">
-                    <i class="pi pi-twitter text-xl"></i>
-                    <span class="sr-only">X</span>
-                </a>
-                <a href="https://www.instagram.com/team_high_ground_/" target="_blank" rel="noopener noreferrer"
-                    class="text-gray-300 hover:text-thgGreen transition-colors duration-200 p-2 rounded-lg">
-                    <i class="pi pi-instagram text-xl"></i>
-                    <span class="sr-only">Instagram</span>
-                </a>
-                <a href="https://discord.gg/teamhighground" target="_blank" rel="noopener noreferrer"
-                    class="text-gray-300 hover:text-thgGreen transition-colors duration-200 p-2 rounded-lg">
-                    <i class="pi pi-discord text-xl"></i>
-                    <span class="sr-only">Discord</span>
-                </a>
+        <!-- Colonne 1: Réseaux sociaux (configurés dans le panel, masqués si aucun) -->
+        @if (reseaux().length) {
+            <div class="flex flex-col items-center">
+                <h3 class="text-white font-semibold mb-4">{{ 'footer.social.title' | transloco }}</h3>
+                <div class="flex space-x-4">
+                    @for (reseau of reseaux(); track reseau.cle) {
+                        <a [href]="reseau.url" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-300 hover:text-thgGreen transition-colors duration-200 p-2 rounded-lg">
+                            <i class="pi {{ reseau.icone }} text-xl"></i>
+                            <span class="sr-only">{{ reseau.libelle }}</span>
+                        </a>
+                    }
+                </div>
             </div>
-        </div>
+        }
         <!-- Colonne 2: Liens légaux -->
         <div class="flex flex-col">
             <h3 class="text-white font-semibold mb-4">{{ 'footer.legal.title' | transloco }}</h3>

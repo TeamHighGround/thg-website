@@ -145,6 +145,20 @@ export interface NewsListResponse {
   total: number;
 }
 
+// ── Réglages du site ──────────────────────────────────────────────────────────
+
+/** Réseaux sociaux de l'association. Une clé absente = réseau non renseigné. */
+export interface SiteSocialLinks {
+  twitter?: string;
+  instagram?: string;
+  discord?: string;
+}
+
+/** `GET /api/settings` */
+export interface SiteSettingsResponse {
+  socialLinks: SiteSocialLinks;
+}
+
 // ── Erreurs ───────────────────────────────────────────────────────────────────
 
 /** Corps d'erreur commun à toutes les routes de l'API. */

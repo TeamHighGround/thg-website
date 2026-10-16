@@ -1,0 +1,31 @@
+<app-page-header
+  titre="Réseaux sociaux"
+  description="Les comptes de l'association, affichés dans le pied de page de tout le site et sur la page contact."
+  lienPublic="/contact" />
+
+@if (chargement()) {
+  <p class="flex items-center gap-2 py-8 text-sm text-white/50">
+    <i class="pi pi-spin pi-spinner"></i> Chargement…
+  </p>
+} @else if (!reglages()) {
+  <p class="carte text-sm text-white/60">
+    Les réseaux sociaux n'ont pas pu être chargés. Rechargez la page dans quelques instants.
+  </p>
+} @else {
+  <section class="carte">
+    <h2 class="titre-section">Comptes de l'association</h2>
+    <p class="sous-titre-section mb-3">
+      Pour Discord, collez un lien d'invitation permanent (qui n'expire jamais), sinon le lien du
+      site cessera de fonctionner.
+    </p>
+
+    <app-social-links [(valeurs)]="reseaux" [reseaux]="reseauxSite" />
+  </section>
+}
+
+<app-save-bar
+  [visible]="modifie()"
+  [enregistrement]="enregistrement()"
+  [blocage]="blocage()"
+  (enregistrer)="enregistrer()"
+  (annuler)="annuler()" />

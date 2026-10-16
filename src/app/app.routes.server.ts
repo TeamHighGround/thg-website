@@ -1,14 +1,14 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
 
 /**
- * Deux régimes de rendu coexistent :
+ * Toutes les pages publiques sont en `Server` : rendues à chaque requête pour que
+ * le HTML livré contienne les données à jour de l'API — c'est ce qui garde le SEO
+ * et les aperçus de lien (Discord, X…) fonctionnels.
  *
- * - `Prerender` : pages dont le contenu est figé dans le code (mentions légales,
- *   contact, boutique…). Générées au build, servies en statique. Rien ne change.
- *
- * - `Server` : pages dont le contenu vient désormais de l'API. Rendues à chaque
- *   requête pour que le HTML livré contienne les données à jour — c'est ce qui
- *   garde le SEO et les aperçus de lien (Discord, X…) fonctionnels.
+ * Même les pages au contenu figé (mentions légales, contact, boutique…) en ont
+ * besoin : le footer, présent partout, affiche les réseaux sociaux configurés
+ * dans le panel. Prérendues, elles figeraient ces liens au moment du build — ou
+ * n'en afficheraient aucun si l'API n'était pas joignable pendant le build.
  *
  * L'accueil est en `Server` parce que `home.html` inclut `<app-about>` et
  * `<app-timeline>`, qui dépendent de l'API.
@@ -24,11 +24,11 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'ambassadors', renderMode: RenderMode.Server },
   { path: 'partners', renderMode: RenderMode.Server },
 
-  { path: 'shop', renderMode: RenderMode.Prerender },
-  { path: 'contact', renderMode: RenderMode.Prerender },
-  { path: 'legal-notice', renderMode: RenderMode.Prerender },
-  { path: 'privacy-policy', renderMode: RenderMode.Prerender },
-  { path: 'cookie-settings', renderMode: RenderMode.Prerender },
+  { path: 'shop', renderMode: RenderMode.Server },
+  { path: 'contact', renderMode: RenderMode.Server },
+  { path: 'legal-notice', renderMode: RenderMode.Server },
+  { path: 'privacy-policy', renderMode: RenderMode.Server },
+  { path: 'cookie-settings', renderMode: RenderMode.Server },
 
   // ── Routes anglaises ────────────────────────────────────────────────────────
   { path: 'en', renderMode: RenderMode.Server },
@@ -40,11 +40,11 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'en/ambassadors', renderMode: RenderMode.Server },
   { path: 'en/partners', renderMode: RenderMode.Server },
 
-  { path: 'en/shop', renderMode: RenderMode.Prerender },
-  { path: 'en/contact', renderMode: RenderMode.Prerender },
-  { path: 'en/legal-notice', renderMode: RenderMode.Prerender },
-  { path: 'en/privacy-policy', renderMode: RenderMode.Prerender },
-  { path: 'en/cookie-settings', renderMode: RenderMode.Prerender },
+  { path: 'en/shop', renderMode: RenderMode.Server },
+  { path: 'en/contact', renderMode: RenderMode.Server },
+  { path: 'en/legal-notice', renderMode: RenderMode.Server },
+  { path: 'en/privacy-policy', renderMode: RenderMode.Server },
+  { path: 'en/cookie-settings', renderMode: RenderMode.Server },
 
   // ── Panel d'administration ──────────────────────────────────────────────────
   // Jamais rendu côté serveur : contenu privé, aucun intérêt SEO, et le rendu
