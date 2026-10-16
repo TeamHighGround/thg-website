@@ -8,6 +8,10 @@ This is the THG (Team High Ground) website - an Angular 20 application with **hy
 
 **Le contenu éditorial (rosters, timeline, partenaires, ambassadeurs, actualités) ne vit plus dans le code** : il est servi par une API séparée et administré depuis un panel `/admin`. Voir les sections « API THG » et « Panel d'administration » plus bas, et `docs/demarrage-local.md` pour lancer l'ensemble.
 
+## Git
+
+- **Jamais de ligne `Co-Authored-By: Claude …`** (ni aucune autre mention de Claude) dans les messages de commit ou les descriptions de PR, sur ce dépôt comme sur `thg-api`.
+
 ## Build Commands
 
 ### Development
@@ -168,8 +172,7 @@ prérendu figerait une redirection vers l'écran de connexion dans le HTML livr�
 
 Le rendu est **hybride** — voir `src/app/app.routes.server.ts` :
 
-- **`RenderMode.Server`** pour les pages dont le contenu vient de l'API (accueil, about, teams, news, ambassadors, partners, et leurs variantes `/en`). Rendues à chaque requête, pour que le HTML livré contienne les données à jour.
-- **`RenderMode.Prerender`** pour les pages figées (contact, mentions légales, confidentialité, boutique, cookies).
+- **`RenderMode.Server`** pour toutes les pages publiques et leurs variantes `/en`. Rendues à chaque requête, pour que le HTML livré contienne les données à jour. Même les pages au contenu figé (contact, mentions légales…) : le footer affiche les réseaux sociaux configurés dans le panel (`SiteSettingsService`), un prérendu les figerait au build.
 - **`RenderMode.Client`** pour `/admin`.
 
 L'hydratation est activée (`provideClientHydration`). Conséquence : **un composant qui

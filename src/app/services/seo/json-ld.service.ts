@@ -2,7 +2,9 @@ import { Injectable, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
+import { combineLatest } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { SiteSettingsService } from '../../core/api/site-settings.service';
 
 const SITE_URL = 'https://teamhighground.fr';
 
@@ -14,6 +16,9 @@ export class JsonLdService {
   private router = inject(Router);
   private transloco = inject(TranslocoService);
   private platformId = inject(PLATFORM_ID);
+  private siteSettings = inject(SiteSettingsService);
+  /** URL des réseaux de l'association (`sameAs`), configurées dans le panel. */
+  private sameAs: string[] = [];
   private scriptElements: HTMLScriptElement[] = [];
 
   initialize(): void {
@@ -25,9 +30,14 @@ export class JsonLdService {
   }
 
   private initRouteListener(): void {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
+    // Régénéré à chaque navigation, et une fois de plus quand les réseaux
+    // configurés arrivent de l'API (ils peuvent arriver après la navigation).
+    combineLatest([
+      this.router.events.pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd)),
+      this.siteSettings.etat$.pipe(filter(etat => etat.status !== 'loading'))
+    ]).subscribe(([event, etat]) => {
+      const liens = etat.data?.socialLinks ?? {};
+      this.sameAs = [liens.twitter, liens.instagram, liens.discord].filter((url): url is string => !!url);
       this.updateJsonLdForRoute(event.urlAfterRedirects);
     });
   }
@@ -90,11 +100,7 @@ export class JsonLdService {
         ? 'Association esport bretonne basee a Rennes, competitive sur League of Legends et Teamfight Tactics'
         : 'Breton esports association based in Rennes, competing in League of Legends and Teamfight Tactics',
       foundingDate: '2015',
-      sameAs: [
-        'https://twitter.com/TeamHigh_Ground',
-        'https://www.instagram.com/teamhighground/',
-        'https://discord.gg/thg'
-      ]
+      ...(this.sameAs.length ? { sameAs: this.sameAs } : {})
     });
   }
 

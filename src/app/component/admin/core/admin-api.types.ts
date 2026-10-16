@@ -97,6 +97,7 @@ export interface ReseauxSociaux {
   lolpros?: string | null;
   soundcloud?: string | null;
   website?: string | null;
+  discord?: string | null;
 }
 
 export interface Membre extends ReseauxSociaux {
@@ -181,4 +182,14 @@ export interface ErreurApi {
     message: string;
     details?: { field?: string; message: string }[];
   };
+}
+
+// ── Réglages du site ────────────────────────────────────────────────────────
+
+/** `GET /api/admin/settings` — réseaux sociaux de l'association. */
+export interface ReglagesSite {
+  twitter: string | null;
+  instagram: string | null;
+  discord: string | null;
+  updatedAt?: string;
 }

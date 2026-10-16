@@ -129,6 +129,18 @@ au champ `id` près qui devient un `uuid` string.
 ### `GET /api/news/:slug?lang=fr`
 Idem + `"body"` (markdown brut, le front le rend). `404` si absent ou non publié.
 
+### `GET /api/settings`
+Réglages globaux du site, sans paramètre de langue. Les réseaux non renseignés sont
+**omis** (même règle que les autres blocs de réseaux sociaux).
+
+```json
+{ "socialLinks": { "twitter": "https://x.com/teamhigh_ground",
+                   "instagram": "https://www.instagram.com/team_high_ground_/",
+                   "discord": "https://discord.gg/teamhighground" } }
+```
+
+Consommé par le footer (toutes les pages), la page contact et le JSON-LD `sameAs`.
+
 ---
 
 ## Authentification
@@ -174,6 +186,18 @@ Ressources : `games`, `teams`, `members`, `roles`, `timeline/chapters`, `timelin
 - `published` vaut **`false` par défaut** à la création.
 - `reorder` réécrit les `order` dans une transaction ; les ids doivent tous appartenir au même
   parent, sinon `400`.
+
+### Réglages du site
+
+Ressource à ligne unique (table `site_settings`, `id = 1`, créée par la migration) :
+pas de liste, pas de création, pas de suppression.
+
+| Route | Détail |
+|---|---|
+| `GET /api/admin/settings` | `{ "id": 1, "twitter", "instagram", "discord", "updatedAt" }` — champs nuls inclus |
+| `PATCH /api/admin/settings` | mise à jour partielle de `twitter` / `instagram` / `discord` ; `""` ou `null` efface le lien |
+
+Accessible aux rôles `ADMIN` et `EDITOR`.
 
 ### Médias
 

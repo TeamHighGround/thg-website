@@ -31,6 +31,13 @@ export const RESEAUX_PARTENAIRE: DefinitionReseau[] = [
   { cle: 'soundcloud', libelle: 'SoundCloud', icone: 'pi-volume-up', exemple: 'https://soundcloud.com/pseudo' }
 ];
 
+/** Réseaux de l'association, affichés dans le footer et la page contact. */
+export const RESEAUX_SITE: DefinitionReseau[] = [
+  { cle: 'twitter', libelle: 'X (Twitter)', icone: 'pi-twitter', exemple: 'https://x.com/teamhigh_ground' },
+  { cle: 'instagram', libelle: 'Instagram', icone: 'pi-instagram', exemple: 'https://instagram.com/pseudo' },
+  { cle: 'discord', libelle: 'Discord', icone: 'pi-discord', exemple: 'https://discord.gg/invitation' }
+];
+
 /**
  * Bloc « réseaux sociaux ».
  *

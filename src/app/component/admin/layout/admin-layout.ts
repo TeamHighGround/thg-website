@@ -57,6 +57,7 @@ export class AdminLayout {
     { chemin: '/admin/timeline', libelle: 'Timeline', icone: 'pi-history' },
     { chemin: '/admin/partenaires', libelle: 'Partenaires', icone: 'pi-briefcase' },
     { chemin: '/admin/ambassadeurs', libelle: 'Ambassadeurs', icone: 'pi-star' },
+    { chemin: '/admin/reseaux-sociaux', libelle: 'Réseaux sociaux', icone: 'pi-share-alt' },
     { chemin: '/admin/medias', libelle: 'Médiathèque', icone: 'pi-images' },
     { chemin: '/admin/compte', libelle: 'Mon compte', icone: 'pi-user' }
   ];

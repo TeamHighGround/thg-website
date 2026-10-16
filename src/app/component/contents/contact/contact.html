@@ -99,59 +99,24 @@
                         {{ 'contents.contact.social.description' | transloco }}
                     </p>
 
-                    <!-- Social Media Links -->
-                    <div class="flex justify-center items-center gap-4 sm:gap-6 md:gap-8">
-
-                        <!-- Twitter/X -->
-                        <a href="https://x.com/teamhigh_ground" target="_blank" rel="noopener noreferrer" class="group/social flex items-center justify-center 
+                    <!-- Social Media Links (configurés dans le panel) -->
+                    <div class="flex justify-center items-start gap-4 sm:gap-6 md:gap-8">
+                        @for (reseau of reseaux(); track reseau.cle) {
+                            <a [href]="reseau.url" target="_blank" rel="noopener noreferrer"
+                                class="group/social flex flex-col items-center gap-4 focus:outline-none">
+                                <span class="flex items-center justify-center
      w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18
-     bg-gray-800/50 hover:bg-blue-500/20 
-     border border-gray-600 hover:border-blue-400/50
-     rounded-full transition-all duration-300 
-     hover:scale-110 hover:-translate-y-2 hover:shadow-lg hover:shadow-blue-500/30
-     focus:outline-none focus:ring-2 focus:ring-blue-400">
-                            <i class="pi pi-twitter text-xl sm:text-2xl md:text-3xl 
-      text-gray-300 group-hover/social:text-blue-400 transition-colors duration-300"></i>
-                        </a>
-
-                        <!-- Instagram -->
-                        <a href="https://www.instagram.com/team_high_ground_/" target="_blank" rel="noopener noreferrer"
-                            class="group/social flex items-center justify-center 
-     w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18
-     bg-gray-800/50 hover:bg-pink-500/20 
-     border border-gray-600 hover:border-pink-400/50
-     rounded-full transition-all duration-300 
-     hover:scale-110 hover:-translate-y-2 hover:shadow-lg hover:shadow-pink-500/30
-     focus:outline-none focus:ring-2 focus:ring-pink-400">
-                            <i class="pi pi-instagram text-xl sm:text-2xl md:text-3xl 
-      text-gray-300 group-hover/social:text-pink-400 transition-colors duration-300"></i>
-                        </a>
-
-                        <!-- Discord -->
-                        <a href="https://discord.gg/teamhighground" target="_blank" rel="noopener noreferrer" class="group/social flex items-center justify-center 
-     w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18
-     bg-gray-800/50 hover:bg-indigo-500/20 
-     border border-gray-600 hover:border-indigo-400/50
-     rounded-full transition-all duration-300 
-     hover:scale-110 hover:-translate-y-2 hover:shadow-lg hover:shadow-indigo-500/30
-     focus:outline-none focus:ring-2 focus:ring-indigo-400">
-                            <i class="pi pi-discord text-xl sm:text-2xl md:text-3xl 
-      text-gray-300 group-hover/social:text-indigo-400 transition-colors duration-300"></i>
-                        </a>
-
-                    </div>
-
-                    <!-- Social Media Labels -->
-                    <div class="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 mt-4">
-                        <div class="w-14 sm:w-16 md:w-18 text-center">
-                            <span class="text-xs sm:text-sm text-gray-400 font-medium">X</span>
-                        </div>
-                        <div class="w-14 sm:w-16 md:w-18 text-center">
-                            <span class="text-xs sm:text-sm text-gray-400 font-medium">Instagram</span>
-                        </div>
-                        <div class="w-14 sm:w-16 md:w-18 text-center">
-                            <span class="text-xs sm:text-sm text-gray-400 font-medium">Discord</span>
-                        </div>
+     bg-gray-800/50 border border-gray-600 rounded-full transition-all duration-300
+     group-hover/social:scale-110 group-hover/social:-translate-y-2 group-hover/social:shadow-lg
+     group-focus-visible/social:ring-2 {{ styles[reseau.cle].pastille }}">
+                                    <i class="pi {{ reseau.icone }} text-xl sm:text-2xl md:text-3xl
+      text-gray-300 transition-colors duration-300 {{ styles[reseau.cle].icone }}"></i>
+                                </span>
+                                <span class="w-14 sm:w-16 md:w-18 text-center text-xs sm:text-sm text-gray-400 font-medium">
+                                    {{ reseau.libelle }}
+                                </span>
+                            </a>
+                        }
                     </div>
                 </div>
             </div>

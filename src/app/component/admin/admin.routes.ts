@@ -99,6 +99,14 @@ export const adminRoutes: Routes = [
               )
           },
 
+          // Réseaux sociaux de l'association
+          {
+            path: 'reseaux-sociaux',
+            title: 'Réseaux sociaux — Administration THG',
+            canDeactivate: [gardeModificationsNonEnregistrees],
+            loadComponent: () => import('./pages/social/social').then(m => m.AdminSocial)
+          },
+
           // Médiathèque
           {
             path: 'medias',

@@ -11,6 +11,7 @@ import {
   NewsPostDetail,
   PartnerKind,
   PartnersResponse,
+  SiteSettingsResponse,
   TeamsResponse,
   TimelineResponse
 } from './models';
@@ -76,6 +77,15 @@ export class ApiService {
     return this.selonLangue((lang) =>
       this.recupererAvecTransfert<NewsPostDetail>(`/api/news/${encodeURIComponent(slug)}`, { lang })
     );
+  }
+
+  /**
+   * `GET /api/settings` — réglages globaux (réseaux sociaux). Indépendant de la
+   * langue : un seul appel, pas de `selonLangue`. À consommer via
+   * `SiteSettingsService`, qui le partage entre footer, contact et JSON-LD.
+   */
+  getSettings(): Observable<ApiState<SiteSettingsResponse>> {
+    return versApiState(this.recupererAvecTransfert<SiteSettingsResponse>('/api/settings', {}));
   }
 
   // ── Rouages internes ────────────────────────────────────────────────────────

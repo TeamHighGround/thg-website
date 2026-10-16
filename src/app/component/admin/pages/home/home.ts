@@ -54,6 +54,12 @@ export class AdminHome {
       icone: 'pi-star'
     },
     {
+      chemin: '/admin/reseaux-sociaux',
+      titre: 'Réseaux sociaux',
+      explication: 'Les liens X, Instagram et Discord de l\'association, affichés dans le pied de page et sur la page contact.',
+      icone: 'pi-share-alt'
+    },
+    {
       chemin: '/admin/medias',
       titre: 'Médiathèque',
       explication: 'Toutes les images envoyées sur le site, au même endroit, avec leur utilisation.',

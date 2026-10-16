@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
+import { SiteSettingsService } from '../../core/api/site-settings.service';
 
 @Component({
   selector: 'app-footer',
@@ -9,5 +10,5 @@ import { TranslocoModule } from '@jsverse/transloco';
   styleUrl: './footer.scss'
 })
 export class Footer {
-
+  readonly reseaux = inject(SiteSettingsService).reseaux;
 }
