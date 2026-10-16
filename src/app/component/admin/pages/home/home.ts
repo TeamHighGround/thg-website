@@ -56,7 +56,7 @@ export class AdminHome {
     {
       chemin: '/admin/reseaux-sociaux',
       titre: 'Réseaux sociaux',
-      explication: 'Les liens X, Instagram et Discord de l\'association, affichés dans le pied de page et sur la page contact.',
+      explication: 'Les liens X, Instagram et Discord de l\'association, et son adresse e-mail de contact.',
       icone: 'pi-share-alt'
     },
     {

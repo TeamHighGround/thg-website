@@ -30,11 +30,14 @@ export class Contact {
     }
   };
 
-  mail: string = "contact@teamhighground.fr"
+  /** Adresse de contact, configurée dans le panel (« Réseaux sociaux »). */
+  readonly mail = inject(SiteSettingsService).emailContact;
   copied = false;
 
   copyMail() {
-    navigator.clipboard.writeText(this.mail).then(() => {
+    const mail = this.mail();
+    if (!mail) return;
+    navigator.clipboard.writeText(mail).then(() => {
       this.copied = true;
       setTimeout(() => this.copied = false, 2000);
     });

@@ -44,6 +44,9 @@ export class SiteSettingsService {
     return RESEAUX.filter(r => !!liens[r.cle]).map(r => ({ ...r, url: liens[r.cle]! }));
   });
 
+  /** Adresse e-mail de contact, `null` si non renseignée ou API injoignable. */
+  readonly emailContact = computed(() => this.etat().data?.contactEmail ?? null);
+
   /** Statut de chargement brut, pour distinguer « en cours » de « boutique fermée ». */
   readonly statut = computed(() => this.etat().status);
 

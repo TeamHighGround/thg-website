@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { AdminApiService } from '../../core/admin-api.service';
 import { ReglagesSite, ReseauxSociaux } from '../../core/admin-api.types';
 import { PeutContenirDesModifications } from '../../core/modifications-non-enregistrees.guard';
@@ -13,12 +14,13 @@ import { RESEAUX_SITE, SocialLinks } from '../../shared/social-links/social-link
  *
  * Une seule fiche (pas de liste) : les liens X, Instagram et Discord affichés
  * dans le footer de toutes les pages, sur la page contact et dans les données
- * structurées lues par les moteurs de recherche.
+ * structurées lues par les moteurs de recherche, ainsi que l'adresse e-mail de
+ * contact (page contact et mentions légales).
  */
 @Component({
   selector: 'app-admin-social',
   standalone: true,
-  imports: [CommonModule, PageHeader, SaveBar, SocialLinks],
+  imports: [CommonModule, FormsModule, PageHeader, SaveBar, SocialLinks],
   templateUrl: './social.html'
 })
 export class AdminSocial implements PeutContenirDesModifications {
@@ -31,9 +33,21 @@ export class AdminSocial implements PeutContenirDesModifications {
   readonly enregistrement = signal(false);
   readonly reglages = signal<ReglagesSite | null>(null);
   readonly reseaux = signal<ReseauxSociaux>({});
+  readonly email = signal('');
 
   private readonly reference = signal('');
-  private readonly etatCourant = computed(() => JSON.stringify(this.reseaux()));
+  private readonly etatCourant = computed(() =>
+    JSON.stringify({ reseaux: this.reseaux(), email: this.email().trim() })
+  );
+
+  /** Vérification volontairement simple : l'API fait foi. */
+  readonly erreurEmail = computed<string | null>(() => {
+    const valeur = this.email().trim();
+    if (!valeur) return null;
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valeur)
+      ? null
+      : "Cette adresse e-mail n'est pas valide (exemple : contact@teamhighground.fr).";
+  });
   readonly modifie = computed(() => !!this.reference() && this.etatCourant() !== this.reference());
 
   /** Même règle que `<app-social-links>` : une adresse saisie doit être une URL complète. */
@@ -48,7 +62,9 @@ export class AdminSocial implements PeutContenirDesModifications {
         return true;
       }
     });
-    return invalide ? "Corrigez les adresses en rouge avant d'enregistrer." : null;
+    return invalide || this.erreurEmail()
+      ? "Corrigez les adresses en rouge avant d'enregistrer."
+      : null;
   });
 
   aDesModifications(): boolean {
@@ -78,6 +94,7 @@ export class AdminSocial implements PeutContenirDesModifications {
       instagram: reglages.instagram ?? null,
       discord: reglages.discord ?? null
     });
+    this.email.set(reglages.contactEmail ?? '');
     this.reference.set(this.etatCourant());
   }
 
@@ -90,7 +107,8 @@ export class AdminSocial implements PeutContenirDesModifications {
       const maj = await this.api.modifierReglages({
         twitter: twitter ?? null,
         instagram: instagram ?? null,
-        discord: discord ?? null
+        discord: discord ?? null,
+        contactEmail: this.email().trim() || null
       });
       this.reglages.set(maj);
       this.appliquer(maj);

@@ -138,12 +138,13 @@ adresse que si la boutique est ouverte, sinon `null`.
 { "socialLinks": { "twitter": "https://x.com/teamhigh_ground",
                    "instagram": "https://www.instagram.com/team_high_ground_/",
                    "discord": "https://discord.gg/teamhighground" },
+  "contactEmail": "contact@teamhighground.fr",
   "shop": { "enabled": true,
             "url": "https://www.helloasso.com/associations/team-high-ground/boutiques/maillot-2026/widget" } }
 ```
 
-Consommé par le footer (toutes les pages), la page contact, le JSON-LD `sameAs` et la
-page boutique.
+Consommé par le footer (toutes les pages), la page contact, les mentions légales, le
+JSON-LD (`sameAs`, `email`) et la page boutique.
 
 ---
 
@@ -198,12 +199,13 @@ pas de liste, pas de création, pas de suppression.
 
 | Route | Détail |
 |---|---|
-| `GET /api/admin/settings` | `{ "id": 1, "twitter", "instagram", "discord", "shopEnabled", "shopUrl", "updatedAt" }` — champs nuls inclus |
+| `GET /api/admin/settings` | `{ "id": 1, "twitter", "instagram", "discord", "contactEmail", "shopEnabled", "shopUrl", "updatedAt" }` — champs nuls inclus |
 | `PATCH /api/admin/settings` | mise à jour partielle ; `""` ou `null` efface un lien |
 
 - `shopUrl` n'accepte qu'une adresse `https://` sur le domaine `helloasso.com` (elle est
   intégrée en iframe sur le site public), sinon `400`.
 - Ouvrir la boutique (`shopEnabled: true`) sans `shopUrl` enregistrée → `400`.
+- `contactEmail` : adresse e-mail valide, ou `""` / `null` pour la masquer du site.
 
 Accessible aux rôles `ADMIN` et `EDITOR`.
 
