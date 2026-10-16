@@ -191,6 +191,15 @@
 
 /* ── Ajustements PrimeNG dans le panel ────────────────────────────────────── */
 
+/*
+ * Interrupteurs : placés dans une ligne flex à côté d'un long libellé, ils se
+ * faisaient écraser sur téléphone (rail de 25 px pour un rond de 16 px qui
+ * débordait). Hors de `.admin-panel` pour couvrir aussi les dialogues.
+ */
+.p-toggleswitch {
+  flex-shrink: 0;
+}
+
 .admin-panel {
   .p-dialog {
     border: 1px solid rgba(255, 255, 255, 0.1);
