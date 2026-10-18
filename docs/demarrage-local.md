@@ -13,6 +13,12 @@ En développement, le `proxy.conf.json` du site comme celui du panel renvoient `
 et `/media` vers 4001.
 
 Le panel exige **Node 24.15 ou plus** (Angular 22) : voir le README de `thg-admin`.
+Sur ce poste, le Node global est plus ancien ; le binaire `<dossier de Node 24>`
+s'utilise en le plaçant en tête du PATH, sans `nvm use`.
+
+> **Raccourci** : `.claude\launch.json` déclare les trois
+> serveurs (`thg-api`, `thg-website`, `thg-admin`, PATH Node 24 compris). Il reste à
+> démarrer Docker et la base (`npm run db:up` dans `thg-api`).
 
 ---
 
@@ -51,6 +57,9 @@ npm run db:migrate   # crée les tables
 npm run seed         # importe les rosters, la timeline, les partenaires, les images
 ```
 
+Les postes de la page « Nous rejoindre » ne viennent pas du seed : ils sont insérés
+par leur migration (`20261018120000_postes_ouverts`), en brouillon.
+
 Le seed affiche **une seule fois** le mot de passe du compte administrateur créé
 (`admin@thg.local`). Note-le. Si tu le perds, crée-toi un autre compte :
 
@@ -60,21 +69,24 @@ npm run create-user -- --email=ton.prenom@thg.fr --role=ADMIN
 Le mot de passe est demandé au clavier, jamais passé en argument (il finirait dans
 l'historique du shell et dans la liste des processus).
 
-### 3. Le site
+### 3. Le site et le panel
 
 ```bash
 cd thg-website
 npm install
+
+cd thg-admin
+npm install          # avec Node 24.15+ en tête du PATH
 ```
 
 ---
 
 ## Utilisation quotidienne
 
-Deux terminaux :
+Docker Desktop lancé, puis trois terminaux :
 
 ```bash
-# Terminal 1 — API (démarre Docker au besoin)
+# Terminal 1 — API
 cd thg-api
 npm run db:up
 npm run dev
@@ -82,11 +94,14 @@ npm run dev
 # Terminal 2 — site
 cd thg-website
 npm start
+
+# Terminal 3 — panel (Node 24.15+ en tête du PATH)
+cd thg-admin
+npm start
 ```
 
 - Site public : http://localhost:4200
-- Panel d'administration : http://localhost:4300 (troisième terminal, `npm start`
-  dans `thg-admin`)
+- Panel d'administration : http://localhost:4300
 
 ---
 
@@ -131,6 +146,12 @@ curl -s "http://localhost:4001/api/teams?game=lol&lang=fr"
 
 **« docker : terme non reconnu »** → rouvre le terminal après l'installation de
 Docker Desktop.
+
+**`failed to connect to the docker API … dockerDesktopLinuxEngine`** → Docker Desktop
+n'est pas lancé. Le démarrer et attendre que `docker ps` réponde.
+
+**Le panel refuse de démarrer (version de Node)** → Angular 22 exige Node 24.15+ :
+mettre `<dossier de Node 24>` en tête du PATH.
 
 **Le port 4001 ou 4200 est déjà pris** → un serveur d'une session précédente tourne
 encore. Sous Windows :

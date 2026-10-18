@@ -2,47 +2,38 @@
 
 Site officiel de **Team High Ground** - Association esport bretonne.
 
-## Development
+## Développement
 
 ```bash
-npm install               # Install dependencies
-npm start                 # Start dev server (http://localhost:4200)
+npm install
+npm start                 # http://localhost:4200 — nécessite l'API (thg-api) sur :4001
 ```
 
-## Build & Deploy
+Lancement complet (base, API, site, panel) : [`docs/demarrage-local.md`](docs/demarrage-local.md).
 
-Le site est **auto-hébergé** : build statique prérendu (SSR/prerender) servi par nginx dans un conteneur LXD, derrière le reverse proxy de la VM (HTTPS via Let's Encrypt).
+## Déploiement
 
-### Déploiement en une commande
+Le site est **auto-hébergé** et **rendu côté serveur** : le build produit un serveur Node
+(`dist/thg-website/server/server.mjs`) lancé par le service systemd `thg-web` dans un
+conteneur LXD, derrière le reverse proxy de la VM (HTTPS via Let's Encrypt).
 
-Depuis **Git Bash**, à la racine du projet :
+Depuis **Git Bash**, à la racine du projet, après avoir committé et poussé :
 
 ```bash
 ./deploy.sh
 ```
 
-Le script enchaîne : `ng build` → envoi du build vers le conteneur → mise en place dans `/var/www/thg-website` + permissions → nettoyage.
+Le script enchaîne : `ng build` → contrôle de la présence du bundle serveur → envoi →
+arrêt de `thg-web`, remplacement de `/opt/thg/web`, redémarrage → vérification que le
+HTML servi contient bien les données de l'API.
 
-> `deploy.sh` n'est **pas versionné** (il contient l'hôte, le port et le chemin de clé SSH). Chaque poste le garde en local. Voir la structure attendue plus bas.
+- `deploy.sh` n'est **pas versionné** (il contient l'hôte, le port et le chemin de clé
+  SSH) : chaque poste le garde en local.
+- Si `ng` est introuvable : `export PATH="$PWD/node_modules/.bin:$PATH"` avant le script.
+- Si l'API a changé (nouvelle route, migration), déployer **`thg-api` d'abord**.
+- Le site est indisponible quelques secondes pendant le redémarrage du service.
 
-### Déploiement manuel (sans le script)
-
-```bash
-ng build
-scp -P 2222 -i "$HOME/.ssh/thg_server_val" -r dist/thg-website/browser ubuntu@54.37.85.136:/tmp/thg-build
-ssh -p 2222 -i "$HOME/.ssh/thg_server_val" ubuntu@54.37.85.136 \
-  "rm -rf /var/www/thg-website/* && cp -r /tmp/thg-build/* /var/www/thg-website/ && \
-   chmod -R a+rX /var/www/thg-website && rm -rf /tmp/thg-build"
-```
-
-Le `chmod -R a+rX` est nécessaire (sinon nginx renvoie `403`, ne pouvant pas lire les fichiers).
-
-### Vérifier après déploiement
-
-```bash
-ssh -p 2222 -i "$HOME/.ssh/thg_server_val" ubuntu@54.37.85.136 "curl -I http://127.0.0.1:7000"  # 200 attendu
-```
-Puis ouvrir https://teamhighground.fr.
+Exploitation, diagnostic et retour arrière : [`docs/production.md`](docs/production.md).
 
 ## Infrastructure
 
@@ -73,9 +64,9 @@ ssh -p 2222 -i "$HOME/.ssh/thg_server_val" ubuntu@54.37.85.136 \
   "sudo mv /tmp/nginx-thg.conf /etc/nginx/sites-available/thg && sudo nginx -t && sudo systemctl reload nginx"
 ```
 
-## Post-Deployment
+## Référencement
 
-Après le premier déploiement, configurer **Google Search Console** :
+À faire une fois (déjà fait si la propriété existe), configurer **Google Search Console** :
 
 1. Aller dans [Google Search Console](https://search.google.com/search-console)
 2. Ajouter la propriété `teamhighground.fr`
@@ -84,8 +75,9 @@ Après le premier déploiement, configurer **Google Search Console** :
 
 ## Tech Stack
 
-- Angular 20 + SSR/Prerendering
-- Tailwind CSS + PrimeNG
-- Auto-hébergé : nginx (conteneur LXD) + reverse proxy VM (HTTPS Let's Encrypt)
+- Angular 20, rendu serveur à chaque requête (SSR) et hydratation
+- Contenu servi par l'API `thg-api` (Express + PostgreSQL), administré depuis le panel `thg-admin`
+- Tailwind CSS 3 + PrimeNG 20
+- Auto-hébergé : services Node `thg-web` / `thg-api` et nginx (conteneur LXD) + reverse proxy VM (HTTPS Let's Encrypt)
 - Umami (analytics auto-hébergé, sans cookies)
 - Transloco (i18n FR/EN)

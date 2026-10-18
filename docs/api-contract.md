@@ -8,11 +8,13 @@
 | Élément | Emplacement / port |
 |---|---|
 | API Express | `thg-api` — port **4001** |
-| Front Angular | `thg-website` — port **4200** |
+| Site public Angular (SSR) | `thg-website` — port **4200** |
+| Panel d'administration | `thg-admin` — port **4300**, admin.teamhighground.fr |
 | PostgreSQL (Docker) | port **5433** (5432 est réservé à Umami) |
 | Images servies sur | `/media/<filename>` |
 
-En dev, `proxy.conf.json` renvoie `/api` et `/media` de `:4200` vers `:4001`.
+En dev, le `proxy.conf.json` du site comme celui du panel renvoient `/api` et `/media`
+vers `:4001`.
 
 ---
 
@@ -281,6 +283,7 @@ sur l'API réelle :
 
 1. Le front public n'appelle **jamais** `/api/admin/*`.
 2. Aucun secret, aucune clé, aucun identifiant dans le bundle Angular.
-3. Le guard Angular sur `/admin` est du confort UX. La seule protection réelle est
-   `requireAuth` côté Express.
+3. Les gardes Angular du panel sont du confort UX. La seule protection réelle est
+   `requireAuth` côté Express. En production, `/api/admin/*` et `/api/auth/*` ne
+   répondent que sur admin.teamhighground.fr (404 sur teamhighground.fr).
 4. Toute route admin absente de ce document doit être ajoutée **ici d'abord**.

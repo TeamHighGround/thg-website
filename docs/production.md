@@ -49,21 +49,34 @@ admin.teamhighground.fr (`thg-admin/deploy/nginx-admin.conf`) :
 
 ## Déployer
 
-```bash
-# Le site
-cd thg-website && ./deploy.sh
+Depuis Git Bash, **après avoir committé et poussé** (les scripts envoient le dossier
+local tel quel, sans vérifier git), et **dans cet ordre** — le site et le panel
+appellent les routes de l'API :
 
-# L'API (sauvegarde la base avant migration)
+```bash
+# 1. L'API : sauvegarde la base, applique les migrations, redémarre thg-api
 cd thg-api && ./deploy.sh
 
-# Le panel
+# 2. Le site : build SSR, remplace /opt/thg/web, redémarre thg-web
+cd thg-website && ./deploy.sh
+
+# 3. Le panel : tests, build, bascule atomique de /opt/thg/admin (Node 24.15+ requis)
 cd thg-admin && ./deploy.sh
 ```
 
-Les deux scripts vérifient le résultat et sortent en erreur si le service ne
-redémarre pas. `deploy.sh` du site refuse de partir si le bundle serveur est
-absent — sans lui, le site serait publié sans rendu serveur et afficherait un
-contenu figé au moment du build.
+Les trois scripts vérifient le résultat et sortent en erreur en cas de problème :
+
+- API : `/api/admin/teams` doit répondre **404** sur teamhighground.fr (routes absentes
+  du site public) et **401** sur admin.teamhighground.fr (fermées sans session).
+- Site : refuse de partir si le bundle serveur est absent — sans lui, le site serait
+  publié sans rendu serveur — puis vérifie que le HTML servi contient les données.
+  Le site est coupé quelques secondes pendant le redémarrage, sans retour arrière
+  automatique.
+- Panel : la version précédente est gardée dans `/opt/thg/admin.prev` (retour arrière :
+  voir le README de `thg-admin`).
+
+Les messages `tar: … time stamp … in the future` sont sans gravité (léger décalage
+d'horloge entre le poste et le serveur).
 
 **Ni le `.env` du serveur, ni le dossier `uploads/`, ni la base ne sont touchés
 par un déploiement.**
@@ -89,6 +102,11 @@ Timer systemd `thg-sauvegarde.timer`, tous les jours à 3h20 UTC.
 
 - base : `~/backups/db/thg-*.sql.gz`, conservée 14 jours
 - médias : `~/backups/uploads/uploads-*.tgz`, conservés 7 jours
+
+Le déploiement de l'API fait en plus une sauvegarde **avant chaque migration** :
+`~/backups/db/avant-deploiement-AAAAMMJJ-HHMMSS.sql` (non compressée). Celles-ci ne
+sont **pas** concernées par la rotation : à supprimer à la main de temps en temps
+(quelques centaines de Ko chacune en octobre 2026).
 
 ```bash
 systemctl list-timers thg-sauvegarde.timer   # prochaine exécution
@@ -155,3 +173,17 @@ Le site redevient exactement ce qu'il était : des fichiers statiques servis par
 nginx, sans dépendance à Node ni à PostgreSQL. **La base et les médias ne sont pas
 supprimés** — un retour en avant reste possible avec `sudo systemctl start
 thg-api thg-web` et la config nginx actuelle.
+
+---
+
+## Restes sur le serveur
+
+Constatés en octobre 2026, laissés en place faute d'usage connu — à vérifier avant de
+supprimer :
+
+- `/opt/thg/web.bak-20260903` : ancienne copie du site rendu serveur ;
+- `/opt/thg/thg-dump.sql` et `/opt/thg/uploads.tgz` : export de la base et des médias de
+  la mise en service initiale ;
+- `/var/www/thg-website` et `~/backups/thg-20260725-155150/` : **utilisés par la
+  procédure de repli ci-dessus**, à conserver tant qu'un retour au site statique doit
+  rester possible.
