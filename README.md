@@ -17,7 +17,12 @@ Le site est **auto-hébergé** et **rendu côté serveur** : le build produit un
 (`dist/thg-website/server/server.mjs`) lancé par le service systemd `thg-web` dans un
 conteneur LXD, derrière le reverse proxy de la VM (HTTPS via Let's Encrypt).
 
-Depuis **Git Bash**, à la racine du projet, après avoir committé et poussé :
+**Automatique** : chaque push sur `main` lance le build puis la mise en production
+(GitHub Actions, `.github/workflows/ci-cd.yml`) : bascule de `/opt/thg/web`, redémarrage
+de `thg-web` avec retour automatique à la version précédente en cas d'échec, puis
+vérification du rendu serveur. Détails côté serveur : `thg-api/deploy/serveur/README.md`.
+
+**Secours**, depuis Git Bash, à la racine du projet, après avoir committé et poussé :
 
 ```bash
 ./deploy.sh
