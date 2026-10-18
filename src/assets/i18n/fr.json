@@ -13,7 +13,8 @@
     "ambassadors": "Nos ambassadeurs",
     "partners": "Nos partenaires",
     "shop": "Boutique",
-    "contact": "Contact"
+    "contact": "Contact",
+    "careers": "Nous rejoindre"
   },
   "contents": {
     "common": {
@@ -167,6 +168,28 @@
       "social": {
         "title": "Réseaux Sociaux",
         "description": "Suivez notre actualité et interagissez avec notre communauté sur nos différentes plateformes."
+      }
+    },
+    "careers": {
+      "title": "Nous Rejoindre",
+      "description": "Club esport breton né en 2015 à Rennes, la Team High Ground grandit grâce à celles et ceux qui s'y investissent. Joueur, coach, manager ou bénévole : découvre nos besoins du moment et les équipes qui t'attendent.",
+      "openings": {
+        "title": "On recrute",
+        "description": "Nos besoins du moment, à pourvoir dès que possible. Une fois le poste pourvu, il disparaît de cette page."
+      },
+      "alwaysOpen": {
+        "title": "Candidatures ouvertes toute l'année"
+      },
+      "details": "Voir le détail du poste",
+      "missions": "Ce que tu feras",
+      "profile": "Profil recherché",
+      "apply": "Postuler",
+      "none": "Aucun poste n'est ouvert pour le moment, mais les candidatures spontanées sont toujours les bienvenues.",
+      "spontaneous": {
+        "title": "Candidature spontanée",
+        "description": "Tu ne trouves pas ton poste mais tu as envie de t'investir dans un club esport breton ? Présente-toi, on lit toutes les candidatures.",
+        "cta": "Envoyer ma candidature",
+        "contact": "Nous contacter"
       }
     }
   },

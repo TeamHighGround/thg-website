@@ -13,7 +13,8 @@
     "ambassadors": "Our Ambassadors",
     "partners": "Our Partners",
     "shop": "Shop",
-    "contact": "Contact"
+    "contact": "Contact",
+    "careers": "Careers"
   },
   "contents": {
     "common": {
@@ -167,6 +168,28 @@
       "social": {
         "title": "Social Media",
         "description": "Follow our news and interact with our community on our different platforms."
+      }
+    },
+    "careers": {
+      "title": "Careers",
+      "description": "Founded in 2015 in Rennes, Team High Ground is a Breton esports club that grows thanks to the people who get involved. Player, coach, manager or volunteer: discover our current needs and the teams waiting for you.",
+      "openings": {
+        "title": "We're hiring",
+        "description": "Our current needs, to be filled as soon as possible. Once a role is filled, it is removed from this page."
+      },
+      "alwaysOpen": {
+        "title": "Applications open all year round"
+      },
+      "details": "See role details",
+      "missions": "What you'll do",
+      "profile": "Who we're looking for",
+      "apply": "Apply",
+      "none": "No roles are open right now, but spontaneous applications are always welcome.",
+      "spontaneous": {
+        "title": "Spontaneous application",
+        "description": "Can't find your role but want to get involved in a Breton esports club? Introduce yourself, we read every application.",
+        "cta": "Send my application",
+        "contact": "Contact us"
       }
     },
     "footer": {

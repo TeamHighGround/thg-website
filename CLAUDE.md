@@ -66,6 +66,7 @@ Routes are defined in `src/app/app.routes.ts`. All routes use a `TranslocoResolv
 - `/news` - News page
 - `/ambassadors` - Ambassadors page
 - `/contact` - Contact page
+- `/careers` - « Nous rejoindre » : postes ouverts, administrés dans le panel (Recrutement)
 - `/legal-notice` - Legal notice
 - `/privacy-policy` - Privacy policy
 - `/cookie-settings` - Cookie settings (lazy-loaded)

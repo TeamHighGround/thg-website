@@ -181,6 +181,24 @@ export const ROUTES_SEO_CONFIG: RoutesSeoConfig = {
       image: DEFAULT_IMAGE
     }
   },
+  '/careers': {
+    fr: {
+      title: 'Nous rejoindre | Recrutement THG, club esport breton',
+      description: 'Rejoignez Team High Ground, club esport breton base a Rennes : joueurs, coachs, managers et staff LoL, TFT et SSBU, et postes benevoles dans l\'association.',
+      keywords: ['recrutement esport', 'rejoindre equipe esport', 'recrutement lol bretagne', 'equipe tft', 'smash bretagne', 'benevolat esport rennes', 'club esport breton'],
+      type: 'website',
+      image: DEFAULT_IMAGE,
+      imageAlt: 'Recrutement Team High Ground'
+    },
+    en: {
+      title: 'Careers | THG Recruitment, Breton Esports Club',
+      description: 'Join Team High Ground, a Breton esports club based in Rennes: LoL, TFT and SSBU players, coaches, managers and staff, plus volunteer roles in the association.',
+      keywords: ['esports recruitment', 'join esports team', 'lol recruitment brittany', 'tft team', 'smash brittany', 'esports volunteering rennes', 'breton esports club'],
+      type: 'website',
+      image: DEFAULT_IMAGE,
+      imageAlt: 'Team High Ground recruitment'
+    }
+  },
   '/legal-notice': {
     fr: {
       title: 'Mentions Legales | Team High Ground',
