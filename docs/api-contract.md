@@ -185,6 +185,10 @@ d'écrire à `contactEmail` (voir `/api/settings`).
 | `POST /api/auth/logout` | — | `204` |
 | `GET /api/auth/me` | — | `200 { "user": {...} }` ou `401` |
 
+- **Dernière connexion** : `users.lastLoginAt` (date ISO, `null` tant que le compte ne s'est jamais
+  connecté) est mise à jour à chaque `POST /api/auth/login` réussi **et** à chaque
+  `GET /api/auth/me` (le panel l'appelle à chaque ouverture, session existante comprise). Pour
+  limiter les écritures, `/me` ne la met à jour que si la valeur a plus d'une minute.
 - Cookie `thg_sid` : `httpOnly`, `sameSite=strict`, `secure` en production, durée 7 jours.
 - Échec de login → **toujours** `401` avec le même message, que l'email existe ou non :
   *« Email ou mot de passe incorrect. »*
@@ -212,6 +216,10 @@ PATCH  /api/admin/<res>/reorder    { "ids": ["uuid", "uuid", …] } → 204
 
 Ressources : `games`, `teams`, `members`, `roles`, `timeline/chapters`, `timeline/milestones`,
 `partners`, `news`, `jobs`, `users` (ADMIN uniquement).
+
+> `users` : `GET /api/admin/users` renvoie `{ "items": [ { "id", "email", "role", "lastLoginAt",
+> "createdAt", "updatedAt" } ] }` ; `lastLoginAt` vaut `null` pour un compte jamais connecté.
+
 
 > `jobs` (postes, page « Nous rejoindre ») : champs `category` (`OPENING` | `ALWAYS_OPEN`,
 > défaut `OPENING`),
