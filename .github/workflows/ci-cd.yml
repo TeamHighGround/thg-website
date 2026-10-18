@@ -1,12 +1,12 @@
-# Site public : build à chaque push, mise en production automatique à chaque
-# push sur `main` (si le build passe). Les specs Karma ne sont pas entretenues :
-# le build, qui compile aussi les gabarits, sert de vérification.
+# Public website: build on every push; a push to `main` then builds the Docker
+# image and deploys it. The Karma specs are not maintained: the build, which also
+# compiles the templates, is the check.
 #
-# Le déploiement passe par le compte `github-deploy` du serveur, dont la clé ne
-# peut lancer que /usr/local/sbin/thg-deploy (voir thg-api/deploy/serveur/).
-# Réglages : secret DEPLOY_SSH_KEY ; variables DEPLOY_HOST, DEPLOY_PORT,
+# On the server, thg-deploy replaces the web container and restores the previous
+# image if the new one does not become healthy. See TeamHighGround/thg-infra.
+# Settings: secret DEPLOY_SSH_KEY (app key); variables DEPLOY_HOST, DEPLOY_PORT,
 # DEPLOY_USER, DEPLOY_KNOWN_HOSTS.
-name: CI / CD
+name: CI/CD
 
 on:
   push:
@@ -21,7 +21,7 @@ concurrency:
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
-  verifier:
+  verify:
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -29,43 +29,37 @@ jobs:
 
       - uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version: 22   # same major version as the production image
           cache: npm
 
       - run: npm ci
       - run: npx ng build
 
-      # Sans le bundle serveur, le site partirait sans rendu serveur et
-      # afficherait un contenu figé.
-      - name: Archive du build
-        run: |
-          test -f dist/thg-website/server/server.mjs
-          tar -czf thg-website.tgz -C dist/thg-website .
+      # Without the server bundle the site would ship without server-side rendering.
+      - name: Check the server bundle
+        run: test -f dist/thg-website/server/server.mjs
 
-      - uses: actions/upload-artifact@v7
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        with:
-          name: thg-website
-          path: thg-website.tgz
-          retention-days: 7
-
-  deployer:
-    name: Mise en production
-    needs: verifier
+  deploy:
+    name: Deploy to production
+    needs: verify
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v8
-        with:
-          name: thg-website
+      - uses: actions/checkout@v7
 
-      - name: Connexion SSH
+      - name: Build the image
+        run: docker build --build-arg GIT_SHA=${{ github.sha }} -t thg-web:${{ github.sha }} .
+
+      - name: Export the image
+        run: docker save thg-web:${{ github.sha }} | gzip -1 > "$RUNNER_TEMP/image.tgz"
+
+      - name: Set up SSH
         env:
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
           DEPLOY_KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
         run: |
           if [ -z "$DEPLOY_SSH_KEY" ] || [ -z "$DEPLOY_KNOWN_HOSTS" ]; then
-            echo "::error::Secret DEPLOY_SSH_KEY ou variable DEPLOY_KNOWN_HOSTS absents (Settings > Secrets and variables > Actions)."
+            echo "::error::Missing secret DEPLOY_SSH_KEY or variable DEPLOY_KNOWN_HOSTS (Settings > Secrets and variables > Actions)."
             exit 1
           fi
           install -m 700 -d ~/.ssh
@@ -73,26 +67,24 @@ jobs:
           chmod 600 ~/.ssh/deploy
           printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
 
-      # Le serveur bascule /opt/thg/web, redémarre thg-web et revient tout seul à
-      # la version précédente si le service ne repart pas.
-      - name: Envoi et bascule
+      - name: Deploy
         run: >
           ssh -i ~/.ssh/deploy -p "${{ vars.DEPLOY_PORT }}"
           -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes
           "${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}" "web ${{ github.sha }}"
-          < thg-website.tgz
+          < "$RUNNER_TEMP/image.tgz"
 
-      - name: Vérification du rendu serveur
+      - name: Check server-side rendering
         run: |
-          # Le HTML brut doit contenir les données de l'API : c'est ce que voient
-          # les moteurs de recherche et les aperçus de lien.
+          # The raw HTML must contain the API data: it is what search engines and
+          # link previews see.
           curl -fsS https://teamhighground.fr/teams/lol | grep -q Kitano
-          echo "OK : le HTML servi contient bien les données."
+          echo "OK: the served HTML contains the data."
           for page in / /careers /en/careers /contact; do
             code=$(curl -s -o /dev/null -w '%{http_code}' "https://teamhighground.fr$page")
             echo "$page -> $code"; [ "$code" = 200 ]
           done
 
-      - name: Nettoyage de la clé
+      - name: Remove the key
         if: always()
         run: rm -f ~/.ssh/deploy

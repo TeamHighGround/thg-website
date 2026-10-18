@@ -42,4 +42,3 @@ testem.log
 Thumbs.db
 
 # Script de déploiement local (non versionné)
-deploy.sh
