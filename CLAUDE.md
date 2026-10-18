@@ -9,8 +9,16 @@ le lancement local et le déploiement sont dans `../CLAUDE.md`.
 - **Jamais de ligne `Co-Authored-By: Claude …`** (ni aucune autre mention de Claude) dans
   les messages de commit ou les descriptions de PR, sur ce dépôt comme sur `thg-api` et
   `thg-admin`.
-- `deploy.sh` est **gitignoré** (il contient l'hôte et la clé SSH) : il existe en local
-  mais ne se committe pas.
+
+## Langue
+
+- **En anglais** : code (fichiers, composants, sélecteurs, fonctions, variables, types,
+  clés de traduction), commentaires, messages de commit (`Add…`, `Fix…`), branches,
+  workflows et jobs CI.
+- **En français** : les textes du site dans `fr.json` (avec leur pendant dans `en.json`),
+  les `CLAUDE.md` et la documentation (`README.md`, `docs/`).
+- Le code existant en français (`selonLangue`, `etat`…) n'est pas renommé en masse : le
+  nouveau code est en anglais ; un renommage se fait à la demande, dans un commit dédié.
 
 ## Commandes
 
@@ -64,7 +72,8 @@ cette architecture.
 Toutes les routes publiques et leurs variantes `/en` sont en **`RenderMode.Server`**
 (`src/app/app.routes.server.ts`), même les pages au contenu figé : le footer affiche les
 réseaux configurés dans le panel, un prérendu les figerait au moment du build. Le serveur
-Node écoute sur le port 4000 en production (`src/server.ts`).
+Node écoute sur le port 4000 (`src/server.ts`) ; en production il tourne dans le
+conteneur `thg-web` (`Dockerfile`) et joint l'API par `API_INTERNAL_URL=http://api:4001`.
 
 L'hydratation est activée (`provideClientHydration`). Conséquences :
 
