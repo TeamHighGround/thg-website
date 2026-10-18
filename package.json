@@ -33,7 +33,6 @@
     "@primeuix/themes": "^1.2.1",
     "autoprefixer": "^10.4.21",
     "express": "^5.2.1",
-    "firebase": "^12.1.0",
     "primeicons": "^7.0.0",
     "primeng": "^20.0.0",
     "rxjs": "~7.8.0",
