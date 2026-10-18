@@ -191,105 +191,6 @@
         "cta": "Send my application",
         "contact": "Contact us"
       }
-    },
-    "footer": {
-      "contact": "Contact",
-      "legal": {
-        "title": "Legal Information",
-        "cgv": "Terms of Sales",
-        "mentions": "Legal Notice",
-        "privacy": "Privacy Policy",
-        "cookies": "Cookie Management"
-      },
-      "social": {
-        "title": "Follow us"
-      },
-      "all_rights_reserved": "All rights reserved"
-    },
-    "legalNotice": {
-      "title": "Legal Notice",
-      "editor": {
-        "title": "Site Editor",
-        "denomination": "Name",
-        "legalForm": "Legal Form",
-        "headquarters": "Headquarters",
-        "email": "Email",
-        "director": "Director of Publication",
-        "values": {
-          "denomination": "Team High Ground (THG)",
-          "legalForm": "Association under the 1901 law",
-          "headquarters": "4 avenue Sergent Maginot, 35000 Rennes",
-          "director": "Briac Pannetier-Becel, President"
-        }
-      },
-      "hosting": {
-        "title": "Hosting",
-        "host": "Host",
-        "address": "Address",
-        "values": {
-          "host": "Google LLC (Firebase Hosting)",
-          "address": "1600 Amphitheatre Parkway, Mountain View, CA 94043, United States"
-        }
-      },
-      "intellectualProperty": {
-        "title": "Intellectual Property",
-        "description1": "The website and all its elements are protected by copyright and belong to the THG association."
-      },
-      "responsibility": {
-        "title": "Liability",
-        "description": "The THG association strives to provide accurate information but cannot guarantee the accuracy of all information on the site."
-      }
-    },
-    "privacyPolicy": {
-      "title": "Privacy Policy",
-      "lastUpdate": "Last update: 08/08/2025",
-      "siteType": {
-        "title": "Site Type",
-        "description": "This site is a static showcase site presenting the THG association. We do not collect any personal data via forms."
-      },
-      "dataCollection": {
-        "title": "Automatically Collected Data",
-        "analytics": {
-          "title": "Audience measurement",
-          "description": "We measure site traffic anonymously, without cookies and without personal data:",
-          "collected": "Collected Data",
-          "purpose": "Purpose",
-          "retention": "Retention",
-          "values": {
-            "collected": "Pages visited, traffic sources, country and device type (aggregated, non-identifying)",
-            "purpose": "Improve content and user experience",
-            "retention": "Aggregated statistics kept on our servers, never shared with third parties"
-          }
-        },
-        "technical": {
-          "title": "Technical Data",
-          "ip": "IP Address: anonymized, never stored in clear text nor shared",
-          "browser": "Browser type and device: To optimize site display"
-        }
-      },
-      "noCollection": {
-        "title": "What we do NOT collect",
-        "items": [
-          "No contact form on the site",
-          "No newsletter",
-          "No registration or user account",
-          "No personally identifiable data"
-        ]
-      },
-      "cookies": {
-        "title": "Cookies",
-        "description": "This site does not use any cookies; no consent is therefore required."
-      },
-      "modifications": {
-        "title": "Modifications",
-        "description": "This policy may be updated. Modifications will be published on this page."
-      }
-    },
-    "cookieSettings": {
-      "title": "Cookies & Privacy",
-      "intro": "This site uses no cookies and collects no personal data.",
-      "moreInfo": "To learn more,",
-      "moreInfoLink": "see our privacy policy."
     }
   },
   "shop": {
@@ -314,5 +215,90 @@
       "title": "Follow us"
     },
     "all_rights_reserved": "All rights reserved"
+  },
+  "legalNotice": {
+    "title": "Legal Notice",
+    "editor": {
+      "title": "Site Editor",
+      "denomination": "Name",
+      "legalForm": "Legal Form",
+      "headquarters": "Headquarters",
+      "email": "Email",
+      "director": "Director of Publication",
+      "values": {
+        "denomination": "Team High Ground (THG)",
+        "legalForm": "Association under the 1901 law",
+        "headquarters": "4 avenue Sergent Maginot, 35000 Rennes",
+        "director": "Briac Pannetier-Becel, President"
+      }
+    },
+    "hosting": {
+      "title": "Hosting",
+      "host": "Host",
+      "address": "Address",
+      "values": {
+        "host": "Team High Ground (THG), self-hosted on a virtual private server (VPS)",
+        "address": "4 avenue Sergent Maginot, 35000 Rennes, France"
+      }
+    },
+    "intellectualProperty": {
+      "title": "Intellectual Property",
+      "description1": "The website and all its elements are protected by copyright and belong to the THG association."
+    },
+    "responsibility": {
+      "title": "Liability",
+      "description": "The THG association strives to provide accurate information but cannot guarantee the accuracy of all information on the site."
+    }
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdate": "Last update: 08/08/2025",
+    "siteType": {
+      "title": "Site Type",
+      "description": "This site is a static showcase site presenting the THG association. We do not collect any personal data via forms."
+    },
+    "dataCollection": {
+      "title": "Automatically Collected Data",
+      "analytics": {
+        "title": "Audience measurement",
+        "description": "We measure site traffic anonymously, without cookies and without personal data:",
+        "collected": "Collected Data",
+        "purpose": "Purpose",
+        "retention": "Retention",
+        "values": {
+          "collected": "Pages visited, traffic sources, country and device type (aggregated, non-identifying)",
+          "purpose": "Improve content and user experience",
+          "retention": "Aggregated statistics kept on our servers, never shared with third parties"
+        }
+      },
+      "technical": {
+        "title": "Technical Data",
+        "ip": "IP Address: anonymized, never stored in clear text nor shared",
+        "browser": "Browser type and device: To optimize site display"
+      }
+    },
+    "noCollection": {
+      "title": "What we do NOT collect",
+      "items": [
+        "No contact form on the site",
+        "No newsletter",
+        "No registration or user account",
+        "No personally identifiable data"
+      ]
+    },
+    "cookies": {
+      "title": "Cookies",
+      "description": "This site does not use any cookies; no consent is therefore required."
+    },
+    "modifications": {
+      "title": "Modifications",
+      "description": "This policy may be updated. Modifications will be published on this page."
+    }
+  },
+  "cookieSettings": {
+    "title": "Cookies & Privacy",
+    "intro": "This site uses no cookies and collects no personal data.",
+    "moreInfo": "To learn more,",
+    "moreInfoLink": "see our privacy policy."
   }
 }
