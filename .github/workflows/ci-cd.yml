@@ -1,0 +1,98 @@
+# Site public : build à chaque push, mise en production automatique à chaque
+# push sur `main` (si le build passe). Les specs Karma ne sont pas entretenues :
+# le build, qui compile aussi les gabarits, sert de vérification.
+#
+# Le déploiement passe par le compte `github-deploy` du serveur, dont la clé ne
+# peut lancer que /usr/local/sbin/thg-deploy (voir thg-api/deploy/serveur/).
+# Réglages : secret DEPLOY_SSH_KEY ; variables DEPLOY_HOST, DEPLOY_PORT,
+# DEPLOY_USER, DEPLOY_KNOWN_HOSTS.
+name: CI / CD
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  verifier:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+      - run: npx ng build
+
+      # Sans le bundle serveur, le site partirait sans rendu serveur et
+      # afficherait un contenu figé.
+      - name: Archive du build
+        run: |
+          test -f dist/thg-website/server/server.mjs
+          tar -czf thg-website.tgz -C dist/thg-website .
+
+      - uses: actions/upload-artifact@v7
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        with:
+          name: thg-website
+          path: thg-website.tgz
+          retention-days: 7
+
+  deployer:
+    name: Mise en production
+    needs: verifier
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: thg-website
+
+      - name: Connexion SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          if [ -z "$DEPLOY_SSH_KEY" ] || [ -z "$DEPLOY_KNOWN_HOSTS" ]; then
+            echo "::error::Secret DEPLOY_SSH_KEY ou variable DEPLOY_KNOWN_HOSTS absents (Settings > Secrets and variables > Actions)."
+            exit 1
+          fi
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy
+          chmod 600 ~/.ssh/deploy
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+      # Le serveur bascule /opt/thg/web, redémarre thg-web et revient tout seul à
+      # la version précédente si le service ne repart pas.
+      - name: Envoi et bascule
+        run: >
+          ssh -i ~/.ssh/deploy -p "${{ vars.DEPLOY_PORT }}"
+          -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes
+          "${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}" "web ${{ github.sha }}"
+          < thg-website.tgz
+
+      - name: Vérification du rendu serveur
+        run: |
+          # Le HTML brut doit contenir les données de l'API : c'est ce que voient
+          # les moteurs de recherche et les aperçus de lien.
+          curl -fsS https://teamhighground.fr/teams/lol | grep -q Kitano
+          echo "OK : le HTML servi contient bien les données."
+          for page in / /careers /en/careers /contact; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://teamhighground.fr$page")
+            echo "$page -> $code"; [ "$code" = 200 ]
+          done
+
+      - name: Nettoyage de la clé
+        if: always()
+        run: rm -f ~/.ssh/deploy

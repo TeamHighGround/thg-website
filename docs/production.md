@@ -49,9 +49,21 @@ admin.teamhighground.fr (`thg-admin/deploy/nginx-admin.conf`) :
 
 ## Déployer
 
-Depuis Git Bash, **après avoir committé et poussé** (les scripts envoient le dossier
-local tel quel, sans vérifier git), et **dans cet ordre** — le site et le panel
-appellent les routes de l'API :
+**Automatique** : chaque push sur `main` lance les tests du dépôt puis, s'ils passent,
+la mise en production (GitHub Actions, onglet *Actions* de chaque dépôt). GitHub se
+connecte avec le compte `github-deploy`, enfermé sur le script `/usr/local/sbin/thg-deploy` :
+fonctionnement, réglages et réinstallation dans `thg-api/deploy/serveur/README.md`.
+Le commit en production est écrit dans `VERSION` à la racine de chaque composant.
+
+Quand une fonctionnalité touche l'API **et** un front, pousser l'API d'abord et attendre
+que son déploiement soit vert. Sinon le front part avant ses routes : il ne casse pas,
+mais affiche un bloc en mode dégradé jusqu'au déploiement de l'API.
+
+### Déploiement manuel (secours)
+
+Les `deploy.sh` de chaque dépôt restent utilisables si GitHub Actions est indisponible.
+Depuis Git Bash, **après avoir committé et poussé** (ils envoient le dossier local tel
+quel, sans vérifier git), et **dans cet ordre** :
 
 ```bash
 # 1. L'API : sauvegarde la base, applique les migrations, redémarre thg-api
