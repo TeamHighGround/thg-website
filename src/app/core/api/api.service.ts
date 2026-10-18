@@ -7,6 +7,7 @@ import { Observable, of, switchMap, tap } from 'rxjs';
 import { API_BASE_URL } from './api-base-url';
 import { ApiState, versApiState } from './api-state';
 import {
+  JobsResponse,
   NewsListResponse,
   NewsPostDetail,
   PartnerKind,
@@ -76,6 +77,13 @@ export class ApiService {
   getNewsPost(slug: string): Observable<ApiState<NewsPostDetail>> {
     return this.selonLangue((lang) =>
       this.recupererAvecTransfert<NewsPostDetail>(`/api/news/${encodeURIComponent(slug)}`, { lang })
+    );
+  }
+
+  /** `GET /api/jobs` — postes ouverts de la page « Nous rejoindre ». */
+  getJobs(): Observable<ApiState<JobsResponse>> {
+    return this.selonLangue((lang) =>
+      this.recupererAvecTransfert<JobsResponse>('/api/jobs', { lang })
     );
   }
 

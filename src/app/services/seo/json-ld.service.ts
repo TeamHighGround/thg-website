@@ -119,7 +119,8 @@ export class JsonLdService {
       '/teams/ssbu': { fr: 'Super Smash Bros Ultimate', en: 'Super Smash Bros Ultimate' },
       '/news': { fr: 'Actualites', en: 'News' },
       '/ambassadors': { fr: 'Ambassadeurs', en: 'Ambassadors' },
-      '/contact': { fr: 'Contact', en: 'Contact' }
+      '/contact': { fr: 'Contact', en: 'Contact' },
+      '/careers': { fr: 'Nous rejoindre', en: 'Careers' }
     };
 
     const segments = path.split('/').filter(Boolean);

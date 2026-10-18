@@ -93,6 +93,14 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://teamhighground.fr/careers</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://teamhighground.fr/careers"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://teamhighground.fr/en/careers"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- English Routes -->
   <url>
     <loc>https://teamhighground.fr/en</loc>
@@ -171,6 +179,14 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://teamhighground.fr/contact"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://teamhighground.fr/en/contact"/>
     <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://teamhighground.fr/en/careers</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://teamhighground.fr/careers"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://teamhighground.fr/en/careers"/>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
 

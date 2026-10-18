@@ -168,6 +168,37 @@ export interface SiteSettingsResponse {
   shop: SiteShop;
 }
 
+// ── Recrutement (page « Nous rejoindre ») ─────────────────────────────────────
+
+/**
+ * `opening` : besoin ponctuel (bloc « On recrute ») ·
+ * `always_open` : candidatures acceptées toute l'année, même effectif complet.
+ */
+export type JobCategory = 'opening' | 'always_open';
+
+/** Jeux pratiqués par le club. */
+export type JobGame = 'lol' | 'tft' | 'ssbu';
+
+export interface JobOpening {
+  id: string;
+  category: JobCategory;
+  games: JobGame[];
+  title: string;
+  summary: string | null;
+  description: string | null;
+  /** Une phrase par élément ; vide si non renseigné. */
+  missions: string[];
+  profile: string[];
+  tags: string[];
+  /** Formulaire de candidature ; `null` → le site propose l'e-mail de contact. */
+  applyUrl: string | null;
+}
+
+/** `GET /api/jobs?lang=<lang>` */
+export interface JobsResponse {
+  openings: JobOpening[];
+}
+
 // ── Erreurs ───────────────────────────────────────────────────────────────────
 
 /** Corps d'erreur commun à toutes les routes de l'API. */

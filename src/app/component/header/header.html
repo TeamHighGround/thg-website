@@ -54,6 +54,11 @@
           {{ 'header.contact' | transloco }}
         </a>
 
+        <a routerLink="/careers" routerLinkActive="router-link-active"
+          class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative z-10">
+          {{ 'header.careers' | transloco }}
+        </a>
+
         <!-- Indicateur animé -->
         <div class="absolute bottom-0 h-0.5 bg-thgGreen rounded-full transition-all duration-300 ease-out"
           [style.left]="activeIndicatorStyle.left" [style.width]="activeIndicatorStyle.width">
@@ -135,6 +140,12 @@
           class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
           (click)="closeMobileMenu()">
           {{ 'header.contact' | transloco }}
+        </a>
+
+        <a routerLink="/careers" routerLinkActive="router-link-active"
+          class="text-gray-300 hover:text-thgGreen block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+          (click)="closeMobileMenu()">
+          {{ 'header.careers' | transloco }}
         </a>
       </div>
     </div>

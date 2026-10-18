@@ -1,0 +1,95 @@
+<article class="group h-full flex flex-col bg-white/[0.025] rounded-[10px]
+  border border-white/[0.08] hover:border-thgGreen/30 transition-all duration-300 hover:-translate-y-0.5"
+  [class]="compact() ? 'p-5 sm:p-6' : 'p-6 sm:p-8'">
+
+    <!-- Jeux concernés -->
+    @if (jeux().length) {
+    <div class="flex flex-wrap gap-2 mb-4">
+        @for (jeu of jeux(); track jeu.libelle) {
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full border text-xs font-semibold {{ jeu.classes }}">
+            {{ jeu.libelle }}
+        </span>
+        }
+    </div>
+    }
+
+    <h3 class="font-bold text-white leading-tight mb-3 group-hover:text-thgGreen transition-colors duration-300"
+        [class]="compact() ? 'text-lg sm:text-xl' : 'text-xl sm:text-2xl'">
+        {{ job().title }}
+    </h3>
+
+    @if (job().summary) {
+    <p class="text-gray-300 leading-relaxed text-sm sm:text-base mb-4">{{ job().summary }}</p>
+    }
+
+    <!-- Étiquettes : rôles, engagement, lieu… -->
+    @if (job().tags.length) {
+    <ul class="flex flex-wrap gap-2 mb-5">
+        @for (tag of job().tags; track tag) {
+        <li class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-gray-300 text-xs font-medium">
+            {{ tag }}
+        </li>
+        }
+    </ul>
+    }
+
+    <!-- Détail repliable -->
+    @if (aDuDetail()) {
+    <details class="job-details mb-6">
+        <summary class="cursor-pointer select-none inline-flex items-center gap-2 text-sm font-semibold
+        text-thgGreen hover:text-white transition-colors duration-200">
+            <i class="pi pi-chevron-down text-xs job-details-chevron transition-transform duration-200"></i>
+            {{ 'contents.careers.details' | transloco }}
+        </summary>
+
+        <div class="mt-4 space-y-5 text-sm sm:text-base">
+            @if (job().description) {
+            <p class="text-gray-300 leading-relaxed whitespace-pre-line">{{ job().description }}</p>
+            }
+
+            @if (job().missions.length) {
+            <div>
+                <h4 class="text-white font-semibold mb-2">{{ 'contents.careers.missions' | transloco }}</h4>
+                <ul class="space-y-1.5">
+                    @for (mission of job().missions; track $index) {
+                    <li class="flex gap-2.5 text-gray-300 leading-relaxed">
+                        <i class="pi pi-angle-right text-thgGreen mt-1 text-xs"></i>
+                        <span>{{ mission }}</span>
+                    </li>
+                    }
+                </ul>
+            </div>
+            }
+
+            @if (job().profile.length) {
+            <div>
+                <h4 class="text-white font-semibold mb-2">{{ 'contents.careers.profile' | transloco }}</h4>
+                <ul class="space-y-1.5">
+                    @for (critere of job().profile; track $index) {
+                    <li class="flex gap-2.5 text-gray-300 leading-relaxed">
+                        <i class="pi pi-check text-thgGreen mt-1 text-xs"></i>
+                        <span>{{ critere }}</span>
+                    </li>
+                    }
+                </ul>
+            </div>
+            }
+        </div>
+    </details>
+    }
+
+    <!-- Candidature, calée en bas de carte -->
+    @if (lienCandidature(); as lien) {
+    <div class="mt-auto pt-2">
+        <a [href]="lien" [attr.target]="lienExterne() ? '_blank' : null"
+            [attr.rel]="lienExterne() ? 'noopener noreferrer' : null"
+            class="inline-flex items-center justify-center gap-2 w-full sm:w-auto
+            text-thgGreen hover:text-white font-semibold px-5 py-2.5 rounded-lg
+            border border-thgGreen/30 hover:border-thgGreen bg-thgGreen/10 hover:bg-thgGreen
+            transition-all duration-300 hover:shadow-lg hover:shadow-thgGreen/30">
+            <i class="pi pi-send text-sm"></i>
+            {{ 'contents.careers.apply' | transloco }}
+        </a>
+    </div>
+    }
+</article>

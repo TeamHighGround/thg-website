@@ -146,6 +146,33 @@ adresse que si la boutique est ouverte, sinon `null`.
 Consommé par le footer (toutes les pages), la page contact, les mentions légales, le
 JSON-LD (`sameAs`, `email`) et la page boutique.
 
+### `GET /api/jobs?lang=fr`
+Postes affichés sur la page « Nous rejoindre » (`/careers`). Deux catégories :
+
+- `opening` — **besoin ponctuel** (bloc « On recrute ») : un poste précis, retiré une fois
+  pourvu. Peut concerner un jeu (« Jungler LoL ») ou l'association (« Chargé·e de
+  communication »).
+- `always_open` — **candidature permanente** (bloc « Candidatures ouvertes toute
+  l'année ») : un jeu pour lequel on accepte des profils même effectif complet.
+
+`games` liste les jeux concernés (`lol`, `tft`, `ssbu`), éventuellement aucun ou plusieurs.
+Triés par catégorie (`opening` d'abord) puis par `order`. `missions` et `profile` sont des
+listes de phrases (une ligne saisie dans le panel = un élément) ; vides si non renseignées.
+`applyUrl` vaut `null` quand aucun formulaire n'est configuré : le site propose alors
+d'écrire à `contactEmail` (voir `/api/settings`).
+
+```json
+{
+  "openings": [
+    { "id": "uuid", "category": "always_open", "games": ["lol"],
+      "title": "Joueurs, coachs & staff — League of Legends",
+      "summary": "…", "description": "…",
+      "missions": ["…", "…"], "profile": ["…"],
+      "tags": ["Joueur·euse", "Coach"], "applyUrl": null }
+  ]
+}
+```
+
 ---
 
 ## Authentification
@@ -182,7 +209,14 @@ PATCH  /api/admin/<res>/reorder    { "ids": ["uuid", "uuid", …] } → 204
 ```
 
 Ressources : `games`, `teams`, `members`, `roles`, `timeline/chapters`, `timeline/milestones`,
-`partners`, `news`, `users` (ADMIN uniquement).
+`partners`, `news`, `jobs`, `users` (ADMIN uniquement).
+
+> `jobs` (postes, page « Nous rejoindre ») : champs `category` (`OPENING` | `ALWAYS_OPEN`,
+> défaut `OPENING`),
+> `games` (tableau de `LOL` | `TFT` | `SSBU`), `titleFr`/`titleEn` (obligatoires),
+> `summaryFr/En`, `descriptionFr/En`, `missionsFr/En`, `profileFr/En` (texte, une ligne par
+> élément), `tagsFr`/`tagsEn` (tableaux), `applyUrl`, `order`, `published`. Le
+> réordonnancement se fait **par catégorie** : mélanger `OPENING` et `ALWAYS_OPEN` → `400`.
 
 > `games` a été ajouté après coup : une équipe ne peut pas être créée sans `gameId`,
 > le CRUD des jeux était donc indispensable.

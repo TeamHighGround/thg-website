@@ -12,6 +12,7 @@ import { PrivacyPolicy } from './component/contents/privacy-policy/privacy-polic
 import { Ambassadors } from './component/contents/ambassadors/ambassadors';
 import { Partners } from './component/contents/partners/partners';
 import { ShopComponent } from './component/contents/shop/shop';
+import { Careers } from './component/contents/careers/careers';
 
 const contentRoutes: Routes = [
   { path: '', component: Home },
@@ -24,6 +25,7 @@ const contentRoutes: Routes = [
   { path: 'ambassadors', component: Ambassadors },
   { path: 'shop', component: ShopComponent },
   { path: 'contact', component: Contact },
+  { path: 'careers', component: Careers },
   { path: 'legal-notice', component: LegalNotice },
   { path: 'privacy-policy', component: PrivacyPolicy },
   { path: 'cookie-settings', loadComponent: () => import('./component/cookie-settings/cookie-settings').then(m => m.CookieSettingsComponent) },

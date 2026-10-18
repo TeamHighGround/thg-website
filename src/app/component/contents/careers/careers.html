@@ -1,0 +1,103 @@
+<section class="min-h-screen pt-12 pb-12 sm:pb-16 md:pb-20 lg:pb-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Header Section -->
+        <div class="text-center mb-10 sm:mb-14">
+            <h2 class="font-bold text-white mb-4 sm:mb-6 leading-tight
+        text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+                {{ 'contents.careers.title' | transloco }}
+            </h2>
+            <p class="text-gray-300 leading-relaxed mx-auto px-4
+        text-sm sm:text-base md:text-lg
+        max-w-lg sm:max-w-2xl md:max-w-3xl">
+                {{ 'contents.careers.description' | transloco }}
+            </p>
+        </div>
+
+        <!-- Chargement / état dégradé quand l'API ne répond pas -->
+        @if (etat().status === 'loading') {
+        <p class="text-center text-gray-400 mb-12">{{ 'contents.common.loading' | transloco }}</p>
+        }
+        @if (etat().status === 'error') {
+        <p class="text-center text-gray-300 mb-12">{{ 'contents.common.error' | transloco }}</p>
+        }
+        @if (etat().status === 'ready' && !ponctuels().length && !permanents().length) {
+        <p class="text-center text-gray-300 mb-12">{{ 'contents.careers.none' | transloco }}</p>
+        }
+
+        <div class="flex flex-col gap-14 sm:gap-20">
+
+            <!-- On recrute : besoins ponctuels, mis en avant -->
+            @if (ponctuels().length) {
+            <section aria-labelledby="titre-ponctuels">
+                <div class="mb-6 sm:mb-8">
+                    <h3 id="titre-ponctuels" class="flex items-center gap-3 font-bold text-white text-xl sm:text-2xl md:text-3xl">
+                        <span class="grid place-items-center w-10 h-10 rounded-full bg-thgGreen/10">
+                            <i class="pi pi-megaphone text-thgGreen"></i>
+                        </span>
+                        {{ 'contents.careers.openings.title' | transloco }}
+                    </h3>
+                    <p class="mt-2 text-gray-400 text-sm sm:text-base max-w-3xl">
+                        {{ 'contents.careers.openings.description' | transloco }}
+                    </p>
+                </div>
+                <div class="grid gap-6 md:grid-cols-2 items-start">
+                    @for (poste of ponctuels(); track poste.id) {
+                    <app-job-card [job]="poste" [email]="email()" />
+                    }
+                </div>
+            </section>
+            }
+
+            <!-- Candidatures ouvertes toute l'année : une tuile par jeu -->
+            @if (permanents().length) {
+            <section aria-labelledby="titre-permanents">
+                <div class="mb-6 sm:mb-8">
+                    <h3 id="titre-permanents" class="flex items-center gap-3 font-bold text-white text-xl sm:text-2xl md:text-3xl">
+                        <span class="grid place-items-center w-10 h-10 rounded-full bg-thgGreen/10">
+                            <i class="pi pi-sync text-thgGreen"></i>
+                        </span>
+                        {{ 'contents.careers.alwaysOpen.title' | transloco }}
+                    </h3>
+                </div>
+                <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3 items-start">
+                    @for (poste of permanents(); track poste.id) {
+                    <app-job-card [job]="poste" [email]="email()" [compact]="true" />
+                    }
+                </div>
+            </section>
+            }
+
+            <!-- Candidature spontanée -->
+            <div class="relative bg-white/[0.025] rounded-[10px] p-6 sm:p-8 md:p-10
+        border border-white/[0.08] text-center">
+                <div class="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-thgGreen/10 rounded-full mb-5">
+                    <i class="pi pi-envelope text-xl sm:text-2xl text-thgGreen"></i>
+                </div>
+                <h3 class="font-bold text-white mb-3 text-xl sm:text-2xl md:text-3xl">
+                    {{ 'contents.careers.spontaneous.title' | transloco }}
+                </h3>
+                <p class="text-gray-300 leading-relaxed mb-6 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+                    {{ 'contents.careers.spontaneous.description' | transloco }}
+                </p>
+                @if (lienSpontane(); as lien) {
+                <a [href]="lien" class="inline-flex items-center justify-center gap-2
+            text-thgGreen hover:text-white font-semibold px-6 py-3 rounded-lg
+            border border-thgGreen/30 hover:border-thgGreen bg-thgGreen/10 hover:bg-thgGreen
+            transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-thgGreen/30">
+                    <i class="pi pi-send"></i>
+                    {{ 'contents.careers.spontaneous.cta' | transloco }}
+                </a>
+                } @else {
+                <a routerLink="/contact" class="inline-flex items-center justify-center gap-2
+            text-thgGreen hover:text-white font-semibold px-6 py-3 rounded-lg
+            border border-thgGreen/30 hover:border-thgGreen bg-thgGreen/10 hover:bg-thgGreen
+            transition-all duration-300">
+                    <i class="pi pi-comments"></i>
+                    {{ 'contents.careers.spontaneous.contact' | transloco }}
+                </a>
+                }
+            </div>
+        </div>
+    </div>
+</section>

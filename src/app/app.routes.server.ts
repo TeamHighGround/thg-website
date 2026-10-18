@@ -26,6 +26,7 @@ export const serverRoutes: ServerRoute[] = [
 
   { path: 'shop', renderMode: RenderMode.Server },
   { path: 'contact', renderMode: RenderMode.Server },
+  { path: 'careers', renderMode: RenderMode.Server },
   { path: 'legal-notice', renderMode: RenderMode.Server },
   { path: 'privacy-policy', renderMode: RenderMode.Server },
   { path: 'cookie-settings', renderMode: RenderMode.Server },
@@ -42,6 +43,7 @@ export const serverRoutes: ServerRoute[] = [
 
   { path: 'en/shop', renderMode: RenderMode.Server },
   { path: 'en/contact', renderMode: RenderMode.Server },
+  { path: 'en/careers', renderMode: RenderMode.Server },
   { path: 'en/legal-notice', renderMode: RenderMode.Server },
   { path: 'en/privacy-policy', renderMode: RenderMode.Server },
   { path: 'en/cookie-settings', renderMode: RenderMode.Server },
