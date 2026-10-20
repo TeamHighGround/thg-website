@@ -68,29 +68,32 @@
             </section>
             }
 
-            <!-- Candidature spontanée -->
-            <div class="relative bg-white/[0.025] rounded-[10px] p-6 sm:p-8 md:p-10
-        border border-white/[0.08] text-center">
-                <div class="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-thgGreen/10 rounded-full mb-5">
-                    <i class="pi pi-envelope text-xl sm:text-2xl text-thgGreen"></i>
+            <!-- Candidature spontanée : bandeau compact (icône, texte, bouton) -->
+            <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left
+        bg-white/[0.025] rounded-[10px] p-5 sm:p-6 border border-white/[0.08]
+        max-w-4xl w-full mx-auto">
+                <div class="flex-shrink-0 grid place-items-center w-12 h-12 bg-thgGreen/10 rounded-full">
+                    <i class="pi pi-envelope text-lg text-thgGreen"></i>
                 </div>
-                <h3 class="font-bold text-white mb-3 text-xl sm:text-2xl md:text-3xl">
-                    {{ 'contents.careers.spontaneous.title' | transloco }}
-                </h3>
-                <p class="text-gray-300 leading-relaxed mb-6 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
-                    {{ 'contents.careers.spontaneous.description' | transloco }}
-                </p>
+                <div class="flex-1 min-w-0">
+                    <h3 class="font-bold text-white text-lg sm:text-xl">
+                        {{ 'contents.careers.spontaneous.title' | transloco }}
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed text-sm mt-1">
+                        {{ 'contents.careers.spontaneous.description' | transloco }}
+                    </p>
+                </div>
                 @if (lienSpontane(); as lien) {
-                <a [href]="lien" class="inline-flex items-center justify-center gap-2
-            text-thgGreen hover:text-white font-semibold px-6 py-3 rounded-lg
+                <a [href]="lien" class="flex-shrink-0 inline-flex items-center justify-center gap-2
+            text-thgGreen hover:text-white font-semibold text-sm px-4 py-2.5 rounded-lg
             border border-thgGreen/30 hover:border-thgGreen bg-thgGreen/10 hover:bg-thgGreen
-            transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-thgGreen/30">
+            transition-all duration-300">
                     <i class="pi pi-send"></i>
                     {{ 'contents.careers.spontaneous.cta' | transloco }}
                 </a>
                 } @else {
-                <a routerLink="/contact" class="inline-flex items-center justify-center gap-2
-            text-thgGreen hover:text-white font-semibold px-6 py-3 rounded-lg
+                <a routerLink="/contact" class="flex-shrink-0 inline-flex items-center justify-center gap-2
+            text-thgGreen hover:text-white font-semibold text-sm px-4 py-2.5 rounded-lg
             border border-thgGreen/30 hover:border-thgGreen bg-thgGreen/10 hover:bg-thgGreen
             transition-all duration-300">
                     <i class="pi pi-comments"></i>
