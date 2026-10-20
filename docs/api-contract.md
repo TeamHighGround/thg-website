@@ -5,7 +5,7 @@
 
 ## Topologie
 
-| Élément | Emplacement / port |
+| Élément | Dépôt / port |
 |---|---|
 | API Express | `thg-api` — port **4001** |
 | Site public Angular (SSR) | `thg-website` — port **4200** |

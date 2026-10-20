@@ -2,7 +2,7 @@
 
 Le projet se compose de **trois dépôts** et d'**une base de données** :
 
-| Composant | Emplacement | Port |
+| Composant | Dépôt | Port |
 |---|---|---|
 | Site Angular (SSR) | `thg-website` | 4200 |
 | Panel d'administration | `thg-admin` | 4300 |
@@ -13,11 +13,11 @@ En développement, le `proxy.conf.json` du site comme celui du panel renvoient `
 et `/media` vers 4001.
 
 Le panel exige **Node 24.15 ou plus** (Angular 22) : voir le README de `thg-admin`.
-Sur ce poste, le Node global est plus ancien ; le binaire `<dossier de Node 24>`
+Sur ce poste, le Node global est plus ancien ; un Node 24.15+ (par exemple celui d'une version installée par nvm)
 s'utilise en le plaçant en tête du PATH, sans `nvm use`.
 
-> **Raccourci** : `.claude\launch.json` déclare les trois
-> serveurs (`thg-api`, `thg-website`, `thg-admin`, PATH Node 24 compris). Il reste à
+> **Raccourci** : le `.claude/launch.json` du dossier qui contient les trois dépôts
+> déclare les trois serveurs (`thg-api`, `thg-website`, `thg-admin`). Il reste à
 > démarrer Docker et la base (`npm run db:up` dans `thg-api`).
 
 ---
@@ -151,7 +151,7 @@ Docker Desktop.
 n'est pas lancé. Le démarrer et attendre que `docker ps` réponde.
 
 **Le panel refuse de démarrer (version de Node)** → Angular 22 exige Node 24.15+ :
-mettre `<dossier de Node 24>` en tête du PATH.
+mettre un Node 24.15+ en tête du PATH.
 
 **Le port 4001 ou 4200 est déjà pris** → un serveur d'une session précédente tourne
 encore. Sous Windows :

@@ -27,7 +27,7 @@ Tester l'image en local : `docker build -t thg-web:test .`
 Serveur, nginx, Docker Compose, Umami, sauvegardes et exploitation : dépôt
 **`TeamHighGround/thg-infra`**.
 
-- **DNS (OVH)** : `teamhighground.fr`, `www`, `analytics` et `admin` en A vers `54.37.85.136`.
+- **DNS (OVH)** : `teamhighground.fr`, `www`, `analytics` et `admin` en A vers l'adresse du serveur (voir `thg-infra`).
 - **Analytics** : Umami, auto-hébergé et sans cookies, sur https://analytics.teamhighground.fr.
   Le snippet de suivi est dans `src/index.html`.
 
