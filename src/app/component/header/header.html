@@ -22,8 +22,12 @@
         </a>
 
         <!-- Teams Dropdown -->
+        <!-- autofocus: false explicite : sans lui, la directive pAutoFocus de PrimeNG reçoit
+             `undefined` et écrit autofocus="true" dans le HTML rendu par le serveur ; le
+             navigateur donne alors le focus au bouton à chaque chargement de page. -->
         <div class="relative group">
           <p-button [class.router-link-active]="isTeamsRouteActive()"
+            [buttonProps]="{ autofocus: false }"
             class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center space-x-1 relative z-10"
             (click)="menu.toggle($event)">
             <span>{{ 'header.teams.title' | transloco }}</span>
