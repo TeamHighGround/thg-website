@@ -14,112 +14,98 @@
             </p>
         </div>
 
-        <!-- Contact Cards Container -->
-        <div class="flex flex-col gap-8 sm:gap-12 md:gap-16 lg:gap-20">
+        <!-- Contact Cards Container : côte à côte sur grand écran -->
+        <div class="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
 
             <!-- Email Card (adresse configurée dans le panel, masquée si vide) -->
             @if (mail()) {
-            <div class="group relative bg-white/[0.025] rounded-[10px] p-6 sm:p-8 md:p-10 lg:p-12
+            <div class="group flex flex-col items-center text-center bg-white/[0.025] rounded-[10px] p-6 sm:p-8
         border border-white/[0.08] hover:border-thgGreen/30
         transition-all duration-300 hover:-translate-y-0.5">
 
-                <div class="relative z-10 text-center">
-                    <!-- Email Icon -->
-                    <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 
-            bg-thgGreen/10 rounded-full mb-6 
+                <!-- Email Icon -->
+                <div class="inline-flex items-center justify-center w-12 h-12
+            bg-thgGreen/10 rounded-full mb-4
             group-hover:bg-thgGreen/20 transition-colors duration-300">
-                        <i class="pi pi-envelope text-2xl sm:text-3xl text-thgGreen"></i>
-                    </div>
+                    <i class="pi pi-envelope text-xl text-thgGreen"></i>
+                </div>
 
-                    <!-- Email Title -->
-                    <h3 class="font-bold text-white mb-4 sm:mb-6 leading-tight
-            text-xl sm:text-2xl md:text-3xl lg:text-4xl
+                <!-- Email Title -->
+                <h3 class="font-bold text-white mb-2 leading-tight text-xl sm:text-2xl
             group-hover:text-thgGreen transition-colors duration-300">
-                        {{ 'contents.contact.email.title' | transloco }}
-                    </h3>
+                    {{ 'contents.contact.email.title' | transloco }}
+                </h3>
 
-                    <!-- Email Description -->
-                    <p class="text-gray-300 leading-relaxed mb-6 sm:mb-8 
-            text-sm sm:text-base md:text-lg
-            max-w-2xl mx-auto">
-                        {{ 'contents.contact.email.description' | transloco }}
-                    </p>
+                <!-- Email Description -->
+                <p class="text-gray-300 leading-relaxed mb-6 text-sm sm:text-base">
+                    {{ 'contents.contact.email.description' | transloco }}
+                </p>
 
-                    <!-- Email Address with Copy Button -->
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-                        <a href="mailto:{{ mail() }}" class="inline-flex items-center justify-center gap-3 
-               text-thgGreen hover:text-white font-semibold
-               text-lg sm:text-xl md:text-2xl
-               px-6 py-3 rounded-lg border border-thgGreen/30 hover:border-thgGreen
-               bg-thgGreen/10 hover:bg-thgGreen
-               transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-thgGreen/30">
-                            <i class="pi pi-send text-base sm:text-lg"></i>
-                            {{ mail() }}
-                        </a>
+                <!-- Email Address with Copy Button -->
+                <div class="mt-auto flex items-center justify-center gap-2 max-w-full">
+                    <a href="mailto:{{ mail() }}" class="inline-flex items-center justify-center gap-2 min-w-0
+               text-thgGreen hover:text-white font-semibold text-sm sm:text-base
+               px-4 py-2.5 rounded-lg border border-thgGreen/30 hover:border-thgGreen
+               bg-thgGreen/10 hover:bg-thgGreen transition-all duration-300">
+                        <i class="pi pi-send text-sm"></i>
+                        <span class="truncate">{{ mail() }}</span>
+                    </a>
 
-                        <!-- Copy Button -->
-                        <button type="button" (click)="copyMail()" class="group/copy inline-flex items-center justify-center 
-    w-12 h-12 sm:w-14 sm:h-14
-    text-gray-400 hover:text-thgGreen font-semibold
+                    <!-- Copy Button -->
+                    <button type="button" (click)="copyMail()" class="inline-flex items-center justify-center flex-shrink-0
+    w-11 h-11 text-gray-400 hover:text-thgGreen
     rounded-lg border border-gray-600/30 hover:border-thgGreen/30
-    bg-gray-800/20 hover:bg-thgGreen/10
-    transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-thgGreen/20
+    bg-gray-800/20 hover:bg-thgGreen/10 transition-all duration-300
     focus:outline-none focus:ring-2 focus:ring-thgGreen" title="Copier l'adresse email">
 
-                            <i *ngIf="!copied" class="pi pi-copy text-base sm:text-lg"></i>
-                            <i *ngIf="copied" class="pi pi-check text-base sm:text-lg text-green-400"></i>
-                        </button>
-                    </div>
+                        <i *ngIf="!copied" class="pi pi-copy text-sm"></i>
+                        <i *ngIf="copied" class="pi pi-check text-sm text-green-400"></i>
+                    </button>
                 </div>
             </div>
             }
 
-            <!-- Social Media Card -->
-            <div class="group relative bg-white/[0.025] rounded-[10px] p-6 sm:p-8 md:p-10 lg:p-12
+            <!-- Social Media Card (seule quand l'e-mail est masqué : elle reste centrée et étroite) -->
+            <div class="group flex flex-col items-center text-center bg-white/[0.025] rounded-[10px] p-6 sm:p-8
         border border-white/[0.08] hover:border-thgGreen/30
-        transition-all duration-300 hover:-translate-y-0.5">
+        transition-all duration-300 hover:-translate-y-0.5
+        md:only:col-span-2 md:only:w-1/2 md:only:mx-auto">
 
-                <div class="relative z-10 text-center">
-                    <!-- Social Icon -->
-                    <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 
-            bg-thgGreen/10 rounded-full mb-6 
+                <!-- Social Icon -->
+                <div class="inline-flex items-center justify-center w-12 h-12
+            bg-thgGreen/10 rounded-full mb-4
             group-hover:bg-thgGreen/20 transition-colors duration-300">
-                        <i class="pi pi-users text-2xl sm:text-3xl text-thgGreen"></i>
-                    </div>
+                    <i class="pi pi-users text-xl text-thgGreen"></i>
+                </div>
 
-                    <!-- Social Title -->
-                    <h3 class="font-bold text-white mb-4 sm:mb-6 leading-tight
-            text-xl sm:text-2xl md:text-3xl lg:text-4xl
+                <!-- Social Title -->
+                <h3 class="font-bold text-white mb-2 leading-tight text-xl sm:text-2xl
             group-hover:text-thgGreen transition-colors duration-300">
-                        {{ 'contents.contact.social.title' | transloco }}
-                    </h3>
+                    {{ 'contents.contact.social.title' | transloco }}
+                </h3>
 
-                    <!-- Social Description -->
-                    <p class="text-gray-300 leading-relaxed mb-8 sm:mb-10 
-            text-sm sm:text-base md:text-lg
-            max-w-2xl mx-auto">
-                        {{ 'contents.contact.social.description' | transloco }}
-                    </p>
+                <!-- Social Description -->
+                <p class="text-gray-300 leading-relaxed mb-6 text-sm sm:text-base">
+                    {{ 'contents.contact.social.description' | transloco }}
+                </p>
 
-                    <!-- Social Media Links (configurés dans le panel) -->
-                    <div class="flex justify-center items-start gap-4 sm:gap-6 md:gap-8">
-                        @for (reseau of reseaux(); track reseau.cle) {
-                            <a [href]="reseau.url" target="_blank" rel="noopener noreferrer"
-                                class="group/social flex flex-col items-center gap-4 focus:outline-none">
-                                <span class="flex items-center justify-center
-     w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18
+                <!-- Social Media Links (configurés dans le panel) -->
+                <div class="mt-auto flex justify-center items-start gap-4 sm:gap-5">
+                    @for (reseau of reseaux(); track reseau.cle) {
+                        <a [href]="reseau.url" target="_blank" rel="noopener noreferrer"
+                            class="group/social flex flex-col items-center gap-2 focus:outline-none">
+                            <span class="flex items-center justify-center w-11 h-11
      bg-gray-800/50 border border-gray-600 rounded-full transition-all duration-300
-     group-hover/social:scale-110 group-hover/social:-translate-y-2 group-hover/social:shadow-lg
+     group-hover/social:scale-110 group-hover/social:-translate-y-1 group-hover/social:shadow-lg
      group-focus-visible/social:ring-2 {{ styles[reseau.cle].pastille }}">
-                                    <i class="pi {{ reseau.icone }} text-xl sm:text-2xl md:text-3xl
+                                <i class="pi {{ reseau.icone }} text-lg
       text-gray-300 transition-colors duration-300 {{ styles[reseau.cle].icone }}"></i>
-                                </span>
-                                <span class="w-14 sm:w-16 md:w-18 text-center text-xs sm:text-sm text-gray-400 font-medium">
-                                    {{ reseau.libelle }}
-                                </span>
-                            </a>
-                        }
-                    </div>
+                            </span>
+                            <span class="text-center text-xs text-gray-400 font-medium">
+                                {{ reseau.libelle }}
+                            </span>
+                        </a>
+                    }
                 </div>
             </div>
 

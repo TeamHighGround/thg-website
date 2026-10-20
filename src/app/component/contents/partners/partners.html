@@ -23,11 +23,12 @@
     </p>
 
     <!-- Partners List -->
-    <div class="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-16">
+    <!-- Grille centrée : une rangée incomplète reste au milieu -->
+    <div class="flex flex-wrap justify-center gap-6">
       <app-partner-card
         *ngFor="let partner of partners(); trackBy: trackByPartnerId"
         [partner]="partner"
-        class="w-full">
+        class="w-full sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">
       </app-partner-card>
     </div>
 
