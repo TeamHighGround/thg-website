@@ -23,7 +23,15 @@ import { join } from 'node:path';
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
-const angularApp = new AngularNodeAppEngine();
+/**
+ * nginx forwards `X-Forwarded-For` and `X-Forwarded-Proto`; since Angular 20.3 any
+ * proxy header that is not listed here makes the engine fall back to client-side
+ * rendering (empty HTML for search engines). `X-Forwarded-Host` and `-Prefix` stay
+ * untrusted: the allowed hosts are fixed in `angular.json` (`security.allowedHosts`).
+ */
+const angularApp = new AngularNodeAppEngine({
+  trustProxyHeaders: ['x-forwarded-for', 'x-forwarded-proto']
+});
 
 /**
  * Fichiers statiques du bundle navigateur.
