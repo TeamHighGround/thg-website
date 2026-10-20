@@ -23,6 +23,13 @@
             "browser": "src/main.ts",
             "server": "src/main.server.ts",
             "prerender": true,
+            "security": {
+              "allowedHosts": [
+                "teamhighground.fr",
+                "www.teamhighground.fr",
+                "localhost"
+              ]
+            },
             "polyfills": [
               "zone.js"
             ],
