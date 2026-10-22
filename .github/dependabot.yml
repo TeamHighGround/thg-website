@@ -1,0 +1,12 @@
+# Opens a pull request when a new Node.js image is out (the Dockerfile pins the exact
+# version). Merging it pushes to main, which rebuilds and deploys.
+version: 2
+updates:
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+    ignore:
+      # A new major version of Node is a migration, not a security fix.
+      - dependency-name: node
+        update-types: ["version-update:semver-major"]

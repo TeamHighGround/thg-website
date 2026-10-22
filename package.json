@@ -1,6 +1,9 @@
 {
   "name": "thg-website",
   "version": "0.0.0",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
@@ -44,7 +47,7 @@
     "@angular/compiler-cli": "^20.3.34",
     "@types/express": "^5.0.6",
     "@types/jasmine": "~5.1.0",
-    "@types/node": "^25.9.5",
+    "@types/node": "^24.10.1",
     "autoprefixer": "^10.6.1",
     "jasmine-core": "~5.8.0",
     "karma": "~6.4.0",

@@ -1,5 +1,5 @@
 # Production image of the THG public website (Angular server-side rendering).
-FROM node:22-alpine AS build
+FROM node:24.22.1-alpine3.24 AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
@@ -7,7 +7,7 @@ COPY . .
 RUN npx ng build
 
 # The server bundle is self-contained: no node_modules at runtime.
-FROM node:22-alpine
+FROM node:24.22.1-alpine3.24
 WORKDIR /app
 ARG GIT_SHA=unknown
 LABEL org.opencontainers.image.source="https://github.com/TeamHighGround/thg-website" \
