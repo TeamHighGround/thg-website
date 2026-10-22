@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from './component/header/header';
 import { Footer } from './component/footer/footer';
@@ -10,6 +10,7 @@ import { JsonLdService } from './services/seo/json-ld.service';
   selector: 'app-root',
   imports: [Header, RouterOutlet, Footer, Background],
   templateUrl: './app.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.scss'
 })
 export class App implements OnInit {

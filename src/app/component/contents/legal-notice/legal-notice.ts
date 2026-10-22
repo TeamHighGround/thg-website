@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
 import { SiteSettingsService } from '../../../core/api/site-settings.service';
 
@@ -6,6 +6,7 @@ import { SiteSettingsService } from '../../../core/api/site-settings.service';
   selector: 'app-legal-notice',
   imports: [TranslocoModule],
   templateUrl: './legal-notice.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './legal-notice.scss'
 })
 export class LegalNotice {

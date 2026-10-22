@@ -1,9 +1,6 @@
 import { ChangeDetectorRef, Component, Input, OnInit, OnDestroy, HostListener, ChangeDetectionStrategy, NgZone, inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { ChipModule } from 'primeng/chip';
-import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
 import { Partner } from './partner-interface';
 import { Media } from '../../../core/api/models';
 import { SocialLinksComponent } from '../../shared/social-links/social-links';
@@ -11,7 +8,7 @@ import { SocialLinksComponent } from '../../shared/social-links/social-links';
 @Component({
   selector: 'app-partner-card',
   standalone: true,
-  imports: [CommonModule, TranslocoModule, ChipModule, CardModule, ButtonModule, SocialLinksComponent],
+  imports: [TranslocoModule, SocialLinksComponent],
   templateUrl: './partner-card.html',
   styleUrl: './partner-card.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -1,5 +1,5 @@
-import { Component, computed, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, computed, inject, ChangeDetectionStrategy } from '@angular/core';
+
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslocoModule } from '@jsverse/transloco';
 
@@ -11,8 +11,9 @@ import { PartnerEntry, PartnersResponse } from '../../../core/api/models';
 @Component({
   selector: 'app-ambassadors',
   standalone: true,
-  imports: [CommonModule, TranslocoModule, PartnerCard],
+  imports: [TranslocoModule, PartnerCard],
   templateUrl: './ambassadors.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './ambassadors.scss'
 })
 export class Ambassadors {

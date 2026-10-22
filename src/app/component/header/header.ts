@@ -1,18 +1,16 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, inject, PLATFORM_ID, HostListener } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, inject, PLATFORM_ID, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { MenuItem } from 'primeng/api';
+import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
+import { TranslocoModule } from '@jsverse/transloco';
 import { filter } from 'rxjs/operators';
-import { Menu, MenuModule } from 'primeng/menu';
-import { ButtonModule } from 'primeng/button';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
-  imports: [TranslocoModule, RouterModule, MenuModule, ButtonModule, CommonModule],
+  imports: [TranslocoModule, RouterModule, CdkMenu, CdkMenuItem, CdkMenuTrigger, CommonModule],
   templateUrl: './header.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './header.scss'
 })
 export class Header implements OnInit, AfterViewInit {
@@ -45,13 +43,7 @@ export class Header implements OnInit, AfterViewInit {
     this.lastScrollY = currentScrollY;
   }
 
-  public dynamicMenuItems$: BehaviorSubject<MenuItem[]> = new BehaviorSubject( //FIX PRIMENG P-MENU
-    [] as MenuItem[]
-  );
-
-  constructor(private router: Router,
-    private translocoService: TranslocoService
-  ) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     if (!isPlatformBrowser(this.platformId)) return;
@@ -76,26 +68,18 @@ export class Header implements OnInit, AfterViewInit {
 
     const navElement = this.navContainer.nativeElement;
 
-    // Chercher les liens directs actifs ET les boutons avec classe router-link-active
+    // Chercher les liens directs actifs ET le bouton Équipes avec classe router-link-active
     const activeLink = navElement.querySelector('a.router-link-active, a[aria-current="page"]');
-    const activeButton = navElement.querySelector('p-button.router-link-active, .p-button.router-link-active');
+    const activeButton = navElement.querySelector('button.router-link-active');
 
     const activeElement = activeLink || activeButton;
 
     if (activeElement) {
       const navRect = navElement.getBoundingClientRect();
-      let linkRect;
-
-      // Si c'est un p-button, on récupère son élément button interne
-      if (activeElement.tagName.toLowerCase() === 'p-button' || activeElement.classList.contains('p-button')) {
-        const buttonElement = activeElement.querySelector('button') || activeElement;
-        linkRect = buttonElement.getBoundingClientRect();
-      } else {
-        linkRect = activeElement.getBoundingClientRect();
-      }
+      const linkRect = activeElement.getBoundingClientRect();
 
       this.activeIndicatorStyle = {
-        left: `${linkRect.left - navRect.left - 32}px`, //32px car margin entre les onglets
+        left: `${linkRect.left - navRect.left}px`,
         width: `${linkRect.width}px`
       };
     } else {
@@ -142,29 +126,6 @@ export class Header implements OnInit, AfterViewInit {
     if (this.router.url === '/' || this.router.url === '/en') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }
-  
-  public showMenu(): void {
-    this.dynamicMenuItems$.next([
-      {
-        label: this.translocoService.translate('header.teams.lol'),
-        command: () => {
-          this.router.navigate(['/teams/lol']);
-        }
-      },
-      {
-        label: this.translocoService.translate('header.teams.tft'),
-        command: () => {
-          this.router.navigate(['/teams/tft']);
-        }
-      },
-      {
-        label: this.translocoService.translate('header.teams.ssbu'),
-        command: () => {
-          this.router.navigate(['/teams/ssbu']);
-        }
-      }
-    ]);
   }
 
 }

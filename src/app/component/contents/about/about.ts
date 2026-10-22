@@ -1,4 +1,4 @@
-import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { Component, inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 
@@ -7,6 +7,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './about.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './about.scss'
 })
 export class About {

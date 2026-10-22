@@ -42,9 +42,9 @@ Serveur, nginx, Docker Compose, Umami, sauvegardes et exploitation : dépôt
 
 ## Tech Stack
 
-- Angular 20, rendu serveur à chaque requête (SSR) et hydratation
+- Angular 22, rendu serveur à chaque requête (SSR) et hydratation
 - Contenu servi par l'API `thg-api` (Express + PostgreSQL), administré depuis le panel `thg-admin`
-- Tailwind CSS 3 + PrimeNG 20
+- Tailwind CSS 4, PrimeIcons, Angular CDK (menu Équipes)
 - Auto-hébergé : conteneurs Docker (`thg-web`, `thg-api`, `thg-admin`, Umami) derrière nginx, dans un conteneur LXD + reverse proxy VM (HTTPS Let's Encrypt) — voir `thg-infra`
 - Umami (analytics auto-hébergé, sans cookies)
 - Transloco (i18n FR/EN)

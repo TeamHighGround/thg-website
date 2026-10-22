@@ -1,12 +1,13 @@
-import { Component, Input, inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Input, inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { SocialLinks } from './social-links.interface';
 
 @Component({
   selector: 'app-social-links',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './social-links.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './social-links.scss'
 })
 export class SocialLinksComponent {

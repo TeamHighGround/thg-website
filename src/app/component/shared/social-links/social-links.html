@@ -1,91 +1,100 @@
-<div *ngIf="links" class="flex flex-wrap gap-2 sm:gap-3">
-
-  <!-- Website -->
-  <button *ngIf="links.website"
-          type="button"
-          (click)="openLink('website')"
-          (mousedown)="onLinkMouseDown($event, 'website')"
-          (auxclick)="onLinkAuxClick($event, 'website')"
-          [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-thgGreen-500/20 focus:outline-none focus:ring-2 focus:ring-thgGreen-400 ' + getSizeClasses()"
-          [attr.aria-label]="'Visiter le site web'">
-    <i class="pi pi-globe transition-colors duration-200 group-hover/btn:text-thgGreen-400"></i>
-  </button>
-
-  <!-- Instagram -->
-  <button *ngIf="links.instagram"
-          type="button"
-          (click)="openLink('instagram')"
-          (mousedown)="onLinkMouseDown($event, 'instagram')"
-          (auxclick)="onLinkAuxClick($event, 'instagram')"
-          [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-pink-500/20 focus:outline-none focus:ring-2 focus:ring-pink-400 ' + getSizeClasses()"
-          [attr.aria-label]="'Suivre sur Instagram'">
-    <i class="pi pi-instagram transition-colors duration-200 group-hover/btn:text-pink-400"></i>
-  </button>
-
-  <!-- Twitter -->
-  <button *ngIf="links.twitter"
-          type="button"
-          (click)="openLink('twitter')"
-          (mousedown)="onLinkMouseDown($event, 'twitter')"
-          (auxclick)="onLinkAuxClick($event, 'twitter')"
-          [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/20 focus:outline-none focus:ring-2 focus:ring-blue-400 ' + getSizeClasses()"
-          [attr.aria-label]="'Suivre sur Twitter'">
-    <i class="pi pi-twitter transition-colors duration-200 group-hover/btn:text-blue-400"></i>
-  </button>
-
-  <!-- Twitch -->
-  <button *ngIf="links.twitch"
-          type="button"
-          (click)="openLink('twitch')"
-          (mousedown)="onLinkMouseDown($event, 'twitch')"
-          (auxclick)="onLinkAuxClick($event, 'twitch')"
-          [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/20 focus:outline-none focus:ring-2 focus:ring-purple-400 ' + getSizeClasses()"
-          [attr.aria-label]="'Suivre sur Twitch'">
-    <i class="pi pi-twitch transition-colors duration-200 group-hover/btn:text-purple-400"></i>
-  </button>
-
-  <!-- SoundCloud -->
-  <button *ngIf="links.soundcloud"
-          type="button"
-          (click)="openLink('soundcloud')"
-          (mousedown)="onLinkMouseDown($event, 'soundcloud')"
-          (auxclick)="onLinkAuxClick($event, 'soundcloud')"
-          [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/20 focus:outline-none focus:ring-2 focus:ring-orange-400 ' + getSizeClasses()"
-          [attr.aria-label]="'Écouter sur SoundCloud'">
-    <i class="pi pi-volume-up transition-colors duration-200 group-hover/btn:text-orange-400"></i>
-  </button>
-
-  <!-- Spotify -->
-  <button *ngIf="links.spotify"
-          type="button"
-          (click)="openLink('spotify')"
-          (mousedown)="onLinkMouseDown($event, 'spotify')"
-          (auxclick)="onLinkAuxClick($event, 'spotify')"
-          [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/20 focus:outline-none focus:ring-2 focus:ring-green-400 ' + getSizeClasses()"
-          [attr.aria-label]="'Écouter sur Spotify'">
-    <i class="pi pi-play transition-colors duration-200 group-hover/btn:text-green-400"></i>
-  </button>
-
-  <!-- LoL Pros -->
-  <button *ngIf="links.lolpros"
-          type="button"
-          (click)="openLink('lolpros')"
-          (mousedown)="onLinkMouseDown($event, 'lolpros')"
-          (auxclick)="onLinkAuxClick($event, 'lolpros')"
-          [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/20 focus:outline-none focus:ring-2 focus:ring-blue-400 ' + getSizeClasses()"
-          [attr.aria-label]="'Voir le profil LoL Pros'">
-    <i class="pi pi-chart-line transition-colors duration-200 group-hover/btn:text-blue-400"></i>
-  </button>
-
-  <!-- Liquipedia -->
-  <button *ngIf="links.liquipedia"
-          type="button"
-          (click)="openLink('liquipedia')"
-          (mousedown)="onLinkMouseDown($event, 'liquipedia')"
-          (auxclick)="onLinkAuxClick($event, 'liquipedia')"
-          [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-yellow-500/20 focus:outline-none focus:ring-2 focus:ring-yellow-400 ' + getSizeClasses()"
-          [attr.aria-label]="'Voir le profil Liquipedia'">
-    <i class="pi pi-book transition-colors duration-200 group-hover/btn:text-yellow-400"></i>
-  </button>
-
-</div>
+@if (links) {
+  <div class="flex flex-wrap gap-2 sm:gap-3">
+    <!-- Website -->
+    @if (links.website) {
+      <button
+        type="button"
+        (click)="openLink('website')"
+        (mousedown)="onLinkMouseDown($event, 'website')"
+        (auxclick)="onLinkAuxClick($event, 'website')"
+        [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-thgGreen-500/20 focus:outline-hidden focus:ring-2 focus:ring-thgGreen-400 ' + getSizeClasses()"
+        [attr.aria-label]="'Visiter le site web'">
+        <i class="pi pi-globe transition-colors duration-200 group-hover/btn:text-thgGreen-400"></i>
+      </button>
+    }
+    <!-- Instagram -->
+    @if (links.instagram) {
+      <button
+        type="button"
+        (click)="openLink('instagram')"
+        (mousedown)="onLinkMouseDown($event, 'instagram')"
+        (auxclick)="onLinkAuxClick($event, 'instagram')"
+        [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-pink-500/20 focus:outline-hidden focus:ring-2 focus:ring-pink-400 ' + getSizeClasses()"
+        [attr.aria-label]="'Suivre sur Instagram'">
+        <i class="pi pi-instagram transition-colors duration-200 group-hover/btn:text-pink-400"></i>
+      </button>
+    }
+    <!-- Twitter -->
+    @if (links.twitter) {
+      <button
+        type="button"
+        (click)="openLink('twitter')"
+        (mousedown)="onLinkMouseDown($event, 'twitter')"
+        (auxclick)="onLinkAuxClick($event, 'twitter')"
+        [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/20 focus:outline-hidden focus:ring-2 focus:ring-blue-400 ' + getSizeClasses()"
+        [attr.aria-label]="'Suivre sur Twitter'">
+        <i class="pi pi-twitter transition-colors duration-200 group-hover/btn:text-blue-400"></i>
+      </button>
+    }
+    <!-- Twitch -->
+    @if (links.twitch) {
+      <button
+        type="button"
+        (click)="openLink('twitch')"
+        (mousedown)="onLinkMouseDown($event, 'twitch')"
+        (auxclick)="onLinkAuxClick($event, 'twitch')"
+        [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/20 focus:outline-hidden focus:ring-2 focus:ring-purple-400 ' + getSizeClasses()"
+        [attr.aria-label]="'Suivre sur Twitch'">
+        <i class="pi pi-twitch transition-colors duration-200 group-hover/btn:text-purple-400"></i>
+      </button>
+    }
+    <!-- SoundCloud -->
+    @if (links.soundcloud) {
+      <button
+        type="button"
+        (click)="openLink('soundcloud')"
+        (mousedown)="onLinkMouseDown($event, 'soundcloud')"
+        (auxclick)="onLinkAuxClick($event, 'soundcloud')"
+        [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/20 focus:outline-hidden focus:ring-2 focus:ring-orange-400 ' + getSizeClasses()"
+        [attr.aria-label]="'Écouter sur SoundCloud'">
+        <i class="pi pi-volume-up transition-colors duration-200 group-hover/btn:text-orange-400"></i>
+      </button>
+    }
+    <!-- Spotify -->
+    @if (links.spotify) {
+      <button
+        type="button"
+        (click)="openLink('spotify')"
+        (mousedown)="onLinkMouseDown($event, 'spotify')"
+        (auxclick)="onLinkAuxClick($event, 'spotify')"
+        [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/20 focus:outline-hidden focus:ring-2 focus:ring-green-400 ' + getSizeClasses()"
+        [attr.aria-label]="'Écouter sur Spotify'">
+        <i class="pi pi-play transition-colors duration-200 group-hover/btn:text-green-400"></i>
+      </button>
+    }
+    <!-- LoL Pros -->
+    @if (links.lolpros) {
+      <button
+        type="button"
+        (click)="openLink('lolpros')"
+        (mousedown)="onLinkMouseDown($event, 'lolpros')"
+        (auxclick)="onLinkAuxClick($event, 'lolpros')"
+        [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/20 focus:outline-hidden focus:ring-2 focus:ring-blue-400 ' + getSizeClasses()"
+        [attr.aria-label]="'Voir le profil LoL Pros'">
+        <i class="pi pi-chart-line transition-colors duration-200 group-hover/btn:text-blue-400"></i>
+      </button>
+    }
+    <!-- Liquipedia -->
+    @if (links.liquipedia) {
+      <button
+        type="button"
+        (click)="openLink('liquipedia')"
+        (mousedown)="onLinkMouseDown($event, 'liquipedia')"
+        (auxclick)="onLinkAuxClick($event, 'liquipedia')"
+        [class]="'group/btn rounded-full bg-gray-800/50 border border-gray-600 flex items-center justify-center transition-all duration-200 hover:bg-gray-700/70 hover:border-gray-500 hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-yellow-500/20 focus:outline-hidden focus:ring-2 focus:ring-yellow-400 ' + getSizeClasses()"
+        [attr.aria-label]="'Voir le profil Liquipedia'">
+        <i class="pi pi-book transition-colors duration-200 group-hover/btn:text-yellow-400"></i>
+      </button>
+    }
+  </div>
+}

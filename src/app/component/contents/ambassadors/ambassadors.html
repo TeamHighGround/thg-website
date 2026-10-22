@@ -1,6 +1,6 @@
 <section class="min-h-screen pt-12 pb-12 sm:pb-16 md:pb-20 lg:pb-28">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
+
     <!-- Header Section -->
     <div class="text-center mb-12 sm:mb-16">
       <h2 class="font-bold text-white mb-4 sm:mb-6 leading-tight
@@ -15,21 +15,26 @@
     </div>
 
     <!-- Chargement / état dégradé quand l'API ne répond pas -->
-    <p *ngIf="etat().status === 'loading'" class="text-center text-gray-400">
-      {{ 'contents.common.loading' | transloco }}
-    </p>
-    <p *ngIf="etat().status === 'error'" class="text-center text-gray-300">
-      {{ 'contents.common.error' | transloco }}
-    </p>
+    @if (etat().status === 'loading') {
+      <p class="text-center text-gray-400">
+        {{ 'contents.common.loading' | transloco }}
+      </p>
+    }
+    @if (etat().status === 'error') {
+      <p class="text-center text-gray-300">
+        {{ 'contents.common.error' | transloco }}
+      </p>
+    }
 
     <!-- Ambassadors List -->
     <!-- Grille centrée : une rangée incomplète reste au milieu -->
     <div class="flex flex-wrap justify-center gap-6">
-      <app-partner-card
-        *ngFor="let ambassador of ambassadors(); trackBy: trackByAmbassadorId"
-        [partner]="ambassador"
-        class="w-full sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">
-      </app-partner-card>
+      @for (ambassador of ambassadors(); track trackByAmbassadorId($index, ambassador)) {
+        <app-partner-card
+          [partner]="ambassador"
+          class="w-full sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">
+        </app-partner-card>
+      }
     </div>
 
   </div>

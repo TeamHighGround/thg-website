@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
 import { About } from "../about/about";
 import { Timeline } from "../timeline/timeline";
@@ -7,6 +7,7 @@ import { Timeline } from "../timeline/timeline";
   selector: 'app-home',
   imports: [TranslocoModule, About, Timeline],
   templateUrl: './home.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './home.scss'
 })
 export class Home {

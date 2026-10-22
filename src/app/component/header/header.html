@@ -14,28 +14,30 @@
 
     <!-- Pilule d'onglets, centrée -->
     <div class="flex items-center justify-center h-16 relative">
-      <nav class="nav-pill flex items-center space-x-8 relative" #navContainer>
+      <nav class="nav-pill flex items-center gap-8 relative" #navContainer>
         <a routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"
           (click)="onHomeClick()"
           class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative z-10">
           {{ 'header.home' | transloco }}
         </a>
 
-        <!-- Teams Dropdown -->
-        <!-- autofocus: false explicite : sans lui, la directive pAutoFocus de PrimeNG reçoit
-             `undefined` et écrit autofocus="true" dans le HTML rendu par le serveur ; le
-             navigateur donne alors le focus au bouton à chaque chargement de page. -->
+        <!-- Teams dropdown: the CDK menu opens in an overlay attached to <body> and
+             handles the keyboard, focus, Escape and outside clicks. -->
         <div class="relative group">
-          <p-button [class.router-link-active]="isTeamsRouteActive()"
-            [buttonProps]="{ autofocus: false }"
-            class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center space-x-1 relative z-10"
-            (click)="menu.toggle($event)">
+          <button type="button" [class.router-link-active]="isTeamsRouteActive()"
+            [cdkMenuTriggerFor]="teamsMenu"
+            class="text-gray-300 hover:text-thgGreen px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center space-x-1 relative z-10">
             <span>{{ 'header.teams.title' | transloco }}</span>
             <i class="pi pi-chevron-down text-xs"></i>
-          </p-button>
+          </button>
 
-          <p-menu #menu [model]="(dynamicMenuItems$ | async)!" [popup]="true" appendTo="body" styleClass="teams-menu"
-            (onShow)="showMenu()" />
+          <ng-template #teamsMenu>
+            <div cdkMenu class="teams-menu">
+              <a cdkMenuItem routerLink="/teams/lol">{{ 'header.teams.lol' | transloco }}</a>
+              <a cdkMenuItem routerLink="/teams/tft">{{ 'header.teams.tft' | transloco }}</a>
+              <a cdkMenuItem routerLink="/teams/ssbu">{{ 'header.teams.ssbu' | transloco }}</a>
+            </div>
+          </ng-template>
         </div>
 
         <a routerLink="/partners" routerLinkActive="router-link-active"

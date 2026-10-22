@@ -1,11 +1,7 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslocoModule } from '@jsverse/transloco';
-import { ChipModule } from 'primeng/chip';
-import { CardModule } from 'primeng/card';
-import { AvatarModule } from 'primeng/avatar';
-import { ButtonModule } from 'primeng/button';
 
 import { TeamCard } from './team-card/team-card';
 import { ApiService } from '../../../../core/api/api.service';
@@ -18,13 +14,10 @@ import { Role, Team, TeamMember, TeamsResponse } from '../../../../core/api/mode
   imports: [
     CommonModule,
     TranslocoModule,
-    ChipModule,
-    CardModule,
-    AvatarModule,
-    ButtonModule,
     TeamCard
   ],
   templateUrl: './lol.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./lol.scss']
 })
 export class Lol {

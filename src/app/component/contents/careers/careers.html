@@ -70,9 +70,9 @@
 
             <!-- Candidature spontanée : bandeau compact (icône, texte, bouton) -->
             <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left
-        bg-white/[0.025] rounded-[10px] p-5 sm:p-6 border border-white/[0.08]
+        bg-white/2.5 rounded-[10px] p-5 sm:p-6 border border-white/8
         max-w-4xl w-full mx-auto">
-                <div class="flex-shrink-0 grid place-items-center w-12 h-12 bg-thgGreen/10 rounded-full">
+                <div class="shrink-0 grid place-items-center w-12 h-12 bg-thgGreen/10 rounded-full">
                     <i class="pi pi-envelope text-lg text-thgGreen"></i>
                 </div>
                 <div class="flex-1 min-w-0">
@@ -84,7 +84,7 @@
                     </p>
                 </div>
                 @if (lienSpontane(); as lien) {
-                <a [href]="lien" class="flex-shrink-0 inline-flex items-center justify-center gap-2
+                <a [href]="lien" class="shrink-0 inline-flex items-center justify-center gap-2
             text-thgGreen hover:text-white font-semibold text-sm px-4 py-2.5 rounded-lg
             border border-thgGreen/30 hover:border-thgGreen bg-thgGreen/10 hover:bg-thgGreen
             transition-all duration-300">
@@ -92,7 +92,7 @@
                     {{ 'contents.careers.spontaneous.cta' | transloco }}
                 </a>
                 } @else {
-                <a routerLink="/contact" class="flex-shrink-0 inline-flex items-center justify-center gap-2
+                <a routerLink="/contact" class="shrink-0 inline-flex items-center justify-center gap-2
             text-thgGreen hover:text-white font-semibold text-sm px-4 py-2.5 rounded-lg
             border border-thgGreen/30 hover:border-thgGreen bg-thgGreen/10 hover:bg-thgGreen
             transition-all duration-300">

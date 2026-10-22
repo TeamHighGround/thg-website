@@ -1,116 +1,120 @@
 <section class="min-h-screen">
 
-    <!-- Chargement : jamais visible en SSR, utile en navigation interne -->
-    <div *ngIf="etat().status === 'loading'" class="max-w-3xl mx-auto px-4 py-24 text-center">
-        <p class="text-lg text-gray-400">{{ 'contents.common.loading' | transloco }}</p>
+  <!-- Chargement : jamais visible en SSR, utile en navigation interne -->
+  @if (etat().status === 'loading') {
+    <div class="max-w-3xl mx-auto px-4 py-24 text-center">
+      <p class="text-lg text-gray-400">{{ 'contents.common.loading' | transloco }}</p>
     </div>
+  }
 
-    <!-- État dégradé : l'API est injoignable, on garde une page lisible -->
-    <div *ngIf="etat().status === 'error'" class="max-w-3xl mx-auto px-4 py-24 text-center">
-        <p class="text-lg text-gray-300">{{ 'contents.common.error' | transloco }}</p>
+  <!-- État dégradé : l'API est injoignable, on garde une page lisible -->
+  @if (etat().status === 'error') {
+    <div class="max-w-3xl mx-auto px-4 py-24 text-center">
+      <p class="text-lg text-gray-300">{{ 'contents.common.error' | transloco }}</p>
     </div>
+  }
 
-    <ng-container *ngIf="selectedTeam() as selected">
-
-        <div class="relative overflow-hidden py-2 lg:py-2">
-            <div class="relative max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
-
-                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 lg:items-stretch">
-                    <div class="flex flex-col text-center lg:text-justify">
-
-                        <!-- Team Selector -->
-                        <div class="flex flex-row justify-start gap-4 mb-8">
-                            <button *ngFor="let team of teams(); trackBy: trackByTeamId"
-                                    type="button"
-                                    (click)="selectTeam(team)"
+  @if (selectedTeam(); as selected) {
+    <div class="relative overflow-hidden py-2 lg:py-2">
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 lg:items-stretch">
+          <div class="flex flex-col text-center lg:text-justify">
+            <!-- Team Selector -->
+            <div class="flex flex-row justify-start gap-4 mb-8">
+              @for (team of teams(); track trackByTeamId($index, team)) {
+                <button
+                  type="button"
+                  (click)="selectTeam(team)"
                                     [ngClass]="selected.key === team.key
                                         ? 'border-thgGreen bg-thgGreen/10 opacity-100'
-                                        : 'border-white/[0.08] bg-white/[0.025] opacity-60'"
+                                        : 'border-white/8 bg-white/2.5 opacity-60'"
                                     class="group flex items-center gap-3 px-6 py-3 rounded-xl border-2
                                            transition-all duration-300
                                            hover:border-thgGreen/40 hover:opacity-100">
-                                <img *ngIf="team.logo as logo"
-                                     [src]="logo.url" [alt]="logo.alt || team.name"
-                                     [width]="logo.width" [height]="logo.height"
-                                     class="w-10 h-10 object-contain">
-                                <span class="text-lg font-bold text-white group-hover:text-thgGreen-300 transition-colors">
-                                    {{ team.name }}
-                                </span>
-                            </button>
-                        </div>
-
-                        <div class="flex-grow flex flex-col justify-center">
-                            <h1 class="text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-                                {{ 'contents.teams.lol.title' | transloco }}
-                            </h1>
-                            @if (selected.description) {
-                                <p class="text-lg text-gray-300 mb-4 leading-relaxed">
-                                    {{ selected.description }}
-                                </p>
-                            }
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <div class="relative rounded-2xl overflow-hidden shadow-2xl max-w-[92%] mx-auto">
-                            <img *ngIf="selected.rosterImage as roster"
-                                 [src]="roster.url" [alt]="roster.alt || selected.name"
-                                 [width]="roster.width" [height]="roster.height"
-                                 class="w-full h-auto object-cover">
-                        </div>
-                    </div>
-                </div>
+                  @if (team.logo; as logo) {
+                    <img
+                      [src]="logo.url" [alt]="logo.alt || team.name"
+                      [width]="logo.width" [height]="logo.height"
+                      class="w-10 h-10 object-contain">
+                  }
+                  <span class="text-lg font-bold text-white group-hover:text-thgGreen-300 transition-colors">
+                    {{ team.name }}
+                  </span>
+                </button>
+              }
             </div>
-        </div>
-
-        <!-- Roster Section -->
-        <div class="relative py-16 lg:py-24">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-                <!-- Roster Header -->
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl lg:text-5xl font-bold text-white mb-4">
-                        {{ 'contents.teams.lol.roster.title' | transloco }}
-                    </h2>
-                    <p class="text-lg text-gray-300 max-w-3xl mx-auto">
-                        {{ 'contents.teams.lol.roster.description' | transloco }}
-                    </p>
-                </div>
-
-                <!-- Players Grid  -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-20">
-                    <app-team-card
-                        *ngFor="let player of selected.players; trackBy: trackByMemberId"
-                        [member]="player"
-                        type="player"
-                        [getRoleIcon]="getRoleIcon">
-                    </app-team-card>
-                </div>
-
-                <!-- Staff Section -->
-                <div class="border-t border-gray-700/50 pt-16">
-                    <!-- Staff Header -->
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">
-                            {{ 'contents.teams.lol.staff.title' | transloco }}
-                        </h2>
-                        <p class="text-lg text-gray-300 max-w-3xl mx-auto">
-                            {{ 'contents.teams.lol.staff.description' | transloco }}
-                        </p>
-                    </div>
-
-                    <!-- Staff Grid -->
-                    <div class="flex flex-wrap justify-center gap-6">
-                        <div *ngFor="let member of selected.staff; trackBy: trackByMemberId"
-                             class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(20%-19.2px)]">
-                            <app-team-card
-                                [member]="member"
-                                type="staff"
-                                [getRoleIcon]="getRoleIcon">
-                            </app-team-card>
-                        </div>
-                    </div>
-                </div>
+            <div class="grow flex flex-col justify-center">
+              <h1 class="text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                {{ 'contents.teams.lol.title' | transloco }}
+              </h1>
+              @if (selected.description) {
+                <p class="text-lg text-gray-300 mb-4 leading-relaxed">
+                  {{ selected.description }}
+                </p>
+              }
             </div>
+          </div>
+          <div class="relative">
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl max-w-[92%] mx-auto">
+              @if (selected.rosterImage; as roster) {
+                <img
+                  [src]="roster.url" [alt]="roster.alt || selected.name"
+                  [width]="roster.width" [height]="roster.height"
+                  class="w-full h-auto object-cover">
+              }
+            </div>
+          </div>
         </div>
-    </ng-container>
+      </div>
+    </div>
+    <!-- Roster Section -->
+    <div class="relative py-16 lg:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Roster Header -->
+        <div class="text-center mb-16">
+          <h2 class="text-3xl lg:text-5xl font-bold text-white mb-4">
+            {{ 'contents.teams.lol.roster.title' | transloco }}
+          </h2>
+          <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+            {{ 'contents.teams.lol.roster.description' | transloco }}
+          </p>
+        </div>
+        <!-- Players Grid  -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-20">
+          @for (player of selected.players; track trackByMemberId($index, player)) {
+            <app-team-card
+              [member]="player"
+              type="player"
+              [getRoleIcon]="getRoleIcon">
+            </app-team-card>
+          }
+        </div>
+        <!-- Staff Section -->
+        <div class="border-t border-gray-700/50 pt-16">
+          <!-- Staff Header -->
+          <div class="text-center mb-12">
+            <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">
+              {{ 'contents.teams.lol.staff.title' | transloco }}
+            </h2>
+            <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+              {{ 'contents.teams.lol.staff.description' | transloco }}
+            </p>
+          </div>
+          <!-- Staff Grid -->
+          <div class="flex flex-wrap justify-center gap-6">
+            @for (member of selected.staff; track trackByMemberId($index, member)) {
+              <div
+                class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(20%-19.2px)]">
+                <app-team-card
+                  [member]="member"
+                  type="staff"
+                  [getRoleIcon]="getRoleIcon">
+                </app-team-card>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
 </section>

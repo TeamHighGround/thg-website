@@ -22,11 +22,3 @@
     transform: translateY(0);
   }
 }
-
-// Responsive
-@media (max-width: 640px) {
-  ::ng-deep .p-chip .p-chip-text {
-    font-size: 0.625rem !important;
-    padding: 2px 6px !important;
-  }
-}

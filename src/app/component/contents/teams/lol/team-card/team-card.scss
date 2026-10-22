@@ -1,0 +1,11 @@
+// Chip du rôle : reprend le rendu du chip PrimeNG (thème Aura) utilisé jusqu'ici.
+.role-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 16px;
+  background-color: #f1f5f9;
+  color: #1e293b;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}

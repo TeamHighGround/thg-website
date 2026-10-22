@@ -1,5 +1,5 @@
-import { Component, computed, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, computed, inject, ChangeDetectionStrategy } from '@angular/core';
+
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslocoModule } from '@jsverse/transloco';
 
@@ -10,8 +10,9 @@ import { TimelineChapter, TimelineMilestone, TimelineResponse } from '../../../c
 @Component({
   selector: 'app-timeline',
   standalone: true,
-  imports: [CommonModule, TranslocoModule],
+  imports: [TranslocoModule],
   templateUrl: './timeline.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './timeline.scss'
 })
 export class Timeline {

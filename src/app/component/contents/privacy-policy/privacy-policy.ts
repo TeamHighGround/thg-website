@@ -1,12 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+
+import { Component, computed, inject, ChangeDetectionStrategy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-privacy-policy',
-  imports: [TranslocoModule, CommonModule],
+  imports: [TranslocoModule],
   templateUrl: './privacy-policy.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './privacy-policy.scss'
 })
 export class PrivacyPolicy {

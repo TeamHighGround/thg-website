@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShopComponent } from './shop';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TranslocoModule } from '@jsverse/transloco';
 
@@ -12,7 +12,7 @@ describe('ShopComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ShopComponent, TranslocoModule],
       providers: [
-        provideHttpClient(),
+        provideHttpClient(withXhr()),
         provideHttpClientTesting()
       ]
     }).compileComponents();

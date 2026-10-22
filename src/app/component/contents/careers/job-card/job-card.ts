@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, ChangeDetectionStrategy } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
 
 import { JobGame, JobOpening } from '../../../../core/api/models';
@@ -21,6 +21,7 @@ const JEUX: Record<JobGame, { libelle: string; classes: string }> = {
   selector: 'app-job-card',
   imports: [TranslocoModule],
   templateUrl: './job-card.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: `
     :host { display: block; }
     .job-details > summary { list-style: none; }

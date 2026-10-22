@@ -1,15 +1,15 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+
 import { TranslocoModule } from '@jsverse/transloco';
-import { ChipModule } from 'primeng/chip';
 import { SocialLinksComponent } from '../../../../shared/social-links/social-links';
 import { TeamMember } from '../../../../../core/api/models';
 
 @Component({
   selector: 'app-team-card',
   standalone: true,
-  imports: [CommonModule, TranslocoModule, ChipModule, SocialLinksComponent],
+  imports: [TranslocoModule, SocialLinksComponent],
   templateUrl: './team-card.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './team-card.scss'
 })
 export class TeamCard {
@@ -20,10 +20,5 @@ export class TeamCard {
   isImageIcon(): boolean {
     const icon = this.getRoleIcon(this.member.role);
     return icon.includes('.svg') || icon.includes('.png') || icon.includes('.jpg');
-  }
-
-  getChipClass(): string {
-    const baseClass = this.type === 'player' ? 'role-chip role-' : 'staff-chip staff-';
-    return baseClass + this.member.role.toLowerCase().replace(' ', '-');
   }
 }

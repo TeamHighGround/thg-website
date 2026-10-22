@@ -1,40 +1,43 @@
-<article class="group relative flex flex-col h-full bg-white/[0.025] border border-white/[0.08] rounded-[10px] overflow-hidden
+<article class="group relative flex flex-col h-full bg-white/2.5 border border-white/8 rounded-[10px] overflow-hidden
   transition-all duration-300 hover:-translate-y-0.5 hover:border-thgGreen/30"
   (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
 
   <!-- Section Images -->
-  <div class="relative aspect-[4/3] overflow-hidden bg-black/20">
+  <div class="relative aspect-4/3 overflow-hidden bg-black/20">
 
-    <img *ngIf="imageCourante() as image"
-      [src]="image.url"
-      [alt]="image.alt || partner.name"
-      [width]="image.width"
-      [height]="image.height"
-      loading="lazy"
-      class="w-full h-full object-cover object-[center_25%] transition-transform duration-300 group-hover:scale-105">
+    @if (imageCourante(); as image) {
+      <img
+        [src]="image.url"
+        [alt]="image.alt || partner.name"
+        [width]="image.width"
+        [height]="image.height"
+        loading="lazy"
+        class="w-full h-full object-cover object-[center_25%] transition-transform duration-300 group-hover:scale-105">
+    }
 
     <!-- Navigation Images -->
-    <div *ngIf="partner.images.length > 1"
+    @if (partner.images.length > 1) {
+      <div
          class="absolute inset-0 flex items-center justify-between p-2
            opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-      <button
-        type="button"
-        (click)="previousImage(); $event.stopPropagation()"
+        <button
+          type="button"
+          (click)="previousImage(); $event.stopPropagation()"
         class="bg-black/70 hover:bg-black/90 text-white rounded-full w-8 h-8
           transition-all duration-200 z-20 flex items-center justify-center hover:scale-110"
-        [attr.aria-label]="'Image précédente'">
-        <i class="pi pi-chevron-left text-xs"></i>
-      </button>
-
-      <button
-        type="button"
-        (click)="nextImage(); $event.stopPropagation()"
+          [attr.aria-label]="'Image précédente'">
+          <i class="pi pi-chevron-left text-xs"></i>
+        </button>
+        <button
+          type="button"
+          (click)="nextImage(); $event.stopPropagation()"
         class="bg-black/70 hover:bg-black/90 text-white rounded-full w-8 h-8
           transition-all duration-200 z-20 flex items-center justify-center hover:scale-110"
-        [attr.aria-label]="'Image suivante'">
-        <i class="pi pi-chevron-right text-xs"></i>
-      </button>
-    </div>
+          [attr.aria-label]="'Image suivante'">
+          <i class="pi pi-chevron-right text-xs"></i>
+        </button>
+      </div>
+    }
   </div>
 
   <!-- Section Contenu -->
@@ -46,14 +49,14 @@
       {{ partner.name }}
     </h3>
 
-    <!-- Types/Roles (Chips PrimeNG avec styles Tailwind) -->
-    <div *ngIf="partner.types.length" class="flex flex-wrap gap-1.5 mt-3">
-      <p-chip
-        *ngFor="let type of partner.types"
-        class="partner-role"
-        [label]="type">
-      </p-chip>
-    </div>
+    <!-- Types/Roles -->
+    @if (partner.types.length) {
+      <div class="flex flex-wrap gap-1.5 mt-3">
+        @for (type of partner.types; track type) {
+          <span class="partner-role">{{ type }}</span>
+        }
+      </div>
+    }
 
     <!-- Description -->
     <p class="text-gray-300 leading-relaxed text-sm mt-4">
@@ -61,11 +64,13 @@
     </p>
 
     <!-- Réseaux sociaux, calés en bas de la carte -->
-    <div *ngIf="partner.socialMedia" class="mt-auto pt-5 flex items-center gap-3">
-      <span class="text-gray-400 uppercase tracking-wider font-medium text-xs flex-shrink-0">
-        {{ 'contents.ambassadors.socialMedia.follow' | transloco }}
-      </span>
-      <app-social-links [links]="partner.socialMedia" size="small"></app-social-links>
-    </div>
+    @if (partner.socialMedia) {
+      <div class="mt-auto pt-5 flex items-center gap-3">
+        <span class="text-gray-400 uppercase tracking-wider font-medium text-xs shrink-0">
+          {{ 'contents.ambassadors.socialMedia.follow' | transloco }}
+        </span>
+        <app-social-links [links]="partner.socialMedia" size="small"></app-social-links>
+      </div>
+    }
   </div>
 </article>

@@ -1,83 +1,83 @@
-<div class="group relative bg-white/[0.025] border border-white/[0.08] rounded-[10px] overflow-hidden
+<div class="group relative bg-white/2.5 border border-white/8 rounded-[10px] overflow-hidden
      transition-all duration-300 hover:-translate-y-0.5 hover:border-thgGreen/30 h-full flex flex-col"
-     [class]="type + '-card'">
+  [class]="type + '-card'">
 
-    <!-- Variante avec photo du joueur -->
-    <ng-container *ngIf="member.image as photo; else iconVariant">
-        <!-- Photo -->
-        <div class="relative overflow-hidden">
-            <!-- Halo derrière le joueur -->
-            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div class="w-40 h-40 rounded-full bg-thgGreen/20 blur-3xl group-hover:bg-thgGreen/30 transition-colors"></div>
-            </div>
-
-            <!-- width/height : réservation d'espace, évite le décalage de mise en page -->
-            <img [src]="photo.url"
-                 [alt]="photo.alt || member.name"
-                 [width]="photo.width"
-                 [height]="photo.height"
-                 class="relative w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.03]">
-
-            <!-- Badge du rôle -->
-            <div class="absolute top-3 right-3 w-11 h-11 rounded-full bg-black/40 border border-white/10 backdrop-blur-sm flex items-center justify-center">
-                <img *ngIf="isImageIcon()"
-                     [src]="getRoleIcon(this.member.role)"
-                     [alt]="member.role"
-                     class="w-6 h-6 filter brightness-0 invert">
-                <i *ngIf="!isImageIcon()"
-                   [class]="'pi ' + getRoleIcon(this.member.role) + ' text-lg text-white'"></i>
-            </div>
-
-            <!-- Fondu vers le bas -->
-            <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-thgDark to-transparent pointer-events-none"></div>
+  <!-- Variante avec photo du joueur -->
+  @if (member.image; as photo) {
+    <!-- Photo -->
+    <div class="relative overflow-hidden">
+      <!-- Halo derrière le joueur -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div class="w-40 h-40 rounded-full bg-thgGreen/20 blur-3xl group-hover:bg-thgGreen/30 transition-colors"></div>
+      </div>
+      <!-- width/height : réservation d'espace, évite le décalage de mise en page -->
+      <img [src]="photo.url"
+        [alt]="photo.alt || member.name"
+        [width]="photo.width"
+        [height]="photo.height"
+        class="relative w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.03]">
+        <!-- Badge du rôle -->
+        <div class="absolute top-3 right-3 w-11 h-11 rounded-full bg-black/40 border border-white/10 backdrop-blur-xs flex items-center justify-center">
+          @if (isImageIcon()) {
+            <img
+              [src]="getRoleIcon(this.member.role)"
+              [alt]="member.role"
+              class="w-6 h-6 filter brightness-0 invert">
+          }
+          @if (!isImageIcon()) {
+            <i
+            [class]="'pi ' + getRoleIcon(this.member.role) + ' text-lg text-white'"></i>
+          }
         </div>
-
-        <!-- Info membre -->
-        <div class="relative px-6 pb-1 text-center flex flex-col flex-grow">
-            <h3 class="text-3xl font-bold text-white mb-3 group-hover:text-thgGreen-300 transition-colors">
-                {{ member.name }}
-            </h3>
-
-            <div class="flex justify-center min-h-[40px]">
-                <app-social-links *ngIf="member.socialLinks" [links]="member.socialLinks" size="small"></app-social-links>
-            </div>
+        <!-- Fondu vers le bas -->
+        <div class="absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-thgDark to-transparent pointer-events-none"></div>
+      </div>
+      <!-- Info membre -->
+      <div class="relative px-6 pb-1 text-center flex flex-col grow">
+        <h3 class="text-3xl font-bold text-white mb-3 group-hover:text-thgGreen-300 transition-colors">
+          {{ member.name }}
+        </h3>
+        <div class="flex justify-center min-h-[40px]">
+          @if (member.socialLinks) {
+            <app-social-links [links]="member.socialLinks" size="small"></app-social-links>
+          }
         </div>
-    </ng-container>
+      </div>
+    } @else {
+      <div class="p-6 flex flex-col h-full">
+        <div class="text-center grow">
+          <!-- Icône de rôle -->
+          <div class="relative mb-4 flex justify-center">
+            <div class="w-20 h-20 rounded-full border-2 border-gray-600 group-hover:border-thgGreen-400 transition-colors flex items-center justify-center">
+              <!-- Image SVG pour les joueurs -->
+              @if (isImageIcon()) {
+                <img
+                  [src]="getRoleIcon(this.member.role)"
+                  [alt]="member.role"
+                  class="w-12 h-12 text-white filter brightness-0 invert">
+              }
+              <!-- Icône PrimeNG pour le staff -->
+              @if (!isImageIcon()) {
+                <i
+                [class]="'pi ' + getRoleIcon(this.member.role) + ' text-4xl text-white'"></i>
+              }
+            </div>
+          </div>
+          <!-- Info membre -->
+          <h3 class="text-3xl font-bold text-white mb-2 group-hover:text-thgGreen-300 transition-colors">
+            {{ member.name }}
+          </h3>
+          <!-- Chip rôle -->
+          <span class="role-chip">{{ member.role }}</span>
+        </div>
+        <!-- Liens sociaux (toujours affiché pour garder la même hauteur) -->
+        <div class="mt-6 flex justify-center min-h-[40px]">
+          @if (member.socialLinks) {
+            <app-social-links [links]="member.socialLinks" size="small"></app-social-links>
+          }
+        </div>
+      </div>
+    }
 
     <!-- Variante avec icône de rôle (sans photo) -->
-    <ng-template #iconVariant>
-        <div class="p-6 flex flex-col h-full">
-            <div class="text-center flex-grow">
-                <!-- Icône de rôle -->
-                <div class="relative mb-4 flex justify-center">
-                    <div class="w-20 h-20 rounded-full border-2 border-gray-600 group-hover:border-thgGreen-400 transition-colors flex items-center justify-center">
-                        <!-- Image SVG pour les joueurs -->
-                        <img *ngIf="isImageIcon()"
-                             [src]="getRoleIcon(this.member.role)"
-                             [alt]="member.role"
-                             class="w-12 h-12 text-white filter brightness-0 invert">
-
-                        <!-- Icône PrimeNG pour le staff -->
-                        <i *ngIf="!isImageIcon()"
-                           [class]="'pi ' + getRoleIcon(this.member.role) + ' text-4xl text-white'"></i>
-                    </div>
-                </div>
-
-                <!-- Info membre -->
-                <h3 class="text-3xl font-bold text-white mb-2 group-hover:text-thgGreen-300 transition-colors">
-                    {{ member.name }}
-                </h3>
-
-                <!-- Chip rôle -->
-                <p-chip [label]="member.role"
-                        [class]="getChipClass()">
-                </p-chip>
-            </div>
-
-            <!-- Liens sociaux (toujours affiché pour garder la même hauteur) -->
-            <div class="mt-6 flex justify-center min-h-[40px]">
-                <app-social-links *ngIf="member.socialLinks" [links]="member.socialLinks" size="small"></app-social-links>
-            </div>
-        </div>
-    </ng-template>
-</div>
+  </div>

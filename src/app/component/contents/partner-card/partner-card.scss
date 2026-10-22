@@ -1,37 +1,21 @@
-// ===== STYLES PRIMENG UNIQUEMENT =====
-::ng-deep .p-chip {
-  background-color: #505f4e52 !important;
-  border: 1px solid rgb(100, 100, 100) !important;
-  color: #AED4AC !important;
-
-  &.partner-type, &.partner-role {
-    background-color: #748a7180 !important;
-    border-color: #AED4AC !important;
-  }
-
-  .p-chip-text {
-    font-size: 0.75rem !important;
-    font-weight: 600 !important;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    
-    // Responsive
-    @media (max-width: 640px) {
-      font-size: 0.625rem !important;
-      padding: 4px 8px !important;
-    }
-  }
+// ===== CHIPS DES TYPES DE PARTENAIRE =====
+.partner-role {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 16px;
+  background-color: #748a7180;
+  border: 1px solid #AED4AC;
+  color: #AED4AC;
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 // Effet hover sur les chips
-::ng-deep .group:hover .p-chip {
+.group:hover .partner-role {
   transition: all 0.3s ease;
-  
-  &.partner-type, &.partner-role {
-    background-color: #748a7193 !important;
-    border-color: #AED4AC !important;
-    box-shadow: 0 0 20px rgba(174, 212, 172, 0.3);
-  }
+  background-color: #748a7193;
+  box-shadow: 0 0 20px rgba(174, 212, 172, 0.3);
 }
 
 // ===== PRÉFÉRENCES UTILISATEUR =====
@@ -44,13 +28,10 @@
 }
 
 @media (prefers-contrast: high) {
-  ::ng-deep .p-chip {
-    border-width: 2px !important;
-    
-    &.partner-type, &.partner-role {
-      background-color: #000000 !important;
-      color: #ffffff !important;
-      border-color: #ffffff !important;
-    }
+  .partner-role {
+    border-width: 2px;
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #ffffff;
   }
 }

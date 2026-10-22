@@ -1,13 +1,14 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
 import { SiteSettingsService } from '../../../core/api/site-settings.service';
 import { SiteSocialLinks } from '../../../core/api/models';
 
 @Component({
   selector: 'app-contact',
-  imports: [TranslocoModule, CommonModule],
+  imports: [TranslocoModule],
   templateUrl: './contact.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './contact.scss'
 })
 export class Contact {

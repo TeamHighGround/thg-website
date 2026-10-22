@@ -1,4 +1,4 @@
-import { Component, computed, inject, PLATFORM_ID } from '@angular/core';
+import { Component, computed, inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -25,6 +25,7 @@ function estUrlHelloAsso(valeur: string): boolean {
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './shop.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './shop.scss'
 })
 export class ShopComponent {

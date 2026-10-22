@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Site public de la **Team High Ground** (teamhighground.fr) : Angular 20, rendu serveur
+Site public de la **Team High Ground** (teamhighground.fr) : Angular 22, rendu serveur
 (SSR) à chaque requête, FR/EN. La vue d'ensemble des trois dépôts (API, site, panel),
 le lancement local et le déploiement sont dans `../CLAUDE.md`.
 
@@ -29,8 +29,10 @@ rm -rf .angular/cache  # en cas d'erreur SSR NG0400 après une mise à jour
 ```
 
 - `npx ng build` est **la** vérification : il compile aussi les gabarits.
-- Les specs Karma (`ng test`) ne sont pas entretenues : 17 sur 21 échouent faute de
-  providers (HttpClient, Transloco). Ne pas s'y fier ; ne pas en ajouter sans les réparer.
+- Les specs (`npx ng test --watch=false`, Vitest) ne sont pas entretenues : 17 sur 21
+  échouent faute de providers (HttpClient, Transloco). Ne pas s'y fier ; ne pas en ajouter
+  sans les réparer.
+- Node **24.15+** exigé par Angular 22 (préfixer le PATH, voir `../CLAUDE.md`).
 - Le build affiche « Prerendered 0 static routes » : c'est normal, tout est en rendu serveur.
 - Sans l'API (`thg-api` sur :4001), les pages s'affichent en mode dégradé — c'est voulu.
 
@@ -139,13 +141,19 @@ sont en anglais dans les deux langues.
 
 ## Styles
 
-- **Tailwind 3** (configuration et couleurs `thgGreen`, `thgDark` dans
-  `tailwind.config.js`) + **PrimeNG 20** (thème Aura, mode sombre `.app-dark` ; utilisé par le
-  menu Équipes du header, `partner-card`, la page LoL et `team-card`). Couches CSS
-  ordonnées `tailwind, primeng`.
+- **Tailwind 4**, configuré dans `src/styles.css` (bloc `@theme` : couleurs `thgGreen`,
+  `thgDark`) et branché par `@tailwindcss/postcss` (`.postcssrc.json`), comme le panel. Pas
+  de `tailwind.config.js`. Garder `styles.css` en CSS : Tailwind 4 ne passe pas par Sass
+  (les styles de composants restent en SCSS, sans `@apply`).
+- **Pas de PrimeNG** (licence commerciale depuis la v22 ; absent aussi de `thg-admin` et `thg-hub`) :
+  icônes PrimeIcons 7 (MIT), menu Équipes du header en `@angular/cdk/menu`, chips en
+  simples `<span>` stylés (`partner-card`, `team-card`).
+- Dans une barre où un enfant est en `absolute` (indicateur du header), utiliser `gap-*`
+  et non `space-x-*` : en Tailwind 4, `space-x` met la marge à droite de chaque enfant
+  sauf le dernier, l'élément absolu compris.
 - Classes Tailwind dynamiques : les écrire **en entier** dans le code (pas de
   `'bg-' + couleur`), sinon Tailwind ne les génère pas. Exemples : `contact.ts`, `job-card.ts`.
-- Cartes : `bg-white/[0.025] rounded-[10px] border border-white/[0.08]
+- Cartes : `bg-white/2.5 rounded-[10px] border border-white/8
   hover:border-thgGreen/30`. Icônes : PrimeIcons (`pi pi-…`).
 - Pas d'effet clignotant ou animé en boucle dans les pages (refusé par l'utilisateur).
 

@@ -1,0 +1,87 @@
+/* Feuille de styles globale. Tailwind 4 se configure ici (bloc @theme), plus de
+   tailwind.config.js ; PostCSS passe par @tailwindcss/postcss (.postcssrc.json). */
+
+/* Les @import doivent précéder toute autre règle. */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "primeicons/primeicons.css" layer(base);
+@import "tailwindcss";
+
+@theme {
+  --color-thgGreen: #aed4ac;
+  --color-thgGreen-50: #f6fdf6;
+  --color-thgGreen-100: #e8f7e7;
+  --color-thgGreen-200: #d4f0d2;
+  --color-thgGreen-300: #b8e5b5;
+  --color-thgGreen-400: #9dd99a;
+  --color-thgGreen-500: #aed4ac;
+  --color-thgGreen-600: #8bc188;
+  --color-thgGreen-700: #6ba968;
+  --color-thgGreen-800: #4f8a4d;
+  --color-thgGreen-900: #3d6b3b;
+  --color-thgGreen-950: #0d110d;
+  --color-thgDark: #0a0d0a;
+}
+
+@layer base {
+  /* Tailwind 4 borde en `currentcolor` par défaut ; on garde le gris de Tailwind 3
+     pour les éléments qui posent `border` sans couleur. */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  /* Tailwind 4 rend les boutons en `cursor: default` ; on garde la main. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* Police personnalisée Parsi (titre hero de la home) */
+@font-face {
+  font-family: "Parsi";
+  src: url("/assets/fonts/Parsi/Parsi-Light.woff2") format("woff2"),
+       url("/assets/fonts/Parsi/Parsi-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Parsi";
+  src: url("/assets/fonts/Parsi/Parsi-Regular.woff2") format("woff2"),
+       url("/assets/fonts/Parsi/Parsi-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Parsi";
+  src: url("/assets/fonts/Parsi/Parsi-Bold.woff2") format("woff2"),
+       url("/assets/fonts/Parsi/Parsi-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Couleur de fond de secours : evite tout bandeau clair dans les zones que le
+   SVG de fond n'atteindrait pas (bords d'ecran sous les barres navigateur
+   mobile, rebond d'overscroll).
+
+   A poser UNIQUEMENT sur html : cette couleur est propagee au canvas et peinte
+   avant tout le reste. Sur body, elle deviendrait un fond de bloc normal,
+   peint par-dessus les elements en z-index negatif (dont app-background). */
+html {
+  background-color: #0a0d0a;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: "Plus Jakarta Sans", "Plus Jakarta Sans Fallback", sans-serif;
+}

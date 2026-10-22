@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, ChangeDetectionStrategy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -21,6 +21,7 @@ import { SiteSettingsService } from '../../../core/api/site-settings.service';
 @Component({
   selector: 'app-careers',
   imports: [TranslocoModule, RouterLink, JobCard],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './careers.html'
 })
 export class Careers {
