@@ -9,7 +9,7 @@ npm install
 npm start                 # http://localhost:4200 — nécessite l'API (thg-api) sur :4001
 ```
 
-Lancement complet (base, API, site, panel) : [`docs/demarrage-local.md`](docs/demarrage-local.md).
+Lancement complet (base, API, site, panel) : `docs/demarrage-local.md` du dépôt `thg-api` (privé).
 
 ## Déploiement
 

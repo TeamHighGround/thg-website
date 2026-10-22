@@ -16,7 +16,7 @@ le lancement local et le déploiement sont dans `../CLAUDE.md`.
   clés de traduction), commentaires, messages de commit (`Add…`, `Fix…`), branches,
   workflows et jobs CI.
 - **En français** : les textes du site dans `fr.json` (avec leur pendant dans `en.json`),
-  les `CLAUDE.md` et la documentation (`README.md`, `docs/`).
+  les `CLAUDE.md` et la documentation (`README.md`).
 - Le code existant en français (`selonLangue`, `etat`…) n'est pas renommé en masse : le
   nouveau code est en anglais ; un renommage se fait à la demande, dans un commit dédié.
 
@@ -43,7 +43,7 @@ e-mail de contact et boutique sont **servis par l'API** et **administrés depuis
 (`thg-admin`, admin.teamhighground.fr). Ne pas les recoder en dur, ni les remettre dans
 les fichiers de traduction.
 
-- **`docs/api-contract.md` fait foi** pour les trois dépôts : formes JSON, codes d'erreur,
+- **`../thg-api/docs/api-contract.md` fait foi** pour les trois dépôts : formes JSON, codes d'erreur,
   noms de routes. Toute route nouvelle s'y inscrit **avant** d'être codée.
 - Les routes publiques acceptent `?lang=fr|en` et renvoient des textes **déjà résolus** :
   le site ne manipule jamais de suffixes `Fr`/`En`.

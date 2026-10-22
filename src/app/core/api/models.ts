@@ -4,7 +4,7 @@ import { SocialLinks } from '../../component/shared/social-links/social-links.in
  * Modèles TypeScript des réponses publiques de l'API THG.
  *
  * Ces types recopient à l'identique les formes JSON figées dans
- * `docs/api-contract.md`. Toute divergence est un bug : le contrat fait foi.
+ * `thg-api/docs/api-contract.md`. Toute divergence est un bug : le contrat fait foi.
  *
  * Rappel de deux conventions du contrat :
  * - les routes publiques renvoient les textes DÉJÀ résolus dans la langue
