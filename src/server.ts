@@ -34,15 +34,33 @@ const angularApp = new AngularNodeAppEngine({
 });
 
 /**
+ * Build outputs whose name carries a content hash (`main-QINDNIFO.js`,
+ * `chunk-CCkn47_2.js`, `styles-…`, `bundle-assets/…`): a new content means a new
+ * URL, so they can be cached for a year. Allow-list on purpose: a generic
+ * "-XXXXXXXX" pattern could one day match an unhashed file such as a logo.
+ */
+const HASHED_FILE =
+  /[\\/](?:main|chunk|polyfills|styles)-[A-Za-z0-9_-]{8}\.(?:js|css)$|[\\/]bundle-assets[\\/]/;
+
+/**
  * Fichiers statiques du bundle navigateur.
  * `index: false` : la page d'accueil doit passer par le rendu Angular, pas être
  * servie telle quelle depuis le disque.
+ * Everything without a hash (robots.txt, sitemap.xml, files from `public/` and
+ * `src/assets/`) keeps its URL across deploys: `no-cache` makes browsers
+ * revalidate it (ETag, 304) instead of keeping a stale copy for a year.
  */
 app.use(
   express.static(browserDistFolder, {
-    maxAge: '1y',
+    cacheControl: false,
     index: false,
-    redirect: false
+    redirect: false,
+    setHeaders: (res, path) => {
+      res.setHeader(
+        'Cache-Control',
+        HASHED_FILE.test(path) ? 'public, max-age=31536000, immutable' : 'no-cache'
+      );
+    }
   })
 );
 

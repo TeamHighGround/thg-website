@@ -5,7 +5,7 @@ import { routes } from './app.routes';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration, withHttpTransferCacheOptions, withNoIncrementalHydration } from '@angular/platform-browser';
-import { TranslocoHttpLoader } from './transloco/transloco-loader';
+import { TranslocoBrowserLoader } from './transloco/transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
 
 export const appConfig: ApplicationConfig = {
@@ -31,7 +31,7 @@ export const appConfig: ApplicationConfig = {
         defaultLang: 'fr',
         prodMode: !isDevMode()
       },
-      loader: TranslocoHttpLoader
+      loader: TranslocoBrowserLoader
     })
   ]
 };

@@ -127,9 +127,17 @@ sont en anglais dans les deux langues.
 ## Traductions (Transloco)
 
 - Langues `fr` (défaut) et `en`. Fichiers : `src/assets/i18n/fr.json` et `en.json`.
-  Le navigateur les charge en HTTP ; le serveur les **importe à la compilation**
-  (`transloco-loader.server.ts`) : une clé modifiée exige de relancer le serveur de dev
-  ou de rebuilder. `transloco.config.ts` (`public/assets/i18n/`) n'est utilisé par rien.
+  Le serveur les **importe à la compilation** (`transloco-loader.server.ts`) et le
+  navigateur par `import()` dynamique (`transloco-loader.ts`) : le build en fait des
+  chunks hachés, dont l'URL change à chaque modification. Ne pas revenir à un chargement
+  HTTP de `assets/i18n/*.json` : une URL fixe restait en cache chez les visiteurs, qui
+  voyaient d'anciens textes et des clés brutes après l'hydratation. Une clé modifiée exige
+  de relancer le serveur de dev ou de rebuilder. `transloco.config.ts`
+  (`public/assets/i18n/`) n'est utilisé par rien.
+- Cache (`src/server.ts`) : un an (`immutable`) pour les seuls fichiers hachés
+  (`main|chunk|polyfills|styles-XXXXXXXX`, `bundle-assets/`), `no-cache` pour le reste.
+  En production, le bloc par extension de `thg-infra/nginx/thg.conf` impose encore un an
+  aux images et polices, même non hachées.
 - Format à respecter : JSON indenté de 2 espaces, **fins de ligne CRLF**, accents non
   échappés. Les fichiers ne contiennent que l'interface (titres, boutons, messages) :
   le contenu éditorial est en base.
