@@ -6,7 +6,6 @@ Allow: /
 
 # Disallow utility pages
 Disallow: /cookie-settings
-Disallow: /legal-notice
 Disallow: /privacy-policy
 
 # Ancienne adresse du panel, redirigée vers admin.teamhighground.fr

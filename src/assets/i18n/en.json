@@ -214,6 +214,7 @@
     "social": {
       "title": "Follow us"
     },
+    "legalForm": "Association under the 1901 law",
     "all_rights_reserved": "All rights reserved"
   },
   "legalNotice": {
@@ -222,23 +223,25 @@
       "title": "Site Editor",
       "denomination": "Name",
       "legalForm": "Legal Form",
+      "rna": "RNA No.",
+      "siren": "SIREN No.",
+      "siret": "SIRET (head office)",
+      "creationDate": "Date of creation",
+      "joafe": "Published in the Journal Officiel (JOAFE)",
       "headquarters": "Headquarters",
       "email": "Email",
       "director": "Director of Publication",
+      "officialSite": "teamhighground.fr is the official website of the TEAM HIGH GROUND association, RNA W353025084.",
       "values": {
-        "denomination": "Team High Ground (THG)",
-        "legalForm": "Association under the 1901 law",
+        "denomination": "TEAM HIGH GROUND (THG)",
+        "legalForm": "Association under the 1901 law, registered with the Ille-et-Vilaine prefecture",
+        "rna": "W353025084",
+        "siren": "944 060 110",
+        "siret": "944 060 110 00011",
+        "creationDate": "April 18, 2025",
+        "joafe": "April 29, 2025",
         "headquarters": "4 avenue Sergent Maginot, 35000 Rennes",
         "director": "Briac Pannetier-Becel, President"
-      }
-    },
-    "hosting": {
-      "title": "Hosting",
-      "host": "Host",
-      "address": "Address",
-      "values": {
-        "host": "Team High Ground (THG), self-hosted on a virtual private server (VPS)",
-        "address": "4 avenue Sergent Maginot, 35000 Rennes, France"
       }
     },
     "intellectualProperty": {

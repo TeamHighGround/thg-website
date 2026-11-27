@@ -214,6 +214,7 @@
     "social": {
       "title": "Suivez-nous"
     },
+    "legalForm": "Association loi 1901",
     "all_rights_reserved": "Tous droits réservés"
   },
   "legalNotice": {
@@ -222,23 +223,25 @@
       "title": "Éditeur du site",
       "denomination": "Dénomination",
       "legalForm": "Forme juridique",
+      "rna": "N° RNA",
+      "siren": "N° SIREN",
+      "siret": "SIRET (siège social)",
+      "creationDate": "Date de création",
+      "joafe": "Publication au Journal Officiel (JOAFE)",
       "headquarters": "Siège social",
       "email": "Email",
       "director": "Directeur de la publication",
+      "officialSite": "Le site teamhighground.fr est le site officiel de l'association TEAM HIGH GROUND, RNA W353025084.",
       "values": {
-        "denomination": "Team High Ground (THG)",
-        "legalForm": "Association loi 1901",
+        "denomination": "TEAM HIGH GROUND (THG)",
+        "legalForm": "Association loi 1901, déclarée à la préfecture d'Ille-et-Vilaine",
+        "rna": "W353025084",
+        "siren": "944 060 110",
+        "siret": "944 060 110 00011",
+        "creationDate": "18/04/2025",
+        "joafe": "29/04/2025",
         "headquarters": "4 avenue Sergent Maginot, 35000 Rennes",
         "director": "Briac Pannetier-Becel, Président"
-      }
-    },
-    "hosting": {
-      "title": "Hébergement",
-      "host": "Hébergeur",
-      "address": "Adresse",
-      "values": {
-        "host": "Team High Ground (THG), auto-hébergé sur un serveur privé virtuel (VPS)",
-        "address": "4 avenue Sergent Maginot, 35000 Rennes, France"
       }
     },
     "intellectualProperty": {

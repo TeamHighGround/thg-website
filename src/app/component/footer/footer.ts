@@ -12,4 +12,6 @@ import { SiteSettingsService } from '../../core/api/site-settings.service';
 })
 export class Footer {
   readonly reseaux = inject(SiteSettingsService).reseaux;
+  /** Computed on each server render, so the copyright year never goes stale. */
+  readonly year = new Date().getFullYear();
 }
