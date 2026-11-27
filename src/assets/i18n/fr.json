@@ -244,6 +244,17 @@
         "director": "Briac Pannetier-Becel, Président"
       }
     },
+    "hosting": {
+      "title": "Hébergement",
+      "host": "Hébergeur",
+      "address": "Adresse",
+      "phone": "Téléphone",
+      "values": {
+        "host": "OVH SAS",
+        "address": "2 rue Kellermann, 59100 Roubaix, France",
+        "phone": "+33 9 72 10 10 07"
+      }
+    },
     "intellectualProperty": {
       "title": "Propriété intellectuelle",
       "description1": "Le site web et tous ses éléments sont protégés par le droit d'auteur et appartiennent à l'association THG."
